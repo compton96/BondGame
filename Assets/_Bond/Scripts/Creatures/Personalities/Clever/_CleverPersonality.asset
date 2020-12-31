@@ -12,14 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d844b5790621148a60a32fa8c6c23f, type: 3}
   m_Name: _CleverPersonality
   m_EditorClassIdentifier: 
-  personalityName: Clever
-  basePercentage: 1
-  maxPercentage: 1
-  statModType1: 1
-  statModifierAmount1: 1.3
-  statModType2: 5
-  statModifierAmount2: 0
-  WildNoticed: {fileID: 0}
-  WildAlone: {fileID: 0}
-  AbilityTree: {fileID: 0}
-  FollowPlayerTree: {fileID: 11400000, guid: 909255de0a3e53e449b55ba6300fe38b, type: 2}
