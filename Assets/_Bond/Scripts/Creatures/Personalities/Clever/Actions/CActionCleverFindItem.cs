@@ -5,7 +5,8 @@ using UnityEngine;
 public class CActionCleverFindItem : BTLeaf
 {
     
-    public CActionCleverFindItem(string _name, CreatureAIContext _context ) : base(_name, _context){
+    public CActionCleverFindItem(string _name, CreatureAIContext _context ) : base(_name, _context)
+    {
         name = _name;
         context = _context;
     }
@@ -20,12 +21,15 @@ public class CActionCleverFindItem : BTLeaf
         ranOnEnter = false;
     }
 
-    public override NodeState Evaluate() {
-        if(!ranOnEnter){
+    public override NodeState Evaluate()
+    {
+        if (!ranOnEnter)
+        {
             OnEnter();
         }
 
-        if (context.cleverIgnoreItems) {
+        if (context.cleverIgnoreItems)
+        {
             OnExit();
             return NodeState.FAILURE;
         }
@@ -37,14 +41,14 @@ public class CActionCleverFindItem : BTLeaf
         foreach (var hitCollider in hitColliders)
         { 
             var distance = Vector3.Distance(hitCollider.gameObject.transform.position, context.creatureTransform.position);
-            if(distance < closestDistance) {
+            if(distance < closestDistance)
+            {
                 closestDistance = distance;
                 closestItem = hitCollider.gameObject;
             }
-            
-           
         }
-        if(closestItem != null) {
+        if (closestItem != null)
+        {
             context.cleverItem = closestItem;
             OnExit();
             return NodeState.SUCCESS;

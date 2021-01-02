@@ -12,7 +12,8 @@ public class CActionCleverApproachItem : BTLeaf
     private float acceleration = 100f; //max accel units/sec^2
 
 
-    public CActionCleverApproachItem(string _name, CreatureAIContext _context) : base(_name, _context) {
+    public CActionCleverApproachItem(string _name, CreatureAIContext _context) : base(_name, _context)
+    {
         name = _name;
         context = _context;
 
@@ -40,17 +41,21 @@ public class CActionCleverApproachItem : BTLeaf
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter){
+        if (!ranOnEnter)
+        {
             OnEnter();
         }
 
         agent.destination = context.cleverItem.transform.position;
 
-        if(Vector3.Distance(context.cleverItem.transform.position, context.creatureTransform.position) < 3) {
+        if (Vector3.Distance(context.cleverItem.transform.position, context.creatureTransform.position) < 3)
+        {
             // Player too far away
             OnExit();
             return NodeState.SUCCESS;
-        } else {
+        }
+        else
+        {
             // Still trying to get to player
             return NodeState.RUNNING;
         }

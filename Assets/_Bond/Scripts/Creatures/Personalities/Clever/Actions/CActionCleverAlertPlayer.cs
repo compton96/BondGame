@@ -5,7 +5,8 @@ using UnityEngine;
 public class CActionCleverAlertPlayer : BTLeaf
 {
     
-    public CActionCleverAlertPlayer(string _name, CreatureAIContext _context ) : base(_name, _context){
+    public CActionCleverAlertPlayer(string _name, CreatureAIContext _context ) : base(_name, _context)
+    {
         name = _name;
         context = _context;
     }
@@ -23,8 +24,10 @@ public class CActionCleverAlertPlayer : BTLeaf
         //find a better way to turn off cleverIgnoreItems
     }
 
-    public override NodeState Evaluate() {
-        if(!ranOnEnter){
+    public override NodeState Evaluate()
+    {
+        if (!ranOnEnter)
+        {
             OnEnter();
         }
 
@@ -32,10 +35,12 @@ public class CActionCleverAlertPlayer : BTLeaf
         desiredLook.x = 0;
         context.creatureTransform.rotation = desiredLook;
 
-        if (context.cleverItem != null && Vector3.Distance(context.creatureTransform.position, context.player.transform.position) < 12) {
+        if (context.cleverItem != null && Vector3.Distance(context.creatureTransform.position, context.player.transform.position) < 12)
+        {
             return NodeState.RUNNING;
         }
-        else {
+        else
+        {
             OnExit();
             return NodeState.SUCCESS;
         }
