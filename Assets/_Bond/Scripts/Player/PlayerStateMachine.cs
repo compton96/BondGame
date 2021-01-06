@@ -28,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     public PlayerState.State currentState { get; private set; }
     public PlayerState.State transitionExitState { get; set; }
+    public PlayerState.State previousState { get; set; }
 
     private void Start()
     {

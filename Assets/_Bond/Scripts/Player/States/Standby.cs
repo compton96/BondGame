@@ -9,16 +9,14 @@ namespace PlayerState
     [Serializable]
     public class Standby : State
     {
-        // Set fields here
         public Standby( PlayerStateMachine _fsm ) : base( _fsm )
         {
-            base.name = "Standby";
+            name = "Standby";
         }
 
         public override void OnStateEnter()
         {
-            Debug.Log("Entering Standby");
-           
+            
         }
 
         public override void OnStateUpdate()
@@ -33,7 +31,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            Debug.Log("Exiting Standby");
+            
         }
     }
 }

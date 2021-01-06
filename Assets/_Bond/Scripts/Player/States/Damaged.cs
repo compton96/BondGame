@@ -13,14 +13,12 @@ namespace PlayerState
         // Set fields here
         public Damaged( PlayerStateMachine _fsm ) : base( _fsm )
         {
-            base.name = "Damaged";
+            name = "Damaged";
         }
 
         public override void OnStateEnter()
         {
-            Debug.Log("Entering Damaged");
-            player.animator.animator.SetTrigger("isHit");
-            
+            animator.SetDamaged();
         }
 
         public override void OnStateUpdate()
@@ -28,15 +26,18 @@ namespace PlayerState
             if(player.isHit)
             {
                 player.isHit = false;
-                SetState( fsm.Damaged);
+                SetState( fsm.Damaged );
+                return;
             }
             //wait till end of animation, return to idle
             //maybe check how many times has been triggered in succession?
-            if(!player.animator.animator.GetCurrentAnimatorStateInfo(0).IsTag("isHit"))
+            // HERMAN TODO: Detect if hit animation is ended
+            if( !player.animator.IsDamaged() )
             {
                 //Debug.Log("End Player hit state");
                 
                 SetState(fsm.IdleMove);
+                return;
             }
         }
 
@@ -47,49 +48,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            Debug.Log("Exiting Damaged");
-        }
-    }
-}
-/*public class Damaged : PlayerBaseState
-{
-    private PlayerController player;
-    
-    public PlayerIsHit(PlayerController _player) : base(_player.gameObject){
-        player = _player;
-    }
-
-    public override void Enter(){
-        //enter anim
-        player.animator.animator.SetTrigger("isHit");
-    }
-
-    public override Type Tick() {
-        if(player.isHit)
-        {
-            player.isHit = false;
-            return typeof(PlayerIsHit);
-        }
-        //wait till end of animation, return to idle
-        //maybe check how many times has been triggered in succession?
-        if(!player.animator.animator.GetCurrentAnimatorStateInfo(0).IsTag("isHit"))
-        {
-            //Debug.Log("End Player hit state");
             
-            return typeof(PlayerIdleState);
         }
-        return null;
-    }
-
-
-    public override void PhysicsTick()
-    {
-        
-    }
-
-    public override void Exit(){
-        //exit anim
-       // Debug.Log("Exiting Player isHit");
     }
 }
-*/

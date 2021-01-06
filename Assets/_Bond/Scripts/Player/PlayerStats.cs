@@ -24,6 +24,8 @@ public class PlayerStats : MonoBehaviour
             healthUIUpdate();
         }
     }
+    public float maxHealthModAdd;
+    public float maxHealthModMult;
 
     [SerializeField] private float currHealth;
     //This is a property. Use CurrHealth when accessing 
@@ -40,12 +42,20 @@ public class PlayerStats : MonoBehaviour
             healthUIUpdate();
         }
     }
+    public float currHealthModAdd;
+    public float currHealthModMult;
 
-    public float attack1Damage = 10;
-    public float attack2Damage = 11;
-    public float attack3Damage = 12;
-    public float defense = 10;
+    public float attack1Damage = 100;
+    public float attack2Damage = 120;
+    public float attack3Damage = 150;
+    public float heavyDamage = 200;
+    public float attackModAdd = 0;
+    public float attackModMult = 0;
+
     public float speed;
+    public float speedModAdd;
+    public float speedModMult;
+
     public Slider slider;
     public TextMeshProUGUI maxHealthUI;
     public TextMeshProUGUI currHealthUI;

@@ -8,7 +8,9 @@ namespace PlayerState
     [Serializable]
     public class IdleMove : State
     {
-        public IdleMove( PlayerStateMachine _fsm ) : base( _fsm ) {
+        public IdleMove( PlayerStateMachine _fsm ) : base( _fsm )
+        {
+            name = "IdleMove";
             parent = fsm.MovementState;
         }
 
@@ -19,19 +21,18 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            
-            if(player.playerDash)
+            if(player.inputs.dash)
             {
                 SetState( fsm.Dash );
                 return;
             }
-            if(player.playerBasicAttack) 
+            if(player.inputs.basicAttack) 
             {
                 //playerController.playerBasicAttack = false;
                 SetState( fsm.ComboAttackState );
                 return;
             }
-            if(player.playerHeavyAttack) 
+            if(player.inputs.heavyAttack) 
             {
                 //playerController.playerBasicAttack = false;
                 SetState( fsm.HeavyCharge );

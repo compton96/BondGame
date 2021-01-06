@@ -29,6 +29,8 @@ namespace PlayerState
         {
             fsm.transitionExitState = this;
 
+            fsm.previousState = this;
+
             fsm.currentState.OnParentStateExit();
             fsm.SetState( state );
         }

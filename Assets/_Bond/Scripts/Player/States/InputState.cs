@@ -8,7 +8,10 @@ namespace PlayerState
     [Serializable]
     public class InputState : State
     {
-        public InputState( PlayerStateMachine _fsm ) : base( _fsm ) {}
+        public InputState( PlayerStateMachine _fsm ) : base( _fsm )
+        {
+            name = "Input";
+        }
 
         public override void OnStateEnter()
         {
@@ -22,6 +25,12 @@ namespace PlayerState
                 player.isHit = false;
 
                 SetState( fsm.Damaged );
+                return;
+            }
+            
+            if(player.inputs.dash)
+            {
+                SetState( fsm.Dash );
                 return;
             }
         }

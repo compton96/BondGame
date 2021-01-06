@@ -10,6 +10,7 @@ namespace PlayerState
     {
         public ComboAttackState( PlayerStateMachine _fsm ) : base( _fsm )
         {
+            name = "Combo Attack";
             parent = fsm.InputState;
         }
 
@@ -20,7 +21,7 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            if(player.playerDash)
+            if(player.inputs.dash)
             {
                 SetState( fsm.Dash );
                 return;
