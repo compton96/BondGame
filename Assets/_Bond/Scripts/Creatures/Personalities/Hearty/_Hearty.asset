@@ -9,17 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d844b5790621148a60a32fa8c6c23f, type: 3}
+  m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _Hearty
   m_EditorClassIdentifier: 
-  personalityName: Barbaric
-  basePercentage: 1
-  maxPercentage: 1
-  statModType1: 0
-  statModifierAmount1: 1.8
-  statModType2: 2
-  statModifierAmount2: 0.5
-  WildNoticed: {fileID: 11400000, guid: 6f01269a5307bbd4ba94d9e6d0741341, type: 2}
-  WildAlone: {fileID: 0}
-  AbilityTree: {fileID: 11400000, guid: f65d85959d727bb4f95b3c98301e3cb1, type: 2}
-  FollowPlayerTree: {fileID: 0}
