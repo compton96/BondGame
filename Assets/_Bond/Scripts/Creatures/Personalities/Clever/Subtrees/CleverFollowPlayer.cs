@@ -6,7 +6,8 @@ using UnityEngine;
 public class CleverFollowPlayer : BTSubtree
 {
 
-    public override BTSelector BuildSelectorSubtree(CreatureAIContext context) {
+    public override BTSelector BuildSelectorSubtree(CreatureAIContext context)
+    {
         #region BONDED FOLLOW PLAYER
             List<BTNode> BondedFollowPlayer = new List<BTNode>();
         
