@@ -32,10 +32,10 @@ public class CActionBarbaricMeleeAttack : BTLeaf
         
         
 
-        context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
+        // context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
         if(Random.Range(0f,1f) < 0.5)
         {
-            context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
+            // context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
         } 
         context.targetEnemy = null;
         context.isAbilityTriggered = false;

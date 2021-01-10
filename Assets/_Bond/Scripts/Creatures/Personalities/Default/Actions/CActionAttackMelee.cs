@@ -33,7 +33,7 @@ public class CActionAttackMelee : BTLeaf
         
         
 
-        context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
+        // context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
         if(true)

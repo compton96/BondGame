@@ -102,7 +102,7 @@ public class CreatureAI : MonoBehaviour
 
             #region is creature wild
                 List<BTNode> IsCreatureWildList = new List<BTNode>();
-                BTCheckIsWild isWild = new BTCheckIsWild("Is Wild?", context);
+                CCheckIsWild isWild = new CCheckIsWild("Is Wild?", context);
                 IsCreatureWildList.Add(isWild);
                 IsCreatureWildList.Add(creatureIsWildSelector);
                 BTSequence isCreatureWildSequence = new BTSequence("Is Creature Wild?", IsCreatureWildList);

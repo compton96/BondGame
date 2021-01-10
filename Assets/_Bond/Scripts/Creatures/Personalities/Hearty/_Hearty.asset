@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _Hearty
   m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: 4d95f91ae45e749428cda60228321228, type: 2}
+  WildAlone: {fileID: 11400000, guid: 4de96a676a935ce468fb7551958e798c, type: 2}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 11400000, guid: 627accb60d7396e4ca66d15d6c79b13d, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
+  m_Name: _Lazy
+  m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: b39813166a9a6ee4c8b95b2563e5f554, type: 2}
+  WildAlone: {fileID: 11400000, guid: 3a0fe9e5c04eb9940956d37215215093, type: 2}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 0}

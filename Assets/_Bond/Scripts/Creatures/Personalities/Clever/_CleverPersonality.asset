@@ -9,6 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d844b5790621148a60a32fa8c6c23f, type: 3}
+  m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _CleverPersonality
   m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 0}
+  WildAlone: {fileID: 0}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 11400000, guid: d9cd58a8d4e39da449416f9c1b664894, type: 2}
