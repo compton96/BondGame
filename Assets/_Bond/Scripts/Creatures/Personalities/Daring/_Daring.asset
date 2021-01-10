@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _Daring
   m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: 441da966e8e580447af003591e8aa373, type: 2}
+  WildAlone: {fileID: 0}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 0}

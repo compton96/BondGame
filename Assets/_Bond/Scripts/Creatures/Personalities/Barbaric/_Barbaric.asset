@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _Barbaric
   m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: 6f01269a5307bbd4ba94d9e6d0741341, type: 2}
+  WildAlone: {fileID: 0}
+  AbilityTree: {fileID: 11400000, guid: f65d85959d727bb4f95b3c98301e3cb1, type: 2}
+  FollowPlayerTree: {fileID: 0}

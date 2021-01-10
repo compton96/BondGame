@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
   m_Name: _Adventurous
   m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: 2919c45240723a54a87e9423c8af0860, type: 2}
+  WildAlone: {fileID: 11400000, guid: 82be4abe43821684eb17feed388781ba, type: 2}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 0}

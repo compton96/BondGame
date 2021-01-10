@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba612bae978411b43a1043773439dc4a, type: 3}
+  m_Name: _Energetic
+  m_EditorClassIdentifier: 
+  personalityName: 
+  basePercentage: 0
+  maxPercentage: 0
+  statModType1: 0
+  statModifierAmount1: 0
+  statModType2: 0
+  statModifierAmount2: 0
+  WildNoticed: {fileID: 11400000, guid: 644df9d8488ccf940a35d1f62b0e090f, type: 2}
+  WildAlone: {fileID: 11400000, guid: d08261e4ac1639a44b3a8c155137d16f, type: 2}
+  AbilityTree: {fileID: 0}
+  FollowPlayerTree: {fileID: 0}

@@ -51,7 +51,7 @@ public class CActionHeartyWildApproachDroppedFood : BTLeaf
             // Made it to fruit
             Fruit fruitScript = context.foundFood.GetComponent<Fruit>();
             //Eat the fruit
-            fruitScript.destroy();
+            fruitScript.Destroy();
             // Creature is now befriended
             context.isWild = false;
             PlayerController playerController = context.player.GetComponent<PlayerController>();
