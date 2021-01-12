@@ -27,22 +27,17 @@ public class CActionDaringWildApproachPlayer : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
     }
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
         //Vector3 desiredLook = new Vector3(context.player.transform.position.x, context.creatureTransform.transform.position.y, context.player.transform.position.z);
         //context.doLookAt(desiredLook);
         //context.doMovement(context.CD.moveSpeed);

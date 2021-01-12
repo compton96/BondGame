@@ -17,7 +17,7 @@ public class BTSequence : BTNode
         bool isAnyNodeRunning = false;
         foreach (var node in nodes)
         {
-            switch (node.Evaluate())
+            switch (node.OnParentEvaluate())
             {
                 case NodeState.RUNNING:
                     isAnyNodeRunning = true;
@@ -34,5 +34,10 @@ public class BTSequence : BTNode
         // If it made it here, then it should either be running or it succeeded
         _nodeState = isAnyNodeRunning ? NodeState.RUNNING : NodeState.SUCCESS;
         return _nodeState;
+    }
+
+    public override NodeState OnParentEvaluate()
+    {
+        return Evaluate();
     }
 }

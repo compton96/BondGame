@@ -29,12 +29,11 @@ public class CActionTrailPlayer : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
         //Debug.Log("Exiting Trail");
@@ -42,10 +41,6 @@ public class CActionTrailPlayer : BTLeaf
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
         // Quaternion desiredLook = context.player.transform.rotation;
         // context.doRotation(10f, desiredLook);
         // context.doMovement(context.CD.moveSpeed);

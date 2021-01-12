@@ -13,20 +13,15 @@ public class CActionFindTargetEnemy : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
+        
     }
 
     public override NodeState Evaluate() {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         Debug.Log("FINDING TARGET ENEMIES");
         int layermask = 1 << 8; //only layer 8 will be targeted
         Collider[] hitColliders = Physics.OverlapSphere(context.creatureTransform.position, context.enemyDetectRange, layermask);
@@ -41,8 +36,6 @@ public class CActionFindTargetEnemy : BTLeaf
                 closestDistance = distance;
                 closestEnemy = hitCollider.gameObject;
             }
-            
-           
         }
         
         if(closestEnemy != null) 
@@ -50,7 +43,6 @@ public class CActionFindTargetEnemy : BTLeaf
             context.targetEnemy = closestEnemy;
             OnExit();
             return NodeState.SUCCESS;
-
         }
         
         OnExit();

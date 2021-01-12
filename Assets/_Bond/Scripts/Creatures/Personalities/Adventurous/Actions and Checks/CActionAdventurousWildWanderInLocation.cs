@@ -27,7 +27,6 @@ public class CActionAdventurousWildWanderInLocation : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         context.wanderDestination = context.wildStartingLocation;
         //this is just to make sure the creature doesn't walk too short of a distance
         //might have to rework this in the future but eh, works now
@@ -47,7 +46,6 @@ public class CActionAdventurousWildWanderInLocation : BTLeaf
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
         context.wanderIdling = true;
@@ -59,11 +57,6 @@ public class CActionAdventurousWildWanderInLocation : BTLeaf
         if (context.wanderIdling)
         {
             return NodeState.FAILURE;
-        }
-
-        if(!ranOnEnter)
-        {
-            OnEnter();
         }
 
         //agent.destination = context.player.transform.position

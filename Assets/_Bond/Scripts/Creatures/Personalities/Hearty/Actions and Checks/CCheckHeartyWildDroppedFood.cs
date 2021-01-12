@@ -13,21 +13,16 @@ public class CCheckHeartyWildDroppedFood : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
+        
     }
 
     public override NodeState Evaluate() 
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         // if (context.cleverIgnoreItems) {
         //     OnExit();
         //     return NodeState.FAILURE;

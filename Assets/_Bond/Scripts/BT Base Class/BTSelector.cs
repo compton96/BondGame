@@ -11,12 +11,12 @@ public class BTSelector : BTNode
         name = _name;
         this.nodes = nodes;
     }
-    
+
     public override NodeState Evaluate()
     {
         foreach (var node in nodes) 
         {
-            switch (node.Evaluate())
+            switch (node.OnParentEvaluate())
             {
                 case NodeState.RUNNING:
                     _nodeState = NodeState.RUNNING;
@@ -33,5 +33,10 @@ public class BTSelector : BTNode
         //if it made it here, all children returned FAILURE
         _nodeState = NodeState.FAILURE;
         return _nodeState;
+    }
+    
+    public override NodeState OnParentEvaluate()
+    {
+        return Evaluate();
     }
 }
