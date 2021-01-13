@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EActionAttackPlayer : BTLeaf
+public class EActionIdle : BTLeaf
 {
-    public EActionAttackPlayer(string _name, EnemyAIContext _context ) : base(_name, _context)
+    public EActionIdle(string _name, EnemyAIContext _context ) : base(_name, _context)
     {
 
     }
 
     protected override void OnEnter()
     {
-        //Play attack anim
-        enemyContext.animator.Attack();
+        //Play awake anim
     }
 
     protected override void OnExit()
@@ -22,7 +21,7 @@ public class EActionAttackPlayer : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        Debug.Log("Attacking player");
+        Debug.Log("Idling");
         return NodeState.SUCCESS;
     }
 }

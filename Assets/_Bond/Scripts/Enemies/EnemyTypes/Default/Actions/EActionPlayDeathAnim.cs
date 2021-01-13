@@ -23,7 +23,7 @@ public class EActionPlayDeathAnim : BTLeaf
     public override NodeState Evaluate() 
     {
         //Destroy enemy
-        enemyContext.enemyData.DestroyEnemy();
+        enemyContext.activeEnemyData.DestroyEnemy();
         return NodeState.SUCCESS;
     }
 }

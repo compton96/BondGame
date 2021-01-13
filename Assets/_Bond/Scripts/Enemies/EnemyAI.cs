@@ -35,25 +35,25 @@ public class EnemyAI : MonoBehaviour
     //build the behavior tree for the creature
     public void BuildBT() 
     {
-        #region IDLE/WANDER
-            BTSelector idleWanderSelector = null;
-            if(currentEnemyType.idleWander != null)
+        #region IDLE
+            BTSequence idleSequence = null;
+            if(currentEnemyType == null || currentEnemyType.idle == null)
             {
-                idleWanderSelector = currentEnemyType.idleWander.BuildSelectorSubtree(context);
+                idleSequence = DefaultEnemyType.idle.BuildSequenceSubtree(context);
             } else 
             {
-                idleWanderSelector = DefaultEnemyType.idleWander.BuildSelectorSubtree(context);
+                idleSequence = currentEnemyType.idle.BuildSequenceSubtree(context);
             }
         #endregion
 
         #region ATTACK
             BTSequence attackSequence = null;
-            if(attackSequence != null)
-            {
-                attackSequence = currentEnemyType.attack.BuildSequenceSubtree(context);
-            } else 
+            if(currentEnemyType == null || currentEnemyType.attack == null)
             {
                 attackSequence = DefaultEnemyType.attack.BuildSequenceSubtree(context);
+            } else 
+            {
+                attackSequence = currentEnemyType.attack.BuildSequenceSubtree(context);
             }
         #endregion
 
@@ -88,7 +88,7 @@ public class EnemyAI : MonoBehaviour
             List<BTNode> deathList = new List<BTNode>();
             ECheckIfDead checkIfDead = new ECheckIfDead("Check if dead", context);
             EActionPlayDeathAnim playDeathAnim = new EActionPlayDeathAnim("Play Death Anim", context);
-
+            deathList.Add(checkIfDead);
             deathList.Add(playDeathAnim);
 
             BTSequence deathSequence  = new BTSequence("Death Sequence", deathList);
@@ -100,7 +100,7 @@ public class EnemyAI : MonoBehaviour
             RootList.Add(hitstunSequence);
             RootList.Add(firstNoticeSequence);
             RootList.Add(playerNoticedSequence);
-            RootList.Add(idleWanderSelector);
+            RootList.Add(idleSequence);
 
         BTSelector _root = new BTSelector("Root", RootList);
         #endregion

@@ -9,6 +9,6 @@ public class EnemyType : ScriptableObject
     public string enemyName; //Enemy name
 
     public BTEnemySubtree attack;
-    public BTEnemySubtree idleWander;
+    public BTEnemySubtree idle;
 
 }

@@ -23,7 +23,7 @@ public class EnemyAIContext : MonoBehaviour
     public bool playerNoticedBefore;
     public bool playerNoticed;
     public bool isAbilityTriggered;
-    public bool wanderIdling = false;
+    public bool isIdling = false;
     public bool tookDamage = false;
 
     [Header("Misc.Numbers")]
@@ -34,13 +34,13 @@ public class EnemyAIContext : MonoBehaviour
     public float wanderIdleDuration;
     public float wanderIdleTimer;
     public Vector3 wanderDestination;
-    public Vector3 wildStartingLocation;
+    public Vector3 startingLocation;
     #endregion
 
     private void Awake()
     {
         enemyTransform = transform;
-        wildStartingLocation = enemyTransform.position;
+        startingLocation = enemyTransform.position;
         animator = GetComponent<EnemyAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();

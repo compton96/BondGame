@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 043294e32bb6b9c4690c1b3548300721, type: 3}
-  m_Name: _Default
+  m_Script: {fileID: 11500000, guid: 2be2ccb22bd08af4e982baf33fc07b78, type: 3}
+  m_Name: DefaultAttack
   m_EditorClassIdentifier: 
-  enemyName: Default Enemy
-  attack: {fileID: 11400000, guid: ab53fe631682e7f438b387e0ed421f8e, type: 2}
-  idle: {fileID: 11400000, guid: e2d2a38bee513c5459db4d2b3f7d117e, type: 2}

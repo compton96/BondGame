@@ -1,16 +1,17 @@
-﻿using System.Collections;
+﻿// Jake
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EActionApproachPlayer : BTLeaf
+public class EActionReturnToSpawn : BTLeaf
 {
     private NavMeshAgent agent;
     private float moveSpeed = 5f;
     private float angularSpeed = 720f; //deg/s
     private float acceleration = 100f; //max accel units/sec^2
 
-    public EActionApproachPlayer(string _name, EnemyAIContext _context ) : base(_name, _context)
+    public EActionReturnToSpawn(string _name, EnemyAIContext _context ) : base(_name, _context)
     {
         agent = enemyContext.agent;
         agent.autoBraking = true;
@@ -33,22 +34,17 @@ public class EActionApproachPlayer : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        Debug.Log("Approaching player");
-        agent.destination = enemyContext.player.transform.position;
+        Debug.Log("Returning to spawn");
+        agent.destination = enemyContext.startingLocation;
 
-        if(Vector3.Distance(enemyContext.player.transform.position, enemyContext.enemyTransform.position) > 20)
+        if(Vector3.Distance(enemyContext.enemyTransform.position, enemyContext.startingLocation) < 10)
         {
-            // Player too far away
-            OnExit();
-            return NodeState.FAILURE;
-        } else if(enemyContext.isInPlayerRadius)
-        {
-            // Made it to player
+            // Made it to spawn
             OnExit();
             return NodeState.SUCCESS;
         } else
         {
-            // Still trying to get to player
+            // Still trying to get to spawn
             return NodeState.RUNNING;
         }
     }

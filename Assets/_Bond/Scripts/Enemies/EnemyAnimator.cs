@@ -12,15 +12,15 @@ public class EnemyAnimator : MonoBehaviour
     {
         if(moveSpeed.magnitude > 0)
         {
-            animator.SetBool("Move", true);
+            animator.SetBool("move", true);
         }
         else
         {
-            animator.SetBool("Move", false);
+            animator.SetBool("move", false);
         }
     }
     public void Attack()
     {
-        animator.SetTrigger("Attack1");
+        animator.SetTrigger("attack");
     }
 }

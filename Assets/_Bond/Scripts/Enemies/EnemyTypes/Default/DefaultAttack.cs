@@ -10,6 +10,8 @@ public class DefaultAttack : BTEnemySubtree
         List<BTNode> attackList = new List<BTNode>();
         EActionApproachPlayer approachPlayer = new EActionApproachPlayer("Approach Player", context);
         EActionAttackPlayer attackPlayer = new EActionAttackPlayer("Attack player", context);
+        attackList.Add(approachPlayer);
+        attackList.Add(attackPlayer);
         BTSequence attackSequence = new BTSequence("Attack Sequence", attackList);
 
         return attackSequence;
