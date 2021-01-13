@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa38d958365ff4548801eef7eeea0cca, type: 3}
+  m_Name: Creature Node
+  m_EditorClassIdentifier: 
+  name: Creature Node
+  material: {fileID: 2100000, guid: b072fde2b628eb3488c287f31e246fe5, type: 2}
+  height: 0
+  nodes:
+  - {fileID: 5406563873885816481, guid: 60726dc45b8971f4ebff3224372d4988, type: 3}
