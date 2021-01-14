@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     public float dashStart = 2;
     public int dashCount = 0;
     public bool isDashing = false;
+    public Vector3 lastMoveVec;
+    public Vector3 movementVector;
+
     //****************************
 
     private Rigidbody rb;
@@ -99,12 +102,31 @@ public class PlayerController : MonoBehaviour
         }
 
         // HERMAN TODO: Break up massive math formula into different variables
-        currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
-        var movementVector = inputs.moveDirection * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+        //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+
+        
+        Debug.Log("MovementModifier : " + movementModifier);
+
+        if(isDashing) 
+        {   
+            if(lastMoveVec == Vector3.zero) 
+            {
+                lastMoveVec = facingDirection;
+            }
+            movementVector = lastMoveVec * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+        }
+        else 
+        {
+            movementVector = inputs.moveDirection * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            lastMoveVec = inputs.moveDirection;
+        }
+        
         charController.Move(movementVector);
         charController.Move(gravity * Time.deltaTime);
-
         animator.Move(movementVector);
+
+
+        
     }
 
     public void doRotation(float rotationModifier)

@@ -70,7 +70,7 @@ namespace PlayerState
                 }
                 
                 animator.SetRun(false);
-
+               
                 if(!animator.isFollowThrough)
                 {
                     animator.ResetAllAttackAnims();
