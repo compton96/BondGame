@@ -12,7 +12,7 @@ public class ECheckIfDead : BTChecker
 
     public override NodeState Evaluate()
     {
-        if (enemyContext.activeEnemyData.currentHealth < 1)
+        if (enemyContext.currentHealth < 1)
         {
             return NodeState.SUCCESS;
         }

@@ -14,7 +14,6 @@ public class ECheckDamageTaken : BTChecker
     {
         if (enemyContext.tookDamage)
         {
-            enemyContext.tookDamage = false;
             return NodeState.SUCCESS;
         }
         return NodeState.FAILURE;

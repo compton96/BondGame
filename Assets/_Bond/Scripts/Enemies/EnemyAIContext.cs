@@ -3,37 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class EnemyAIContext : MonoBehaviour
 {
     #region Behavior Tree Context
 
+    [Header("Main Stats")]
+    public float maxHealth;
+    public float currentHealth;
+    public int damage;
+    public float moveSpeed;
+
     [Header("Objects")]
     public GameObject player;
     public Transform enemyTransform;
     public Rigidbody rb;
-    public EnemyData enemyData;
-    public ActiveEnemyData activeEnemyData;
     public NavMeshAgent agent;
     public EnemyAnimator animator;
+    public Slider healthSlider;
     
     [Header("Bools")]
     public bool isInPlayerRadius;
     public bool playerNoticedBefore;
     public bool playerNoticed;
-    public bool isAbilityTriggered;
     public bool isIdling = false;
     public bool tookDamage = false;
 
     [Header("Misc.Numbers")]
-    public float moveSpeed;
-    public int lastTriggeredAbility;
+    // public int lastTriggeredAbility;
     public float enemyDetectRange;
-    public float wanderRadius; //how far from starting location the creature can wander
-    public float wanderIdleDuration;
-    public float wanderIdleTimer;
-    public Vector3 wanderDestination;
+    // public float wanderRadius; //how far from starting location the creature can wander
+    // public float wanderIdleDuration;
+    // public float wanderIdleTimer;
+    // public Vector3 wanderDestination;
     public Vector3 startingLocation;
     #endregion
 
@@ -66,5 +70,25 @@ public class EnemyAIContext : MonoBehaviour
     {
         enemyTransform.transform.LookAt(position, Vector3.up);
         rb.velocity = (enemyTransform.transform.rotation * Vector3.forward * moveSpeed);
+    }
+
+    public void takeDamage(float amount){
+        currentHealth -= amount;
+        healthUIUpdate();
+        tookDamage = true;
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+
+    void healthUIUpdate()
+    {
+        healthSlider.value = (currentHealth / maxHealth) * 100;
     }
 }

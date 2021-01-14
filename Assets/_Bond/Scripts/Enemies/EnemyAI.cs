@@ -47,13 +47,13 @@ public class EnemyAI : MonoBehaviour
         #endregion
 
         #region ATTACK
-            BTSequence attackSequence = null;
+            BTSelector attackSelector = null;
             if(currentEnemyType == null || currentEnemyType.attack == null)
             {
-                attackSequence = DefaultEnemyType.attack.BuildSequenceSubtree(context);
+                attackSelector = DefaultEnemyType.attack.BuildSelectorSubtree(context);
             } else 
             {
-                attackSequence = currentEnemyType.attack.BuildSequenceSubtree(context);
+                attackSelector = currentEnemyType.attack.BuildSelectorSubtree(context);
             }
         #endregion
 
@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
             List<BTNode> playerNoticedList = new List<BTNode>();
             ECheckPlayerInRange playerNoticed = new ECheckPlayerInRange("PlayerNoticed", context);
             playerNoticedList.Add(playerNoticed);
-            playerNoticedList.Add(attackSequence);
+            playerNoticedList.Add(attackSelector);
             BTSequence playerNoticedSequence = new BTSequence("Is player noticed", playerNoticedList);
         #endregion
 

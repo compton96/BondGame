@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EActionApproachPlayer : BTLeaf
 {
     private NavMeshAgent agent;
-    private float moveSpeed = 5f;
+    // private float moveSpeed = 5f;
     private float angularSpeed = 720f; //deg/s
     private float acceleration = 100f; //max accel units/sec^2
 
@@ -17,31 +17,28 @@ public class EActionApproachPlayer : BTLeaf
         agent.autoRepath = false;
         agent.angularSpeed = angularSpeed;
         agent.acceleration = acceleration;
-        //agent.speed = moveSpeed;
+        agent.speed = enemyContext.moveSpeed;
     }
 
     protected override void OnEnter()
     {
-        agent.speed = enemyContext.activeEnemyData.moveSpeed;
+        agent.speed = enemyContext.moveSpeed;
         //Play awake anim
     }
 
     protected override void OnExit()
     {
-
+        agent.ResetPath();
     }
 
     public override NodeState Evaluate() 
     {
-        Debug.Log("Approaching player");
-        agent.destination = enemyContext.player.transform.position;
-
-        if(Vector3.Distance(enemyContext.player.transform.position, enemyContext.enemyTransform.position) > 20)
+        if(Vector3.Distance(enemyContext.player.transform.position, enemyContext.enemyTransform.position) > enemyContext.enemyDetectRange)
         {
             // Player too far away
             OnExit();
             return NodeState.FAILURE;
-        } else if(enemyContext.isInPlayerRadius)
+        } else if(enemyContext.isInPlayerRadius || enemyContext.animator.inAttack)
         {
             // Made it to player
             OnExit();
@@ -49,6 +46,7 @@ public class EActionApproachPlayer : BTLeaf
         } else
         {
             // Still trying to get to player
+            agent.destination = enemyContext.player.transform.position;
             return NodeState.RUNNING;
         }
     }

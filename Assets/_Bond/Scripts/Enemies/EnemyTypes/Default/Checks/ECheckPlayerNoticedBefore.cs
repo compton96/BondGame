@@ -14,8 +14,8 @@ public class ECheckPlayerNoticedBefore : BTChecker
     {
         if (enemyContext.playerNoticedBefore)
         {
-            return NodeState.SUCCESS;
+            return NodeState.FAILURE;
         }
-        return NodeState.FAILURE;
+        return NodeState.SUCCESS;
     }
 }

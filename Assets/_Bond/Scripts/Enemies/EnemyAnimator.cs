@@ -6,7 +6,10 @@ using UnityEngine;
 public class EnemyAnimator : MonoBehaviour
 {
     public GameObject model;
-    public Animator animator => model.GetComponent<Animator>();
+    private Animator animator => model.GetComponent<Animator>();
+
+    public bool inAttack;
+    public bool inHitstun;
 
     public void Move(Vector3 moveSpeed) 
     {
@@ -19,8 +22,26 @@ public class EnemyAnimator : MonoBehaviour
             animator.SetBool("move", false);
         }
     }
+
     public void Attack()
     {
         animator.SetTrigger("attack");
+        inAttack = true;
+    }
+
+    public void AttackDone()
+    {
+        inAttack = false;
+    }
+
+    public void Hitstun()
+    {
+        animator.SetTrigger("isHit");
+        inHitstun = true;
+    }
+
+    public void HitstunDone()
+    {
+        inHitstun = false;
     }
 }

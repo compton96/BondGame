@@ -5,15 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DefaultAttack", menuName = "ScriptableObjects/BTEnemySubtrees/Default/Attack")]
 public class DefaultAttack : BTEnemySubtree
 {
-    public override BTSequence BuildSequenceSubtree(EnemyAIContext context) 
+    public override BTSelector BuildSelectorSubtree(EnemyAIContext context) 
     {
         List<BTNode> attackList = new List<BTNode>();
         EActionApproachPlayer approachPlayer = new EActionApproachPlayer("Approach Player", context);
+        BTInverter inverter = new BTInverter("Inverter", approachPlayer);
         EActionAttackPlayer attackPlayer = new EActionAttackPlayer("Attack player", context);
-        attackList.Add(approachPlayer);
+        attackList.Add(inverter);
         attackList.Add(attackPlayer);
-        BTSequence attackSequence = new BTSequence("Attack Sequence", attackList);
+        BTSelector attackSelector = new BTSelector("Attack Selector", attackList);
 
-        return attackSequence;
+        return attackSelector;
     }
 }

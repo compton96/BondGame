@@ -21,7 +21,6 @@ public class EActionIdle : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        Debug.Log("Idling");
-        return NodeState.SUCCESS;
+        return NodeState.RUNNING;
     }
 }

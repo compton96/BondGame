@@ -13,6 +13,7 @@ public class EActionPlayHitstunAnim : BTLeaf
     protected override void OnEnter()
     {
         //Play hitstun anim
+        enemyContext.animator.Hitstun();
     }
 
     protected override void OnExit()
@@ -22,6 +23,15 @@ public class EActionPlayHitstunAnim : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        return NodeState.SUCCESS;
+        // return NodeState.SUCCESS;
+        if(enemyContext.animator.inHitstun)
+        {
+            return NodeState.RUNNING;
+        } else 
+        {
+            enemyContext.tookDamage = false;
+            OnParentExit();
+            return NodeState.SUCCESS;
+        }
     }
 }

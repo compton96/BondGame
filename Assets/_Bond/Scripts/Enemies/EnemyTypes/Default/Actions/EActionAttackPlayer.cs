@@ -22,7 +22,13 @@ public class EActionAttackPlayer : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        Debug.Log("Attacking player");
-        return NodeState.SUCCESS;
+        if(enemyContext.animator.inAttack)
+        {
+            return NodeState.RUNNING;
+        } else 
+        {
+            OnParentExit();
+            return NodeState.SUCCESS;
+        }
     }
 }

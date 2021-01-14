@@ -18,29 +18,29 @@ public class WeaponTriggers : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy")
         {
-            // EnemyStats enemyStats = other.gameObject.GetComponent<EnemyStats>();
+            EnemyAIContext enemyAIContext = other.gameObject.GetComponent<EnemyAIContext>();
 
             // Check which attack state we're in to determine damage
             if(fsm.currentState == fsm.Slash0)
             {
-                // enemyStats.takeDamage(ps.attack1Damage);
+                enemyAIContext.takeDamage(ps.attack1Damage);
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
-                // enemyStats.takeDamage(ps.attack2Damage);
+                enemyAIContext.takeDamage(ps.attack2Damage);
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
-                // enemyStats.takeDamage(ps.attack3Damage);
+                enemyAIContext.takeDamage(ps.attack3Damage);
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
-                // enemyStats.takeDamage(ps.attack3Damage);
+                enemyAIContext.takeDamage(ps.attack3Damage);
             } 
             else
             {
                 Debug.Log("Default Damage");
-                // other.gameObject.GetComponent<EnemyStats>().takeDamage(ps.attack1Damage);
+                other.gameObject.GetComponent<EnemyAIContext>().takeDamage(ps.attack1Damage);
             }
             
         } 

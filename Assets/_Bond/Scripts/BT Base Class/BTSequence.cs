@@ -21,7 +21,9 @@ public class BTSequence : BTNode
             {
                 case NodeState.RUNNING:
                     isAnyNodeRunning = true;
-                    break;
+                    _nodeState = NodeState.RUNNING;
+                    return _nodeState;
+                    // break;
                 case NodeState.SUCCESS: //Do nothing because all must succeed
                     break;
                 case NodeState.FAILURE: //Return Failure since one failed
