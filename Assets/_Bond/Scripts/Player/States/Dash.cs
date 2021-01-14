@@ -12,6 +12,7 @@ namespace PlayerState
     {
         private float startTime = 0;
         private Vector3 startRotation;
+        private CharacterController controller;
 
         public Dash( PlayerStateMachine _fsm ) : base( _fsm )
         {
@@ -30,6 +31,8 @@ namespace PlayerState
             // HERMAN TODO: Rename v3Vel
             startRotation = player.facingDirection;
             player.setRotation(startRotation);
+
+            controller = player.gameObject.GetComponent<CharacterController>();
         }
 
         public override void OnStateUpdate()
@@ -46,6 +49,8 @@ namespace PlayerState
         {
             player.doMovement(player.dashSpeed);
             player.setRotation(startRotation);
+           //controller.Move(movementVector);
+           //controller.Move(gravity * Time.deltaTime);
         }
 
         public override void OnStateExit()
