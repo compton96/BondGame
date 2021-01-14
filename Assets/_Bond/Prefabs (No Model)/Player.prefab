@@ -6397,7 +6397,7 @@ Transform:
   m_GameObject: {fileID: 3008331728575113171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 3008331728901033061}
   - {fileID: 3008331728075890316}
@@ -7215,8 +7215,6 @@ MonoBehaviour:
   camera: {fileID: 0}
   isoMovement: 1
   fruit: {fileID: 0}
-  speed: 12
-  turnSpeed: 10
   facingDirection: {x: 0, y: 0, z: 0}
   dashSpeed: 3
   dashTime: 0.15
@@ -7235,6 +7233,7 @@ MonoBehaviour:
   isHit: 0
   heavyChargeVfx: {fileID: 3268859984920099915}
   heavyHitVfx: {fileID: 2879053346376034959}
+  isoSpeedADJ: 1.5
   hitBoxes:
     slash0: {fileID: 0}
     slash1: {fileID: 0}
@@ -7309,7 +7308,8 @@ MonoBehaviour:
   heavyDamage: 200
   attackModAdd: 0
   attackModMult: 0
-  speed: 0
+  speed: 14
+  turnSpeed: 12
   speedModAdd: 0
   speedModMult: 0
   slider: {fileID: 0}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa38d958365ff4548801eef7eeea0cca, type: 3}
+  m_Name: Low Foliage Node
+  m_EditorClassIdentifier: 
+  name: Low Foliage Node
+  material: {fileID: 2100000, guid: 533a68bed4cd87d4ab3270e95be908b3, type: 2}
+  height: 0
+  nodes:
+  - {fileID: 2615411138050092856, guid: 097b6a9f329403f488b4236ae065c8fc, type: 3}
+  - {fileID: 1048025541704711291, guid: 36a0e3a29a2577c4e83fee1dc61797a2, type: 3}

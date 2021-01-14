@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa38d958365ff4548801eef7eeea0cca, type: 3}
+  m_Name: Open Area Node
+  m_EditorClassIdentifier: 
+  name: Open Area Node
+  material: {fileID: 2100000, guid: 72b15137386d56141b4b2e52d9107e69, type: 2}
+  height: 0
+  nodes:
+  - {fileID: 5685211986413134843, guid: 2cf83a8d8f5a49b4eb33f64d5e89f0ac, type: 3}
+  - {fileID: 6243855421836413061, guid: b7ecef69d61be144593694fe0439da4c, type: 3}

@@ -52,7 +52,8 @@ public class PlayerStats : MonoBehaviour
     public float attackModAdd = 0;
     public float attackModMult = 0;
 
-    public float speed;
+    public float speed = 12;
+    public float turnSpeed;
     public float speedModAdd;
     public float speedModMult;
 
