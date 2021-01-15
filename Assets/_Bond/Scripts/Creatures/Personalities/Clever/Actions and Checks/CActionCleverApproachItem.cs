@@ -28,24 +28,17 @@ public class CActionCleverApproachItem : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         agent.speed = context.CD.moveSpeed;
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
     }
 
     public override NodeState Evaluate()
     {
-        if (!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         agent.destination = context.cleverItem.transform.position;
 
         if (Vector3.Distance(context.cleverItem.transform.position, context.creatureTransform.position) < 3)

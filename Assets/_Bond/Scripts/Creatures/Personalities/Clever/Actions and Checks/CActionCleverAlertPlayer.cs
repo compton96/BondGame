@@ -13,24 +13,17 @@ public class CActionCleverAlertPlayer : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         context.animator.Wave();
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.cleverIgnoreItems = true;
         //find a better way to turn off cleverIgnoreItems
     }
 
     public override NodeState Evaluate()
     {
-        if (!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         Quaternion desiredLook = Quaternion.LookRotation(context.player.transform.position - context.creatureTransform.position, Vector3.up);
         desiredLook.x = 0;
         context.creatureTransform.rotation = desiredLook;

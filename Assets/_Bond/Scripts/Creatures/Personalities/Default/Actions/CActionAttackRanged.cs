@@ -13,7 +13,6 @@ public class CActionAttackRanged : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         attack = (creatureAttackRanged) context.CD.abilities[context.lastTriggeredAbility];
         //Play amim
         context.animator.Attack1();
@@ -21,15 +20,10 @@ public class CActionAttackRanged : BTLeaf
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
+        
     }
 
     public override NodeState Evaluate() {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-        
         //Debug.Log("ATTACK RANGED");
         context.projectileSpawner.GetComponent<ProjectileSpawner>()
             .SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);

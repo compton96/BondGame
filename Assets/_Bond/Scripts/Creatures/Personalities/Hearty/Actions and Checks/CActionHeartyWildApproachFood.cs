@@ -29,24 +29,17 @@ public class CActionHeartyWildApproachFood : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         agent.speed = context.CD.moveSpeed;
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
     }
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         agent.destination = context.foundFood.transform.position;
         if(Vector3.Distance(context.foundFood.transform.position, context.creatureTransform.position) < 3) 
         {

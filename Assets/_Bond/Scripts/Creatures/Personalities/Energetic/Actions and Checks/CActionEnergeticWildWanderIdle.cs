@@ -13,7 +13,6 @@ public class CActionEnergeticWildWanderIdle : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         context.wanderIdleTimer = 0;
         context.wanderIdling = true;
         context.wanderIdleDuration = Random.Range(0.5f, 1f);
@@ -21,18 +20,12 @@ public class CActionEnergeticWildWanderIdle : BTLeaf
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.wanderIdleTimer = 0;
         context.wanderIdling = false;
     }
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         context.doMovement(0);
         context.wanderIdleTimer += Time.deltaTime;
         if (context.wanderIdleTimer >= context.wanderIdleDuration) 

@@ -27,23 +27,17 @@ public class CActionEnergeticWildRunFromEnemies : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         context.doMovement(0f);
         agent.ResetPath();
     }
 
     public override NodeState Evaluate()
     {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         Vector3 position_difference = context.creatureTransform.position - context.targetEnemy.transform.position;
         position_difference.Normalize();
         agent.destination = context.creatureTransform.position + position_difference * 10;

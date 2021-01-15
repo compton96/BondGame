@@ -9,7 +9,15 @@ public class followInRadiusTrigger : MonoBehaviour
         if(other.transform.tag == "CaptCreature") 
         {
             if(!other.GetComponent<CreatureAIContext>().isInPlayerRadius)
-            other.GetComponent<CreatureAIContext>().isInPlayerRadius = true;
+            {
+                other.GetComponent<CreatureAIContext>().isInPlayerRadius = true;
+            }
+        } else if(other.transform.tag == "Enemy") 
+        {
+            if(!other.GetComponent<EnemyAIContext>().isInPlayerRadius)
+            {
+                other.GetComponent<EnemyAIContext>().isInPlayerRadius = true;
+            }
         }
     }
 
@@ -18,7 +26,15 @@ public class followInRadiusTrigger : MonoBehaviour
         if(other.transform.tag == "CaptCreature") 
         {
             if(other.GetComponent<CreatureAIContext>().isInPlayerRadius)
-            other.GetComponent<CreatureAIContext>().isInPlayerRadius = false;
+            {
+                other.GetComponent<CreatureAIContext>().isInPlayerRadius = false;
+            }
+        } else if(other.transform.tag == "Enemy") 
+        {
+            if(other.GetComponent<EnemyAIContext>().isInPlayerRadius)
+            {
+                other.GetComponent<EnemyAIContext>().isInPlayerRadius = false;
+            }
         }
     }
 }

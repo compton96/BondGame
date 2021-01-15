@@ -13,7 +13,6 @@ public class CActionBarbaricMeleeAttack : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
         attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
         //Play amim
         context.animator.Attack1();
@@ -22,16 +21,10 @@ public class CActionBarbaricMeleeAttack : BTLeaf
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
     }
 
-    public override NodeState Evaluate() {
-        if(!ranOnEnter){
-            OnEnter();
-        }
-        
-        
-
+    public override NodeState Evaluate() 
+    {
         // context.targetEnemy.GetComponent<EnemyStats>().takeDamage(attack.baseDmg);
         if(Random.Range(0f,1f) < 0.5)
         {
