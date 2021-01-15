@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1daa4b995ebbb01489ad6bd8d0fff5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: 5
+  mapSize: {x: 3, y: 5}
   islands:
   - {fileID: 7570056255665899474, guid: 5854c0eb903288e4db7633d9022f9da1, type: 3}
   - {fileID: 8044729374227750792, guid: d34238424f345bc4aa16bbba8e40d54e, type: 3}
