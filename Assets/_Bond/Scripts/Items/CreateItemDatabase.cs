@@ -6,6 +6,9 @@ using UnityEditor;
 
 public class CreateItemDatabase 
 {
+
+    //SORRY EUGENE IT WAS CAUSING BUILD ERRORS - JAMO
+    /*
     [MenuItem("Assets/Create/Inventory Item List")]
     public static ItemDatabase  Create()
     {
@@ -15,4 +18,5 @@ public class CreateItemDatabase
         AssetDatabase.SaveAssets();
         return asset;
     }
+    */
 }

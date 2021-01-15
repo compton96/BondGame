@@ -9507,12 +9507,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960672743}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1976104007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3008331728240645142, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2139760115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981916990
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,51 +9891,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 432153020}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.slash0
-      value: 
-      objectReference: {fileID: 1976104007}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.slash1
-      value: 
-      objectReference: {fileID: 1976104007}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.slash2
-      value: 
-      objectReference: {fileID: 1976104007}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.slash3
-      value: 
-      objectReference: {fileID: 1976104007}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.heavy
-      value: 
-      objectReference: {fileID: 1976104007}
-    - target: {fileID: 3008331728240645147, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008331728575113168, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008331728575113168, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008331728575113168, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 3008331729029387142, guid: b533a4d2d18ca984a85f56b2a9810e8c,
         type: 3}
       propertyPath: m_LocalPosition.x

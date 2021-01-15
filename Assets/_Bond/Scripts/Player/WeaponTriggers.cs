@@ -37,11 +37,11 @@ public class WeaponTriggers : MonoBehaviour
             {
                 enemyAIContext.takeDamage(ps.attack3Damage);
             } 
-            else
-            {
-                Debug.Log("Default Damage");
-                other.gameObject.GetComponent<EnemyAIContext>().takeDamage(ps.attack1Damage);
-            }
+            // else
+            // {
+            //     Debug.Log("Default Damage");
+            //     other.gameObject.GetComponent<EnemyAIContext>().takeDamage(ps.attack1Damage);
+            // }
             
         } 
         else if(other.gameObject.tag == "FruitTree")
