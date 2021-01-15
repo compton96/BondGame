@@ -37,6 +37,7 @@ public class EnemyAnimator : MonoBehaviour
     public void Hitstun()
     {
         animator.SetTrigger("isHit");
+        inAttack = false; //So we don't get stuck in attack
         inHitstun = true;
     }
 
