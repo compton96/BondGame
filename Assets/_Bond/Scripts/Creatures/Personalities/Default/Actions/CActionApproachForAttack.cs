@@ -21,7 +21,6 @@ public class CActionApproachForAttack : BTLeaf
     protected override void OnEnter()
     {
 
-        ranOnEnter = true; 
         if(context.CD.abilities[context.lastTriggeredAbility] is creatureAttackMelee) 
         {
             creatureAttackMelee _attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
@@ -38,18 +37,12 @@ public class CActionApproachForAttack : BTLeaf
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
         agent.speed = context.CD.moveSpeed;
         agent.stoppingDistance = 1f;
         agent.ResetPath();
     }
 
     public override NodeState Evaluate() {
-        if(!ranOnEnter)
-        {
-            OnEnter();
-        }
-
         //Debug.Log("APROACH FOR ATTACK");
         agent.destination = context.targetEnemy.transform.position;
         float distance = Vector3.Distance(context.creatureTransform.position, context.targetEnemy.transform.position);

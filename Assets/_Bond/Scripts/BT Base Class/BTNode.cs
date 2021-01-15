@@ -19,6 +19,11 @@ public abstract class BTNode //not a monobehavior, should never be on a object.
 
 
     public abstract NodeState Evaluate(); //Do the main function of the node, return a NodeState
+
+    public virtual NodeState OnParentEvaluate()
+    {
+        return Evaluate();
+    }
 }
 
 public enum NodeState

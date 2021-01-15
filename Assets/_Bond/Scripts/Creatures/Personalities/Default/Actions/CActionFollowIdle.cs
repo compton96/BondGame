@@ -13,12 +13,12 @@ public class CActionFollowIdle : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
+        
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
+        
     }
 
     public override NodeState Evaluate()

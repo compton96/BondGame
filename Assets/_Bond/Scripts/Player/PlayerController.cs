@@ -104,9 +104,6 @@ public class PlayerController : MonoBehaviour
         // HERMAN TODO: Break up massive math formula into different variables
         //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
 
-        
-        Debug.Log("MovementModifier : " + movementModifier);
-
         if(isDashing) 
         {   
             if(lastMoveVec == Vector3.zero) 

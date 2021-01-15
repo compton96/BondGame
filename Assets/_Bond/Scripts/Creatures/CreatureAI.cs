@@ -23,16 +23,10 @@ public class CreatureAI : MonoBehaviour
 
     private void Update() {
         if(Evaluate){
-            behaviorTree.Evaluate();
+            behaviorTree.OnParentEvaluate();
             context.animator.Move(context.agent.velocity);
         }
     }
-
-
-    private void FixedUpdate() {
-        //behaviorTree.Evaluate();
-    }
-
 
     //build the behavior tree for the creature
     public void BuildBT() 

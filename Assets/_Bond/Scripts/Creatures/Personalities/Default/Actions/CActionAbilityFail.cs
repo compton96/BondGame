@@ -11,20 +11,15 @@ public class CActionAbilityFail : BTLeaf
 
     protected override void OnEnter()
     {
-        ranOnEnter = true;
-        //Play amim
-   
+        //Play anim
     }
 
     protected override void OnExit()
     {
-        ranOnEnter = false;
+        
     }
 
     public override NodeState Evaluate() {
-        if(!ranOnEnter){
-            OnEnter();
-        }
         context.targetEnemy = null;
         context.lastTriggeredAbility = -1;
         context.isAbilityTriggered = false;
