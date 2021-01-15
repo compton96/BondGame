@@ -16,5 +16,7 @@ namespace PlayerState
             index = 0;
             hitBox = player.hitBoxes.slash0;
         }
+
+    
     }
 }

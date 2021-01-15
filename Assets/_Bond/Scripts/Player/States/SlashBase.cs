@@ -46,6 +46,9 @@ namespace PlayerState
             nextState = GetNextState();
             
             animator.Attack( index );
+
+            hitBox.SetActive(false);
+            hitBox.SetActive(true);
         }
 
 

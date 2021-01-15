@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public int mapSize = 3;
+    public Vector2 mapSize;
     public List<GameObject> islands;
     public GameObject path;
 
@@ -26,10 +26,10 @@ public class LevelGenerator : MonoBehaviour
     private void Awake() {
 
         //generate base gameobjects
-        islandStorage = new IslandStorage[mapSize, mapSize];
-        for(int i = 0; i < mapSize; i++) 
+        islandStorage = new IslandStorage[(int) mapSize.x, (int) mapSize.y];
+        for(int i = 0; i < mapSize.x; i++) 
         {
-            for(int j = 0; j < mapSize; j++) 
+            for(int j = 0; j < mapSize.y; j++) 
             {
                 Vector3 pos = new Vector3(100 * i, 0, 100 * j);
                 GameObject newIsland = Instantiate(islands[Random.Range(0,islands.Count)], pos, Quaternion.identity);
@@ -44,9 +44,9 @@ public class LevelGenerator : MonoBehaviour
         // randomLayers.Add(4);
 
         int randomLayerType; 
-        for(int i = 0; i < mapSize; i++) 
+        for(int i = 0; i < mapSize.x; i++) 
         {
-            for(int j = 0; j < mapSize; j++) 
+            for(int j = 0; j < mapSize.y; j++) 
             {
                 randomLayerType = UnityEngine.Random.Range(2,5);
                 islandStorage[i,j].IGen.ProcessLayer(randomLayerType);
@@ -55,22 +55,22 @@ public class LevelGenerator : MonoBehaviour
         
         //generate islands
 
-        for(int i = 0; i < mapSize; i++) 
+        for(int i = 0; i < mapSize.x; i++) 
         {
-            for(int j = 0; j < mapSize; j++) 
+            for(int j = 0; j < mapSize.y; j++) 
             {
                 islandStorage[i,j].IGen.GenerateIsland();
             }
         }
 
 
-        for(int i = 0; i < mapSize; i++) 
+        for(int i = 0; i < mapSize.x; i++) 
         {
-            for(int j = 0; j < mapSize; j++) 
+            for(int j = 0; j < mapSize.y; j++) 
             {
                 //north connection and across 
                 Transform parent = islandStorage[i,j].IGen.transform;
-                if(j < mapSize - 1){
+                if(j < mapSize.y - 1){
                     Vector2 northStart = new Vector2(islandStorage[i,j].IGen.connectors.northConnector.x, islandStorage[i,j].IGen.connectors.northConnector.y);
                   
                     //up
@@ -121,7 +121,7 @@ public class LevelGenerator : MonoBehaviour
                 
 
                 //east connection and across 
-                if(i < mapSize - 1){
+                if(i < mapSize.x - 1){
                     Vector2 eastStart = new Vector2(islandStorage[i,j].IGen.connectors.eastConnector.x, islandStorage[i,j].IGen.connectors.eastConnector.y);
                   
                     //right

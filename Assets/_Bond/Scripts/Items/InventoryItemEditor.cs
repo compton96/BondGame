@@ -3,8 +3,9 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
+//SORRY EUGENE IT WAS CAUSING BUILD ERRORS - JAMO
 //Eugene
-
+/*
 public class ItemEditor : EditorWindow 
 {
 
@@ -200,4 +201,7 @@ public class ItemEditor : EditorWindow
     {
         ItemDatabase.itemList.RemoveAt (index);
     }
+
+    
 }
+*/
