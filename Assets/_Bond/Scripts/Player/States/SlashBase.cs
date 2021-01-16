@@ -13,6 +13,9 @@ namespace PlayerState
         protected int index;
         protected State nextState;
         protected GameObject hitBox;
+        protected float speedMod = 2f;
+
+        private Vector3 startRotation;
 
         public SlashBase( PlayerStateMachine _fsm ) : base( _fsm )
         {
@@ -49,6 +52,15 @@ namespace PlayerState
 
             hitBox.SetActive(false);
             hitBox.SetActive(true);
+
+            player.isAttacking = true;
+
+            speedMod = 2.25f;
+
+            startRotation = player.facingDirection;
+            player.setRotation(startRotation);
+
+            player.lastMoveVec = player.inputs.moveDirection; 
         }
 
 
@@ -88,8 +100,20 @@ namespace PlayerState
 
         public override void OnStateFixedUpdate()
         {
-            player.doMovement(0.3f);
-            player.doRotation(0.6f);
+            //player.doMovement(0.3f);
+            //player.doRotation(0.6f);
+          
+            //base.OnStateFixedUpdate();
+
+            player.doMovement(speedMod);
+            if(speedMod >= 0.1)
+            {
+                speedMod *= 0.7f;
+            }
+
+            player.setRotation(startRotation);
+            
+        
         }
 
 
@@ -97,6 +121,8 @@ namespace PlayerState
         public override void OnStateExit()
         {
             player.inputs.basicAttack = false;
+
+            player.isAttacking = false;
         }
     }
 }

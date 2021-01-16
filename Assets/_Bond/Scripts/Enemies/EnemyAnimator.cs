@@ -7,6 +7,7 @@ public class EnemyAnimator : MonoBehaviour
 {
     public GameObject model;
     private Animator animator => model.GetComponent<Animator>();
+    
 
     public bool inAttack;
     public bool inHitstun;
@@ -45,4 +46,5 @@ public class EnemyAnimator : MonoBehaviour
     {
         inHitstun = false;
     }
+
 }
