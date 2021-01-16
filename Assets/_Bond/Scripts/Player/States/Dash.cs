@@ -28,11 +28,13 @@ namespace PlayerState
             player.isDashing = true;
 
             startTime = Time.time;
-            // HERMAN TODO: Rename v3Vel
+            
             startRotation = player.facingDirection;
             player.setRotation(startRotation);
 
             controller = player.gameObject.GetComponent<CharacterController>();
+
+            player.lastMoveVec = player.inputs.moveDirection; 
         }
 
         public override void OnStateUpdate()

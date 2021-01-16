@@ -54,13 +54,15 @@ public class PlayerController : MonoBehaviour
     public GameObject currCreature;
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
+
+    //******Combat Vars**********//
+    public bool isAttacking = false;
     public float currSpeed;
-    public CapsuleCollider swordCollider; 
     public bool isHit;
 
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
-
+    //****************//
     public float isoSpeedADJ = 0f;
 
 
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
         // HERMAN TODO: Break up massive math formula into different variables
         //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
 
-        if(isDashing) 
+        if(isDashing || isAttacking) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
