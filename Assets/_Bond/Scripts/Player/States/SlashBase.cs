@@ -58,7 +58,7 @@ namespace PlayerState
             speedMod = 2.25f;
 
             startRotation = player.facingDirection;
-            player.setRotation(startRotation);
+            //player.setRotation(startRotation);
 
             player.lastMoveVec = player.inputs.moveDirection; 
         }
@@ -100,18 +100,18 @@ namespace PlayerState
 
         public override void OnStateFixedUpdate()
         {
-            //player.doMovement(0.3f);
-            //player.doRotation(0.6f);
+            player.doMovement(0.2f);
+            player.doRotation(1f);
           
             //base.OnStateFixedUpdate();
 
-            player.doMovement(speedMod);
-            if(speedMod >= 0.1)
-            {
-                speedMod *= 0.7f;
-            }
+            // player.doMovement(speedMod);
+            // if(speedMod >= 0.1)
+            // {
+            //     speedMod *= 0.7f;
+            // }
 
-            player.setRotation(startRotation);
+            //player.setRotation(startRotation);
             
         
         }

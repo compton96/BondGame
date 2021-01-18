@@ -132,7 +132,14 @@ public class PlayerController : MonoBehaviour
     {
         if(inputs.rawDirection != Vector2.zero)
         {
-            transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            if(isAttacking)
+            {
+                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            }
+            else
+            {
+                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            }
         }
     }
 
