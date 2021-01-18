@@ -4,13 +4,8 @@ using UnityEngine;
 
 public interface HasCooldown
 {
-    int Id 
-    {
-        get;
-    }
+    int Id { get; }
 
     float CooldownDuration
-    {
-        get;
-    }
+    { get; }
 }

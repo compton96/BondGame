@@ -17,5 +17,14 @@ public class CooldownTestAbility : MonoBehaviour , HasCooldown
         // {
         //     return;
         // }
+        if(cooldownSystem.IsOnCooldown(id))
+        {
+            return;
+        }
+
+        //do ability action here
+
+        cooldownSystem.PutOnCooldown(this);
+
     }
 }
