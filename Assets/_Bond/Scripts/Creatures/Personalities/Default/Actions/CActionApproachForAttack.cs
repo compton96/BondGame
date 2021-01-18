@@ -20,16 +20,18 @@ public class CActionApproachForAttack : BTLeaf
 
     protected override void OnEnter()
     {
-
+        Debug.Log("Enter Approach for attack");
         if(context.CD.abilities[context.lastTriggeredAbility] is creatureAttackMelee) 
         {
             creatureAttackMelee _attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
             maxDist = _attack.maxDistanceToEnemy;
+            Debug.Log("melee max dist" + _attack.maxDistanceToEnemy);
            
         } else if(context.CD.abilities[context.lastTriggeredAbility] is creatureAttackRanged) 
         {
             creatureAttackRanged _attack = (creatureAttackRanged) context.CD.abilities[context.lastTriggeredAbility];   
             maxDist = _attack.maxDistanceToEnemy;
+            Debug.Log("ranged max dist" + _attack.maxDistanceToEnemy);
         }
         agent.speed = moveSpeed;
         // agent.stoppingDistance = attack.maxDistanceToEnemy;
@@ -46,16 +48,16 @@ public class CActionApproachForAttack : BTLeaf
         //Debug.Log("APROACH FOR ATTACK");
         agent.destination = context.targetEnemy.transform.position;
         float distance = Vector3.Distance(context.creatureTransform.position, context.targetEnemy.transform.position);
-        
+        Debug.Log("Approaching Enemy : " + distance+ " MAX dist: " + maxDist);
         //Debug.Log("Distance : " + distance + " maxDist : " + attack.maxDistanceToEnemy);
         if(distance < maxDist)
         {
-            // Made it to player
-            OnExit();
+            // Made it to Enemy
+            OnParentExit();
             return NodeState.SUCCESS;
         } else
         {
-            // Still trying to get to player
+            // Still trying to get to Enemy
             context.updateDebugText(name);
             return NodeState.RUNNING;
         }

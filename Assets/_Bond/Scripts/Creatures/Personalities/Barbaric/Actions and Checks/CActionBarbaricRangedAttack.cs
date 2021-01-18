@@ -35,7 +35,7 @@ public class CActionBarbaricRangedAttack : BTLeaf
         context.isAbilityTriggered = false;
         if(true) 
         { //if animation done, have to add that
-            OnExit(); 
+            OnParentExit(); 
             return NodeState.SUCCESS;
         }
         

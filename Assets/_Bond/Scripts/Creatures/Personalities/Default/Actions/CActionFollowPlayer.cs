@@ -48,12 +48,12 @@ public class CActionFollowPlayer : BTLeaf
         if(Vector3.Distance(context.player.transform.position, context.creatureTransform.position) > 20)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.FAILURE;
         } else if(context.isInPlayerRadius || context.isInPlayerTrail)
         {
             // Made it to player
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else
         {

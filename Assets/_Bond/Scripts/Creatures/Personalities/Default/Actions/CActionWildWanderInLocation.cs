@@ -62,7 +62,7 @@ public class CActionWildWanderInLocation : BTLeaf
         if(Vector3.Distance(context.wanderDestination, context.creatureTransform.position) <= 2f)
         {
             // creature got to wander destination
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else 
         {

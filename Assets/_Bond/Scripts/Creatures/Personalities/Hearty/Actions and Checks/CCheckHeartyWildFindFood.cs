@@ -49,11 +49,11 @@ public class CCheckHeartyWildFindFood : BTLeaf
         if(closestItem != null) 
         {
             context.foundFood = closestItem;
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         
-        OnExit();
+        OnParentExit();
         return NodeState.FAILURE;
 
     }
