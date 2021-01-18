@@ -45,11 +45,11 @@ public class CActionCleverFindItem : BTLeaf
         if (closestItem != null)
         {
             context.cleverItem = closestItem;
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         
-        OnExit();
+        OnParentExit();
         return NodeState.FAILURE;
 
     }

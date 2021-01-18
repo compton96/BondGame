@@ -30,7 +30,7 @@ public class CActionWildWanderIdle : BTLeaf
         context.wanderIdleTimer += Time.deltaTime;
         if (context.wanderIdleTimer >= context.wanderIdleDuration) 
         {
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         context.updateDebugText(name);

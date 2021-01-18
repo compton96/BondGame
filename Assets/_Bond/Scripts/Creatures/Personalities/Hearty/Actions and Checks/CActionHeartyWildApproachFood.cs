@@ -47,7 +47,7 @@ public class CActionHeartyWildApproachFood : BTLeaf
             Fruit fruitScript = context.foundFood.GetComponent<Fruit>();
             //Eat the fruit
             fruitScript.Destroy();
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else 
         {
