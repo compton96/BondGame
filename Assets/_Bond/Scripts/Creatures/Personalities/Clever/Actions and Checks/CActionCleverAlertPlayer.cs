@@ -34,7 +34,7 @@ public class CActionCleverAlertPlayer : BTLeaf
         }
         else
         {
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
     }

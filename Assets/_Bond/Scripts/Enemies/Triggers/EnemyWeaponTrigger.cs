@@ -7,6 +7,8 @@ public class EnemyWeaponTrigger : MonoBehaviour
     [SerializeField]
     private EnemyAIContext context;
 
+    //public BoxCollider hitbox => gameObject.GetComponent<BoxCollider>();
+
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player")
         {
@@ -14,4 +16,11 @@ public class EnemyWeaponTrigger : MonoBehaviour
             other.GetComponent<PlayerController>().isHit = true;
         }
     }
+
+    // public void ColliderOnOff()
+    // {
+    //     hitbox.enabled = !hitbox.enabled;
+    // }
+
+    
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class enemyAnimationEvent : MonoBehaviour
 {
     private EnemyAnimator enemyAnimator => transform.parent.GetComponent<EnemyAnimator>();
+    public GameObject hitbox;
+    public BoxCollider collider => hitbox.GetComponent<BoxCollider>();
 
     public void AttackDone()
     {
@@ -14,5 +16,10 @@ public class enemyAnimationEvent : MonoBehaviour
     public void HitstunDone()
     {
         enemyAnimator.HitstunDone();
+    }
+
+    public void ColliderOnOff()
+    {
+       collider.enabled = !collider.enabled;
     }
 }

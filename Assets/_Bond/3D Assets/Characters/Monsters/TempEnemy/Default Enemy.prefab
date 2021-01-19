@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1804996058}
   - component: {fileID: 1804996057}
   - component: {fileID: 1804996056}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: NoticeRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 878230852251512459}
   - component: {fileID: 878230852251512460}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy health bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878230852622667644}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 878230852792801448}
   - component: {fileID: 878230852792801450}
   - component: {fileID: 878230852792801449}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 878230852834537339}
   - component: {fileID: 878230852834537341}
   - component: {fileID: 878230852834537340}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 878230852946770606}
   - component: {fileID: 878230852946770605}
   - component: {fileID: 878230852946770604}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: enemyFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 878230853021602964}
   - component: {fileID: 878230853021602966}
   - component: {fileID: 878230853021602965}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,8 +715,7 @@ GameObject:
   - component: {fileID: 878230853043509728}
   - component: {fileID: 878230853043509759}
   - component: {fileID: 878230853043509758}
-  - component: {fileID: 1498083048}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,24 +791,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878230853043509756}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1498083048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878230853043509756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c365f7a7e568043aac80ab06710802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  context: {fileID: 1498083045}
 --- !u!1 &878230853263537710
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +808,7 @@ GameObject:
   - component: {fileID: 878230853263537682}
   - component: {fileID: 878230853263537681}
   - component: {fileID: 878230853263537680}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +907,7 @@ GameObject:
   - component: {fileID: 878230853312826513}
   - component: {fileID: 878230853312826512}
   - component: {fileID: 878230853312826543}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +997,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878230853326588897}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1038,7 @@ GameObject:
   - component: {fileID: 878230853585311473}
   - component: {fileID: 878230853533669236}
   - component: {fileID: 976230804}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1075,6 +1061,7 @@ Transform:
   - {fileID: 878230853263537711}
   - {fileID: 878230853043509757}
   - {fileID: 1804996055}
+  - {fileID: 1450734547581049239}
   m_Father: {fileID: 878230852319099019}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
@@ -1133,7 +1120,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878230853585311472}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2.944869, z: 1}
@@ -1169,3 +1156,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fbe07ae4289a64f82b74bc43cc09b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox: {fileID: 5113195103818466067}
+--- !u!1 &5113195103818466067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450734547581049239}
+  - component: {fileID: 9006170320959269941}
+  - component: {fileID: 6218880652498936571}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450734547581049239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113195103818466067}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.0000001872535}
+  m_LocalPosition: {x: 0, y: -0.9866667, z: 0.98}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 878230853585311476}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9006170320959269941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113195103818466067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2322493, y: 1, z: 3.1051428}
+  m_Center: {x: -0.4783578, y: 0, z: -1.0525714}
+--- !u!114 &6218880652498936571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113195103818466067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c365f7a7e568043aac80ab06710802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 1498083045}

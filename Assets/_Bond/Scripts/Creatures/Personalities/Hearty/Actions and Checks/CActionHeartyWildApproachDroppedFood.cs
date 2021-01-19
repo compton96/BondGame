@@ -52,7 +52,7 @@ public class CActionHeartyWildApproachDroppedFood : BTLeaf
             playerController.currCreature = context.creatureTransform.gameObject;
             playerController.currCreatureContext = context;
 
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else 
         {

@@ -10,12 +10,18 @@ namespace PlayerState
     [Serializable]
     public class Slash0 : SlashBase
     {
+        
+
         public Slash0( PlayerStateMachine _fsm ) : base( _fsm )
         {
             name = "Slash0";
             index = 0;
             hitBox = player.hitBoxes.slash0;
         }
+
+        
+
+
 
     
     }

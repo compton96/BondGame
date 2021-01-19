@@ -14,7 +14,12 @@ public class CCheckIsWild : BTChecker
     public override NodeState Evaluate()
     {
         if (context.isWild)
+        {
+            context.interactRadius.enabled = true;
             return NodeState.SUCCESS;
+        }
+            
+        context.interactRadius.enabled = false;
         return NodeState.FAILURE;
     }
 

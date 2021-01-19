@@ -1079,6 +1079,11 @@ PrefabInstance:
       propertyPath: toFollow
       value: 
       objectReference: {fileID: 1317448550}
+    - target: {fileID: 4178489857079956500, guid: 956d718805b5b4344b54a225f3a66551,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4178489857079956520, guid: 956d718805b5b4344b54a225f3a66551,
         type: 3}
       propertyPath: m_Name

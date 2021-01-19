@@ -23,6 +23,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject followPoint;
     public GameObject projectileSpawner;
     public CreatureAnimator animator;
+    public Collider interactRadius;
     
 
     
@@ -105,4 +106,6 @@ public class CreatureAIContext : MonoBehaviour
     public void updateDebugText(string name) {
         // debugText.creaturesDebug[debugNumber] = gameObject.name + " : " + name + "\n";
     }
+
+
 }
