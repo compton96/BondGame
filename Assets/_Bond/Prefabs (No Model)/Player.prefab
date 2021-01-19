@@ -7269,6 +7269,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  HeavySlash:
+    hitbox: {fileID: 0}
+    startTime: 0
+    endLag: 0
 --- !u!114 &3008331729029387138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7318,10 +7322,10 @@ MonoBehaviour:
   currHealth: 500
   currHealthModAdd: 0
   currHealthModMult: 0
-  attack1Damage: 100
-  attack2Damage: 120
-  attack3Damage: 150
-  heavyDamage: 200
+  attack1Damage: 50
+  attack2Damage: 60
+  attack3Damage: 75
+  heavyDamage: 100
   attackModAdd: 0
   attackModMult: 0
   speed: 14
