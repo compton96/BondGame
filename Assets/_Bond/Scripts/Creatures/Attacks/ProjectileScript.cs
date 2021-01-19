@@ -44,4 +44,12 @@ public class ProjectileScript : MonoBehaviour
         damage = _damage;
         isHoming = _isHoming;
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.transform.tag == "Enemy")
+        {
+            other.transform.GetComponent<EnemyAIContext>().takeDamage(damage);
+            Destroy(gameObject);
+        }    
+    }
 }

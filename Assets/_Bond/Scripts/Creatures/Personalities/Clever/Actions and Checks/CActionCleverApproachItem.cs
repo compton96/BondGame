@@ -44,7 +44,7 @@ public class CActionCleverApproachItem : BTLeaf
         if (Vector3.Distance(context.cleverItem.transform.position, context.creatureTransform.position) < 3)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         else

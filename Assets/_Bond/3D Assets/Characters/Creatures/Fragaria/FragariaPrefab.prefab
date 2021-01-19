@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 7652944173022466308}
   - component: {fileID: 7652944173022466309}
   - component: {fileID: 7652944173022466314}
+  - component: {fileID: 678756530038626375}
   m_Layer: 0
   m_Name: interactRadius
   m_TagString: Untagged
@@ -254,6 +255,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.23
   m_Center: {x: 0, y: 0, z: 0.15486908}
+--- !u!114 &678756530038626375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652944173022466313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22e488c15f6e534899b50062d747076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: {fileID: 0}
+  Creature: {fileID: 8167450192529632886}
 --- !u!1 &7652944174037425998
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +705,7 @@ MonoBehaviour:
   followPoint: {fileID: 0}
   projectileSpawner: {fileID: 372912646155600726}
   animator: {fileID: 0}
+  interactRadius: {fileID: 7652944173022466314}
   isWild: 1
   isInPlayerRadius: 0
   isInPlayerTrail: 0

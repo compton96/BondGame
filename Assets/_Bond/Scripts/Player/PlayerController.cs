@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (wildCreature != null)
             {
+                //throw pop up and do logic somewhere else 
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 currCreature = wildCreature;
                 currCreatureContext = currCreature.GetComponent<CreatureAIContext>();

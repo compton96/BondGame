@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: _Scrawny
   m_EditorClassIdentifier: 
   personalityName: 
-  basePercentage: 0
+  basePercentage: 100
   maxPercentage: 0
   statModType1: 0
   statModifierAmount1: 0
   statModType2: 0
   statModifierAmount2: 0
   WildNoticed: {fileID: 11400000, guid: 494ccda9375603e459b252e672b5e462, type: 2}
-  WildAlone: {fileID: 0}
+  WildAlone: {fileID: 11400000, guid: 4de96a676a935ce468fb7551958e798c, type: 2}
   AbilityTree: {fileID: 0}
   FollowPlayerTree: {fileID: 0}

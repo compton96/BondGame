@@ -41,11 +41,11 @@ public class CActionFindTargetEnemy : BTLeaf
         if(closestEnemy != null) 
         {
             context.targetEnemy = closestEnemy;
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         
-        OnExit();
+        OnParentExit();
         return NodeState.FAILURE;
 
     }
