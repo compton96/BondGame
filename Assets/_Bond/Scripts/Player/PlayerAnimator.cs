@@ -97,4 +97,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Dash");
     }
+
+    public void playSlashVFX()
+    {
+        playerController.slashVfx.Play();
+    }
 }

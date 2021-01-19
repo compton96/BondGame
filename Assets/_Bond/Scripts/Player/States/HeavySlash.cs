@@ -11,10 +11,14 @@ namespace PlayerState
     [Serializable]
     public class HeavySlash : State
     {
+        public GameObject hitbox;
+        public float startTime;
+        public float endLag = 0.6f;
         public HeavySlash( PlayerStateMachine _fsm ) : base( _fsm )
         {
             name = "HeavySlash";
             parent = fsm.InputState;
+            hitbox = player.hitBoxes.heavy;
         }
 
 
@@ -23,6 +27,10 @@ namespace PlayerState
         {
             player.inputs.heavyAttack = false;
             player.heavyHitVfx.Play();
+            hitbox.SetActive(false);
+            hitbox.SetActive(true);
+            startTime = Time.time;
+
         }
 
 
@@ -30,19 +38,24 @@ namespace PlayerState
         public override void OnStateUpdate()
         {
             //maybe do after anim ends
-            SetState(fsm.IdleMove);
-            return;
+            //make animation longer, has a recovery period.
+            if(Time.time > startTime + endLag)
+            {
+                SetState(fsm.IdleMove);
+                return;
+            }
+            
         }
 
         public override void OnStateFixedUpdate()
         {
-            player.doMovement(0.1f);
-            player.doRotation(0.1f);
+            //player.doMovement(0.1f);
+            //player.doRotation(0.1f);
         }
 
         public override void OnStateExit()
         {
-            
+    
         }
     }
 }

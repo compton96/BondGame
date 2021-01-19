@@ -89,6 +89,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.09612869
+        functionName: playSlashVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: AttackDone
         data: 
@@ -125,11 +132,17 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.32960176
+        functionName: playSlashVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: AttackDone
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 9bd68a4bd0ad09048ab7ab0f36048f21,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -162,6 +175,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.6738064
+        functionName: playSlashVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: AttackDone
         data: 
@@ -395,7 +415,7 @@ ModelImporter:
       takeName: MCArmature|Attack3
       internalID: 0
       firstFrame: 17
-      lastFrame: 28
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
