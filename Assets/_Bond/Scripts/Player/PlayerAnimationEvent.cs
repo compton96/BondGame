@@ -15,4 +15,9 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         playerAnimator.FollowThroughDone();
     }
+
+    public void playSlashVFX()
+    {
+        playerAnimator.playSlashVFX();
+    }
 }

@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
+    public ParticleSystem slashVfx;
     //****************//
     public float isoSpeedADJ = 0f;
 

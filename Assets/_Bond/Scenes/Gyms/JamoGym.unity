@@ -1010,12 +1010,6 @@ Transform:
   m_Father: {fileID: 243037193}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1518117925 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6334410306365020563, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1960519508}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1647974575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,16 +1287,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 2014049320}
-    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: hitBoxes.heavy
-      value: 
-      objectReference: {fileID: 1518117925}
-    - target: {fileID: 3008331728175113259, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3008331729029387142, guid: b533a4d2d18ca984a85f56b2a9810e8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1363,11 +1347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3008331729270975659, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
         type: 3}
       propertyPath: slider
@@ -1383,46 +1362,6 @@ PrefabInstance:
       propertyPath: currHealthUI
       value: 
       objectReference: {fileID: 186682694}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: turnSpeed
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: speed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: attack1Damage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: attack2Damage
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: attack3Damage
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5525458176812769304, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: heavyDamage
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6334410306365020563, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6779507019818856298, guid: b533a4d2d18ca984a85f56b2a9810e8c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b533a4d2d18ca984a85f56b2a9810e8c, type: 3}
 --- !u!20 &2014049320 stripped
