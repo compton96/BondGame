@@ -13,7 +13,7 @@ namespace PlayerState
         protected int index;
         protected State nextState;
         protected GameObject hitBox;
-        protected float speedMod = 2f;
+        protected float speedMod = 1f;
 
         private Vector3 startRotation;
 
@@ -55,7 +55,7 @@ namespace PlayerState
 
             player.isAttacking = true;
 
-            speedMod = 2.25f;
+            speedMod = 1f;
 
             startRotation = player.facingDirection;
             //player.setRotation(startRotation);
@@ -100,16 +100,14 @@ namespace PlayerState
 
         public override void OnStateFixedUpdate()
         {
-            player.doMovement(0.2f);
+            //player.doMovement(0.2f);
             player.doRotation(1f);
           
-            //base.OnStateFixedUpdate();
-
-            // player.doMovement(speedMod);
-            // if(speedMod >= 0.1)
-            // {
-            //     speedMod *= 0.7f;
-            // }
+            player.doMovement(speedMod);
+            if(speedMod >= 0.05f)
+            {
+                speedMod /= 1.4f;
+            }
 
             //player.setRotation(startRotation);
             

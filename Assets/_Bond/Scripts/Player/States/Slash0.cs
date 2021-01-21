@@ -19,11 +19,11 @@ namespace PlayerState
             hitBox = player.hitBoxes.slash0;
         }
 
-        public override void OnStateFixedUpdate()
-        {
-            player.doMovement(0f);
-            player.doRotation(1f);
-        }
+        // public override void OnStateFixedUpdate()
+        // {
+        //     player.doMovement(0f);
+        //     player.doRotation(1f);
+        // }
 
 
 
