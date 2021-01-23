@@ -5,13 +5,12 @@ using UnityEngine;
 public class StatManager : MonoBehaviour
 {
     public BaseStats baseStats;
-    protected Dictionary<ModiferType, Stat> stats = new Dictionary<ModiferType, Stat>();
+    public Dictionary<ModiferType, Stat> stats = new Dictionary<ModiferType, Stat>();
     protected Dictionary<Buff, float> buffs = new Dictionary<Buff, float>();
 
     private void Awake() 
     {
-    
-
+        
     }
 
     private void initStats() {
@@ -20,6 +19,7 @@ public class StatManager : MonoBehaviour
             stats.Add(stat.modiferType, new Stat(stat.modiferType, stat.baseValue));
         }
     }
+
 
     private void addModifer(Modifier _modifier)
     {
