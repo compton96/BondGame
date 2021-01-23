@@ -28,8 +28,9 @@ public class CCheckHeartyWildDroppedFood : BTLeaf
         //     return NodeState.FAILURE;
         // }
         Debug.Log("In dropped food check");
-        int layermask = 1 << 10; //only layer 10 will be targeted
-        Collider[] hitColliders = Physics.OverlapSphere(context.creatureTransform.position, context.itemDetectRange, layermask);
+        // int layermask = 1 << 10; //only layer 10 will be targeted
+        // Collider[] hitColliders = Physics.OverlapSphere(context.creatureTransform.position, context.itemDetectRange, layermask);
+        Collider[] hitColliders = Physics.OverlapSphere(context.creatureTransform.position, context.itemDetectRange);
         GameObject closestItem = null;
         float closestDistance = 100;
         foreach (var hitCollider in hitColliders)

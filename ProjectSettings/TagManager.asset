@@ -8,6 +8,9 @@ TagManager:
   - Weapon
   - FrontFollowPoint
   - PH
+  - CaptCreature
+  - Enemy
+  - Fruit
   layers:
   - Default
   - TransparentFX
