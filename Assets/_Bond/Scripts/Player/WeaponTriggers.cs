@@ -35,7 +35,7 @@ public class WeaponTriggers : MonoBehaviour
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
-                enemyAIContext.takeDamage(ps.attack3Damage);
+                enemyAIContext.takeDamage(ps.heavyDamage);
             } 
             // else
             // {
