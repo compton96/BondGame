@@ -48,7 +48,7 @@ public class ProjectileScript : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if(other.transform.tag == "Enemy")
         {
-            other.transform.GetComponent<EnemyAIContext>().statManager.takeDamage(damage, ModiferType.RANGED_RESISTANCE);
+            other.transform.GetComponent<EnemyAIContext>().statManager.TakeDamage(damage, ModiferType.RANGED_RESISTANCE);
             Destroy(gameObject);
         }    
     }

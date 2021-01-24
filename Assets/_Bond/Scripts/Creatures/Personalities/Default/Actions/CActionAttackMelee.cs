@@ -26,7 +26,7 @@ public class CActionAttackMelee : BTLeaf
     }
 
     public override NodeState Evaluate() {
-        context.targetEnemy.GetComponent<EnemyAIContext>().statManager.takeDamage(attack.baseDmg, ModiferType.MELEE_RESISTANCE);
+        context.targetEnemy.GetComponent<EnemyAIContext>().statManager.TakeDamage(attack.baseDmg, ModiferType.MELEE_RESISTANCE);
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
         if(true)
