@@ -15,6 +15,7 @@ public class Stat
     {
         modiferType = _modiferType;
         baseValue = _baseValue;
+        modifiedValue = _baseValue;
     }
 
     public void addModifer(Modifier _modifer) 

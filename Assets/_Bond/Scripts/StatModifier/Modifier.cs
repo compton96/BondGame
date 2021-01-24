@@ -25,7 +25,7 @@ public enum ModiferType
     HEAVY_ATTACK_AOE,
     ATTACK_SPEED,
     COMBO_AMOUNT, // idk if well actually implement this or not 
-    CRIT_CHANGE,
+    CRIT_CHANCE,
     CRIT_DAMAGE,
     ATTACK_RANGE,
     DASH_SPEED,

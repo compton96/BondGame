@@ -23,19 +23,19 @@ public class WeaponTriggers : MonoBehaviour
             // Check which attack state we're in to determine damage
             if(fsm.currentState == fsm.Slash0)
             {
-                enemyAIContext.takeDamage(ps.attack1Damage);
+                enemyAIContext.statManager.takeDamage(ps.attack1Damage, ModiferType.MELEE_RESISTANCE);
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
-                enemyAIContext.takeDamage(ps.attack2Damage);
+                enemyAIContext.statManager.takeDamage(ps.attack2Damage, ModiferType.MELEE_RESISTANCE);
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
-                enemyAIContext.takeDamage(ps.attack3Damage);
+                enemyAIContext.statManager.takeDamage(ps.attack3Damage, ModiferType.MELEE_RESISTANCE);
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
-                enemyAIContext.takeDamage(ps.heavyDamage);
+                enemyAIContext.statManager.takeDamage(ps.heavyDamage, ModiferType.MELEE_RESISTANCE);
             } 
             // else
             // {
