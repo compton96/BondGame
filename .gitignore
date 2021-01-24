@@ -78,6 +78,7 @@ crashlytics-build.properties
 /[Aa]ssets/_Bond/Audio/initial/.user/*
 /[Aa]ssets/_Bond/Audio/initial/.unsaved/*
 /[Aa]ssets/_Bond/Audio/initial/.restore/*
+/[Aa]ssets/_Bond/Audio/initial/Metadata/*
 
 # Log-files
 fmod.log
