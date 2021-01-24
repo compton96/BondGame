@@ -30,12 +30,8 @@ namespace PlayerState
                 return;
             }
             //wait till end of animation, return to idle
-            //maybe check how many times has been triggered in succession?
-            // HERMAN TODO: Detect if hit animation is ended
-            if( !player.animator.IsDamaged() )
+            if( !player.animator.isDamaged )
             {
-                //Debug.Log("End Player hit state");
-                
                 SetState(fsm.IdleMove);
                 return;
             }

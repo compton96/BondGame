@@ -11,13 +11,18 @@ public class PlayerAnimationEvent : MonoBehaviour
         playerAnimator.AttackDone();
     }
 
+    public void DamagedDone()
+    {
+        playerAnimator.DamagedDone();
+    }
+
     public void FollowThroughDone()
     {
         playerAnimator.FollowThroughDone();
     }
 
-    public void playSlashVFX()
+    public void PlaySlashVFX()
     {
-        playerAnimator.playSlashVFX();
+        playerAnimator.PlaySlashVFX();
     }
 }
