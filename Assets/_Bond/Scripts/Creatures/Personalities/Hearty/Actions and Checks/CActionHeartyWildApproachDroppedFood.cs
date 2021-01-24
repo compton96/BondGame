@@ -27,7 +27,7 @@ public class CActionHeartyWildApproachDroppedFood : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = context.CD.moveSpeed;
+        agent.speed = context.creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnExit()

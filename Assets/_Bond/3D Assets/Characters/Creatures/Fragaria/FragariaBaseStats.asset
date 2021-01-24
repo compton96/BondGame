@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafc23ec76d8be04daa3b6c647dbb442, type: 3}
+  m_Name: FragariaBaseStats
+  m_EditorClassIdentifier: 
+  statName: 'Fragaria '
+  stats:
+  - modiferType: 0
+    baseValue: 0
+  - modiferType: 3
+    baseValue: 10
+  - modiferType: 22
+    baseValue: 0
+  - modiferType: 21
+    baseValue: 0
+  - modiferType: 20
+    baseValue: 0
+  - modiferType: 2
+    baseValue: 0
+  - modiferType: 1
+    baseValue: 0
+  - modiferType: 12
+    baseValue: 0
+  - modiferType: 13
+    baseValue: 0

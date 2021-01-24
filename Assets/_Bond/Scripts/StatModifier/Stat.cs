@@ -17,21 +17,21 @@ public class Stat
         baseValue = _baseValue;
     }
 
-    public void addModifer(Modifier _modifer) 
+    public void AddModifier(Modifier _modifer) 
     {
         modifiers.Add(_modifer);
-        updateValue();
+        UpdateValue();
     }
 
-    public void removeModifier(Modifier _modifier) 
+    public void RemoveModifier(Modifier _modifier) 
     {
         modifiers.Remove(_modifier); //TEST THIS WE DONT KNOW IF IT WILL KNOW WHICH TO REMOVE
-        updateValue();
+        UpdateValue();
     }
 
-    public void updateValue()
+    public void UpdateValue()
     {
-        //loop through all modifiers, and apply them to modified value, ceil and floor hard cap;
+        modifiedValue = baseValue; //update this to incorporate modifiers.
     }
 
 
