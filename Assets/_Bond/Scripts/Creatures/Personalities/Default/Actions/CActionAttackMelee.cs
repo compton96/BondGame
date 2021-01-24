@@ -14,7 +14,7 @@ public class CActionAttackMelee : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
+        attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         Debug.Log("Attacking");
         context.animator.Attack1();

@@ -12053,8 +12053,10 @@ MonoBehaviour:
   movementVector: {x: 0, y: 0, z: 0}
   crouchModifier: 1
   nearInteractable: 0
+  backFollowPoint: {fileID: 3008331728175113253}
   wildCreature: {fileID: 0}
   currCreature: {fileID: 0}
+  swapCreature: {fileID: 0}
   interactableObject: {fileID: 0}
   currCreatureContext: {fileID: 0}
   isAttacking: 0

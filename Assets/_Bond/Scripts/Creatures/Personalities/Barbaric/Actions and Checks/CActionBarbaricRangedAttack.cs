@@ -13,7 +13,7 @@ public class CActionBarbaricRangedAttack : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackRanged) context.CD.abilities[context.lastTriggeredAbility];
+        attack = (creatureAttackRanged) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         context.animator.Attack1();
     }

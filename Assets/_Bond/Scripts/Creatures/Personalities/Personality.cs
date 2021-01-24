@@ -12,10 +12,10 @@ public class Personality : ScriptableObject
     public float basePercentage; //base chance that a creature can roll this personality
     public float maxPercentage;
 
-    public statModifierType statModType1; //the stat that this personality will modify
+    public ModiferType statModType1; //the stat that this personality will modify
     public float statModifierAmount1; // amount that this personality affects the stat.
     
-    public statModifierType statModType2; //optional secondary 
+    public ModiferType statModType2; //optional secondary 
     public float statModifierAmount2;
 
     public BTSubtree WildNoticed;
