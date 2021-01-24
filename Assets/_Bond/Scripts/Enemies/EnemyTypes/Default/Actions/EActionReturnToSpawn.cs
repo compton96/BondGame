@@ -23,7 +23,7 @@ public class EActionReturnToSpawn : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = enemyContext.moveSpeed;
+        agent.speed = enemyContext.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
         //Play awake anim
     }
 
@@ -39,7 +39,7 @@ public class EActionReturnToSpawn : BTLeaf
         if(Vector3.Distance(enemyContext.enemyTransform.position, enemyContext.startingLocation) < 10)
         {
             // Made it to spawn
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else
         {

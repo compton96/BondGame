@@ -65,6 +65,8 @@ public class StatManager : MonoBehaviour
     public void TakeDamage(float baseAmount, ModiferType damageType) 
     {
         stats[ModiferType.CURR_HEALTH].modifiedValue -= (baseAmount * (1 - stats[damageType].modifiedValue)); // FORMULA FOR DAMAGE RESISTANCE;
+        // Debug.Log("Took " + (baseAmount * (1 - stats[damageType].modifiedValue)) + " damage");
+        // Debug.Log("Base amount was " + baseAmount);
     }
 
 
