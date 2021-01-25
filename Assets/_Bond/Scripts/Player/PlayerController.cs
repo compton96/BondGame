@@ -258,8 +258,6 @@ public class PlayerController : MonoBehaviour
     private void OnAttack1()
     {
         inputs.basicAttack = true;
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
     }
 
 
@@ -279,8 +277,6 @@ public class PlayerController : MonoBehaviour
     {
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 0;
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
     }  
 
 
@@ -289,8 +285,6 @@ public class PlayerController : MonoBehaviour
     {
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 1;
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
     }
     
     //*********** END INPUT FXNS **************************
