@@ -14,7 +14,7 @@ public class BTFailReturnRun : BTNode
     
     public override NodeState Evaluate()
     {
-        switch (node.Evaluate())
+        switch (node.OnParentEvaluate())
         {
             case NodeState.RUNNING:
                 _nodeState = NodeState.RUNNING;

@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8167450191776389342
 Transform:
   m_ObjectHideFlags: 0
@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 8167450192529632883}
   - component: {fileID: 8167450192529632881}
   - component: {fileID: 6899150225298738526}
+  - component: {fileID: 3045770925772636374}
   - component: {fileID: 6740791500942022214}
   m_Layer: 9
   m_Name: FragariaPrefab
@@ -673,12 +674,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 0
-  maxLife: 0
-  level: 0
-  power: 0
-  utility: 0
-  dexterity: 0
-  moveSpeed: 0
   Id: 0
   personalities: []
   abilities: []
@@ -700,8 +695,8 @@ MonoBehaviour:
   foundFood: {fileID: 0}
   creatureTransform: {fileID: 8167450192529632875}
   rb: {fileID: 8167450192529632878}
-  CD: {fileID: 8167450192529632883}
-  creatureTypeData: {fileID: 11400000, guid: 41fdbc17e7748244d888642ae12b9e4c, type: 2}
+  creatureStats: {fileID: 0}
+  creatureBaseStats: {fileID: 0}
   agent: {fileID: 0}
   backFollowPoint: {fileID: 0}
   followPoint: {fileID: 0}
@@ -740,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3865513519326407494}
---- !u!114 &6740791500942022214
+--- !u!114 &3045770925772636374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -749,9 +744,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8167450192529632886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dcb6f939f67aba42800bd4fb14b180a, type: 3}
+  m_Script: {fileID: 11500000, guid: 71c606b8265df3a45ba8ab7e3a74cea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 152fc45d1f270af4793b4489374cf14c, type: 2}
 --- !u!1001 &4135564228304475671
 PrefabInstance:
   m_ObjectHideFlags: 0

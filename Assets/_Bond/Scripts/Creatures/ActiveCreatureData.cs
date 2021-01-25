@@ -6,17 +6,9 @@ public class ActiveCreatureData : MonoBehaviour
 {
     public bool ready = false;
 
-    public float maxLife;
-    public int level; //??
+    public StatManager statManager => gameObject.GetComponent<StatManager>();
 
-    public int power;
-    public int utility;
-    public int dexterity;
-    
-    public float moveSpeed;
-    
     public int Id;
-
 
 
     public List<Personality> personalities = new List<Personality>();

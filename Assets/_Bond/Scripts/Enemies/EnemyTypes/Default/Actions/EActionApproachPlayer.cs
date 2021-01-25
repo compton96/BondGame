@@ -17,12 +17,12 @@ public class EActionApproachPlayer : BTLeaf
         agent.autoRepath = false;
         agent.angularSpeed = angularSpeed;
         agent.acceleration = acceleration;
-        agent.speed = enemyContext.moveSpeed;
+        agent.speed = enemyContext.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnEnter()
     {
-        agent.speed = enemyContext.moveSpeed;
+        agent.speed = enemyContext.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
         //Play awake anim
     }
 
@@ -33,15 +33,16 @@ public class EActionApproachPlayer : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        if(Vector3.Distance(enemyContext.player.transform.position, enemyContext.enemyTransform.position) > enemyContext.enemyDetectRange)
+        if(Vector3.Distance(enemyContext.player.transform.position, enemyContext.enemyTransform.position) > 
+                enemyContext.statManager.stats[ModiferType.DETECTION_RANGE].modifiedValue)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.FAILURE;
         } else if(enemyContext.isInPlayerRadius || enemyContext.animator.inAttack)
         {
             // Made it to player
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else
         {

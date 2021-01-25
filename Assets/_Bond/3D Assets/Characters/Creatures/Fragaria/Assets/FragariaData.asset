@@ -19,7 +19,7 @@ MonoBehaviour:
   power: 0
   utility: 0
   dexterity: 0
-  moveSpeed: 0
+  moveSpeed: 13
   lifeRange: {x: 60, y: 75}
   powerRange: {x: 10, y: 30}
   utilityRange: {x: 25, y: 50}

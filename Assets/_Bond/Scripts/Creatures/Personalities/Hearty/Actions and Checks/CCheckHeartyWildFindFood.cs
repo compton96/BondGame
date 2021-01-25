@@ -25,7 +25,7 @@ public class CCheckHeartyWildFindFood : BTLeaf
     {
         if (context.cleverIgnoreItems) 
         {
-            OnExit();
+            OnParentExit();
             return NodeState.FAILURE;
         }
 

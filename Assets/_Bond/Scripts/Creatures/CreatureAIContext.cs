@@ -16,8 +16,8 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject foundFood; //Used in Hearty personality to find food
     public Transform creatureTransform;
     public Rigidbody rb;
-    public ActiveCreatureData CD;
-    public creatureData creatureTypeData;
+    public ActiveCreatureData creatureStats;
+    public creatureData creatureBaseStats;
     public NavMeshAgent agent;
     public GameObject backFollowPoint;
     public GameObject followPoint;
@@ -77,7 +77,7 @@ public class CreatureAIContext : MonoBehaviour
     }
 
     public void GetActiveCreatureData(){
-        CD = GetComponent<ActiveCreatureData>();
+        creatureStats = GetComponent<ActiveCreatureData>();
     }
 
     private void FixedUpdate() {
@@ -95,7 +95,7 @@ public class CreatureAIContext : MonoBehaviour
 
     public void doLookAt(Vector3 position){
         creatureTransform.transform.LookAt(position, Vector3.up);
-        rb.velocity = (creatureTransform.transform.rotation * Vector3.forward * CD.moveSpeed);
+        rb.velocity = (creatureTransform.transform.rotation * Vector3.forward * creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue);
     }
 
 
@@ -106,6 +106,11 @@ public class CreatureAIContext : MonoBehaviour
     
     public void updateDebugText(string name) {
         // debugText.creaturesDebug[debugNumber] = gameObject.name + " : " + name + "\n";
+    }
+
+    public void DoDamage(){
+        //fragaria's abilities base damage +* power modifier +* statManager damage modifier 
+
     }
 
 

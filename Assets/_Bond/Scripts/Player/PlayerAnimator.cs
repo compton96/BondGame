@@ -11,12 +11,20 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerController playerController => GetComponent<PlayerController>();
 
     public bool isAttack { get; private set; }
+    public bool isDamaged { get; private set; }
     public bool isFollowThrough { get; private set; }
 
     // Triggered by event
     public void AttackDone()
     {
         isAttack = false;
+    }
+
+    // Triggered by event
+    public void DamagedDone()
+    {
+        isDamaged = false;
+        animator.ResetTrigger("isHit");
     }
 
     // Triggered by event
@@ -52,14 +60,8 @@ public class PlayerAnimator : MonoBehaviour
 
     public void SetDamaged()
     {
-        // HERMAN TODO: Fill in actual animation later
+        isDamaged = true;
         animator.SetTrigger("isHit");
-    }
-
-    // HERMAN TODO: Fill in with actual animation later
-    public bool IsDamaged()
-    {
-        return false;
     }
 
     public void Dash()
@@ -96,5 +98,16 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack1");
         animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Dash");
+    }
+
+    public void PlaySlashVFX()
+    {
+        playerController.slashVfx.Play();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
+    }
+
+    public void PlayWalkSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 2D", transform.position);
     }
 }

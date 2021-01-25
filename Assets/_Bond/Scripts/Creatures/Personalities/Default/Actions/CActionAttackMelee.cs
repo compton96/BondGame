@@ -14,7 +14,7 @@ public class CActionAttackMelee : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
+        attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         Debug.Log("Attacking");
         context.animator.Attack1();
@@ -26,7 +26,7 @@ public class CActionAttackMelee : BTLeaf
     }
 
     public override NodeState Evaluate() {
-        context.targetEnemy.GetComponent<EnemyAIContext>().takeDamage(attack.baseDmg);
+        context.targetEnemy.GetComponent<EnemyAIContext>().statManager.TakeDamage(attack.baseDmg, ModiferType.MELEE_RESISTANCE);
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
         if(true)

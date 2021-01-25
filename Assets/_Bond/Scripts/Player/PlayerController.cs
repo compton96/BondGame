@@ -49,12 +49,15 @@ public class PlayerController : MonoBehaviour
     public float crouchModifier = 1;
     public bool nearInteractable = false;
     
+    public Transform backFollowPoint;
 
     public GameObject wildCreature = null;
     public GameObject currCreature;
+    public GameObject swapCreature;
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
 
+    
     //******Combat Vars**********//
     public bool isAttacking = false;
     public float currSpeed;
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
+    public ParticleSystem slashVfx;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -132,7 +136,14 @@ public class PlayerController : MonoBehaviour
     {
         if(inputs.rawDirection != Vector2.zero)
         {
-            transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            if(isAttacking)
+            {
+                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            }
+            else
+            {
+                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            }
         }
     }
 
@@ -173,16 +184,13 @@ public class PlayerController : MonoBehaviour
             if(interactableObject != null)
             {
                 //Debug.Log("picked up item");
+                //DO PICKUP LOGIC, ADDING ITEM TO CORRECT LOCATION ETC;
                 Destroy(interactableObject);
                 nearInteractable = false;
             }
             else if (wildCreature != null)
             {
-                wildCreature.GetComponent<CreatureAIContext>().isWild = false;
-                currCreature = wildCreature;
-                currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
-                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
-                nearInteractable = false;
+                befriendCreature();
             }
         }
         else//Not near interactable, dash instead
@@ -203,7 +211,49 @@ public class PlayerController : MonoBehaviour
         }                 
     }
 
-   
+    private void befriendCreature()
+    {
+        bool requirementMet = true;
+        if(requirementMet)
+        {
+            if(currCreature != null)
+            {
+                wildCreature.GetComponent<CreatureAIContext>().isWild = false;
+                swapCreature = wildCreature;
+                swapCreature.SetActive(false);
+                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
+                nearInteractable = false;
+            }
+            else 
+            {
+                wildCreature.GetComponent<CreatureAIContext>().isWild = false;
+                currCreature = wildCreature;
+                currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
+                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
+                nearInteractable = false;
+            }
+
+        }
+
+    }
+
+    private void OnSwap()
+    {
+        if(swapCreature != null)
+        {
+            var temp = currCreature;
+            currCreature.SetActive(false);
+            swapCreature.SetActive(true);
+            swapCreature.transform.position = backFollowPoint.position;
+            currCreature = swapCreature;
+            currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
+            currCreatureContext.isInPlayerRadius = false;
+            swapCreature = temp;
+        }
+
+    }
+
+
     //Slash (X)
     private void OnAttack1()
     {

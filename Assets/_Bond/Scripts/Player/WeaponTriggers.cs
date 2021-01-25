@@ -23,19 +23,23 @@ public class WeaponTriggers : MonoBehaviour
             // Check which attack state we're in to determine damage
             if(fsm.currentState == fsm.Slash0)
             {
-                enemyAIContext.takeDamage(ps.attack1Damage);
+                enemyAIContext.statManager.TakeDamage(ps.attack1Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
-                enemyAIContext.takeDamage(ps.attack2Damage);
+                enemyAIContext.statManager.TakeDamage(ps.attack2Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
-                enemyAIContext.takeDamage(ps.attack3Damage);
+                enemyAIContext.statManager.TakeDamage(ps.attack3Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
-                enemyAIContext.takeDamage(ps.attack3Damage);
+                enemyAIContext.statManager.TakeDamage(ps.heavyDamage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             // else
             // {
