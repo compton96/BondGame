@@ -13,14 +13,14 @@ public class CCheckIfAbilityOnCd: BTChecker
     {
         if(context.lastTriggeredAbility >= 0)
         {
-            if(context.cooldownSystem.IsOnCooldown(context.CD.abilities[context.lastTriggeredAbility].id))
+            if(context.cooldownSystem.IsOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility].id))
             {
+                context.isAbilityTriggered = false;
                 Debug.Log("Ability on Cooldown");
                 return NodeState.FAILURE;
             }
         }
         Debug.Log("Ability is free");
-        context.cooldownSystem.PutOnCooldown(context.CD.abilities[context.lastTriggeredAbility]);
         return NodeState.SUCCESS;
     }
 }

@@ -24,7 +24,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject projectileSpawner;
     public CreatureAnimator animator;
     public Collider interactRadius;
-    public CooldownSystem cooldownSystem;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
     
 
     
