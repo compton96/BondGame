@@ -24,6 +24,7 @@ public class EnemyAIContext : MonoBehaviour
     public NavMeshAgent agent;
     public EnemyAnimator animator;
     public Slider healthSlider;
+    public ParticleSystem hitVFX;
     
     [Header("Bools")]
     public bool isInPlayerRadius;
