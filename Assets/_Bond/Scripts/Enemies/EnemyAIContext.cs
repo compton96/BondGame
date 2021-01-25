@@ -62,6 +62,8 @@ public class EnemyAIContext : MonoBehaviour
             tookDamage = true;
             healthUIUpdate();
             lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
         }
     }
 
