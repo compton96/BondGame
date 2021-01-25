@@ -14,7 +14,7 @@ public class BTUntilFailure: BTNode
 
     public override NodeState Evaluate()
     {
-        if ((node.Evaluate()) == NodeState.FAILURE) // If given a success return
+        if ((node.OnParentEvaluate()) == NodeState.FAILURE) // If given a success return
         {
             return NodeState.FAILURE;
         } else 

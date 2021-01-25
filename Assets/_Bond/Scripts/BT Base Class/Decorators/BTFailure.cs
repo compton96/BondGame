@@ -14,7 +14,7 @@ public class BTFailure: BTNode
     
     public override NodeState Evaluate()
     {
-        if ((node.Evaluate()) == NodeState.RUNNING) // If given a success return
+        if ((node.OnParentEvaluate()) == NodeState.RUNNING) // If given a success return
         {
             return NodeState.RUNNING;
         } else 
