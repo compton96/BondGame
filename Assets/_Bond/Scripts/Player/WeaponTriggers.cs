@@ -24,18 +24,22 @@ public class WeaponTriggers : MonoBehaviour
             if(fsm.currentState == fsm.Slash0)
             {
                 enemyAIContext.statManager.TakeDamage(ps.attack1Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
                 enemyAIContext.statManager.TakeDamage(ps.attack2Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
                 enemyAIContext.statManager.TakeDamage(ps.attack3Damage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
                 enemyAIContext.statManager.TakeDamage(ps.heavyDamage, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
             } 
             // else
             // {
