@@ -25,4 +25,9 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         playerAnimator.PlaySlashVFX();
     }
+
+    public void PlayWalkSFX()
+    {
+        playerAnimator.PlayWalkSFX();
+    }
 }

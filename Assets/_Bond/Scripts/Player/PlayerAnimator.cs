@@ -103,5 +103,11 @@ public class PlayerAnimator : MonoBehaviour
     public void PlaySlashVFX()
     {
         playerController.slashVfx.Play();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
+    }
+
+    public void PlayWalkSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 2D", transform.position);
     }
 }
