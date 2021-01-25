@@ -10,8 +10,8 @@ public class EnemyAIContext : MonoBehaviour
 {
     #region Behavior Tree Context
 
-    [Header("Main Stats")]
-    public StatManager statManager;
+    //[Header("Main Stats")]
+    public StatManager statManager => GetComponent<StatManager>();
     // public float maxHealth;
     // public float currentHealth;
     // public int damage;

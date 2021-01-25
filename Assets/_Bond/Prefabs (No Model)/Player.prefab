@@ -11974,9 +11974,9 @@ GameObject:
   - component: {fileID: 1275344589917247344}
   - component: {fileID: 6669998564430628805}
   - component: {fileID: 3008331729029387138}
-  - component: {fileID: 5525458176812769304}
   - component: {fileID: 3008331729029387139}
   - component: {fileID: 1313330683953569825}
+  - component: {fileID: 2139760117}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -12120,37 +12120,6 @@ MonoBehaviour:
   m_DefaultActionMap: controller
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5525458176812769304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3008331729029387198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a70d608ef3026964c91b6f5b84bb669d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
-  maxHealthModAdd: 0
-  maxHealthModMult: 0
-  currHealth: 500
-  currHealthModAdd: 0
-  currHealthModMult: 0
-  attack1Damage: 20
-  attack2Damage: 25
-  attack3Damage: 30
-  heavyDamage: 40
-  attackModAdd: 0
-  attackModMult: 0
-  speed: 12
-  turnSpeed: 14
-  speedModAdd: 0
-  speedModMult: 0
-  slider: {fileID: 0}
-  maxHealthUI: {fileID: 0}
-  currHealthUI: {fileID: 0}
 --- !u!143 &3008331729029387139
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12182,6 +12151,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3008331728575113171}
+--- !u!114 &2139760117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3008331729029387198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c606b8265df3a45ba8ab7e3a74cea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 6ea35a20dc43ad6459e8850d91e7be9c, type: 2}
 --- !u!1 &3008331729033063617
 GameObject:
   m_ObjectHideFlags: 0

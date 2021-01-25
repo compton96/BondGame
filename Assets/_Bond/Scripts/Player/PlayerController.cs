@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
     public GameObject fruit;
     public PlayerStateMachine fsm => GetComponent<PlayerStateMachine>();
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
-    public PlayerStats stats => GetComponent<PlayerStats>();
+    //public PlayerStats stats => GetComponent<PlayerStats>();
+    public StatManager stats => GetComponent<StatManager>();
 
     //*******Dash Variables*******
     public Vector3 facingDirection;
@@ -107,20 +109,17 @@ public class PlayerController : MonoBehaviour
             gravity = Vector3.zero;
         }
 
-        // HERMAN TODO: Break up massive math formula into different variables
-        //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
-
         if(isDashing || isAttacking) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
                 lastMoveVec = facingDirection;
             }
-            movementVector = lastMoveVec * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = lastMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
         }
         else 
         {
-            movementVector = inputs.moveDirection * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = inputs.moveDirection * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
             lastMoveVec = inputs.moveDirection;
         }
         
@@ -137,12 +136,12 @@ public class PlayerController : MonoBehaviour
         if(inputs.rawDirection != Vector2.zero)
         {
             if(isAttacking)
-            {
-                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            {//CHANGE LATER, DONT HARDCODE TURN SPEED AS 14
+                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * 14f * rotationModifier);
             }
             else
             {
-                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * 14f * rotationModifier);
             }
         }
     }
@@ -305,6 +304,14 @@ public class PlayerController : MonoBehaviour
     {
         var temp = Instantiate(fruit, transform.position, Quaternion.identity);
         temp.GetComponent<Fruit>().droppedByPlayer = true;
+    }
+
+    public void DeathCheck(){
+       if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
+       {
+           SceneManager.LoadScene(0);
+       }
+       
     }
     
 }
