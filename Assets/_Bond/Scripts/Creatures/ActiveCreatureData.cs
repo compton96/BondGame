@@ -14,6 +14,8 @@ public class ActiveCreatureData : MonoBehaviour
     public int dexterity;
     
     public float moveSpeed;
+    
+    public int Id;
 
 
 

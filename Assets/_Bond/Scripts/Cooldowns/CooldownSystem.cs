@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,10 +47,8 @@ public class CooldownSystem : MonoBehaviour
             {
                 continue;
             }
-
             return cooldown.RemainingTime;
         }
-
         return 0;
     }
 }
@@ -60,7 +58,6 @@ public class CooldownData
     {
         Id = cooldown.Id;
         RemainingTime = cooldown.CooldownDuration;
-
     }
     public int Id { get; }
 

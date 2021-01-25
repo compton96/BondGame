@@ -28,7 +28,6 @@ public class CreatureSpawner : MonoBehaviour
         int _randomCreatureNumber = Random.Range(0, creatureTypes.Count);
         GameObject Creature = Instantiate(creatureTypes[_randomCreatureNumber].creaturePrefab, spawnPoint.position, Quaternion.identity);
         
-
         //get access to its active data, and assign its values.
         ActiveCreatureData _ActiveCreatureData =  Creature.GetComponent<ActiveCreatureData>();
         _ActiveCreatureData.maxLife = Random.Range(creatureTypes[_randomCreatureNumber].lifeRange.x, creatureTypes[_randomCreatureNumber].lifeRange.y);
@@ -36,6 +35,7 @@ public class CreatureSpawner : MonoBehaviour
         _ActiveCreatureData.utility = (int) Random.Range(creatureTypes[_randomCreatureNumber].utilityRange.x, creatureTypes[_randomCreatureNumber].utilityRange.y);
         _ActiveCreatureData.dexterity = (int) Random.Range(creatureTypes[_randomCreatureNumber].dexterityRange.x, creatureTypes[_randomCreatureNumber].dexterityRange.y);
         _ActiveCreatureData.moveSpeed = creatureTypes[_randomCreatureNumber].moveSpeed;
+        _ActiveCreatureData.Id = Creature.GetInstanceID();
         
         //select random abilities;
         List<creatureAttackBase> _copyOfAttacks = new List<creatureAttackBase>(creatureTypes[_randomCreatureNumber].creatureAttacks); //make a copy of the list of abilities so we can edit it without losing data
@@ -47,7 +47,11 @@ public class CreatureSpawner : MonoBehaviour
         int _secondAttackNumber = Random.Range(0, _copyOfAttacks.Count);
         _ActiveCreatureData.abilities.Add(_copyOfAttacks[_secondAttackNumber]);
         _copyOfAttacks.RemoveAt(_secondAttackNumber);
-        
+
+        _ActiveCreatureData.abilities[0].id = 1;
+        _ActiveCreatureData.abilities[1].id = 2;
+
+
         //select personalities
         _ActiveCreatureData.personalities = choosePersonalities(_ActiveCreatureData, creatureTypes[_randomCreatureNumber]);
         if(_ActiveCreatureData.personalities.Count > 0) 

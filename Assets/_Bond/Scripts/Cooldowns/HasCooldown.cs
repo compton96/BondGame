@@ -6,6 +6,5 @@ public interface HasCooldown
 {
     int Id { get; }
 
-    float CooldownDuration
-    { get; }
+    float CooldownDuration { get; }
 }

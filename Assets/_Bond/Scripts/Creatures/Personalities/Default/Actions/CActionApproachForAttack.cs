@@ -48,7 +48,7 @@ public class CActionApproachForAttack : BTLeaf
         //Debug.Log("APROACH FOR ATTACK");
         agent.destination = context.targetEnemy.transform.position;
         float distance = Vector3.Distance(context.creatureTransform.position, context.targetEnemy.transform.position);
-        Debug.Log("Approaching Enemy : " + distance+ " MAX dist: " + maxDist);
+        // Debug.Log("Approaching Enemy : " + distance+ " MAX dist: " + maxDist);
         //Debug.Log("Distance : " + distance + " maxDist : " + attack.maxDistanceToEnemy);
         if(distance < maxDist)
         {
