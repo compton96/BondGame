@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyAnimationEvent : MonoBehaviour
+public class EnemyAnimationEvent : MonoBehaviour
 {
     private EnemyAnimator enemyAnimator => transform.parent.GetComponent<EnemyAnimator>();
     public GameObject hitbox;
@@ -21,5 +21,10 @@ public class enemyAnimationEvent : MonoBehaviour
     public void ColliderOnOff()
     {
        collider.enabled = !collider.enabled;
+    }
+
+    public void PlaySlamSFX()
+    {
+        enemyAnimator.PlaySlamSFX();
     }
 }
