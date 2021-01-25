@@ -8,6 +8,7 @@ public class ActiveCreatureData : MonoBehaviour
 
     public StatManager statManager => gameObject.GetComponent<StatManager>();
 
+    public int Id;
 
 
     public List<Personality> personalities = new List<Personality>();

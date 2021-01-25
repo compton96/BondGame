@@ -32,6 +32,7 @@ public class CActionAttackMelee : BTLeaf
         if(true)
         { //if animation done, have to add that 
             OnParentExit();
+            context.cooldownSystem.PutOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility]);
             return NodeState.SUCCESS;
         }
         

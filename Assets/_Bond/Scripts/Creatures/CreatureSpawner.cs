@@ -28,9 +28,9 @@ public class CreatureSpawner : MonoBehaviour
         int _randomCreatureNumber = Random.Range(0, creatureTypes.Count);
         GameObject Creature = Instantiate(creatureTypes[_randomCreatureNumber].creaturePrefab, spawnPoint.position, Quaternion.identity);
         
-
         //get access to its active data, and assign its values.
         ActiveCreatureData _ActiveCreatureData =  Creature.GetComponent<ActiveCreatureData>();
+        _ActiveCreatureData.Id = Creature.GetInstanceID();
         _ActiveCreatureData.statManager.stats[ModiferType.MAX_HEALTH].baseValue = 
                 Random.Range(creatureTypes[_randomCreatureNumber].lifeRange.x, creatureTypes[_randomCreatureNumber].lifeRange.y);
         _ActiveCreatureData.statManager.stats[ModiferType.CREATURE_POWER].baseValue =  
@@ -50,7 +50,11 @@ public class CreatureSpawner : MonoBehaviour
         int _secondAttackNumber = Random.Range(0, _copyOfAttacks.Count);
         _ActiveCreatureData.abilities.Add(_copyOfAttacks[_secondAttackNumber]);
         _copyOfAttacks.RemoveAt(_secondAttackNumber);
-        
+
+        _ActiveCreatureData.abilities[0].id = 1;
+        _ActiveCreatureData.abilities[1].id = 2;
+
+
         //select personalities
         _ActiveCreatureData.personalities = choosePersonalities(_ActiveCreatureData, creatureTypes[_randomCreatureNumber]);
         if(_ActiveCreatureData.personalities.Count > 0) 

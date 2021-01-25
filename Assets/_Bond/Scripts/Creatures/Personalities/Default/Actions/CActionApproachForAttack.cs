@@ -45,11 +45,11 @@ public class CActionApproachForAttack : BTLeaf
     }
 
     public override NodeState Evaluate() {
-        //Debug.Log("APROACH FOR ATTACK");
+        Debug.Log("APROACH FOR ATTACK");
         agent.destination = context.targetEnemy.transform.position;
         float distance = Vector3.Distance(context.creatureTransform.position, context.targetEnemy.transform.position);
-        //Debug.Log("Approaching Enemy : " + distance+ " MAX dist: " + maxDist);
-        //Debug.Log("Distance : " + distance + " maxDist : " + attack.maxDistanceToEnemy);
+        Debug.Log("Approaching Enemy : " + distance+ " MAX dist: " + maxDist);
+        // Debug.Log("Distance : " + distance + " maxDist : " + attack.maxDistanceToEnemy);
         if(distance < maxDist)
         {
             // Made it to Enemy

@@ -24,6 +24,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject projectileSpawner;
     public CreatureAnimator animator;
     public Collider interactRadius;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
     
 
     
@@ -67,7 +68,7 @@ public class CreatureAIContext : MonoBehaviour
         // GameObject temp = GameObject.FindGameObjectWithTag("CreatureDebugText");
         // debugText = temp.GetComponent<CreatureDebugText>();
         // debugText.creaturesDebug.Add("");
-    //    debugNumber = debugText.creaturesDebug.Count - 1;
+        // debugNumber = debugText.creaturesDebug.Count - 1;
         if(isWild){
             lastTriggeredAbility = 0;
         }

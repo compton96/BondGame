@@ -1,4 +1,4 @@
-﻿//Author : Colin
+//Author : Colin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -275,6 +275,9 @@ public class PlayerController : MonoBehaviour
     //creature ability 1 (Y)
     private void OnAttack2()
     {
+        // var id = currCreatureContext.CD.abilities[0].id;
+        // var cooldownDuration = currCreatureContext.CD.abilities[0].cooldownDuration;
+
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 0;
     }  

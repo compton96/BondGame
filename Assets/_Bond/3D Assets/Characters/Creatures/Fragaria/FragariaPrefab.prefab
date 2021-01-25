@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 8167450192529632881}
   - component: {fileID: 6899150225298738526}
   - component: {fileID: 3045770925772636374}
+  - component: {fileID: 4353762693751710805}
   m_Layer: 9
   m_Name: FragariaPrefab
   m_TagString: CaptCreature
@@ -673,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 0
+  Id: 0
   personalities: []
   abilities: []
 --- !u!114 &8167450192529632881
@@ -701,6 +703,7 @@ MonoBehaviour:
   projectileSpawner: {fileID: 372912646155600726}
   animator: {fileID: 0}
   interactRadius: {fileID: 7652944173022466314}
+  cooldownSystem: {fileID: 4353762693751710805}
   isWild: 1
   isInPlayerRadius: 0
   isInPlayerTrail: 0
@@ -745,6 +748,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: 152fc45d1f270af4793b4489374cf14c, type: 2}
+--- !u!114 &4353762693751710805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167450192529632886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcb6f939f67aba42800bd4fb14b180a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4135564228304475671
 PrefabInstance:
   m_ObjectHideFlags: 0
