@@ -10,6 +10,10 @@ namespace PlayerState
         public PlayerStateMachine fsm { get; set; }
         public PlayerController player { get; set; }
         public PlayerAnimator animator => player.animator;
+        public StatManager stats => player.stats;
+
+        
+
 
         protected string name;
         protected State parent;

@@ -14,6 +14,7 @@ public class EnemyWeaponTrigger : MonoBehaviour
         {
             //other.gameObject.GetComponent<PlayerStats>().TakeDamage(context.damage);
             other.gameObject.GetComponent<StatManager>().TakeDamage(context.statManager.stats[ModiferType.DAMAGE].modifiedValue, ModiferType.MELEE_RESISTANCE);
+            other.gameObject.GetComponent<PlayerController>().DeathCheck();
             other.GetComponent<PlayerController>().isHit = true;
         }
     }
