@@ -9579,7 +9579,7 @@ GameObject:
   - component: {fileID: 3008331727805981674}
   - component: {fileID: 3008331727805981675}
   - component: {fileID: 6443072689997334834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FollowTriggersPlayerRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10570,7 +10570,7 @@ GameObject:
   - component: {fileID: 3008331728175113258}
   - component: {fileID: 3008331728175113259}
   - component: {fileID: 3008331728175113252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backFollowPoint
   m_TagString: BackFollowPoint
   m_Icon: {fileID: 0}
@@ -10850,7 +10850,7 @@ GameObject:
   - component: {fileID: 3008331728240645147}
   - component: {fileID: 3008331728240645140}
   - component: {fileID: 6921095341287388989}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Swing Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11650,7 +11650,7 @@ GameObject:
   - component: {fileID: 3008331728745216819}
   - component: {fileID: 3008331728745216812}
   - component: {fileID: 4021351475629696356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FollowTriggersTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11978,7 +11978,7 @@ GameObject:
   - component: {fileID: 3008331729029387139}
   - component: {fileID: 1313330683953569825}
   - component: {fileID: 1478041389330426371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -12583,7 +12583,7 @@ GameObject:
   - component: {fileID: 3008331729270975658}
   - component: {fileID: 3008331729270975659}
   - component: {fileID: 3008331729270975652}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FollowPoint
   m_TagString: FrontFollowPoint
   m_Icon: {fileID: 0}
@@ -18297,7 +18297,7 @@ GameObject:
   - component: {fileID: 4672864729631764098}
   - component: {fileID: 6779507019818856298}
   - component: {fileID: 4688475429494654674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: heavy hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
