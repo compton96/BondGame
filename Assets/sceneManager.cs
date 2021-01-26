@@ -10,7 +10,7 @@ public class sceneManager : MonoBehaviour
     {
         if(other.transform.tag == "Player")
         {
-            SceneManager.LoadScene(sceneIndex);
+            PersistentData.Instance.LoadScene(sceneIndex);
         } 
     }
 }
