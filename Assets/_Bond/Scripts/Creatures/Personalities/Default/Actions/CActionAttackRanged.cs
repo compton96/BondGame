@@ -15,7 +15,7 @@ public class CActionAttackRanged : BTLeaf
     {
         attack = (creatureAttackRanged) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
-        Debug.Log("Attacking");
+        // Debug.Log("Attacking");
         context.animator.Attack1();
     }
 
@@ -24,7 +24,8 @@ public class CActionAttackRanged : BTLeaf
         
     }
 
-    public override NodeState Evaluate() {
+    public override NodeState Evaluate() 
+    {
         //Debug.Log("ATTACK RANGED");
         context.projectileSpawner.GetComponent<ProjectileSpawner>()
             .SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
@@ -34,7 +35,9 @@ public class CActionAttackRanged : BTLeaf
         if(true) 
         { //if animation done, have to add that 
             OnParentExit();
-            context.cooldownSystem.PutOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility]);
+            context.player.GetComponent<PlayerController>().PutOnCD();
+            // Debug.Log("Ability Id: ");
+            // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
             return NodeState.SUCCESS;
         }
         
