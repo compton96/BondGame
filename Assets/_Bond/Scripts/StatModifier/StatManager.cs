@@ -14,6 +14,15 @@ public class StatManager : MonoBehaviour
         return stats[_modiferType].modifiedValue;
     }
 
+    public void setStat(ModiferType _modiferType, float value)
+    {
+        //return stats[_modiferType].modifiedValue;
+        if(stats.ContainsKey(_modiferType))
+        {
+            stats[_modiferType].modifiedValue = value;
+        }
+    }
+
     private void Awake() 
     {
         initStats();

@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
         if(isoMovement)
         {
-            inputs.moveDirection = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * inputs.moveDirection;
+            inputs.moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * inputs.moveDirection;
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
@@ -339,9 +339,12 @@ public class PlayerController : MonoBehaviour
     public void DeathCheck(){
        if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
        {
-           SceneManager.LoadScene(0);
+           PersistentData.Instance.LoadScene(0);
+           stats.setStat(ModiferType.CURR_HEALTH, stats.getStat(ModiferType.MAX_HEALTH));
        }
        
     }
+
+
     
 }

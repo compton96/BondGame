@@ -14,6 +14,7 @@ public class PersistentData : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject Player { get; private set; }
     private GameObject player;
+    public CanvasGroup loadScreen;
 
 
 
@@ -34,10 +35,14 @@ public class PersistentData : MonoBehaviour
 
     private void Init() 
     {
-        if(player == null){
+        if(Player == null){
             try
             {
                 Player = GameObject.FindGameObjectWithTag("Player");
+                if(Player == null)
+                {
+                    Player = Instantiate(PlayerPrefab, GetSpawnpoint(), Quaternion.identity);
+                }
             }
             catch
             {
@@ -45,18 +50,20 @@ public class PersistentData : MonoBehaviour
             }
             
         }
-        Camera.main.GetComponent<CamFollow>().toFollow = player.transform;
+        Camera.main.GetComponent<CamFollow>().toFollow = Player.transform;
     }
 
 
     public void LoadScene(int _scene)
     {
-        Transition(_scene);
+        StartCoroutine(Transition(_scene));
     }
 
 
     IEnumerator Transition(int _scene) 
     {
+        PlayerController playerController = Player.GetComponent<PlayerController>();
+
         AsyncOperation loadNewScene;
         try 
         {
@@ -72,31 +79,50 @@ public class PersistentData : MonoBehaviour
 
         //make child everything we want to keep
         MakeChild(Player);
-        MakeChild(Player.GetComponent<PlayerController>().currCreature);
-        MakeChild(Player.GetComponent<PlayerController>().swapCreature);
+        MakeChild(playerController.currCreature);
+        MakeChild(playerController.swapCreature);
         //Loading Scene, can make transition stuff here
-        /* for example, some screen fading stuff : 
+         //for example, some screen fading stuff : 
             //transition OUT
-            yield return StartCoroutine(FadeLoadingScreen(1, 1));
-        */
+        yield return StartCoroutine(FadeInScreen(0.5f));
+        
+        
         while (!loadNewScene.isDone)
         {
             //update some slider to show = loadNewScene.progress
             yield return null;
         }
+
+        
         //unmake all children
         UnmakeChild(Player);
-        UnmakeChild(Player.GetComponent<PlayerController>().currCreature);
-        UnmakeChild(Player.GetComponent<PlayerController>().swapCreature);
+        UnmakeChild(playerController.currCreature);
+        UnmakeChild(playerController.swapCreature);
 
         //set players position in new scene
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
+
+        
+        Debug.Log(GetSpawnpoint());
         Player.transform.position = GetSpawnpoint();
-        Player.GetComponent<PlayerController>().currCreature.transform.position = Player.GetComponent<PlayerController>().backFollowPoint.transform.position;
+       
+
+
+        if( playerController.currCreature != null)
+        {
+            playerController.currCreature.transform.position = 
+                    playerController.backFollowPoint.transform.position;    
+               
+            // playerController.currCreature.GetComponent<CreatureAIContext>().agent.ResetPath();
+            // playerController.currCreature.GetComponent<CreatureAIContext>().agent.SetDestination(playerController.backFollowPoint.transform.position);
+             playerController.currCreature.GetComponent<CreatureAIContext>().agent.Warp(playerController.backFollowPoint.transform.position);
+        }
+        
         /*
             //transition IN
             yield return StartCoroutine(FadeLoadingScreen(0, 1));
         */
+        yield return StartCoroutine(FadeOutScreen(1));
 
 
     }
@@ -117,11 +143,48 @@ public class PersistentData : MonoBehaviour
 
     private void MakeChild(GameObject _gameObject)
     {
-        _gameObject.transform.parent = gameObject.transform;
+        if(_gameObject != null)
+        {
+            _gameObject.transform.parent = gameObject.transform;
+        }
+        
     }
 
     private void UnmakeChild(GameObject _gameObject)
     {
-        _gameObject.transform.parent = null;
+        if(_gameObject != null)
+        {
+           _gameObject.transform.parent = null;
+           SceneManager.MoveGameObjectToScene(_gameObject,SceneManager.GetActiveScene());
+        }
+        
+    }
+
+    IEnumerator FadeInScreen(float duration)
+    {
+        float startValue = loadScreen.alpha;
+        float time = 0;
+
+        while (time < duration)
+        {
+            loadScreen.alpha = Mathf.Lerp(startValue, 1, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        loadScreen.alpha = 1;
+    }
+
+    IEnumerator FadeOutScreen(float duration)
+    {
+        float startValue = loadScreen.alpha;
+        float time = 0;
+
+        while (time < duration)
+        {
+            loadScreen.alpha = Mathf.Lerp(startValue, 0, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        loadScreen.alpha = 0;
     }
 }
