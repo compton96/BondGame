@@ -35,21 +35,41 @@ public class WeaponTriggers : MonoBehaviour
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1.1f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1.2f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1.25f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 2f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
             } 
             // else
             // {
