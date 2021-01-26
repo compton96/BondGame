@@ -47,4 +47,8 @@ public class EnemyAnimator : MonoBehaviour
         inHitstun = false;
     }
 
+    public void PlaySlamSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Enemy Slam Ground", transform.position);
+    }
 }
