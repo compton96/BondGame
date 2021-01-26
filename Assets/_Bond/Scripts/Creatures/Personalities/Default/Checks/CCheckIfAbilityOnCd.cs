@@ -1,3 +1,4 @@
+// Eugene and ????????
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,12 @@ public class CCheckIfAbilityOnCd: BTChecker
     {
         if(context.lastTriggeredAbility >= 0)
         {
-            if(context.cooldownSystem.IsOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility].id))
+            Debug.Log("creat stat" + context.creatureStats);
+            Debug.Log("abilis" + context.creatureStats.abilities);
+            Debug.Log("player " + context.player);
+            Debug.Log("player " + context.player.GetComponent<PlayerController>());
+            Debug.Log("cd syst " + context.player.GetComponent<PlayerController>().cooldownSystem);
+            if(context.player.GetComponent<PlayerController>().cooldownSystem.IsOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility].id))
             {
                 context.isAbilityTriggered = false;
                 Debug.Log("Ability on Cooldown");

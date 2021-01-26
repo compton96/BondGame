@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,19 +26,21 @@ public class PlayerController : MonoBehaviour
     public GameObject fruit;
     public PlayerStateMachine fsm => GetComponent<PlayerStateMachine>();
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
-    public PlayerStats stats => GetComponent<PlayerStats>();
+    //public PlayerStats stats => GetComponent<PlayerStats>();
+    public StatManager stats => GetComponent<StatManager>();
 
     //*******Dash Variables*******
-    public Vector3 facingDirection;
-    public float dashSpeed;
-    public float dashTime;
-    public float dashDelay = 1.2f;
-    public float dashStart = 2;
-    public int dashCount = 0;
-    public bool isDashing = false;
-    public Vector3 lastMoveVec;
-    public Vector3 movementVector;
+    private float dashStart = 2;
+    private int dashCount = 0;
 
+    [HideInInspector]
+    public Vector3 facingDirection;
+    [HideInInspector]
+    public bool isDashing = false;
+    [HideInInspector]
+    public Vector3 lastMoveVec;
+    [HideInInspector]
+    public Vector3 movementVector;
     //****************************
 
     private Rigidbody rb;
@@ -46,8 +49,9 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
-    public float crouchModifier = 1;
+    private float crouchModifier = 1;
     public bool nearInteractable = false;
+    public bool hasSwapped;
     
     public Transform backFollowPoint;
 
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
     public GameObject swapCreature;
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
 
     
     //******Combat Vars**********//
@@ -107,20 +112,17 @@ public class PlayerController : MonoBehaviour
             gravity = Vector3.zero;
         }
 
-        // HERMAN TODO: Break up massive math formula into different variables
-        //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
-
         if(isDashing || isAttacking) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
                 lastMoveVec = facingDirection;
             }
-            movementVector = lastMoveVec * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = lastMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
         }
         else 
         {
-            movementVector = inputs.moveDirection * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = inputs.moveDirection * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
             lastMoveVec = inputs.moveDirection;
         }
         
@@ -137,12 +139,12 @@ public class PlayerController : MonoBehaviour
         if(inputs.rawDirection != Vector2.zero)
         {
             if(isAttacking)
-            {
-                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            {//CHANGE LATER, DONT HARDCODE TURN SPEED AS 14
+                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * 14f * rotationModifier);
             }
             else
             {
-                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * 14f * rotationModifier);
             }
         }
     }
@@ -165,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
         if(isoMovement)
         {
-            inputs.moveDirection = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * inputs.moveDirection;
+            inputs.moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * inputs.moveDirection;
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
@@ -195,7 +197,7 @@ public class PlayerController : MonoBehaviour
         }
         else//Not near interactable, dash instead
         {
-            if(Time.time > dashStart + dashDelay)//cant dash until more time than dash delay has elapsed,
+            if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
             {
                 //takes dash start time
                 dashStart = Time.time;
@@ -249,8 +251,32 @@ public class PlayerController : MonoBehaviour
             currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
             currCreatureContext.isInPlayerRadius = false;
             swapCreature = temp;
+            if (hasSwapped == false)
+            {
+                hasSwapped = true;
+            }
+            else
+            {
+                hasSwapped = false;
+            }
         }
 
+    }
+
+    public void PutOnCD()
+    {
+        Debug.Log(hasSwapped);
+        if (hasSwapped)
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+            return;
+        }
+        else
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+        }
     }
 
 
@@ -309,5 +335,16 @@ public class PlayerController : MonoBehaviour
         var temp = Instantiate(fruit, transform.position, Quaternion.identity);
         temp.GetComponent<Fruit>().droppedByPlayer = true;
     }
+
+    public void DeathCheck(){
+       if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
+       {
+           PersistentData.Instance.LoadScene(0);
+           stats.setStat(ModiferType.CURR_HEALTH, stats.getStat(ModiferType.MAX_HEALTH));
+       }
+       
+    }
+
+
     
 }

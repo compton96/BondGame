@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class StatManager : MonoBehaviour
@@ -8,6 +9,19 @@ public class StatManager : MonoBehaviour
     public BaseStats baseStats;
     public Dictionary<ModiferType, Stat> stats = new Dictionary<ModiferType, Stat>();
     protected Dictionary<Buff, float> buffs = new Dictionary<Buff, float>();
+
+    public float getStat(ModiferType _modiferType){
+        return stats[_modiferType].modifiedValue;
+    }
+
+    public void setStat(ModiferType _modiferType, float value)
+    {
+        //return stats[_modiferType].modifiedValue;
+        if(stats.ContainsKey(_modiferType))
+        {
+            stats[_modiferType].modifiedValue = value;
+        }
+    }
 
     private void Awake() 
     {
@@ -67,6 +81,7 @@ public class StatManager : MonoBehaviour
         stats[ModiferType.CURR_HEALTH].modifiedValue -= (baseAmount * (1 - stats[damageType].modifiedValue)); // FORMULA FOR DAMAGE RESISTANCE;
         // Debug.Log("Took " + (baseAmount * (1 - stats[damageType].modifiedValue)) + " damage");
         // Debug.Log("Base amount was " + baseAmount);
+
     }
 
 

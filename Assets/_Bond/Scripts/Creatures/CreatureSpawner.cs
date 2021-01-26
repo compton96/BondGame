@@ -51,9 +51,6 @@ public class CreatureSpawner : MonoBehaviour
         _ActiveCreatureData.abilities.Add(_copyOfAttacks[_secondAttackNumber]);
         _copyOfAttacks.RemoveAt(_secondAttackNumber);
 
-        _ActiveCreatureData.abilities[0].id = 1;
-        _ActiveCreatureData.abilities[1].id = 2;
-
 
         //select personalities
         _ActiveCreatureData.personalities = choosePersonalities(_ActiveCreatureData, creatureTypes[_randomCreatureNumber]);

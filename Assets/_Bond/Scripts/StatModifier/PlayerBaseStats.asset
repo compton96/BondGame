@@ -15,13 +15,13 @@ MonoBehaviour:
   statName: Player Stats
   stats:
   - modiferType: 0
-    baseValue: 0
+    baseValue: 500
   - modiferType: 1
-    baseValue: 0
+    baseValue: 500
   - modiferType: 2
-    baseValue: 0
+    baseValue: 20
   - modiferType: 3
-    baseValue: 0
+    baseValue: 12
   - modiferType: 4
     baseValue: 0
   - modiferType: 5
@@ -39,16 +39,16 @@ MonoBehaviour:
   - modiferType: 11
     baseValue: 0
   - modiferType: 12
-    baseValue: 0
+    baseValue: 2
   - modiferType: 13
-    baseValue: 0
+    baseValue: 1.5
   - modiferType: 14
     baseValue: 0
   - modiferType: 15
-    baseValue: 0
+    baseValue: 6
   - modiferType: 16
-    baseValue: 0
+    baseValue: 0.1
   - modiferType: 17
-    baseValue: 0
+    baseValue: 1
   - modiferType: 18
     baseValue: 0

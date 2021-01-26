@@ -40,4 +40,9 @@ public class CreatureAnimator : MonoBehaviour
     {
         animator.SetTrigger("Wave");
     }
+
+    public void PlayWalkSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 3D", transform.position);
+    }
 }

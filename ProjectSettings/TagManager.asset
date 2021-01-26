@@ -11,6 +11,7 @@ TagManager:
   - CaptCreature
   - Enemy
   - Fruit
+  - spawnpoint
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - navIgnore
   - 
   - 
   - 

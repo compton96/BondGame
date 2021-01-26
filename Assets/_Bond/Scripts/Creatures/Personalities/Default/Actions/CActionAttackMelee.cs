@@ -16,7 +16,7 @@ public class CActionAttackMelee : BTLeaf
     {
         attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
-        Debug.Log("Attacking");
+        // Debug.Log("Attacking");
         context.animator.Attack1();
     }
 
@@ -25,14 +25,17 @@ public class CActionAttackMelee : BTLeaf
         
     }
 
-    public override NodeState Evaluate() {
+    public override NodeState Evaluate() 
+    {
         context.targetEnemy.GetComponent<EnemyAIContext>().statManager.TakeDamage(attack.baseDmg, ModiferType.MELEE_RESISTANCE);
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
         if(true)
         { //if animation done, have to add that 
             OnParentExit();
-            context.cooldownSystem.PutOnCooldown(context.creatureStats.abilities[context.lastTriggeredAbility]);
+            context.player.GetComponent<PlayerController>().PutOnCD();
+            // Debug.Log("Ability Id: ");
+            // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
             return NodeState.SUCCESS;
         }
         

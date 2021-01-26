@@ -62,9 +62,7 @@ public class CreatureAIContext : MonoBehaviour
         animator = GetComponent<CreatureAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        followPoint = GameObject.FindGameObjectWithTag("FrontFollowPoint");
-        backFollowPoint = GameObject.FindGameObjectWithTag("BackFollowPoint");
+       
         // GameObject temp = GameObject.FindGameObjectWithTag("CreatureDebugText");
         // debugText = temp.GetComponent<CreatureDebugText>();
         // debugText.creaturesDebug.Add("");
@@ -74,6 +72,13 @@ public class CreatureAIContext : MonoBehaviour
         }
 
         resetStealTimer();
+    }
+
+    private void Start() 
+    {
+        player = PersistentData.Instance.Player;
+        followPoint = GameObject.FindGameObjectWithTag("FrontFollowPoint");
+        backFollowPoint = GameObject.FindGameObjectWithTag("BackFollowPoint");
     }
 
     public void GetActiveCreatureData(){
