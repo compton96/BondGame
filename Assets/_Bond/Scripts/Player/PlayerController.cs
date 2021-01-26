@@ -30,16 +30,17 @@ public class PlayerController : MonoBehaviour
     public StatManager stats => GetComponent<StatManager>();
 
     //*******Dash Variables*******
-    public Vector3 facingDirection;
-    public float dashSpeed;
-    public float dashTime;
-    public float dashDelay = 1.2f;
-    public float dashStart = 2;
-    public int dashCount = 0;
-    public bool isDashing = false;
-    public Vector3 lastMoveVec;
-    public Vector3 movementVector;
+    private float dashStart = 2;
+    private int dashCount = 0;
 
+    [HideInInspector]
+    public Vector3 facingDirection;
+    [HideInInspector]
+    public bool isDashing = false;
+    [HideInInspector]
+    public Vector3 lastMoveVec;
+    [HideInInspector]
+    public Vector3 movementVector;
     //****************************
 
     private Rigidbody rb;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
-    public float crouchModifier = 1;
+    private float crouchModifier = 1;
     public bool nearInteractable = false;
     
     public Transform backFollowPoint;
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour
         }
         else//Not near interactable, dash instead
         {
-            if(Time.time > dashStart + dashDelay)//cant dash until more time than dash delay has elapsed,
+            if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
             {
                 //takes dash start time
                 dashStart = Time.time;
