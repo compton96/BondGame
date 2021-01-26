@@ -12,7 +12,7 @@ public class CamFollow : MonoBehaviour
 
     void Start()
     {
-        
+        toFollow = PersistentData.Instance.Player.transform;
     }
 
     // Update is called once per frame
