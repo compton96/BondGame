@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 3008331729029387198, guid: b533a4d2d18ca984a85f56b2a9810e8c,
     type: 3}
+  AudioControllerPrefab: {fileID: 8012914224973901697, guid: f1bd54d4de3e98a45b4517738e3c8369,
+    type: 3}
   loadScreen: {fileID: 2837024482875620880}
 --- !u!225 &2837024482875620880
 CanvasGroup:
