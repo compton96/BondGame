@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public float crouchModifier = 1;
     public bool nearInteractable = false;
+    public bool hasSwapped;
     
     public Transform backFollowPoint;
 
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
     public GameObject swapCreature;
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
 
     
     //******Combat Vars**********//
@@ -249,8 +251,32 @@ public class PlayerController : MonoBehaviour
             currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
             currCreatureContext.isInPlayerRadius = false;
             swapCreature = temp;
+            if (hasSwapped == false)
+            {
+                hasSwapped = true;
+            }
+            else
+            {
+                hasSwapped = false;
+            }
         }
 
+    }
+
+    public void PutOnCD()
+    {
+        Debug.Log(hasSwapped);
+        if (hasSwapped)
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+            return;
+        }
+        else
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+        }
     }
 
 
