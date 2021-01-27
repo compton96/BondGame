@@ -11,7 +11,7 @@ public class creatureAttackMelee : creatureAttackBase, HasCooldown
     public string animTrigger;
     public float baseDmg;
     public float hitRadius;
-    public float cooldownDuration = 2f;
-    public int Id => id;
-    public float CooldownDuration => cooldownDuration;
+    new public float cooldownDuration = 2f;
+    new public int Id => id;
+    new public float CooldownDuration => cooldownDuration;
 }

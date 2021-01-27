@@ -51,7 +51,12 @@ public class EnemyAIContext : MonoBehaviour
         animator = GetComponent<EnemyAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        // player = GameObject.FindGameObjectWithTag("Player");
+        // lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+    }
+
+    private void Start() {
+        player = PersistentData.Instance.Player;
         lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
     }
 
