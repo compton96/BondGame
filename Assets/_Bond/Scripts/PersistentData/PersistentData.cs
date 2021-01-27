@@ -14,6 +14,11 @@ public class PersistentData : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject Player { get; private set; }
     private GameObject player;
+
+    public GameObject AudioControllerPrefab;
+    public GameObject AudioController {get; private set;}
+    private GameObject audioController;
+
     public CanvasGroup loadScreen;
 
 
@@ -35,7 +40,8 @@ public class PersistentData : MonoBehaviour
 
     private void Init() 
     {
-        if(Player == null){
+        if(Player == null)
+        {
             try
             {
                 Player = GameObject.FindGameObjectWithTag("Player");
@@ -51,6 +57,25 @@ public class PersistentData : MonoBehaviour
             
         }
         Camera.main.GetComponent<CamFollow>().toFollow = Player.transform;
+
+        if (AudioController == null)
+        {
+            try
+            {
+                AudioController = GameObject.FindGameObjectWithTag("AudioController");
+                if (AudioController == null)
+                {
+                    AudioController = Instantiate(AudioControllerPrefab, Vector3.zero, Quaternion.identity);
+                }
+            }
+            catch
+            {
+                AudioController = Instantiate(AudioControllerPrefab, Vector3.zero, Quaternion.identity);
+            }
+        }
+        AudioController.GetComponent<AudioController>().playerTransform = Player.transform;
+        AudioController.GetComponent<AudioController>().enemyDetectRange = 12;
+        MakeChild(AudioController);
     }
 
 

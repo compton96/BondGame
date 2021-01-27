@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8012914224973901702}
   m_Layer: 0
   m_Name: AudioController
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   masterMusicEvent: {fileID: 8012914225686865728}
   ambientNoiseEvent: {fileID: 8012914226551170707}
   playerTransform: {fileID: 0}
-  enemyDetectRange: 9
+  enemyDetectRange: 12
 --- !u!1 &8012914225686865731
 GameObject:
   m_ObjectHideFlags: 0
