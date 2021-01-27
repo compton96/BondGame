@@ -17,17 +17,19 @@ public class PlayerController : MonoBehaviour
         public Vector3 moveDirection;
         public Vector2 rawDirection;
     }
-
     public Inputs inputs;
+
 
     public Camera camera;
     public bool isoMovement = true;
+
 
     public GameObject fruit;
     public PlayerStateMachine fsm => GetComponent<PlayerStateMachine>();
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
+
 
     //*******Dash Variables*******
     private float dashStart = 2;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Vector3 movementVector;
     //****************************
+
 
     private Rigidbody rb;
     
@@ -87,6 +90,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public HitBoxes hitBoxes;
+
+    public GameObject pauseMenu;
+    private bool isPaused = false;
 
     
     void Start()
@@ -314,6 +320,25 @@ public class PlayerController : MonoBehaviour
     {
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 1;
+    }
+
+    private void OnPause()
+    {
+        isPaused = !isPaused;
+        if(isPaused)
+        {
+            pauseMenu.SetActive(true);
+            //Time.timeScale = 0f;
+            
+        }
+        else 
+        {
+            pauseMenu.SetActive(false);
+            //Time.timeScale = 1;
+            
+        }
+
+        
     }
     
     //*********** END INPUT FXNS **************************
