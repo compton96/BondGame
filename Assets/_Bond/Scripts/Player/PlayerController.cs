@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
         public bool heavyAttack;
         public Vector3 moveDirection;
         public Vector2 rawDirection;
+
+        public Vector2 mousePos;
+        public float upInput;
+        public float downInput;
+        public float leftInput;
+        public float rightInput;
+
     }
     public Inputs inputs;
 
@@ -94,7 +101,26 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     private bool isPaused = false;
 
+
+
+    // private void OnEnable()
+    // {
+    //     InputUser.onChange += OnInputDeviceChanged;
+    // }
+
+    // private void OnDisable()
+    // {
+    //     InputUser.onChange -= OnInputDeviceChanged; 
+    // }
     
+    // private void OnInputDeviceChanged(InputUser user, InputUserChange change, InputDevice device)
+    // {
+    //     Debug.Log("user : " + user  + " change : " + change + " device " + device);
+    //     if (change == InputUserChange.ControlSchemeChanged) {
+
+    //     }
+    // }
+
     void Start()
     {
         //rb = GetComponent<Rigidbody>();
@@ -201,22 +227,24 @@ public class PlayerController : MonoBehaviour
                 befriendCreature();
             }
         }
-        else//Not near interactable, dash instead
-        {
-            if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
-            {
-                //takes dash start time
-                dashStart = Time.time;
-                dashCount++;
-                inputs.dash = true;
-            }
-            else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
-            {
-                dashCount = 0;
-                inputs.dash = true;          
                 
-            }   
-        }                 
+    }
+
+    private void OnDash()
+    {
+        if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
+        {
+            //takes dash start time
+            dashStart = Time.time;
+            dashCount++;
+            inputs.dash = true;
+        }
+        else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
+        {
+            dashCount = 0;
+            inputs.dash = true;          
+                
+        }   
     }
 
     private void befriendCreature()
@@ -289,6 +317,7 @@ public class PlayerController : MonoBehaviour
     //Slash (X)
     private void OnAttack1()
     {
+        Debug.Log("attack");
         inputs.basicAttack = true;
     }
 
@@ -371,5 +400,52 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+
+    // private void OnMoveUp(InputValue value)
+    // {
+    //     inputs.upInput = value.Get<float>();
+    //      KeyboardMoveUpdate();
+    // }
+    
+    // private void OnMoveDown(InputValue value)
+    // {
+    //     inputs.downInput = value.Get<float>();
+    //      KeyboardMoveUpdate();
+    // }
+
+    // private void OnMoveLeft(InputValue value)
+    // {
+    //     inputs.leftInput = value.Get<float>();
+    //      KeyboardMoveUpdate();
+    // }
+
+    // private void OnMoveRight(InputValue value)
+    // {
+    //     inputs.rightInput = value.Get<float>();
+    //     KeyboardMoveUpdate();
+    // }
+
+    // private void KeyboardMoveUpdate()
+    // {
+    //     inputs.rawDirection = new Vector2((-1 * inputs.leftInput) + inputs.rightInput, (-1 * inputs.downInput) + inputs.upInput);
+
+    //     inputs.rawDirection.Normalize();
+    //     inputs.rawDirection.y *= isoSpeedADJ;
+
+    //     inputs.moveDirection = new Vector3(inputs.rawDirection.x, 0, inputs.rawDirection.y);
+
+    //     if(isoMovement)
+    //     {
+    //         inputs.moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * inputs.moveDirection;
+    //     }
+
+    //     if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
+    // }
+
+    // private void OnMousePos(InputValue value)
+    // {
+    //     inputs.mousePos = value.Get<Vector2>();
+    // }
     
 }
