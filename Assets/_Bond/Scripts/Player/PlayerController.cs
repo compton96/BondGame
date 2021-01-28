@@ -353,19 +353,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause()
     {
-        isPaused = !isPaused;
-        if(isPaused)
-        {
-            pauseMenu.SetActive(true);
-            //Time.timeScale = 0f;
+        // isPaused = !isPaused;
+        // if(isPaused)
+        // {
+        //     pauseMenu.SetActive(true);
+        //     //Time.timeScale = 0f;
             
-        }
-        else 
-        {
-            pauseMenu.SetActive(false);
-            //Time.timeScale = 1;
+        // }
+        // else 
+        // {
+        //     pauseMenu.SetActive(false);
+        //     //Time.timeScale = 1;
             
-        }
+        // }
 
         
     }
@@ -393,7 +393,7 @@ public class PlayerController : MonoBehaviour
     public void DeathCheck(){
        if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
        {
-           PersistentData.Instance.LoadScene(0);
+           PersistentData.Instance.LoadScene(1);
            stats.setStat(ModiferType.CURR_HEALTH, stats.getStat(ModiferType.MAX_HEALTH));
        }
        
