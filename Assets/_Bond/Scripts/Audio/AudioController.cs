@@ -32,12 +32,13 @@ public class AudioController : MonoBehaviour
             {
                 masterMusicEvent.SetParameter("Combat State", 1);
                 masterMusicEvent.SetParameter("Song 2 - State", 0);
+                enemyDetectRange *= 2;
                 inCombat = true;
             }
             else 
             {
                 //already in combat music
-                Collider[] nearHitCollider = Physics.OverlapSphere(playerTransform.position, enemyDetectRange * 3 / 4, layerMask);
+                Collider[] nearHitCollider = Physics.OverlapSphere(playerTransform.position, enemyDetectRange * 2, layerMask);
                 if (nearHitCollider.Length > 0)
                 {
                     masterMusicEvent.SetParameter("Song 2 - State", 1);
@@ -52,6 +53,7 @@ public class AudioController : MonoBehaviour
             {
                 masterMusicEvent.SetParameter("Combat State", 0);
                 masterMusicEvent.SetParameter("Song 2 - State", 2);
+                enemyDetectRange /= 2;
                 inCombat = false;
             }
         }
