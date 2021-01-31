@@ -92,6 +92,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "mousePos",
+                    "type": "PassThrough",
+                    "id": "8eb3b0fa-5f2c-464c-8b80-4806df1867b5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -367,6 +375,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f15b241e-fceb-4f3a-a778-55dd1a318581",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "mousePos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

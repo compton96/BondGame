@@ -57,10 +57,10 @@ namespace PlayerState
 
             speedMod = 1f;
 
-            startRotation = player.facingDirection;
+            //startRotation = player.facingDirection;
             //player.setRotation(startRotation);
 
-            player.lastMoveVec = player.inputs.moveDirection; 
+            //player.lastMoveVec = player.inputs.moveDirection; 
         }
 
 

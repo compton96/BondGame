@@ -17,11 +17,8 @@ public class PlayerController : MonoBehaviour
         public Vector3 moveDirection;
         public Vector2 rawDirection;
 
+        public bool usingMouse;
         public Vector2 mousePos;
-        public float upInput;
-        public float downInput;
-        public float leftInput;
-        public float rightInput;
 
     }
     public Inputs inputs;
@@ -127,6 +124,7 @@ public class PlayerController : MonoBehaviour
         charController = GetComponent<CharacterController>();
         dashStart = Time.time;
         animator.ResetAllAttackAnims();
+        inputs.usingMouse = false;
         
        
     }
@@ -207,9 +205,16 @@ public class PlayerController : MonoBehaviour
     }
 
     
-
+    private void OnMousePos(InputValue value)
+    {
+        Debug.Log(value.Get<Vector2>());
+        inputs.usingMouse = true;
+        inputs.mousePos = value.Get<Vector2>();
+    }
+    
+    
     //by Jamo
-    private void OnInteract() //pressing dash button  
+    private void OnInteract()
     {     
         //If near something interactable, this overides the dash
         if(nearInteractable)
@@ -319,6 +324,17 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("attack");
         inputs.basicAttack = true;
+        if(inputs.usingMouse)
+        {
+            // RaycastHit hit;
+            // Ray ray = Camera.main.ScreenPointToRay(inputs.mousePos);
+            // if(Physics.Raycast(ray, out hit))
+            // {
+            //     gameObject.transform.LookAt(hit.point);
+            // } 
+            // //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+            // //stinky
+        }
     }
 
 
@@ -402,50 +418,6 @@ public class PlayerController : MonoBehaviour
 
 
 
-    // private void OnMoveUp(InputValue value)
-    // {
-    //     inputs.upInput = value.Get<float>();
-    //      KeyboardMoveUpdate();
-    // }
-    
-    // private void OnMoveDown(InputValue value)
-    // {
-    //     inputs.downInput = value.Get<float>();
-    //      KeyboardMoveUpdate();
-    // }
 
-    // private void OnMoveLeft(InputValue value)
-    // {
-    //     inputs.leftInput = value.Get<float>();
-    //      KeyboardMoveUpdate();
-    // }
-
-    // private void OnMoveRight(InputValue value)
-    // {
-    //     inputs.rightInput = value.Get<float>();
-    //     KeyboardMoveUpdate();
-    // }
-
-    // private void KeyboardMoveUpdate()
-    // {
-    //     inputs.rawDirection = new Vector2((-1 * inputs.leftInput) + inputs.rightInput, (-1 * inputs.downInput) + inputs.upInput);
-
-    //     inputs.rawDirection.Normalize();
-    //     inputs.rawDirection.y *= isoSpeedADJ;
-
-    //     inputs.moveDirection = new Vector3(inputs.rawDirection.x, 0, inputs.rawDirection.y);
-
-    //     if(isoMovement)
-    //     {
-    //         inputs.moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * inputs.moveDirection;
-    //     }
-
-    //     if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
-    // }
-
-    // private void OnMousePos(InputValue value)
-    // {
-    //     inputs.mousePos = value.Get<Vector2>();
-    // }
     
 }
