@@ -1,4 +1,4 @@
-﻿//Author : Colin
+//Author : Colin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +19,8 @@ public class creatureData : ScriptableObject
     public int dexterity;
     
     public float moveSpeed;
+
+    public int Id;
 
 
     public Vector2 lifeRange = new Vector2(100, 150);

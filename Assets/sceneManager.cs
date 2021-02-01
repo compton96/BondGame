@@ -8,9 +8,11 @@ public class sceneManager : MonoBehaviour
     public int sceneIndex;
     private void OnTriggerEnter(Collider other) 
     {
+        Debug.Log("entered");
         if(other.transform.tag == "Player")
         {
-            SceneManager.LoadScene(sceneIndex);
+            Debug.Log("try load");
+            PersistentData.Instance.LoadScene(sceneIndex);
         } 
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -97,7 +97,9 @@ public class DefaultAbility : BTSubtree
                     BTSelector AbilitySelector = new BTSelector("Ability Selector", AbilitySelectorList);
                 #endregion
                 CCheckPlayerTriggeredAbility ifPlayerTriggeredAbility = new CCheckPlayerTriggeredAbility("if player triggered ability", context);
+                CCheckIfAbilityOnCd ifAbilityOnCd = new CCheckIfAbilityOnCd("Check if Ability is on cooldown", context);
                 AbilityTriggeredSequenceList.Add(ifPlayerTriggeredAbility);
+                AbilityTriggeredSequenceList.Add(ifAbilityOnCd);
                 AbilityTriggeredSequenceList.Add(AbilitySelector);
 
                 BTSequence AbilityTriggeredSequence = new BTSequence("Ability Triggered Sequence", AbilityTriggeredSequenceList);

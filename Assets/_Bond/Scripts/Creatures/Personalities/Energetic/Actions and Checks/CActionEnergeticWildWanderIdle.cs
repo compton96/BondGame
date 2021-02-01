@@ -30,7 +30,7 @@ public class CActionEnergeticWildWanderIdle : BTLeaf
         context.wanderIdleTimer += Time.deltaTime;
         if (context.wanderIdleTimer >= context.wanderIdleDuration) 
         {
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         return NodeState.RUNNING;

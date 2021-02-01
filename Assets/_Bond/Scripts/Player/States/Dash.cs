@@ -40,7 +40,7 @@ namespace PlayerState
         public override void OnStateUpdate()
         {
             // HERMAN TODO: Decide if end of Dash should be animation or not
-            if(Time.time > startTime + player.dashTime)
+            if(Time.time > startTime + stats.getStat(ModiferType.DASH_RANGE))
             {
                 SetState(fsm.IdleMove);
                 return;
@@ -49,7 +49,8 @@ namespace PlayerState
 
         public override void OnStateFixedUpdate()
         {
-            player.doMovement(player.dashSpeed);
+            
+            player.doMovement(stats.getStat(ModiferType.DASH_SPEED));
             player.setRotation(startRotation);
            //controller.Move(movementVector);
            //controller.Move(gravity * Time.deltaTime);

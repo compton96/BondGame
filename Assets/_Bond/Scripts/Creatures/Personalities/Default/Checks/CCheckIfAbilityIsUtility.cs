@@ -14,7 +14,7 @@ public class CCheckIfAbilityIsUtility : BTChecker
     {
         if(context.lastTriggeredAbility >= 0)
         {
-            if(context.CD.abilities[context.lastTriggeredAbility] is creatureAttackUtility)
+            if(context.creatureStats.abilities[context.lastTriggeredAbility] is creatureAttackUtility)
             {
                 return NodeState.SUCCESS;
             }

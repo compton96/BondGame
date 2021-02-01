@@ -28,7 +28,7 @@ public class CActionCleverApproachItem : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = context.CD.moveSpeed;
+        agent.speed = context.creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnExit()
@@ -44,7 +44,7 @@ public class CActionCleverApproachItem : BTLeaf
         if (Vector3.Distance(context.cleverItem.transform.position, context.creatureTransform.position) < 3)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         else

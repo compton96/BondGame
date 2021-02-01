@@ -13,7 +13,7 @@ public class CActionBarbaricMeleeAttack : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackMelee) context.CD.abilities[context.lastTriggeredAbility];
+        attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         context.animator.Attack1();
    
@@ -34,7 +34,7 @@ public class CActionBarbaricMeleeAttack : BTLeaf
         context.isAbilityTriggered = false;
         if(true) 
         { //if animation done, have to add that 
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         

@@ -18,7 +18,7 @@ public class BTBool : BTNode
     {
         if(toCheck)
         {
-            return node.Evaluate();
+            return node.OnParentEvaluate();
         } else 
         {
             return NodeState.FAILURE;

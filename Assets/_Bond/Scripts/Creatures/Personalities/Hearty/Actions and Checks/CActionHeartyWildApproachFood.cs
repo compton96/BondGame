@@ -29,7 +29,7 @@ public class CActionHeartyWildApproachFood : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = context.CD.moveSpeed;
+        agent.speed = context.creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnExit()
@@ -47,7 +47,7 @@ public class CActionHeartyWildApproachFood : BTLeaf
             Fruit fruitScript = context.foundFood.GetComponent<Fruit>();
             //Eat the fruit
             fruitScript.Destroy();
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else 
         {

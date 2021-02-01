@@ -27,7 +27,7 @@ public class CActionHeartyWildApproachDroppedFood : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = context.CD.moveSpeed;
+        agent.speed = context.creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnExit()
@@ -52,7 +52,7 @@ public class CActionHeartyWildApproachDroppedFood : BTLeaf
             playerController.currCreature = context.creatureTransform.gameObject;
             playerController.currCreatureContext = context;
 
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else 
         {

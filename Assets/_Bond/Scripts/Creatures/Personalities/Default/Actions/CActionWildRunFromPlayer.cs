@@ -51,7 +51,7 @@ public class CActionWildRunFromPlayer : BTLeaf
         if(Vector3.Distance(context.player.transform.position, context.creatureTransform.position) > 10)
         {
             // creature escaped player
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         else if( context.player.GetComponent<PlayerController>().currSpeed <= context.playerSpeedToScare )

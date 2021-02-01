@@ -46,13 +46,13 @@ public class CActionEnergeticWildApproachPlayer : BTLeaf
         if(!context.isNoticed)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.FAILURE;
         } 
         else if(Vector3.Distance(context.creatureTransform.position, context.player.transform.position) < 2f)
         {
             // Made it to player
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         else

@@ -16,13 +16,15 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject foundFood; //Used in Hearty personality to find food
     public Transform creatureTransform;
     public Rigidbody rb;
-    public ActiveCreatureData CD;
-    public creatureData creatureTypeData;
+    public ActiveCreatureData creatureStats;
+    public creatureData creatureBaseStats;
     public NavMeshAgent agent;
     public GameObject backFollowPoint;
     public GameObject followPoint;
     public GameObject projectileSpawner;
     public CreatureAnimator animator;
+    public Collider interactRadius;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
     
 
     
@@ -60,13 +62,11 @@ public class CreatureAIContext : MonoBehaviour
         animator = GetComponent<CreatureAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        followPoint = GameObject.FindGameObjectWithTag("FrontFollowPoint");
-        backFollowPoint = GameObject.FindGameObjectWithTag("BackFollowPoint");
+       
         // GameObject temp = GameObject.FindGameObjectWithTag("CreatureDebugText");
         // debugText = temp.GetComponent<CreatureDebugText>();
         // debugText.creaturesDebug.Add("");
-    //    debugNumber = debugText.creaturesDebug.Count - 1;
+        // debugNumber = debugText.creaturesDebug.Count - 1;
         if(isWild){
             lastTriggeredAbility = 0;
         }
@@ -74,8 +74,15 @@ public class CreatureAIContext : MonoBehaviour
         resetStealTimer();
     }
 
+    private void Start() 
+    {
+        player = PersistentData.Instance.Player;
+        followPoint = GameObject.FindGameObjectWithTag("FrontFollowPoint");
+        backFollowPoint = GameObject.FindGameObjectWithTag("BackFollowPoint");
+    }
+
     public void GetActiveCreatureData(){
-        CD = GetComponent<ActiveCreatureData>();
+        creatureStats = GetComponent<ActiveCreatureData>();
     }
 
     private void FixedUpdate() {
@@ -93,7 +100,7 @@ public class CreatureAIContext : MonoBehaviour
 
     public void doLookAt(Vector3 position){
         creatureTransform.transform.LookAt(position, Vector3.up);
-        rb.velocity = (creatureTransform.transform.rotation * Vector3.forward * CD.moveSpeed);
+        rb.velocity = (creatureTransform.transform.rotation * Vector3.forward * creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue);
     }
 
 
@@ -105,4 +112,11 @@ public class CreatureAIContext : MonoBehaviour
     public void updateDebugText(string name) {
         // debugText.creaturesDebug[debugNumber] = gameObject.name + " : " + name + "\n";
     }
+
+    public void DoDamage(){
+        //fragaria's abilities base damage +* power modifier +* statManager damage modifier 
+
+    }
+
+
 }

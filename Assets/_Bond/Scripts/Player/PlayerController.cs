@@ -1,9 +1,10 @@
-﻿//Author : Colin
+//Author : Colin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,30 +16,39 @@ public class PlayerController : MonoBehaviour
         public bool heavyAttack;
         public Vector3 moveDirection;
         public Vector2 rawDirection;
-    }
 
+        public bool usingMouse;
+        public Vector2 mousePos;
+
+    }
     public Inputs inputs;
+
 
     public Camera camera;
     public bool isoMovement = true;
 
+
     public GameObject fruit;
     public PlayerStateMachine fsm => GetComponent<PlayerStateMachine>();
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
-    public PlayerStats stats => GetComponent<PlayerStats>();
+    //public PlayerStats stats => GetComponent<PlayerStats>();
+    public StatManager stats => GetComponent<StatManager>();
+
 
     //*******Dash Variables*******
-    public Vector3 facingDirection;
-    public float dashSpeed;
-    public float dashTime;
-    public float dashDelay = 1.2f;
-    public float dashStart = 2;
-    public int dashCount = 0;
-    public bool isDashing = false;
-    public Vector3 lastMoveVec;
-    public Vector3 movementVector;
+    private float dashStart = 2;
+    private int dashCount = 0;
 
+    [HideInInspector]
+    public Vector3 facingDirection;
+    [HideInInspector]
+    public bool isDashing = false;
+    [HideInInspector]
+    public Vector3 lastMoveVec;
+    [HideInInspector]
+    public Vector3 movementVector;
     //****************************
+
 
     private Rigidbody rb;
     
@@ -46,15 +56,20 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
-    public float crouchModifier = 1;
+    private float crouchModifier = 1;
     public bool nearInteractable = false;
+    public bool hasSwapped;
     
+    public Transform backFollowPoint;
 
     public GameObject wildCreature = null;
     public GameObject currCreature;
+    public GameObject swapCreature;
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
+    public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
 
+    
     //******Combat Vars**********//
     public bool isAttacking = false;
     public float currSpeed;
@@ -62,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
+    public ParticleSystem slashVfx;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -79,13 +95,36 @@ public class PlayerController : MonoBehaviour
 
     public HitBoxes hitBoxes;
 
+    public GameObject pauseMenu;
+    private bool isPaused = false;
+
+
+
+    // private void OnEnable()
+    // {
+    //     InputUser.onChange += OnInputDeviceChanged;
+    // }
+
+    // private void OnDisable()
+    // {
+    //     InputUser.onChange -= OnInputDeviceChanged; 
+    // }
     
+    // private void OnInputDeviceChanged(InputUser user, InputUserChange change, InputDevice device)
+    // {
+    //     Debug.Log("user : " + user  + " change : " + change + " device " + device);
+    //     if (change == InputUserChange.ControlSchemeChanged) {
+
+    //     }
+    // }
+
     void Start()
     {
         //rb = GetComponent<Rigidbody>();
         charController = GetComponent<CharacterController>();
         dashStart = Time.time;
         animator.ResetAllAttackAnims();
+        inputs.usingMouse = false;
         
        
     }
@@ -103,20 +142,17 @@ public class PlayerController : MonoBehaviour
             gravity = Vector3.zero;
         }
 
-        // HERMAN TODO: Break up massive math formula into different variables
-        //currSpeed = (Mathf.Abs(inputs.moveDirection.x) + Mathf.Abs(inputs.moveDirection.z)) / 2 * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
-
         if(isDashing || isAttacking) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
                 lastMoveVec = facingDirection;
             }
-            movementVector = lastMoveVec * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = lastMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
         }
         else 
         {
-            movementVector = inputs.moveDirection * stats.speed * Time.deltaTime * movementModifier * crouchModifier;
+            movementVector = inputs.moveDirection * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
             lastMoveVec = inputs.moveDirection;
         }
         
@@ -132,7 +168,14 @@ public class PlayerController : MonoBehaviour
     {
         if(inputs.rawDirection != Vector2.zero)
         {
-            transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * stats.turnSpeed * rotationModifier);
+            if(isAttacking)
+            {//CHANGE LATER, DONT HARDCODE TURN SPEED AS 14
+                 transform.forward = Vector3.Slerp(transform.forward, lastMoveVec, Time.deltaTime * 14f * rotationModifier);
+            }
+            else
+            {
+                transform.forward = Vector3.Slerp(transform.forward, inputs.moveDirection, Time.deltaTime * 14f * rotationModifier);
+            }
         }
     }
 
@@ -154,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
         if(isoMovement)
         {
-            inputs.moveDirection = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * inputs.moveDirection;
+            inputs.moveDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * inputs.moveDirection;
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
@@ -162,9 +205,16 @@ public class PlayerController : MonoBehaviour
     }
 
     
-
+    private void OnMousePos(InputValue value)
+    {
+        Debug.Log(value.Get<Vector2>());
+        inputs.usingMouse = true;
+        inputs.mousePos = value.Get<Vector2>();
+    }
+    
+    
     //by Jamo
-    private void OnInteract() //pressing dash button  
+    private void OnInteract()
     {     
         //If near something interactable, this overides the dash
         if(nearInteractable)
@@ -173,10 +223,49 @@ public class PlayerController : MonoBehaviour
             if(interactableObject != null)
             {
                 //Debug.Log("picked up item");
+                //DO PICKUP LOGIC, ADDING ITEM TO CORRECT LOCATION ETC;
                 Destroy(interactableObject);
                 nearInteractable = false;
             }
             else if (wildCreature != null)
+            {
+                befriendCreature();
+            }
+        }
+                
+    }
+
+    private void OnDash()
+    {
+        if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
+        {
+            //takes dash start time
+            dashStart = Time.time;
+            dashCount++;
+            inputs.dash = true;
+        }
+        else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
+        {
+            dashCount = 0;
+            inputs.dash = true;          
+                
+        }   
+    }
+
+    private void befriendCreature()
+    {
+        bool requirementMet = true;
+        if(requirementMet)
+        {
+            if(currCreature != null)
+            {
+                wildCreature.GetComponent<CreatureAIContext>().isWild = false;
+                swapCreature = wildCreature;
+                swapCreature.SetActive(false);
+                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
+                nearInteractable = false;
+            }
+            else 
             {
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 currCreature = wildCreature;
@@ -184,30 +273,68 @@ public class PlayerController : MonoBehaviour
                 //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
                 nearInteractable = false;
             }
+
         }
-        else//Not near interactable, dash instead
-        {
-            if(Time.time > dashStart + dashDelay)//cant dash until more time than dash delay has elapsed,
-            {
-                //takes dash start time
-                dashStart = Time.time;
-                dashCount++;
-                inputs.dash = true;
-            }
-            else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
-            {
-                dashCount = 0;
-                inputs.dash = true;          
-                
-            }   
-        }                 
+
     }
 
-   
+    private void OnSwap()
+    {
+        if(swapCreature != null)
+        {
+            var temp = currCreature;
+            currCreature.SetActive(false);
+            swapCreature.SetActive(true);
+            swapCreature.transform.position = backFollowPoint.position;
+            currCreature = swapCreature;
+            currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
+            currCreatureContext.isInPlayerRadius = false;
+            swapCreature = temp;
+            if (hasSwapped == false)
+            {
+                hasSwapped = true;
+            }
+            else
+            {
+                hasSwapped = false;
+            }
+        }
+
+    }
+
+    public void PutOnCD()
+    {
+        Debug.Log(hasSwapped);
+        if (hasSwapped)
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+            return;
+        }
+        else
+        {
+            currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
+            cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+        }
+    }
+
+
     //Slash (X)
     private void OnAttack1()
     {
+        Debug.Log("attack");
         inputs.basicAttack = true;
+        if(inputs.usingMouse)
+        {
+            // RaycastHit hit;
+            // Ray ray = Camera.main.ScreenPointToRay(inputs.mousePos);
+            // if(Physics.Raycast(ray, out hit))
+            // {
+            //     gameObject.transform.LookAt(hit.point);
+            // } 
+            // //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+            // //stinky
+        }
     }
 
 
@@ -225,6 +352,9 @@ public class PlayerController : MonoBehaviour
     //creature ability 1 (Y)
     private void OnAttack2()
     {
+        // var id = currCreatureContext.CD.abilities[0].id;
+        // var cooldownDuration = currCreatureContext.CD.abilities[0].cooldownDuration;
+
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 0;
     }  
@@ -235,6 +365,25 @@ public class PlayerController : MonoBehaviour
     {
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 1;
+    }
+
+    private void OnPause()
+    {
+        // isPaused = !isPaused;
+        // if(isPaused)
+        // {
+        //     pauseMenu.SetActive(true);
+        //     //Time.timeScale = 0f;
+            
+        // }
+        // else 
+        // {
+        //     pauseMenu.SetActive(false);
+        //     //Time.timeScale = 1;
+            
+        // }
+
+        
     }
     
     //*********** END INPUT FXNS **************************
@@ -256,5 +405,19 @@ public class PlayerController : MonoBehaviour
         var temp = Instantiate(fruit, transform.position, Quaternion.identity);
         temp.GetComponent<Fruit>().droppedByPlayer = true;
     }
+
+    public void DeathCheck(){
+       if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
+       {
+           PersistentData.Instance.LoadScene(1);
+           stats.setStat(ModiferType.CURR_HEALTH, stats.getStat(ModiferType.MAX_HEALTH));
+       }
+       
+    }
+
+
+
+
+
     
 }

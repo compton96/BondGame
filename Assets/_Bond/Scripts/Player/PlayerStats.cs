@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -86,7 +87,8 @@ public class PlayerStats : MonoBehaviour
         if(CurrHealth <= 0)
         {
             //trigger loss
-            Destroy(gameObject);
+           // Destroy(gameObject);
+           SceneManager.LoadScene(0);
         }
     }
 

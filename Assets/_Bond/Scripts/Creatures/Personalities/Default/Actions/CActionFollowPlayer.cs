@@ -29,7 +29,7 @@ public class CActionFollowPlayer : BTLeaf
 
     protected override void OnEnter()
     {
-        agent.speed = context.CD.moveSpeed;
+        agent.speed = context.creatureStats.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
     }
 
     protected override void OnExit()
@@ -48,12 +48,12 @@ public class CActionFollowPlayer : BTLeaf
         if(Vector3.Distance(context.player.transform.position, context.creatureTransform.position) > 20)
         {
             // Player too far away
-            OnExit();
+            OnParentExit();
             return NodeState.FAILURE;
         } else if(context.isInPlayerRadius || context.isInPlayerTrail)
         {
             // Made it to player
-            OnExit();
+            OnParentExit();
             return NodeState.SUCCESS;
         } else
         {

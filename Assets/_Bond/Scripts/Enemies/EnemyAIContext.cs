@@ -10,11 +10,12 @@ public class EnemyAIContext : MonoBehaviour
 {
     #region Behavior Tree Context
 
-    [Header("Main Stats")]
-    public float maxHealth;
-    public float currentHealth;
-    public int damage;
-    public float moveSpeed;
+    //[Header("Main Stats")]
+    public StatManager statManager => GetComponent<StatManager>();
+    // public float maxHealth;
+    // public float currentHealth;
+    // public int damage;
+    // public float moveSpeed;
 
     [Header("Objects")]
     public GameObject player;
@@ -23,6 +24,7 @@ public class EnemyAIContext : MonoBehaviour
     public NavMeshAgent agent;
     public EnemyAnimator animator;
     public Slider healthSlider;
+    public ParticleSystem hitVFX;
     
     [Header("Bools")]
     public bool isInPlayerRadius;
@@ -33,12 +35,13 @@ public class EnemyAIContext : MonoBehaviour
 
     [Header("Misc.Numbers")]
     // public int lastTriggeredAbility;
-    public float enemyDetectRange;
+    // public float enemyDetectRange;
     // public float wanderRadius; //how far from starting location the creature can wander
     // public float wanderIdleDuration;
     // public float wanderIdleTimer;
     // public Vector3 wanderDestination;
     public Vector3 startingLocation;
+    private float lastCheckedHealth;
     #endregion
 
     private void Awake()
@@ -48,12 +51,24 @@ public class EnemyAIContext : MonoBehaviour
         animator = GetComponent<EnemyAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        // player = GameObject.FindGameObjectWithTag("Player");
+        // lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+    }
+
+    private void Start() {
+        player = PersistentData.Instance.Player;
+        lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
     }
 
     private void FixedUpdate() 
     {
-
+        //Check for damage and update health UI accordingly
+        if(statManager.stats[ModiferType.CURR_HEALTH].modifiedValue < lastCheckedHealth)
+        {
+            tookDamage = true;
+            healthUIUpdate();
+            lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+        }
     }
 
     public void doMovement(float moveSpeed)
@@ -69,17 +84,7 @@ public class EnemyAIContext : MonoBehaviour
     public void doLookAt(Vector3 position)
     {
         enemyTransform.transform.LookAt(position, Vector3.up);
-        rb.velocity = (enemyTransform.transform.rotation * Vector3.forward * moveSpeed);
-    }
-
-    public void takeDamage(float amount){
-        currentHealth -= amount;
-        healthUIUpdate();
-        tookDamage = true;
-        if(currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        rb.velocity = (enemyTransform.transform.rotation * Vector3.forward * statManager.stats[ModiferType.MOVESPEED].modifiedValue);
     }
 
     public void DestroyEnemy()
@@ -89,6 +94,6 @@ public class EnemyAIContext : MonoBehaviour
 
     void healthUIUpdate()
     {
-        healthSlider.value = (currentHealth / maxHealth) * 100;
+        healthSlider.value = (statManager.stats[ModiferType.CURR_HEALTH].modifiedValue / statManager.stats[ModiferType.MAX_HEALTH].modifiedValue) * 100;
     }
 }
