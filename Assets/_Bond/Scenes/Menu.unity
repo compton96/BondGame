@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -693,21 +693,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Left Stick - Move
+  m_text: 'WASD - Move
 
-    X - Attack
+    left click - Attack
 
-    Hold X->Release - Heavy attack
+    Hold Left Click->Release - Heavy
+    attack
 
-    A
-    - Dash, Befriend creature when near
+    Space - Dash
 
-    Y - Creature ability 1
+    Right click -  Befriend creature when near
 
-    B - Creature
-    ability 2
+    Q
+    - Creature ability 1
 
-    Up on D-pad - Switch between creatures'
+    E - Creature ability 2
+
+    X- Switch between creatures
+
+    Left
+    Shift - Crouch (toggle)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -770,7 +775,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -188.22499, y: 0, z: -272.04376, w: -580.8504}
+  m_margin: {x: -188.22499, y: 0, z: -290.1761, w: -580.8504}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
