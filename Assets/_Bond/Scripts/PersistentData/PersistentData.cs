@@ -101,7 +101,8 @@ public class PersistentData : MonoBehaviour
         }
 
         //probably want to make the game "pause" so you cant move or die
-
+        
+       
         //make child everything we want to keep
         MakeChild(Player);
         MakeChild(playerController.currCreature);
@@ -109,8 +110,9 @@ public class PersistentData : MonoBehaviour
         //Loading Scene, can make transition stuff here
          //for example, some screen fading stuff : 
             //transition OUT
-        yield return StartCoroutine(FadeInScreen(0.5f));
         
+        yield return StartCoroutine(FadeInScreen(0.5f));
+        Debug.Log("fade in");
         
         while (!loadNewScene.isDone)
         {

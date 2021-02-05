@@ -16,18 +16,24 @@ public class PlayerController : MonoBehaviour
         public bool heavyAttack;
         public Vector3 moveDirection;
         public Vector2 rawDirection;
-    }
 
+        public bool usingMouse;
+        public Vector2 mousePos;
+
+    }
     public Inputs inputs;
+
 
     public Camera camera;
     public bool isoMovement = true;
+
 
     public GameObject fruit;
     public PlayerStateMachine fsm => GetComponent<PlayerStateMachine>();
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
+
 
     //*******Dash Variables*******
     private float dashStart = 2;
@@ -42,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Vector3 movementVector;
     //****************************
+
 
     private Rigidbody rb;
     
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
     public ParticleSystem slashVfx;
+    public Vector3 destination;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -88,18 +96,38 @@ public class PlayerController : MonoBehaviour
 
     public HitBoxes hitBoxes;
 
+    public GameObject pauseMenu;
+    private bool isPaused = false;
+
+
+
+    // private void OnEnable()
+    // {
+    //     InputUser.onChange += OnInputDeviceChanged;
+    // }
+
+    // private void OnDisable()
+    // {
+    //     InputUser.onChange -= OnInputDeviceChanged; 
+    // }
     
+    // private void OnInputDeviceChanged(InputUser user, InputUserChange change, InputDevice device)
+    // {
+    //     Debug.Log("user : " + user  + " change : " + change + " device " + device);
+    //     if (change == InputUserChange.ControlSchemeChanged) {
+
+    //     }
+    // }
+
     void Start()
     {
         //rb = GetComponent<Rigidbody>();
         charController = GetComponent<CharacterController>();
         dashStart = Time.time;
         animator.ResetAllAttackAnims();
-        
-       
+        inputs.usingMouse = false;
     }
 
-   
 
     public void doMovement(float movementModifier)
     {
@@ -171,13 +199,21 @@ public class PlayerController : MonoBehaviour
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
+        Debug.Log(facingDirection);
         
     }
 
     
-
+    private void OnMousePos(InputValue value)
+    {
+        //Debug.Log(value.Get<Vector2>());
+        inputs.usingMouse = true;
+        inputs.mousePos = value.Get<Vector2>();
+    }
+    
+    
     //by Jamo
-    private void OnInteract() //pressing dash button  
+    private void OnInteract()
     {     
         //If near something interactable, this overides the dash
         if(nearInteractable)
@@ -195,22 +231,24 @@ public class PlayerController : MonoBehaviour
                 befriendCreature();
             }
         }
-        else//Not near interactable, dash instead
-        {
-            if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
-            {
-                //takes dash start time
-                dashStart = Time.time;
-                dashCount++;
-                inputs.dash = true;
-            }
-            else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
-            {
-                dashCount = 0;
-                inputs.dash = true;          
                 
-            }   
-        }                 
+    }
+
+    private void OnDash()
+    {
+        if(Time.time > dashStart + stats.getStat(ModiferType.DASH_COOLDOWN))//cant dash until more time than dash delay has elapsed,
+        {
+            //takes dash start time
+            dashStart = Time.time;
+            dashCount++;
+            inputs.dash = true;
+        }
+        else if(dashCount >= 1 )//if you have dashed once and are not past delay, you can dash a second time
+        {
+            dashCount = 0;
+            inputs.dash = true;          
+                
+        }   
     }
 
     private void befriendCreature()
@@ -283,7 +321,29 @@ public class PlayerController : MonoBehaviour
     //Slash (X)
     private void OnAttack1()
     {
+        Debug.Log("attack");
         inputs.basicAttack = true;
+        if(inputs.usingMouse)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(inputs.mousePos);
+            int layerMask = 1 << 10;
+
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+            {
+                Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                //gameObject.transform.LookAt(hit.point);
+                destination = hit.point;
+                Vector3 direction = hit.point - transform.position;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
+                transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
+                //Quaternion lookRotation = Quaternion.LookRotation(direction);
+                //transform.forward = new Vector3(lookRotation.x, 0, lookRotation.z);
+                
+            } 
+            //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+            //stinky
+        }
     }
 
 
@@ -315,6 +375,25 @@ public class PlayerController : MonoBehaviour
         currCreatureContext.isAbilityTriggered = true;
         currCreatureContext.lastTriggeredAbility = 1;
     }
+
+    private void OnPause()
+    {
+        // isPaused = !isPaused;
+        // if(isPaused)
+        // {
+        //     pauseMenu.SetActive(true);
+        //     //Time.timeScale = 0f;
+            
+        // }
+        // else 
+        // {
+        //     pauseMenu.SetActive(false);
+        //     //Time.timeScale = 1;
+            
+        // }
+
+        
+    }
     
     //*********** END INPUT FXNS **************************
 
@@ -339,11 +418,14 @@ public class PlayerController : MonoBehaviour
     public void DeathCheck(){
        if(stats.getStat(ModiferType.CURR_HEALTH) <= 0)
        {
-           PersistentData.Instance.LoadScene(0);
+           PersistentData.Instance.LoadScene(1);
            stats.setStat(ModiferType.CURR_HEALTH, stats.getStat(ModiferType.MAX_HEALTH));
        }
        
     }
+
+
+
 
 
     

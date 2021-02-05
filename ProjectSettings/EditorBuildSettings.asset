@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Bond/Scenes/Menu.unity
+    guid: 9411c22414f499e4eb67801c25557a31
+  - enabled: 1
     path: Assets/_Bond/Scenes/Farm Hub.unity
     guid: 30279d33390870a4c857b1e1c02e0ed0
   - enabled: 1
