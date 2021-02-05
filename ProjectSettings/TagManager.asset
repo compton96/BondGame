@@ -13,6 +13,7 @@ TagManager:
   - Fruit
   - spawnpoint
   - AudioController
+  - Relic
   layers:
   - Default
   - TransparentFX

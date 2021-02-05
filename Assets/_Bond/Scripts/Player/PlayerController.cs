@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
+    public List<Relic> Relics = new List<Relic>();
 
 
     //*******Dash Variables*******
@@ -215,14 +216,16 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-        //If near something interactable, this overides the dash
         if(nearInteractable)
         {
             inputs.interact = true;
             if(interactableObject != null)
             {
-                //Debug.Log("picked up item");
-                //DO PICKUP LOGIC, ADDING ITEM TO CORRECT LOCATION ETC;
+                if(interactableObject.transform.tag == "relic")
+                {
+                    Relics.Add(interactableObject.GetComponent<Relic>());
+                    interactableObject.GetComponent<Relic>().applyModifiers(stats);
+                }
                 Destroy(interactableObject);
                 nearInteractable = false;
             }
