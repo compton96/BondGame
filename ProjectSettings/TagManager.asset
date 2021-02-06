@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Fruit
   - spawnpoint
+  - AudioController
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - 
   - Enemy
   - navIgnore
-  - 
+  - Ground
   - 
   - 
   - 

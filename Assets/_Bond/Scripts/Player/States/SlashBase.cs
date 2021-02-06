@@ -16,6 +16,12 @@ namespace PlayerState
         protected float speedMod = 1f;
 
         private Vector3 startRotation;
+        private Vector3 startMovement;
+        
+
+
+        private float fraction = 0;
+        private Vector3 startPos;
 
         public SlashBase( PlayerStateMachine _fsm ) : base( _fsm )
         {
@@ -57,10 +63,6 @@ namespace PlayerState
 
             speedMod = 1f;
 
-            startRotation = player.facingDirection;
-            //player.setRotation(startRotation);
-
-            player.lastMoveVec = player.inputs.moveDirection; 
         }
 
 
@@ -96,21 +98,16 @@ namespace PlayerState
             }
         }
 
-
+        
 
         public override void OnStateFixedUpdate()
         {
-            //player.doMovement(0.2f);
-            player.doRotation(1f);
-          
+            
             player.doMovement(speedMod);
             if(speedMod >= 0.05f)
             {
                 speedMod /= 1.4f;
-            }
-
-            //player.setRotation(startRotation);
-            
+            }            
         
         }
 
@@ -121,6 +118,7 @@ namespace PlayerState
             player.inputs.basicAttack = false;
 
             player.isAttacking = false;
+            
         }
     }
 }

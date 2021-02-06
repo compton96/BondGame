@@ -11976,7 +11976,6 @@ GameObject:
   - component: {fileID: 3008331729029387138}
   - component: {fileID: 3008331729029387139}
   - component: {fileID: 1313330683953569825}
-  - component: {fileID: 1478041389330426371}
   - component: {fileID: 2139760117}
   - component: {fileID: 6667307533402155786}
   m_Layer: 9
@@ -12070,6 +12069,8 @@ MonoBehaviour:
     slash2: {fileID: 3008331728240645142}
     slash3: {fileID: 3008331728240645142}
     heavy: {fileID: 6334410306365020563}
+  pauseMenu: {fileID: 7388749792863832312, guid: 24c0e2ff030508646b4c9c368272a756,
+    type: 3}
 --- !u!114 &6669998564430628805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12101,7 +12102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 4f481f4d5c1fa064683bc179d470de21,
     type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -12114,8 +12115,8 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: controller
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!143 &3008331729029387139
