@@ -10,7 +10,7 @@ public class UIUpdates : MonoBehaviour
     public TextMeshProUGUI maxHealthUI;
     public TextMeshProUGUI currHealthUI;
 
-    private StatManager stats => GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
+    private StatManager stats => PersistentData.Instance.Player.GetComponent<StatManager>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class UIUpdates : MonoBehaviour
     
     private void FixedUpdate() 
     {
+        Debug.Log("I EXIST");
         //Probably change this to only get called on health changes for efficiency
         slider.value = (stats.getStat(ModiferType.CURR_HEALTH) / stats.getStat(ModiferType.MAX_HEALTH)) * 100;
 

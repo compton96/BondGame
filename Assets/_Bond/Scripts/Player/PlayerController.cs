@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
-    public List<Relic> Relics = new List<Relic>();
+    public List<RelicStats> Relics = new List<RelicStats>();
 
 
     //*******Dash Variables*******
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
-        Debug.Log(facingDirection);
+        //Debug.Log(facingDirection);
         
     }
 
@@ -221,10 +221,11 @@ public class PlayerController : MonoBehaviour
             inputs.interact = true;
             if(interactableObject != null)
             {
-                if(interactableObject.transform.tag == "relic")
+                if(interactableObject.transform.tag == "Relic")
                 {
-                    Relics.Add(interactableObject.GetComponent<Relic>());
+                    Relics.Add(interactableObject.GetComponent<Relic>().relicStats);
                     interactableObject.GetComponent<Relic>().applyModifiers(stats);
+                    //update Health ui
                 }
                 Destroy(interactableObject);
                 nearInteractable = false;

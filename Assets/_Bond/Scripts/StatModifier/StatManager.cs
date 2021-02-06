@@ -48,6 +48,7 @@ public class StatManager : MonoBehaviour
     {
         if(stats.ContainsKey(_modifier.modiferType))
         {
+            Debug.Log("adding modifier " + _modifier.modiferType + " value " + _modifier.Additive);
             stats[_modifier.modiferType].AddModifier(_modifier);
         }
     }

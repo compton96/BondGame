@@ -8,6 +8,7 @@ public class Relic : MonoBehaviour
 
     public void applyModifiers(StatManager _statManager)
     {
+        Debug.Log("Applying modifiers");
         _statManager.AddRelic(relicStats);
     }
 
