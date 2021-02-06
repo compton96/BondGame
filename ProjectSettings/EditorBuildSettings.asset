@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Bond/Scenes/Farm Hub.unity
     guid: 30279d33390870a4c857b1e1c02e0ed0
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Bond/Scenes/Main Level.unity
     guid: 589f3490b347f564e8f72e58189da095
+  - enabled: 1
+    path: Assets/_Bond/Scenes/Gyms/JamoGym/openWorld.unity
+    guid: 8f150bdc16ba02b43a80df2338c6538a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 424581478ea0bbf40bf474a18a019206,
       type: 2}

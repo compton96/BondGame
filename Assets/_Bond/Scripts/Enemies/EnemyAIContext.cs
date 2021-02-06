@@ -40,6 +40,7 @@ public class EnemyAIContext : MonoBehaviour
     // public float wanderIdleDuration;
     // public float wanderIdleTimer;
     // public Vector3 wanderDestination;
+    public float delayBetweenAttacks;
     public Vector3 startingLocation;
     private float lastCheckedHealth;
     #endregion
@@ -68,6 +69,8 @@ public class EnemyAIContext : MonoBehaviour
             tookDamage = true;
             healthUIUpdate();
             lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+
+            hitVFX.Play();
         }
     }
 
