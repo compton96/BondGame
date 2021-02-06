@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cafc23ec76d8be04daa3b6c647dbb442, type: 3}
-  m_Name: EnemyBaseStats
+  m_Name: dummy stats
   m_EditorClassIdentifier: 
   statName: Default Enemy Base Stats
   stats:
   - modiferType: 0
-    baseValue: 225
+    baseValue: 10000
   - modiferType: 1
-    baseValue: 225
+    baseValue: 10000
   - modiferType: 2
     baseValue: 20
   - modiferType: 3
-    baseValue: 8
+    baseValue: 0
   - modiferType: 8
     baseValue: 2
   - modiferType: 10

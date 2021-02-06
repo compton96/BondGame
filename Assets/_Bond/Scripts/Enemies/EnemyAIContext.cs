@@ -68,6 +68,8 @@ public class EnemyAIContext : MonoBehaviour
             tookDamage = true;
             healthUIUpdate();
             lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+
+            hitVFX.Play();
         }
     }
 
