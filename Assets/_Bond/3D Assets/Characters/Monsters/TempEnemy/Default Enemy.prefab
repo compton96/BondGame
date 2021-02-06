@@ -132,8 +132,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878230852251512458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.03, z: 1}
   m_Children:
   - {fileID: 878230852792801448}
   - {fileID: 878230852622667644}
@@ -143,8 +143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.7, y: 13.5}
-  m_SizeDelta: {x: 94.7001, y: 10.138161}
+  m_AnchoredPosition: {x: 0, y: 0.65}
+  m_SizeDelta: {x: 90, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878230852251512460
 MonoBehaviour:
@@ -300,12 +300,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f6f5c9e73c8ea4b895188c1245723f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statManager: {fileID: 3724473988699940788}
   player: {fileID: 3008331729029387198, guid: b533a4d2d18ca984a85f56b2a9810e8c, type: 3}
   enemyTransform: {fileID: 878230852319099019}
   rb: {fileID: 878230852319099021}
   agent: {fileID: 1498083051}
   animator: {fileID: 1498083044}
+  enemyUI: {fileID: 878230853263537682}
   healthSlider: {fileID: 878230852251512460}
   hitVFX: {fileID: 1095849670864674090}
   isInPlayerRadius: 0
@@ -313,6 +313,7 @@ MonoBehaviour:
   playerNoticed: 0
   isIdling: 0
   tookDamage: 0
+  delayBetweenAttacks: 0
   startingLocation: {x: 0, y: 0, z: 0}
 --- !u!114 &1498083046
 MonoBehaviour:
@@ -835,8 +836,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878230853263537710}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
-  m_LocalPosition: {x: 0, y: 0, z: 0.73548776}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 878230852251512459}
   m_Father: {fileID: 878230853585311476}
@@ -844,8 +845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.5157873, y: 2.2}
-  m_SizeDelta: {x: 800, y: 450.0283}
+  m_AnchoredPosition: {x: 0, y: 1.48}
+  m_SizeDelta: {x: 10, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &878230853263537682
 Canvas:
@@ -866,7 +867,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &878230853263537681
 MonoBehaviour:

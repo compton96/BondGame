@@ -273,6 +273,9 @@ public class PlayerController : MonoBehaviour
                 nearInteractable = false;
             }
 
+            Debug.Log("BEFRIENDED");
+            wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
+
         }
 
     }

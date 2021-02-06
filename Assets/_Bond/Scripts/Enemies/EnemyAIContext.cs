@@ -23,6 +23,8 @@ public class EnemyAIContext : MonoBehaviour
     public Rigidbody rb;
     public NavMeshAgent agent;
     public EnemyAnimator animator;
+
+    public Canvas enemyUI;
     public Slider healthSlider;
     public ParticleSystem hitVFX;
     
@@ -72,6 +74,9 @@ public class EnemyAIContext : MonoBehaviour
 
             hitVFX.Play();
         }
+
+        enemyUI.transform.rotation = Camera.main.transform.rotation; //makes ui always face camera
+
     }
 
     public void doMovement(float moveSpeed)
