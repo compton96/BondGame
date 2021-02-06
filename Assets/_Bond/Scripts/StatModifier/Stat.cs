@@ -32,7 +32,13 @@ public class Stat
 
     public void UpdateValue()
     {
-        modifiedValue = baseValue; //update this to incorporate modifiers.
+        modifiedValue = baseValue;
+        foreach(Modifier mod in modifiers){
+            modifiedValue += mod.Additive;
+            modifiedValue *= mod.Multiplicitive;
+        }
+        
+         //update this to incorporate modifiers.
     }
 
 

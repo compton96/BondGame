@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
+    public List<RelicStats> Relics = new List<RelicStats>();
 
 
     //*******Dash Variables*******
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
-        Debug.Log(facingDirection);
+        //Debug.Log(facingDirection);
         
     }
 
@@ -215,14 +216,17 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-        //If near something interactable, this overides the dash
         if(nearInteractable)
         {
             inputs.interact = true;
             if(interactableObject != null)
             {
-                //Debug.Log("picked up item");
-                //DO PICKUP LOGIC, ADDING ITEM TO CORRECT LOCATION ETC;
+                if(interactableObject.transform.tag == "Relic")
+                {
+                    Relics.Add(interactableObject.GetComponent<Relic>().relicStats);
+                    interactableObject.GetComponent<Relic>().applyModifiers(stats);
+                    //update Health ui
+                }
                 Destroy(interactableObject);
                 nearInteractable = false;
             }

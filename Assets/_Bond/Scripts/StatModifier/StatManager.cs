@@ -36,11 +36,19 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public void AddRelic(RelicStats relicStats)
+    {
+        foreach(Modifier mod in relicStats.modifiers) 
+        {
+            AddModifier(mod);
+        }
+    }
 
     private void AddModifier(Modifier _modifier)
     {
         if(stats.ContainsKey(_modifier.modiferType))
         {
+            Debug.Log("adding modifier " + _modifier.modiferType + " value " + _modifier.Additive);
             stats[_modifier.modiferType].AddModifier(_modifier);
         }
     }
