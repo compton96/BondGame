@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70cfeefe681eb04e8f6b968e4fdc328, type: 3}
+  m_Name: AquaphimRanged
+  m_EditorClassIdentifier: 
+  id: 0
+  cooldownDuration: 0
+  maxDistanceToEnemy: 10
+  projectileSpeed: 10
+  projectile: {fileID: 573035498810555202, guid: bb83add4b79bde14f9153a00f2c847af,
+    type: 3}
+  anims: {fileID: 0}
+  baseDmg: 50
+  isHoming: 1
+  cooldownDuration: 2
