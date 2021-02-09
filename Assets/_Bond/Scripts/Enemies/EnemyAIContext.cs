@@ -45,6 +45,7 @@ public class EnemyAIContext : MonoBehaviour
     public float delayBetweenAttacks;
     public Vector3 startingLocation;
     private float lastCheckedHealth;
+    public float lastDamageTaken;
     #endregion
 
     private void Awake()
@@ -69,6 +70,7 @@ public class EnemyAIContext : MonoBehaviour
         if(statManager.stats[ModiferType.CURR_HEALTH].modifiedValue < lastCheckedHealth)
         {
             tookDamage = true;
+            lastDamageTaken = lastCheckedHealth - statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
             healthUIUpdate();
             lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
 
