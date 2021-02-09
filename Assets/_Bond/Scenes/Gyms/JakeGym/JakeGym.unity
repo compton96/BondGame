@@ -3144,7 +3144,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1498083045, guid: 9d324e345da233949b4f8cc87f42c0e0, type: 3}
       propertyPath: delayBetweenAttacks
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 878230852319099018, guid: 9d324e345da233949b4f8cc87f42c0e0,
         type: 3}
