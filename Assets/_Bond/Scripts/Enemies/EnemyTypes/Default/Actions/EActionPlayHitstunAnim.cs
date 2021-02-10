@@ -12,8 +12,11 @@ public class EActionPlayHitstunAnim : BTLeaf
 
     protected override void OnEnter()
     {
-        //Play hitstun anim
-        enemyContext.animator.Hitstun();
+        if(enemyContext.lastDamageTaken > 25)
+        {
+            //Play hitstun anim
+            enemyContext.animator.Hitstun();
+        }
     }
 
     protected override void OnExit()
