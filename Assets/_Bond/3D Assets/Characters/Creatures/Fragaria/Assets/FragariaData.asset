@@ -20,6 +20,8 @@ MonoBehaviour:
   utility: 0
   dexterity: 0
   moveSpeed: 13
+  Id: 0
+  creatureIcon: {fileID: 21300000, guid: d46bc802e15c2e64e946ad63a30a0873, type: 3}
   lifeRange: {x: 60, y: 75}
   powerRange: {x: 10, y: 30}
   utilityRange: {x: 25, y: 50}
