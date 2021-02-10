@@ -110,7 +110,7 @@ public class EnemyAIContext : MonoBehaviour
 
     public void dropGold()
     {
-        Vector3 spawnPos = new Vector3(enemyTransform.position.x, 1.1f , enemyTransform.position.z);
+        Vector3 spawnPos = new Vector3(enemyTransform.position.x, 0.2f , enemyTransform.position.z);
         Instantiate(goldPrefab, spawnPos, Quaternion.identity);
     }
 }

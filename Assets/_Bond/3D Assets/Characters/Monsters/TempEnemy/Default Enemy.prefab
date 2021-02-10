@@ -313,7 +313,7 @@ MonoBehaviour:
   playerNoticed: 0
   isIdling: 0
   tookDamage: 0
-  delayBetweenAttacks: 0
+  delayBetweenAttacks: 1
   startingLocation: {x: 0, y: 0, z: 0}
   lastDamageTaken: 0
   goldPrefab: {fileID: 2319673032839199983, guid: a2c90f9437a19274fb0c12d9c8d99132,
