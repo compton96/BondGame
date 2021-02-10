@@ -315,6 +315,9 @@ MonoBehaviour:
   tookDamage: 0
   delayBetweenAttacks: 0
   startingLocation: {x: 0, y: 0, z: 0}
+  lastDamageTaken: 0
+  goldPrefab: {fileID: 2319673032839199983, guid: a2c90f9437a19274fb0c12d9c8d99132,
+    type: 3}
 --- !u!114 &1498083046
 MonoBehaviour:
   m_ObjectHideFlags: 0

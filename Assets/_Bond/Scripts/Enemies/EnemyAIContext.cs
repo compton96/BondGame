@@ -46,6 +46,7 @@ public class EnemyAIContext : MonoBehaviour
     public Vector3 startingLocation;
     private float lastCheckedHealth;
     public float lastDamageTaken;
+    public GameObject goldPrefab;
     #endregion
 
     private void Awake()
@@ -105,5 +106,11 @@ public class EnemyAIContext : MonoBehaviour
     void healthUIUpdate()
     {
         healthSlider.value = (statManager.stats[ModiferType.CURR_HEALTH].modifiedValue / statManager.stats[ModiferType.MAX_HEALTH].modifiedValue) * 100;
+    }
+
+    public void dropGold()
+    {
+        Vector3 spawnPos = new Vector3(enemyTransform.position.x, 1.1f , enemyTransform.position.z);
+        Instantiate(goldPrefab, spawnPos, Quaternion.identity);
     }
 }
