@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
+    public int goldCount;
     private float crouchModifier = 1;
     public bool nearInteractable = false;
     public bool hasSwapped;

@@ -23,6 +23,9 @@ public class EActionPlayDeathAnim : BTLeaf
 
     public override NodeState Evaluate() 
     {
+        //Spawn gold
+        enemyContext.dropGold();
+
         //Destroy enemy
         enemyContext.DestroyEnemy();
         return NodeState.SUCCESS;
