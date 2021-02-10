@@ -9,7 +9,16 @@ public class UIUpdates : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI maxHealthUI;
     public TextMeshProUGUI currHealthUI;
+
     public TextMeshProUGUI gold;
+
+    public Image currCreatureIcon;
+    public Image swapCreatureIcon;   
+    public Sprite noCreatureIcon;
+
+    public CanvasGroup abilityGroup;
+    public Image ability1Icon;
+    public Image ability2Icon;
 
     private StatManager stats => PersistentData.Instance.Player.GetComponent<StatManager>();
     private PlayerController player => PersistentData.Instance.Player.GetComponent<PlayerController>();
@@ -17,7 +26,7 @@ public class UIUpdates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        updateCreatureUI();
     }
 
     
@@ -30,5 +39,34 @@ public class UIUpdates : MonoBehaviour
         maxHealthUI.SetText("/ " + stats.getStat(ModiferType.MAX_HEALTH).ToString());
         gold.SetText(player.goldCount.ToString());
         
+       
+        
     }
+
+
+    public void updateCreatureUI()
+    {
+         if(player.currCreatureContext != null)
+        {
+
+            currCreatureIcon.sprite = player.currCreatureContext.icon;
+            abilityGroup.alpha = 1;
+            ability1Icon.sprite = player.currCreatureContext.creatureStats.abilities[0].abilityIcon;
+            ability2Icon.sprite = player.currCreatureContext.creatureStats.abilities[1].abilityIcon;
+
+            if(player.swapCreature != null)
+            {
+                swapCreatureIcon.sprite = player.swapCreature.GetComponent<CreatureAIContext>().icon;
+            }
+
+        }
+        else
+        {
+            currCreatureIcon.sprite = noCreatureIcon;
+            swapCreatureIcon.sprite = noCreatureIcon;
+            abilityGroup.alpha = 0;
+
+        }
+    }
+
 }

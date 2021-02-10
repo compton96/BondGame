@@ -55,6 +55,12 @@ public class CreatureAIContext : MonoBehaviour
     private CreatureDebugText debugText;
     #endregion
 
+    [Header("UI")]
+    public Sprite icon; //done in creature spawner
+    public Sprite ability1Icon;
+    public Sprite ability2Icon;
+    
+
     private void Awake()
     {
         creatureTransform = transform;
@@ -70,6 +76,8 @@ public class CreatureAIContext : MonoBehaviour
         if(isWild){
             lastTriggeredAbility = 0;
         }
+
+
 
         resetStealTimer();
     }

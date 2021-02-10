@@ -22,6 +22,8 @@ public class creatureData : ScriptableObject
 
     public int Id;
 
+    public Sprite creatureIcon;
+
 
     public Vector2 lifeRange = new Vector2(100, 150);
 

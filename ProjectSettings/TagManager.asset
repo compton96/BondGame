@@ -14,6 +14,7 @@ TagManager:
   - spawnpoint
   - AudioController
   - Relic
+  - UI
   layers:
   - Default
   - TransparentFX
