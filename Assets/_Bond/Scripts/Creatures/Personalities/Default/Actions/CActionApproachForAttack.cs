@@ -8,7 +8,7 @@ public class CActionApproachForAttack : BTLeaf
 
     private NavMeshAgent agent;
     creatureAttackBase attack;
-    private float moveSpeed = 30f;
+    private float moveSpeed = 15f;
     private float maxDist;
 
     public CActionApproachForAttack(string _name, CreatureAIContext _context ) : base(_name, _context)
