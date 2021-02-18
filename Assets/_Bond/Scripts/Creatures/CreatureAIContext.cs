@@ -22,6 +22,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject backFollowPoint;
     public GameObject followPoint;
     public GameObject projectileSpawner;
+    public GameObject sunBeamSpawner;
     public CreatureAnimator animator;
     public Collider interactRadius;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
