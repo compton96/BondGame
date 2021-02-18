@@ -22,11 +22,9 @@ public class FragariaSunBeamAttack : BTSubtree
 
         #region Approach and attack sequence
             List<BTNode> RangedApproachSelectorList = new List<BTNode>();
-            //BTCheckDistanceToTarget checkIfDistanceToTarget = new BTCheckDistanceToTarget("Check if in range for attack", context);
             CActionApproachForAttack approachForAttack = new CActionApproachForAttack("Approach for attack", context);
             BTInverter invertApproachForAttack = new BTInverter("Invert Approach for Attack", approachForAttack);
             CActionAttackSunBeam attackSunBeam = new CActionAttackSunBeam("Sun Beam Attack", context);
-            //MeleeApproachSequenceList.Add(checkIfDistanceToTarget);
             RangedApproachSelectorList.Add(invertApproachForAttack);
             RangedApproachSelectorList.Add(attackSunBeam);
             
