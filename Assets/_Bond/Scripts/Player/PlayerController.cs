@@ -315,7 +315,7 @@ public class PlayerController : MonoBehaviour
 
     public void PutOnCD()
     {
-        Debug.Log(hasSwapped);
+        // Debug.Log(hasSwapped);
         if (hasSwapped)
         {
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;

@@ -15,7 +15,7 @@ public class CActionAttackSunBeam : BTLeaf
     protected override void OnEnter()
     {
         attack = (creatureAttackRanged) context.creatureStats.abilities[context.lastTriggeredAbility];
-        //Play amim
+        //Play anim
         context.animator.Attack1();
     }
 
@@ -27,7 +27,7 @@ public class CActionAttackSunBeam : BTLeaf
     public override NodeState Evaluate() 
     {
         //Spawn the sun beam
-        context.sunBeamSpawner.GetComponent<SunBeamSpawner>().SpawnSunBeam(attack.projectile, context.targetEnemy, attack.baseDmg);
+        context.sunBeamSpawner.GetComponent<SunBeamSpawner>().SpawnSunBeam(attack.projectile, context.targetEnemy, attack.baseDmg, attack.abilityBuff);
         
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
@@ -35,8 +35,6 @@ public class CActionAttackSunBeam : BTLeaf
         { //if animation done, have to add that 
             OnParentExit();
             context.player.GetComponent<PlayerController>().PutOnCD();
-            // Debug.Log("Ability Id: ");
-            // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
             return NodeState.SUCCESS;
         }
         
