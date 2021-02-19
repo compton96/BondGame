@@ -13,94 +13,38 @@ public class DefaultAbility : BTSubtree
 
                 #region Ability Selector
                     List<BTNode> AbilitySelectorList = new List<BTNode>();
-                    CActionAbilityFail AbilityFailsafe = new CActionAbilityFail("Ability Failsafe", context);
-                    #region MeleeAbilitySequence
-                        List<BTNode> MeleeAbilitySequenceList = new List<BTNode>();
-                        #region if target already exists selector
-                            List<BTNode> TargetExistsSelectorList = new List<BTNode>();
-                            CCheckIfTargetExists checkIfTargetExists = new CCheckIfTargetExists("Check if enemy already targeted", context);
-                            CActionFindTargetEnemy findTargetEnemy = new CActionFindTargetEnemy("Find Closest Enemy in Range", context);
-                            TargetExistsSelectorList.Add(checkIfTargetExists);
-                            TargetExistsSelectorList.Add(findTargetEnemy);
 
-                            BTSelector TargetExistsSelector = new BTSelector("Target Exists Selector", TargetExistsSelectorList);
-                        #endregion 
-
-                        #region Approach sequence
-                            List<BTNode> MeleeApproachSelectorList = new List<BTNode>();
-                            //BTCheckDistanceToTarget checkIfDistanceToTarget = new BTCheckDistanceToTarget("Check if in range for attack", context);
-                            CActionApproachForAttack approachForAttack = new CActionApproachForAttack("Approach for attack", context);
-                            BTInverter invertApproachForAttack = new BTInverter("Invert Approach for Attack", approachForAttack);
-                            CActionAttackMelee attackMelee = new CActionAttackMelee("Melee Attack", context);
-                            //MeleeApproachSequenceList.Add(checkIfDistanceToTarget);
-                            MeleeApproachSelectorList.Add(invertApproachForAttack);
-                            MeleeApproachSelectorList.Add(attackMelee);
-                            
-                            BTSelector MeleeApproachAttackSelector = new BTSelector("Melee Approach / Attack Sequence", MeleeApproachSelectorList);
-                        #endregion
-
-
-                        CCheckIfAbilityIsMelee ifAbilityIsMelee = new CCheckIfAbilityIsMelee("check if ability is melee", context);
-                        
-                        MeleeAbilitySequenceList.Add(ifAbilityIsMelee);
-                        MeleeAbilitySequenceList.Add(TargetExistsSelector);
-                        MeleeAbilitySequenceList.Add(MeleeApproachAttackSelector);
-                        //MeleeAbilitySequenceList.Add(MeleeAttackSequence);
-                        //MeleeAbilitySequenceList.Add(AbilityFailsafe);
-                        BTSequence MeleeAbilitySequence = new BTSequence("Melee Ability Sequence", MeleeAbilitySequenceList);
-
+                    #region ability 1
+                        List<BTNode> AbilityOneSequenceList = new List<BTNode>();
+                        CCheckAbilityOne checkAbilityOne = new CCheckAbilityOne("Check ability 1", context);
+                        BTSequence AbilityOneSubtree = context.creatureStats.abilities[0].abilityBehavior.BuildSequenceSubtree(context);
+                        AbilityOneSequenceList.Add(checkAbilityOne);
+                        AbilityOneSequenceList.Add(AbilityOneSubtree);
+                        BTSequence AbilityOneSequence = new BTSequence("Ability one", AbilityOneSequenceList);
                     #endregion
 
-                    #region RangedAbilitySequence
-                        List<BTNode> RangedAbilitySequenceList = new List<BTNode>();
-                        #region if target already exists selector
-                            //using same targetExistsSelector from melee
-                        #endregion 
-
-                        #region Approach/Attack sequence
-                            List<BTNode> RangedApproachSelectorList = new List<BTNode>();
-                            //using same invertApproachForAttack node
-                            CActionAttackRanged attackRanged = new CActionAttackRanged("Ranged Attack", context);
-                            RangedApproachSelectorList.Add(invertApproachForAttack);
-                            RangedApproachSelectorList.Add(attackRanged);
-
-                            BTSelector RangedApproachAttackSelector = new BTSelector("Ranged Approach / Attack Seelector", RangedApproachSelectorList);
-                        #endregion
-                        CCheckIfAbilityIsRanged ifAbilityIsRanged = new CCheckIfAbilityIsRanged("Check if ability is ranged", context);
-
-                        RangedAbilitySequenceList.Add(ifAbilityIsRanged);
-                        RangedAbilitySequenceList.Add(TargetExistsSelector);
-                        RangedAbilitySequenceList.Add(RangedApproachAttackSelector);
-
-                        BTSequence RangedAbilitySequence = new BTSequence("Ranged Ability Sequence", RangedAbilitySequenceList);
+                    #region ability 2
+                        List<BTNode> AbilityTwoSequenceList = new List<BTNode>();
+                        CCheckAbilityTwo checkAbilityTwo = new CCheckAbilityTwo("Check ability 2", context);
+                        BTSequence AbilityTwoSubtree = context.creatureStats.abilities[1].abilityBehavior.BuildSequenceSubtree(context);
+                        AbilityTwoSequenceList.Add(checkAbilityTwo);
+                        AbilityTwoSequenceList.Add(AbilityTwoSubtree);
+                        BTSequence AbilityTwoSequence = new BTSequence("Ability one", AbilityTwoSequenceList);
                     #endregion
 
-                    #region UtilityAbilitySequence
-                        List<BTNode> UtilityAblitySequenceList = new List<BTNode>();
+                    AbilitySelectorList.Add(AbilityOneSequence);
+                    AbilitySelectorList.Add(AbilityTwoSequence);
 
-                        CCheckIfAbilityIsUtility ifAbilityIsUtility = new CCheckIfAbilityIsUtility("Check if ability is utility", context);
-                        //MAKE UTILITY ABLITY CAST
+                    BTSelector AbilitySelector = new BTSelector("Ability Selector", AbilitySelectorList);         
 
-                        UtilityAblitySequenceList.Add(ifAbilityIsUtility);
-                        //add action
-
-                        BTSequence UtilityAbilitySequence = new BTSequence("Utility Ability Sequence", UtilityAblitySequenceList);
-
-                        
-                    #endregion
-                    
-                    AbilitySelectorList.Add(MeleeAbilitySequence);
-                    AbilitySelectorList.Add(RangedAbilitySequence);
-                    //AbilitySelectorList.Add(UtilityAbilitySequence);
-                    AbilitySelectorList.Add(AbilityFailsafe);
-
-                    BTSelector AbilitySelector = new BTSelector("Ability Selector", AbilitySelectorList);
                 #endregion
                 CCheckPlayerTriggeredAbility ifPlayerTriggeredAbility = new CCheckPlayerTriggeredAbility("if player triggered ability", context);
                 CCheckIfAbilityOnCd ifAbilityOnCd = new CCheckIfAbilityOnCd("Check if Ability is on cooldown", context);
                 AbilityTriggeredSequenceList.Add(ifPlayerTriggeredAbility);
                 AbilityTriggeredSequenceList.Add(ifAbilityOnCd);
                 AbilityTriggeredSequenceList.Add(AbilitySelector);
+                
+
 
                 BTSequence AbilityTriggeredSequence = new BTSequence("Ability Triggered Sequence", AbilityTriggeredSequenceList);
             #endregion

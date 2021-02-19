@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70cfeefe681eb04e8f6b968e4fdc328, type: 3}
   m_Name: FragariaRanged
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   cooldownDuration: 0
   abilityIcon: {fileID: 21300000, guid: 0164f815d78332c43ad9e3efe347a563, type: 3}
+  abilityBehavior: {fileID: 11400000, guid: 9168e465b940918468fad296e43f5085, type: 2}
   maxDistanceToEnemy: 10
   projectileSpeed: 10
   projectile: {fileID: 573035498810555202, guid: bb83add4b79bde14f9153a00f2c847af,
