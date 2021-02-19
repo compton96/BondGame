@@ -139,7 +139,7 @@ public class PersistentData : MonoBehaviour
             //transition OUT
         
         yield return StartCoroutine(FadeInScreen(0.5f));
-        Debug.Log("fade in");
+        // Debug.Log("fade in");
         
         while (!loadNewScene.isDone)
         {
@@ -158,7 +158,7 @@ public class PersistentData : MonoBehaviour
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
 
         
-        Debug.Log(GetSpawnpoint());
+        // Debug.Log(GetSpawnpoint());
         Player.transform.position = GetSpawnpoint();
        
 
