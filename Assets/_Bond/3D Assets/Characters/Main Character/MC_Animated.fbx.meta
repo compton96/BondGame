@@ -112,7 +112,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9212598
         functionName: FollowThroughDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -162,7 +162,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9186352
         functionName: FollowThroughDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -212,7 +212,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9107612
         functionName: FollowThroughDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -262,7 +262,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9238845
         functionName: FollowThroughDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -298,7 +298,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.33070865
         functionName: PlaySlashVFX
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -312,7 +312,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9238845
         functionName: FollowThroughDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -464,7 +464,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0.921466
         functionName: DamagedDone
         data: 
         objectReferenceParameter: {instanceID: 0}

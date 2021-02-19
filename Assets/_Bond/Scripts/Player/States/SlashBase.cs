@@ -41,7 +41,9 @@ namespace PlayerState
                 case 1:
                     return fsm.Slash2;
                 case 2:
-                    return null; //fsm.Slash3;
+                    return fsm.Slash3;
+                case 3:
+                    return fsm.Slash4;
                 default:
                     return null;
             }
@@ -71,6 +73,8 @@ namespace PlayerState
         {
             if(player.inputs.dash)
             {
+                animator.ResetAllAttackAnims();
+                
                 SetState( fsm.Dash );
                 return;
             }

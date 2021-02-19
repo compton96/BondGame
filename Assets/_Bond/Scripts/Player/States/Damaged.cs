@@ -26,11 +26,11 @@ namespace PlayerState
             if(player.isHit)
             {
                 player.isHit = false;
-                SetState( fsm.Damaged );
+                animator.SetDamaged();
                 return;
             }
             //wait till end of animation, return to idle
-            if( !player.animator.isDamaged )
+            if( !animator.isDamaged )
             {
                 SetState(fsm.IdleMove);
                 return;

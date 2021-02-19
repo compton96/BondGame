@@ -35,7 +35,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            
+            animator.ResetAllAttackAnims();
         }
     }
 }

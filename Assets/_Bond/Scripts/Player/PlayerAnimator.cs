@@ -1,8 +1,10 @@
-﻿// Herman
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/*
+*   Written by Herman
+*/
 
 public class PlayerAnimator : MonoBehaviour
 {
@@ -10,29 +12,41 @@ public class PlayerAnimator : MonoBehaviour
     private Animator animator => model.GetComponent<Animator>();
     private PlayerController playerController => GetComponent<PlayerController>();
 
+    /*
+    *   Constants
+    *   Can be read by other scripts
+    *   But can only be set in here
+    */
     public bool isAttack { get; private set; }
     public bool isDamaged { get; private set; }
     public bool isFollowThrough { get; private set; }
 
-    // Triggered by event
-    public void AttackDone()
+    /*
+    *   Events
+    *   Triggered in PlayerAnimationEvent.CS
+    */
+
+    public void EventAttackDone()
     {
         isAttack = false;
     }
 
-    // Triggered by event
-    public void DamagedDone()
+    public void EventDamagedDone()
     {
         isDamaged = false;
         animator.ResetTrigger("isHit");
     }
 
-    // Triggered by event
-    public void FollowThroughDone()
+    public void EventFollowThroughDone()
     {
         isAttack = false;
         isFollowThrough = false;
     }
+
+    /*
+    *   Reset Functions
+    *   Modifies the constants
+    */
 
     public void ResetAttackAnim()
     {
@@ -48,6 +62,8 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack0");
         animator.ResetTrigger("Attack1");
         animator.ResetTrigger("Attack2");
+        animator.ResetTrigger("Attack3");
+        animator.ResetTrigger("Attack4");
     }
 
     public void Attack( int num )
@@ -68,9 +84,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         animator.SetTrigger("Dash");
 
-        animator.ResetTrigger("Attack0");
-        animator.ResetTrigger("Attack1");
-        animator.ResetTrigger("Attack2");
+        this.ResetAllAttackAnims();
     }
 
     public void SetRun(bool state)
@@ -92,19 +106,20 @@ public class PlayerAnimator : MonoBehaviour
 
     public void OnIdle()
     {
-        this.ResetAttackAnim();
+        this.ResetAllAttackAnims();
 
-        animator.ResetTrigger("Attack0");
-        animator.ResetTrigger("Attack1");
-        animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Dash");
     }
+
+    // VISUAL FX
 
     public void PlaySlashVFX()
     {
         playerController.slashVfx.Play();
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
     }
+
+    // SOUND FX
 
     public void PlayWalkSFX()
     {

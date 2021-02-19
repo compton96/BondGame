@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
     //Slash (X)
     private void OnAttack1()
     {
-        Debug.Log("attack");
+        // Debug.Log("attack");
         inputs.basicAttack = true;
         if(inputs.usingMouse)
         {
@@ -344,12 +344,14 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                // Debug.Log("RAYCAST : " + hit.transform.gameObject);
                 //gameObject.transform.LookAt(hit.point);
+
                 destination = hit.point;
                 Vector3 direction = hit.point - transform.position;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
                 transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
+                
                 //Quaternion lookRotation = Quaternion.LookRotation(direction);
                 //transform.forward = new Vector3(lookRotation.x, 0, lookRotation.z);
                 

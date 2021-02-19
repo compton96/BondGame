@@ -22,7 +22,6 @@ namespace PlayerState
 
         public override void OnStateEnter()
         {
-            Debug.Log("Dash Enter");
             player.inputs.dash = false;
             animator.Dash();
             player.isDashing = true;
