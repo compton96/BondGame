@@ -12,6 +12,9 @@ TagManager:
   - Enemy
   - Fruit
   - spawnpoint
+  - AudioController
+  - Relic
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - 
   - Enemy
   - navIgnore
-  - 
+  - Ground
   - 
   - 
   - 

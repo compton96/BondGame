@@ -22,6 +22,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject backFollowPoint;
     public GameObject followPoint;
     public GameObject projectileSpawner;
+    public GameObject sunBeamSpawner;
     public CreatureAnimator animator;
     public Collider interactRadius;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
@@ -55,6 +56,12 @@ public class CreatureAIContext : MonoBehaviour
     private CreatureDebugText debugText;
     #endregion
 
+    [Header("UI")]
+    public Sprite icon; //done in creature spawner
+    public Sprite ability1Icon;
+    public Sprite ability2Icon;
+    
+
     private void Awake()
     {
         creatureTransform = transform;
@@ -70,6 +77,8 @@ public class CreatureAIContext : MonoBehaviour
         if(isWild){
             lastTriggeredAbility = 0;
         }
+
+
 
         resetStealTimer();
     }

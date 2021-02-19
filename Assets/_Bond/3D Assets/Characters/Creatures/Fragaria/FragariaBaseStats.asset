@@ -15,7 +15,7 @@ MonoBehaviour:
   statName: 'Fragaria '
   stats:
   - modiferType: 0
-    baseValue: 0
+    baseValue: 50
   - modiferType: 3
     baseValue: 12
   - modiferType: 22
@@ -25,9 +25,9 @@ MonoBehaviour:
   - modiferType: 20
     baseValue: 0
   - modiferType: 2
-    baseValue: 0
+    baseValue: 10
   - modiferType: 1
-    baseValue: 0
+    baseValue: 50
   - modiferType: 12
     baseValue: 0
   - modiferType: 13

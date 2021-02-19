@@ -15,9 +15,9 @@ MonoBehaviour:
   statName: Default Enemy Base Stats
   stats:
   - modiferType: 0
-    baseValue: 150
+    baseValue: 225
   - modiferType: 1
-    baseValue: 150
+    baseValue: 225
   - modiferType: 2
     baseValue: 20
   - modiferType: 3

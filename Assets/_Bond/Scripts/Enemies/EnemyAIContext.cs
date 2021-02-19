@@ -23,6 +23,8 @@ public class EnemyAIContext : MonoBehaviour
     public Rigidbody rb;
     public NavMeshAgent agent;
     public EnemyAnimator animator;
+
+    public Canvas enemyUI;
     public Slider healthSlider;
     public ParticleSystem hitVFX;
     
@@ -40,8 +42,11 @@ public class EnemyAIContext : MonoBehaviour
     // public float wanderIdleDuration;
     // public float wanderIdleTimer;
     // public Vector3 wanderDestination;
+    public float delayBetweenAttacks;
     public Vector3 startingLocation;
     private float lastCheckedHealth;
+    public float lastDamageTaken;
+    public GameObject goldPrefab;
     #endregion
 
     private void Awake()
@@ -66,9 +71,15 @@ public class EnemyAIContext : MonoBehaviour
         if(statManager.stats[ModiferType.CURR_HEALTH].modifiedValue < lastCheckedHealth)
         {
             tookDamage = true;
+            lastDamageTaken = lastCheckedHealth - statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
             healthUIUpdate();
             lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
+
+            hitVFX.Play();
         }
+
+        enemyUI.transform.rotation = Camera.main.transform.rotation; //makes ui always face camera
+
     }
 
     public void doMovement(float moveSpeed)
@@ -95,5 +106,11 @@ public class EnemyAIContext : MonoBehaviour
     void healthUIUpdate()
     {
         healthSlider.value = (statManager.stats[ModiferType.CURR_HEALTH].modifiedValue / statManager.stats[ModiferType.MAX_HEALTH].modifiedValue) * 100;
+    }
+
+    public void dropGold()
+    {
+        Vector3 spawnPos = new Vector3(enemyTransform.position.x, 0.2f , enemyTransform.position.z);
+        Instantiate(goldPrefab, spawnPos, Quaternion.identity);
     }
 }

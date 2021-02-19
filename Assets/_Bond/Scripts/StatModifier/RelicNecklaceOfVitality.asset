@@ -19,4 +19,4 @@ MonoBehaviour:
   - modifierIdentifier: Necklace of Vitality
     modiferType: 0
     Additive: 50
-    Multiplicitive: 0
+    Multiplicitive: 1

@@ -2,12 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Relic", menuName = "ScriptableObjects/Relic")]
-public class Relic : ScriptableObject
+public class Relic : MonoBehaviour
 {
-    public string relicName;
-    public string relicInfo;
-    //sprite
-    [SerializeField]
-    public List<Modifier> modifiers = new List<Modifier>();
+    public RelicStats relicStats;
+
+    public void applyModifiers(StatManager _statManager)
+    {
+        Debug.Log("Applying modifiers");
+        _statManager.AddRelic(relicStats);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.transform.tag == "Player")
+        {
+            other.GetComponent<PlayerController>().nearInteractable = true;
+            other.GetComponent<PlayerController>().interactableObject = gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.transform.tag == "Player")
+        {
+            other.GetComponent<PlayerController>().nearInteractable = false;
+            other.GetComponent<PlayerController>().interactableObject = null;
+        }
+    }
 }

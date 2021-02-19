@@ -62,10 +62,16 @@ public class CreatureSpawner : MonoBehaviour
             Creature.name = "Default Fragaria";
         }
         
+
+        Creature.GetComponent<CreatureAIContext>().icon = creatureTypes[_randomCreatureNumber].creatureIcon;
+        Creature.GetComponent<CreatureAIContext>().ability1Icon = _ActiveCreatureData.abilities[0].abilityIcon;
+        Creature.GetComponent<CreatureAIContext>().ability2Icon =  _ActiveCreatureData.abilities[1].abilityIcon;
         
         //build BT
         Creature.GetComponent<CreatureAIContext>().GetActiveCreatureData();
         Creature.GetComponent<CreatureAI>().BuildBT();
+
+
         
 
     }

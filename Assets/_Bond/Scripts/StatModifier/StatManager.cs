@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 [System.Serializable]
 public class StatManager : MonoBehaviour
@@ -16,7 +17,6 @@ public class StatManager : MonoBehaviour
 
     public void setStat(ModiferType _modiferType, float value)
     {
-        //return stats[_modiferType].modifiedValue;
         if(stats.ContainsKey(_modiferType))
         {
             stats[_modiferType].modifiedValue = value;
@@ -36,11 +36,19 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public void AddRelic(RelicStats relicStats)
+    {
+        foreach(Modifier mod in relicStats.modifiers) 
+        {
+            AddModifier(mod);
+        }
+    }
 
     private void AddModifier(Modifier _modifier)
     {
         if(stats.ContainsKey(_modifier.modiferType))
         {
+            Debug.Log("adding modifier " + _modifier.modiferType + " value " + _modifier.Additive);
             stats[_modifier.modiferType].AddModifier(_modifier);
         }
     }
@@ -53,13 +61,24 @@ public class StatManager : MonoBehaviour
         }
     }
     
-    public void AddBuff(Buff _buff){
-        
+    public void AddBuff(Buff _buff)
+    {
+        //Check if buff already added
+        foreach(KeyValuePair<Buff, float> buff in buffs)
+        {
+            if(_buff.buffName == buff.Key.buffName)
+            {
+                return;
+            }
+        }
+
+        //Add buffs
         foreach(Modifier mod in _buff.modifiers)
         {
             if(stats.ContainsKey(mod.modiferType))
             {
                 stats[mod.modiferType].AddModifier(mod);
+                Debug.Log("Added buff");
             }
         }
         buffs.Add(_buff, _buff.buffDuration);
@@ -91,12 +110,14 @@ public class StatManager : MonoBehaviour
 
     private void ProcessBuffs()
     {
-        foreach(KeyValuePair<Buff, float> buff in buffs){ 
-            buffs[buff.Key] = buff.Value - Time.deltaTime;
-            if(buffs[buff.Key] <= 0)
+        for(int i = 0; i < buffs.Count; i++){ 
+            var key = buffs.ElementAt(i).Key;
+            var value = buffs.ElementAt(i).Value;
+            buffs[key] = value - Time.deltaTime;
+            if(buffs[key] <= 0)
             {
-                RemoveBuff(buff.Key);
-                buffs.Remove(buff.Key);
+                RemoveBuff(key);
+                buffs.Remove(key);
             }
         }
     }

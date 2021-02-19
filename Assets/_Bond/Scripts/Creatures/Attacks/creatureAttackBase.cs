@@ -10,6 +10,12 @@ public class creatureAttackBase : ScriptableObject, HasCooldown
 
     public int Id => id;
     public float CooldownDuration => cooldownDuration;
+
+    public Sprite abilityIcon;
+
+    public BTSubtree abilityBehavior;
+
+    public Buff abilityBuff;
     
 }
 

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimator animator => GetComponent<PlayerAnimator>();
     //public PlayerStats stats => GetComponent<PlayerStats>();
     public StatManager stats => GetComponent<StatManager>();
+    public List<RelicStats> Relics = new List<RelicStats>();
 
 
     //*******Dash Variables*******
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
+    public int goldCount;
     private float crouchModifier = 1;
     public bool nearInteractable = false;
     public bool hasSwapped;
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem heavyChargeVfx;
     public ParticleSystem heavyHitVfx;
     public ParticleSystem slashVfx;
+    public Vector3 destination;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -125,11 +128,8 @@ public class PlayerController : MonoBehaviour
         dashStart = Time.time;
         animator.ResetAllAttackAnims();
         inputs.usingMouse = false;
-        
-       
     }
 
-   
 
     public void doMovement(float movementModifier)
     {
@@ -201,13 +201,14 @@ public class PlayerController : MonoBehaviour
         }
 
         if(inputs.moveDirection != Vector3.zero) facingDirection = inputs.moveDirection;
+        //Debug.Log(facingDirection);
         
     }
 
     
     private void OnMousePos(InputValue value)
     {
-        Debug.Log(value.Get<Vector2>());
+        //Debug.Log(value.Get<Vector2>());
         inputs.usingMouse = true;
         inputs.mousePos = value.Get<Vector2>();
     }
@@ -216,14 +217,17 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-        //If near something interactable, this overides the dash
         if(nearInteractable)
         {
             inputs.interact = true;
             if(interactableObject != null)
             {
-                //Debug.Log("picked up item");
-                //DO PICKUP LOGIC, ADDING ITEM TO CORRECT LOCATION ETC;
+                if(interactableObject.transform.tag == "Relic")
+                {
+                    Relics.Add(interactableObject.GetComponent<Relic>().relicStats);
+                    interactableObject.GetComponent<Relic>().applyModifiers(stats);
+                    //update Health ui
+                }
                 Destroy(interactableObject);
                 nearInteractable = false;
             }
@@ -274,6 +278,10 @@ public class PlayerController : MonoBehaviour
                 nearInteractable = false;
             }
 
+            Debug.Log("BEFRIENDED");
+            wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+
         }
 
     }
@@ -298,13 +306,16 @@ public class PlayerController : MonoBehaviour
             {
                 hasSwapped = false;
             }
+            
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
         }
+        
 
     }
 
     public void PutOnCD()
     {
-        Debug.Log(hasSwapped);
+        // Debug.Log(hasSwapped);
         if (hasSwapped)
         {
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;
@@ -315,6 +326,7 @@ public class PlayerController : MonoBehaviour
         {
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
             cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+
         }
     }
 
@@ -326,14 +338,24 @@ public class PlayerController : MonoBehaviour
         inputs.basicAttack = true;
         if(inputs.usingMouse)
         {
-            // RaycastHit hit;
-            // Ray ray = Camera.main.ScreenPointToRay(inputs.mousePos);
-            // if(Physics.Raycast(ray, out hit))
-            // {
-            //     gameObject.transform.LookAt(hit.point);
-            // } 
-            // //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
-            // //stinky
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(inputs.mousePos);
+            int layerMask = 1 << 10;
+
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+            {
+                Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                //gameObject.transform.LookAt(hit.point);
+                destination = hit.point;
+                Vector3 direction = hit.point - transform.position;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
+                transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
+                //Quaternion lookRotation = Quaternion.LookRotation(direction);
+                //transform.forward = new Vector3(lookRotation.x, 0, lookRotation.z);
+                
+            } 
+            //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+            //stinky
         }
     }
 

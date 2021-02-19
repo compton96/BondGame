@@ -10,10 +10,15 @@ public class PersistentData : MonoBehaviour
     public static PersistentData Instance { get { return _instance; } }
 
     //References to things that need to be easily accessible
-    [Header("Reference")]
+    [Header("PlayerReference")]
     public GameObject PlayerPrefab;
     public GameObject Player { get; private set; }
     private GameObject player;
+
+    [Header("UIReference")]
+    public GameObject UIPrefab;
+    public GameObject UI { get; private set; }
+    private GameObject ui;
 
     public GameObject AudioControllerPrefab;
     public GameObject AudioController {get; private set;}
@@ -57,6 +62,27 @@ public class PersistentData : MonoBehaviour
             
         }
         Camera.main.GetComponent<CamFollow>().toFollow = Player.transform;
+
+
+
+        if(UI == null)
+        {
+            try
+            {
+                UI = GameObject.FindGameObjectWithTag("UI");
+                if(UI == null)
+                {
+                    UI = Instantiate(UIPrefab, GetSpawnpoint(), Quaternion.identity);
+                }
+            }
+            catch
+            {
+                UI = Instantiate(UIPrefab, GetSpawnpoint(), Quaternion.identity);
+            }
+            
+        }
+
+
 
         if (AudioController == null)
         {
@@ -107,6 +133,7 @@ public class PersistentData : MonoBehaviour
         MakeChild(Player);
         MakeChild(playerController.currCreature);
         MakeChild(playerController.swapCreature);
+        MakeChild(UI);
         //Loading Scene, can make transition stuff here
          //for example, some screen fading stuff : 
             //transition OUT
@@ -125,6 +152,7 @@ public class PersistentData : MonoBehaviour
         UnmakeChild(Player);
         UnmakeChild(playerController.currCreature);
         UnmakeChild(playerController.swapCreature);
+        UnmakeChild(UI);
 
         //set players position in new scene
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
