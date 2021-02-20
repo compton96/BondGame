@@ -91,7 +91,7 @@ namespace PlayerState
                 }
                 
                 animator.SetRun(false);
-               
+                
                 if(!animator.isFollowThrough)
                 {
                     animator.ResetAllAttackAnims();
@@ -107,11 +107,11 @@ namespace PlayerState
         public override void OnStateFixedUpdate()
         {
             
-            player.doMovement(speedMod);
-            if(speedMod >= 0.05f)
-            {
-                speedMod /= 1.4f;
-            }            
+            // player.doMovement(speedMod);
+            // if(speedMod >= 0.05f)
+            // {
+            //     speedMod /= 1.4f;
+            // }            
         
         }
 
@@ -122,6 +122,7 @@ namespace PlayerState
             player.inputs.basicAttack = false;
 
             player.isAttacking = false;
+            animator.ResetAllAttackAnims();
             
         }
     }
