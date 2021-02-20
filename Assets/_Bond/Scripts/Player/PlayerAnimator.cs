@@ -22,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
     public bool isFollowThrough { get; private set; }
 
     /*
-    *   Events
+    *   Animation Events
     *   Triggered in PlayerAnimationEvent.CS
     */
 
@@ -38,6 +38,29 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     public void EventFollowThroughDone()
+    {
+        isAttack = false;
+        isFollowThrough = false;
+    }
+
+    /*
+    *   State Machine Behavior Triggers
+    *   Triggered by State Machine Behaviors
+    */
+
+    public void SMBAttackDone()
+    {
+        //isAttack = false;
+        //isFollowThrough = false;
+    }
+
+    public void SMBDamagedExit()
+    {
+        isDamaged = false;
+        animator.ResetTrigger("isHit");
+    }
+
+    public void SMBIdleEnter()
     {
         isAttack = false;
         isFollowThrough = false;

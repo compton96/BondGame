@@ -122,6 +122,9 @@ namespace PlayerState
             player.inputs.basicAttack = false;
 
             player.isAttacking = false;
+
+            // DOES THIS WORK?
+            // This state exits to other attack animtions. Not sure if it breaks it.
             animator.ResetAllAttackAnims();
             
         }
