@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
         public GameObject slash1;
         public GameObject slash2;
         public GameObject slash3;
+        public GameObject slash4;
         public GameObject heavy;
 
     }
