@@ -23,6 +23,7 @@ public class EnemyAIContext : MonoBehaviour
     public Rigidbody rb;
     public NavMeshAgent agent;
     public EnemyAnimator animator;
+    public EncounterManager EncounterManager; //to tell it when to spawn the next enemy
 
     public Canvas enemyUI;
     public Slider healthSlider;
