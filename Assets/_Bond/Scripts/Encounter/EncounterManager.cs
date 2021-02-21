@@ -5,22 +5,34 @@ using UnityEngine;
 public class EncounterManager : MonoBehaviour
 {
     public List<wave> waves = new List<wave>();
-    public int currEnemyCount;
+    public int currEnemyCount = 0;
     
     private int currWave = 0;
+
+    private void Awake() 
+    {
+        SpawnEncounter();
+    }
     
     public void SpawnEncounter()
     {
         foreach(GameObject spawner in waves[currWave].spawners)
         {
             spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
+            currEnemyCount++;
         }
         currWave++;
+        
     }
 
     public void enemyKilled()
     {
         currEnemyCount--;
+        if(currWave >= waves.Count)
+        {
+            //clear encounter
+            return;
+        }
         if(currEnemyCount <= waves[currWave].waitUntilEnemiesLeft)
         {
             spawnNextEnemy();
@@ -40,6 +52,7 @@ public class EncounterManager : MonoBehaviour
             {
                 currWave++;
                 spawnNextEnemy();
+                currEnemyCount++;
             }
             else 
             {
