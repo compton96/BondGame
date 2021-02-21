@@ -16,9 +16,11 @@ public class PlayerAnimator : MonoBehaviour
     *   Constants
     *   Can be read by other scripts
     *   But can only be set in here
+    *   Should be formatted "isX" like a question
     */
     public bool isAttack { get; private set; }
     public bool isDamaged { get; private set; }
+    public bool isDash { get; private set; }
     public bool isFollowThrough { get; private set; }
 
     /*
@@ -29,18 +31,6 @@ public class PlayerAnimator : MonoBehaviour
     public void EventAttackDone()
     {
         isAttack = false;
-    }
-
-    public void EventDamagedDone()
-    {
-        isDamaged = false;
-        animator.ResetTrigger("isHit");
-    }
-
-    public void EventFollowThroughDone()
-    {
-        isAttack = false;
-        isFollowThrough = false;
     }
 
     /*
@@ -58,6 +48,12 @@ public class PlayerAnimator : MonoBehaviour
     {
         isDamaged = false;
         animator.ResetTrigger("isHit");
+    }
+
+    public void SMBDashExit()
+    {
+        isDash = false;
+        animator.ResetTrigger("Dash");
     }
 
     public void SMBIdleEnter()
@@ -103,9 +99,11 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger("isHit");
     }
 
-    public void Dash()
+    public void Dash( float constant )
     {
+        isDash = true;
         animator.SetTrigger("Dash");
+        animator.SetFloat("DashConstant", 1/constant);
 
         this.ResetAllAttackAnims();
     }

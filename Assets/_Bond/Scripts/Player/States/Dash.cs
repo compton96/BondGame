@@ -23,8 +23,9 @@ namespace PlayerState
         public override void OnStateEnter()
         {
             player.inputs.dash = false;
-            animator.Dash();
             player.isDashing = true;
+
+            animator.Dash( stats.getStat(ModiferType.DASH_RANGE) );
 
             startTime = Time.time;
             

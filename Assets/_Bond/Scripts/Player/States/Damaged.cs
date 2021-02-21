@@ -20,6 +20,9 @@ namespace PlayerState
         {
             player.isHit = false;
             animator.SetDamaged();
+
+            // TODO:
+            // Does this work?
             animator.SetRun(false);
             
         }
