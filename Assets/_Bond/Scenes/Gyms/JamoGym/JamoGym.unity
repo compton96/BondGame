@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1995651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3008331728240645142, guid: b533a4d2d18ca984a85f56b2a9810e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1683839106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &180086760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5486,6 +5492,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1683839106}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1066834083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7819646080185911571, guid: b533a4d2d18ca984a85f56b2a9810e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1683839106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1147692666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5837,6 +5849,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
+        type: 3}
+      propertyPath: hitBoxes.slash0
+      value: 
+      objectReference: {fileID: 1066834083}
+    - target: {fileID: 1275344589917247344, guid: b533a4d2d18ca984a85f56b2a9810e8c,
+        type: 3}
+      propertyPath: hitBoxes.slash4
+      value: 
+      objectReference: {fileID: 1995651}
     - target: {fileID: 3008331729029387142, guid: b533a4d2d18ca984a85f56b2a9810e8c,
         type: 3}
       propertyPath: m_LocalPosition.x
