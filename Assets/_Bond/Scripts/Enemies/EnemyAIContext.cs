@@ -12,10 +12,6 @@ public class EnemyAIContext : MonoBehaviour
 
     //[Header("Main Stats")]
     public StatManager statManager => GetComponent<StatManager>();
-    // public float maxHealth;
-    // public float currentHealth;
-    // public int damage;
-    // public float moveSpeed;
 
     [Header("Objects")]
     public GameObject player;
@@ -36,12 +32,6 @@ public class EnemyAIContext : MonoBehaviour
     public bool tookDamage = false;
 
     [Header("Misc.Numbers")]
-    // public int lastTriggeredAbility;
-    // public float enemyDetectRange;
-    // public float wanderRadius; //how far from starting location the creature can wander
-    // public float wanderIdleDuration;
-    // public float wanderIdleTimer;
-    // public Vector3 wanderDestination;
     public float delayBetweenAttacks;
     public Vector3 startingLocation;
     private float lastCheckedHealth;
@@ -56,8 +46,6 @@ public class EnemyAIContext : MonoBehaviour
         animator = GetComponent<EnemyAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        // player = GameObject.FindGameObjectWithTag("Player");
-        // lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
     }
 
     private void Start() {

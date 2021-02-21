@@ -22,7 +22,7 @@ public class CActionFindTargetEnemy : BTLeaf
     }
 
     public override NodeState Evaluate() {
-        Debug.Log("FINDING TARGET ENEMIES");
+        // Debug.Log("FINDING TARGET ENEMIES");
         int layermask = 1 << 8; //only layer 8 will be targeted
         Collider[] hitColliders = Physics.OverlapSphere(context.creatureTransform.position, context.enemyDetectRange, layermask);
         GameObject closestEnemy = null;

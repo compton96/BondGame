@@ -12044,10 +12044,12 @@ MonoBehaviour:
   camera: {fileID: 0}
   isoMovement: 1
   fruit: {fileID: 0}
+  Relics: []
   facingDirection: {x: 0, y: 0, z: 0}
   isDashing: 0
   lastMoveVec: {x: 0, y: 0, z: 0}
   movementVector: {x: 0, y: 0, z: 0}
+  goldCount: 0
   nearInteractable: 0
   hasSwapped: 0
   backFollowPoint: {fileID: 3008331728175113253}
@@ -12062,6 +12064,7 @@ MonoBehaviour:
   heavyChargeVfx: {fileID: 3268859984920099915}
   heavyHitVfx: {fileID: 2879053346376034959}
   slashVfx: {fileID: 766551116}
+  destination: {x: 0, y: 0, z: 0}
   isoSpeedADJ: 1.5
   hitBoxes:
     slash0: {fileID: 3008331728240645142}
