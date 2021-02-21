@@ -26,10 +26,10 @@ public class CActionBarbaricRangedAttack : BTLeaf
     public override NodeState Evaluate() 
     {
         Debug.Log("ATTACK RANGED");
-        context.projectileSpawner.GetComponent<ProjectileSpawner>().SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
+        context.abilitySpawner.GetComponent<AbilitySpawner>().SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
         if(Random.Range(0f,1f) < 0.5) 
         {
-            context.projectileSpawner.GetComponent<ProjectileSpawner>().SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
+            context.abilitySpawner.GetComponent<AbilitySpawner>().SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
         }
         context.targetEnemy = null;
         context.isAbilityTriggered = false;

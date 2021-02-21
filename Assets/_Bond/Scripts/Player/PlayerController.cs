@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
                 nearInteractable = false;
             }
 
-            Debug.Log("BEFRIENDED");
+            // Debug.Log("BEFRIENDED");
             wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
             PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
 
@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
     //Slash (X)
     private void OnAttack1()
     {
-        Debug.Log("attack");
+        // Debug.Log("attack");
         inputs.basicAttack = true;
         if(inputs.usingMouse)
         {

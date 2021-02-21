@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5397868219692516351}
   - component: {fileID: 2803146919207616236}
   m_Layer: 0
-  m_Name: ProjectileSpawner
+  m_Name: AbilitySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4797,49 +4797,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &3678701952149441200
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3481670906185976254}
-  - component: {fileID: 8756345937757900793}
-  m_Layer: 0
-  m_Name: SunBeamSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3481670906185976254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3678701952149441200}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7192277, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8167450192529632875}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8756345937757900793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3678701952149441200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8696f42692059d643af94118c334b11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7259387719604845533
 Animator:
   serializedVersion: 3
@@ -5324,7 +5281,6 @@ Transform:
   - {fileID: 7652944174037425993}
   - {fileID: 5397868219692516351}
   - {fileID: 6601064949311904404}
-  - {fileID: 3481670906185976254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5507,12 +5463,11 @@ MonoBehaviour:
   creatureTransform: {fileID: 8167450192529632875}
   rb: {fileID: 8167450192529632878}
   creatureStats: {fileID: 0}
-  creatureBaseStats: {fileID: 0}
+  creatureBaseStats: {fileID: 11400000, guid: 41fdbc17e7748244d888642ae12b9e4c, type: 2}
   agent: {fileID: 0}
   backFollowPoint: {fileID: 0}
   followPoint: {fileID: 0}
-  projectileSpawner: {fileID: 372912646155600726}
-  sunBeamSpawner: {fileID: 3678701952149441200}
+  abilitySpawner: {fileID: 372912646155600726}
   animator: {fileID: 0}
   interactRadius: {fileID: 7652944173022466314}
   isWild: 1
