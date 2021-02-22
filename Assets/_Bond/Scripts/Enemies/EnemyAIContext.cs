@@ -61,8 +61,8 @@ public class EnemyAIContext : MonoBehaviour
     }
 
     private void Start() {
-        //player = PersistentData.Instance.Player;
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = PersistentData.Instance.Player;
+        //player = GameObject.FindGameObjectWithTag("Player");
         lastCheckedHealth = statManager.stats[ModiferType.CURR_HEALTH].modifiedValue;
     }
 
