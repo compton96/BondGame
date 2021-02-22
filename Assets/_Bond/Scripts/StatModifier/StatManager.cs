@@ -78,7 +78,7 @@ public class StatManager : MonoBehaviour
             if(stats.ContainsKey(mod.modiferType))
             {
                 stats[mod.modiferType].AddModifier(mod);
-                Debug.Log("Added buff");
+                // Debug.Log("Added buff");
             }
         }
         buffs.Add(_buff, _buff.buffDuration);

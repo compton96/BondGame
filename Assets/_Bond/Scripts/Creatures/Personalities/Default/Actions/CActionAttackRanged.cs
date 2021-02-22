@@ -27,7 +27,7 @@ public class CActionAttackRanged : BTLeaf
     public override NodeState Evaluate() 
     {
         //Debug.Log("ATTACK RANGED");
-        context.projectileSpawner.GetComponent<ProjectileSpawner>()
+        context.abilitySpawner.GetComponent<AbilitySpawner>()
             .SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
         
         context.targetEnemy = null;
