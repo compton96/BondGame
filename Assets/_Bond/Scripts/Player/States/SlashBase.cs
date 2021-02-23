@@ -81,7 +81,7 @@ namespace PlayerState
                     }
                 }
                 
-                animator.SetRun(false);
+                animator.Run(false);
             }
         }
 

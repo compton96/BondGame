@@ -19,7 +19,7 @@ namespace PlayerState
         public override void OnStateEnter()
         {
             player.isHit = false;
-            animator.SetDamaged();
+            animator.Damaged();
         }
 
         public override void OnStateUpdate()

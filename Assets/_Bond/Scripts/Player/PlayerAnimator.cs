@@ -93,10 +93,10 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger("Attack" + num.ToString() );
     }
 
-    public void SetDamaged()
+    public void Damaged()
     {
         isDamaged = true;
-        SetRun( false );
+        Run( false );
         animator.SetTrigger("isHit");
     }
 
@@ -109,7 +109,7 @@ public class PlayerAnimator : MonoBehaviour
         this.ResetAllAttackAnims();
     }
 
-    public void SetHeavyCharge(bool state)
+    public void HeavyCharge(bool state)
     {
         if( state )
         {
@@ -121,7 +121,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void SetRun(bool state)
+    public void Run(bool state)
     {
         animator.SetBool("Run", state);
     }
@@ -138,7 +138,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void OnIdle()
+    public void Idle()
     {
         this.ResetAllAttackAnims();
 
