@@ -9,6 +9,7 @@ public class UIUpdates : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI maxHealthUI;
     public TextMeshProUGUI currHealthUI;
+    public TextMeshProUGUI interactPrompt;
 
     public TextMeshProUGUI gold;
 
@@ -68,5 +69,17 @@ public class UIUpdates : MonoBehaviour
 
         }
     }
+
+    public void showInteractPrompt()
+    {
+        interactPrompt.enabled = true;
+    }
+
+    public void hideIntereactPrompt()
+    {
+        interactPrompt.enabled = false;
+    }
+
+
 
 }

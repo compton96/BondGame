@@ -2,25 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatureInteractable : MonoBehaviour
+public class CreatureInteractable : InteractableBase
 {
-
-    public Collider interactRadius;
     public GameObject Creature;
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.transform.tag == "Player") {
-            var pc = other.GetComponent<PlayerController>();
-            pc.nearInteractable = true;
-            pc.wildCreature = Creature;
-        }
-    }
+    protected override void DoInteract()
+    {
+        var pc = PersistentData.Instance.Player.GetComponent<PlayerController>();
+        pc.wildCreature = Creature;
+        pc.befriendCreature();
 
-    private void OnTriggerExit(Collider other) {
-        if(other.transform.tag == "Player") {
-            var pc = other.GetComponent<PlayerController>();
-            pc.nearInteractable = false;
-            pc.wildCreature = null;
-        }
     }
 }

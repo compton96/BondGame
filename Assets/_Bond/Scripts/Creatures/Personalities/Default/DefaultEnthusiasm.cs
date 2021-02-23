@@ -11,7 +11,7 @@ public class DefaultEnthusiasm : BTSubtree
 
             #region Enthusiasm too low
                 List<BTNode> lowEnthusiasmSequenceList = new List<BTNode>();
-                //check if Enthusiasm is too low
+
                 CCheckEnthusiasmLow checkEnthusiasmLow = new CCheckEnthusiasmLow("Check if enthusiasm is low", context);
 
                 #region Sad -> interacted -> Boost Enthusiasm
@@ -53,11 +53,13 @@ public class DefaultEnthusiasm : BTSubtree
             
             #region Enthusiasm not too low combat check
                 List<BTNode> combatEnthusiasmIncreaseList = new List<BTNode>();
-                //Check if in combat
-                //CAction Increase Enthusiasm
-                //BTInverter increaseEnthusiasmInverter = new BTInverter("Not in Combat",  CAction Increase Enthusiasm)
-                // combatEnthusiasmIncreaseList.Add(CCheckCombat);
-                // combatEnthusiasmIncreaseList.Add(increaseEnthusiasmInverter);
+     
+                CActionPassiveEnthusiasmGain passiveEnthusiasmGain = new CActionPassiveEnthusiasmGain("Passive enthusiasm gain", context);
+                BTInverter increaseEnthusiasmInverter = new BTInverter("Not in Combat", passiveEnthusiasmGain);
+                BTInverter inCombatInverter = new BTInverter("Not in Combat",  checkInCombat);
+                combatEnthusiasmIncreaseList.Add(inCombatInverter);
+                combatEnthusiasmIncreaseList.Add(increaseEnthusiasmInverter);
+
                 BTSequence combatEnthusiasmIncrease = new BTSequence("Enthusiasm increase over time", combatEnthusiasmIncreaseList);
 
             #endregion

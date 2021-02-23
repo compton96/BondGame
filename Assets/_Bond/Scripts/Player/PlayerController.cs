@@ -236,6 +236,16 @@ public class PlayerController : MonoBehaviour
                 befriendCreature();
             }
         }
+        //shop keeper (or any npc for dialog)
+        //relics
+        //creatures
+        //chests
+        //portal or something
+        //lore items (walk up to thing and it gives you info etc)
+        //fruit?
+
+        //do spherecast
+        //call doAction(this) on the nearest interactable
                 
     }
 
@@ -256,7 +266,7 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    private void befriendCreature()
+    public void befriendCreature()
     {
         bool requirementMet = true;
         if(requirementMet)
