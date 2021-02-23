@@ -3,7 +3,12 @@ guid: 07d9b4338cb973a4d9432e5157434c0c
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CampfireTxt
+    second: {fileID: 2100000, guid: ce9e8a525ef24c644ac919364828dea3, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
