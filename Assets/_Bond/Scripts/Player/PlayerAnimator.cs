@@ -21,7 +21,7 @@ public class PlayerAnimator : MonoBehaviour
     public bool isAttack { get; private set; }
     public bool isDamaged { get; private set; }
     public bool isDash { get; private set; }
-    public bool isFollowThrough { get; private set; }
+    public bool isAttackFollowThrough { get; private set; }
 
     /*
     *   Animation Events
@@ -59,7 +59,7 @@ public class PlayerAnimator : MonoBehaviour
     public void SMBIdleEnter()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
 
     /*
@@ -70,13 +70,13 @@ public class PlayerAnimator : MonoBehaviour
     public void ResetAttackAnim()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
 
     public void ResetAllAttackAnims()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
 
         animator.ResetTrigger("Attack0");
         animator.ResetTrigger("Attack1");
@@ -88,7 +88,7 @@ public class PlayerAnimator : MonoBehaviour
     public void Attack( int num )
     {
         isAttack = true;
-        isFollowThrough = true;
+        isAttackFollowThrough = true;
 
         animator.SetTrigger("Attack" + num.ToString() );
     }

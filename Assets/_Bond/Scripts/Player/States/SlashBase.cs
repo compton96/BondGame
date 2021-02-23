@@ -61,8 +61,6 @@ namespace PlayerState
             hitBox.SetActive(false);
             hitBox.SetActive(true);
 
-            player.isAttacking = true;
-
             speedMod = 1f;
 
         }
@@ -71,13 +69,6 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            if(player.inputs.dash)
-            {
-                animator.ResetAllAttackAnims();
-                
-                SetState( fsm.Dash );
-                return;
-            }
             
             if(!animator.isAttack)
             {
@@ -91,14 +82,6 @@ namespace PlayerState
                 }
                 
                 animator.SetRun(false);
-                
-                if(!animator.isFollowThrough)
-                {
-                    animator.ResetAllAttackAnims();
-
-                    SetState(fsm.IdleMove);
-                    return;
-                }
             }
         }
 
@@ -120,13 +103,6 @@ namespace PlayerState
         public override void OnStateExit()
         {
             player.inputs.basicAttack = false;
-
-            player.isAttacking = false;
-
-            // DOES THIS WORK?
-            // This state exits to other attack animtions. Not sure if it breaks it.
-            animator.ResetAllAttackAnims();
-            
         }
     }
 }

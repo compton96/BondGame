@@ -16,6 +16,8 @@ namespace PlayerState
 
         public override void OnStateEnter()
         {
+            player.isAttacking = true;
+
             SetDefaultState( fsm.Slash0 );
         }
 
@@ -24,6 +26,12 @@ namespace PlayerState
             if(player.inputs.dash)
             {
                 SetState( fsm.Dash );
+                return;
+            }
+
+            if(!animator.isAttackFollowThrough)
+            {
+                SetState(fsm.IdleMove);
                 return;
             }
         }
@@ -36,6 +44,8 @@ namespace PlayerState
         public override void OnStateExit()
         {
             animator.ResetAllAttackAnims();
+            
+            player.isAttacking = false;
         }
     }
 }
