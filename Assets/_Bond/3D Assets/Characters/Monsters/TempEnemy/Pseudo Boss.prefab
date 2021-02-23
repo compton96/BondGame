@@ -305,7 +305,8 @@ MonoBehaviour:
   rb: {fileID: 878230852319099021}
   agent: {fileID: 1498083051}
   animator: {fileID: 1498083044}
-  enemyUI: {fileID: 0}
+  EncounterManager: {fileID: 0}
+  enemyUI: {fileID: 878230853263537682}
   healthSlider: {fileID: 878230852251512460}
   hitVFX: {fileID: 1095849670864674090}
   isInPlayerRadius: 0
