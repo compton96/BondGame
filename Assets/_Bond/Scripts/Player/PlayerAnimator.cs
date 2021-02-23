@@ -1,8 +1,10 @@
-﻿// Herman
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/*
+*   Written by Herman
+*/
 
 public class PlayerAnimator : MonoBehaviour
 {
@@ -10,70 +12,116 @@ public class PlayerAnimator : MonoBehaviour
     private Animator animator => model.GetComponent<Animator>();
     private PlayerController playerController => GetComponent<PlayerController>();
 
+    /*
+    *   Constants
+    *   Can be read by other scripts
+    *   But can only be set in here
+    *   Should be formatted "isX" like a question
+    */
     public bool isAttack { get; private set; }
-    public bool isDamaged { get; private set; }
-    public bool isFollowThrough { get; private set; }
+    public bool isHurt { get; private set; }
+    public bool isDash { get; private set; }
+    public bool isAttackFollowThrough { get; private set; }
 
-    // Triggered by event
-    public void AttackDone()
+    /*
+    *   Animation Events
+    *   Triggered in PlayerAnimationEvent.CS
+    */
+
+    public void EventAttackDone()
     {
         isAttack = false;
     }
 
-    // Triggered by event
-    public void DamagedDone()
+    /*
+    *   State Machine Behavior Triggers
+    *   Triggered by State Machine Behaviors
+    */
+
+    public void SMBAttackDone()
     {
-        isDamaged = false;
+        //isAttack = false;
+        //isFollowThrough = false;
+    }
+
+    public void SMBHurtExit()
+    {
+        isHurt = false;
         animator.ResetTrigger("isHit");
     }
 
-    // Triggered by event
-    public void FollowThroughDone()
+    public void SMBDashExit()
+    {
+        isDash = false;
+        animator.ResetTrigger("Dash");
+    }
+
+    public void SMBIdleEnter()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
+
+    /*
+    *   Reset Functions
+    *   Modifies the constants
+    */
 
     public void ResetAttackAnim()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
 
     public void ResetAllAttackAnims()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
 
         animator.ResetTrigger("Attack0");
         animator.ResetTrigger("Attack1");
         animator.ResetTrigger("Attack2");
+        animator.ResetTrigger("Attack3");
+        animator.ResetTrigger("Attack4");
     }
 
     public void Attack( int num )
     {
         isAttack = true;
-        isFollowThrough = true;
+        isAttackFollowThrough = true;
 
         animator.SetTrigger("Attack" + num.ToString() );
     }
 
-    public void SetDamaged()
+    public void Hurt()
     {
-        isDamaged = true;
+        isHurt = true;
+        Run( false );
         animator.SetTrigger("isHit");
     }
 
-    public void Dash()
+    public void Dash( float constant )
     {
+        isDash = true;
         animator.SetTrigger("Dash");
+        animator.SetFloat("DashConstant", 1/constant);
 
-        animator.ResetTrigger("Attack0");
-        animator.ResetTrigger("Attack1");
-        animator.ResetTrigger("Attack2");
+        this.ResetAllAttackAnims();
     }
 
-    public void SetRun(bool state)
+    public void HeavyCharge(bool state)
+    {
+        if( state )
+        {
+            playerController.heavyChargeVfx.Play();
+        }
+        else
+        {
+            playerController.heavyChargeVfx.Stop();
+        }
+    }
+
+    public void Run(bool state)
     {
         animator.SetBool("Run", state);
     }
@@ -90,21 +138,22 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void OnIdle()
+    public void Idle()
     {
-        this.ResetAttackAnim();
+        this.ResetAllAttackAnims();
 
-        animator.ResetTrigger("Attack0");
-        animator.ResetTrigger("Attack1");
-        animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Dash");
     }
+
+    // VISUAL FX
 
     public void PlaySlashVFX()
     {
         playerController.slashVfx.Play();
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
     }
+
+    // SOUND FX
 
     public void PlayWalkSFX()
     {
