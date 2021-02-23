@@ -19,7 +19,7 @@ public class PlayerAnimator : MonoBehaviour
     *   Should be formatted "isX" like a question
     */
     public bool isAttack { get; private set; }
-    public bool isDamaged { get; private set; }
+    public bool isHurt { get; private set; }
     public bool isDash { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
 
@@ -44,9 +44,9 @@ public class PlayerAnimator : MonoBehaviour
         //isFollowThrough = false;
     }
 
-    public void SMBDamagedExit()
+    public void SMBHurtExit()
     {
-        isDamaged = false;
+        isHurt = false;
         animator.ResetTrigger("isHit");
     }
 
@@ -93,9 +93,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger("Attack" + num.ToString() );
     }
 
-    public void Damaged()
+    public void Hurt()
     {
-        isDamaged = true;
+        isHurt = true;
         Run( false );
         animator.SetTrigger("isHit");
     }

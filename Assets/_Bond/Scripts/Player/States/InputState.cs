@@ -25,7 +25,7 @@ namespace PlayerState
             {
                 player.isHit = false;
 
-                SetState( fsm.Damaged );
+                SetState( fsm.Hurt );
                 return;
             }
             

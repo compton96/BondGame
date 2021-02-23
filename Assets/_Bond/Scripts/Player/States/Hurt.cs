@@ -8,18 +8,18 @@ using System;
 namespace PlayerState
 {
     [Serializable]
-    public class Damaged : State
+    public class Hurt : State
     {
         // Set fields here
-        public Damaged( PlayerStateMachine _fsm ) : base( _fsm )
+        public Hurt( PlayerStateMachine _fsm ) : base( _fsm )
         {
-            name = "Damaged";
+            name = "Hurt";
         }
 
         public override void OnStateEnter()
         {
             player.isHit = false;
-            animator.Damaged();
+            animator.Hurt();
         }
 
         public override void OnStateUpdate()
@@ -27,11 +27,11 @@ namespace PlayerState
             if(player.isHit)
             {
                 player.isHit = false;
-                SetState(fsm.Damaged);
+                SetState(fsm.Hurt);
                 return;
             }
             //wait till end of animation, return to idle
-            if( !animator.isDamaged )
+            if( !animator.isHurt )
             {
                 SetState(fsm.IdleMove);
                 return;
