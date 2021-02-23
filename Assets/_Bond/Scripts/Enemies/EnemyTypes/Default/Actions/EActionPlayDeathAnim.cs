@@ -26,6 +26,9 @@ public class EActionPlayDeathAnim : BTLeaf
         //Spawn gold
         enemyContext.dropGold();
 
+        //tell encounter that i died
+        enemyContext.EncounterManager.enemyKilled();
+
         //Destroy enemy
         enemyContext.DestroyEnemy();
         return NodeState.SUCCESS;

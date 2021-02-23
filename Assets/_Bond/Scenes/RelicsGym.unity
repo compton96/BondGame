@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4346,6 +4346,13 @@ MonoBehaviour:
   slider: {fileID: 1390053365}
   maxHealthUI: {fileID: 1251588441}
   currHealthUI: {fileID: 1102698370}
+  gold: {fileID: 0}
+  currCreatureIcon: {fileID: 0}
+  swapCreatureIcon: {fileID: 0}
+  noCreatureIcon: {fileID: 0}
+  abilityGroup: {fileID: 0}
+  ability1Icon: {fileID: 0}
+  ability2Icon: {fileID: 0}
 --- !u!1001 &955843965
 PrefabInstance:
   m_ObjectHideFlags: 0
