@@ -105,7 +105,7 @@ public class StatManager : MonoBehaviour
 
     public void TakeDamageCreature(float baseAmount, ModiferType damageType) 
     {
-        stats[ModiferType.CURR_ENTHUSIASM].modifiedValue -= (baseAmount * (1 - stats[damageType].modifiedValue)); // FORMULA FOR DAMAGE RESISTANCE;
+        stats[ModiferType.CURR_ENTHUSIASM].modifiedValue -= (baseAmount);
     }
 
 

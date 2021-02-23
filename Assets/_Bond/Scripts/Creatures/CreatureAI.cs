@@ -49,6 +49,14 @@ public class CreatureAI : MonoBehaviour
         #region In Combat
             BTSequence InCombat = null;
 
+            foreach( Personality p in personalities){
+                if(p.InCombatTree != null){
+                    InCombat = p.InCombatTree.BuildSequenceSubtree(context);
+                }  
+            }
+            if(InCombat == null){
+                InCombat = DefaultPersonality.InCombatTree.BuildSequenceSubtree(context);
+            }
 
         #endregion
 
@@ -66,7 +74,7 @@ public class CreatureAI : MonoBehaviour
 
         #region Enthusiasm Managing
         BTSelector enthusiasmManaging = null;
-        foreach( Personality p in personalities){
+            foreach( Personality p in personalities){
                 if(p.AbilityTree != null){
                     enthusiasmManaging = p.EnthusiasmTree.BuildSelectorSubtree(context);
                 }  
@@ -151,7 +159,9 @@ public class CreatureAI : MonoBehaviour
 
             #region creature isnt wild selector
                 List<BTNode> CreatureIsntWildSelectorList = new List<BTNode>();
+                CreatureIsntWildSelectorList.Add(enthusiasmManaging);
                 CreatureIsntWildSelectorList.Add(Ability);
+                CreatureIsntWildSelectorList.Add(InCombat);
                 CreatureIsntWildSelectorList.Add(FollowPlayer);
 
                 BTSelector CreatureIsntWildSelector = new BTSelector("Creature isnt Wild Selector", CreatureIsntWildSelectorList);

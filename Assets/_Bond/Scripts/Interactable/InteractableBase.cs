@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class InteractableBase : MonoBehaviour
 {
-    protected abstract void DoInteract();
-    
+    public bool showUI;
+    public bool removeOnInteract;
+    public abstract void DoInteract();
+
+
 }

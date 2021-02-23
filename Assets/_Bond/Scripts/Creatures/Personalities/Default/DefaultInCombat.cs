@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "DefaultInCombat", menuName = "ScriptableObjects/BTSubtrees/Default/InCombat")]
 public class DefaultInCombat : BTSubtree
 {
     public override BTSequence BuildSequenceSubtree(CreatureAIContext context)

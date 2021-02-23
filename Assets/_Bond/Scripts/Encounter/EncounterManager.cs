@@ -9,10 +9,12 @@ public class EncounterManager : MonoBehaviour
     
     private int currWave = 0;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         if(other.transform.tag == "Player")
         {
-            
+            SpawnEncounter();
+            GetComponent<Collider>().enabled = false;
         }
     }
     
@@ -37,7 +39,18 @@ public class EncounterManager : MonoBehaviour
         }
         if(currEnemyCount <= waves[currWave].waitUntilEnemiesLeft)
         {
-            spawnNextEnemy();
+            if(waves[currWave].spawnWholeWave)
+            {
+                foreach(GameObject spawner in waves[currWave].spawners)
+                {
+                    spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
+                    currEnemyCount++;
+                }
+                currWave++;
+            } else {
+                spawnNextEnemy();
+            }
+            
         }
     }
 
@@ -69,6 +82,7 @@ public class EncounterManager : MonoBehaviour
 [System.Serializable]
 public class wave 
 {
+    public bool spawnWholeWave;
     public int waitUntilEnemiesLeft = 0; //if 0 it will wait for last wave to be finished; otherwise it will spawn more enemies as you kill them;
     public int index = 0;
     public List<GameObject> spawners = new List<GameObject>();

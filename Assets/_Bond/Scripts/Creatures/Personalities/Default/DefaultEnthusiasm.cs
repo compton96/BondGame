@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "DefaultEnthusiasm", menuName = "ScriptableObjects/BTSubtrees/Default/Enthusiasm")]
 public class DefaultEnthusiasm : BTSubtree
 {
     public override BTSelector BuildSelectorSubtree(CreatureAIContext context) 

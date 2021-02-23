@@ -21,5 +21,7 @@ MonoBehaviour:
   statModifierAmount2: 0
   WildNoticed: {fileID: 11400000, guid: c3d6ed36ea596f84eb1285baa7be1111, type: 2}
   WildAlone: {fileID: 11400000, guid: 6b0bc2021c24e724a83cb49caf25cc51, type: 2}
+  EnthusiasmTree: {fileID: 11400000, guid: bfdd8cbb35e803a4483ee9fd2b3596d3, type: 2}
   AbilityTree: {fileID: 11400000, guid: a3024d5c41bc241499f911e26439f913, type: 2}
+  InCombatTree: {fileID: 11400000, guid: 8889ffad4b443304db0f37bd7137269b, type: 2}
   FollowPlayerTree: {fileID: 11400000, guid: b260c66f623b7c344afe7d99cf12aba6, type: 2}

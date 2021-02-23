@@ -23,7 +23,7 @@ public class FragariaMeleeAttack : BTSubtree
          #region Approach and attack sequence
             List<BTNode> MeleeApproachSelectorList = new List<BTNode>();
             //BTCheckDistanceToTarget checkIfDistanceToTarget = new BTCheckDistanceToTarget("Check if in range for attack", context);
-            CActionApproachForAttack approachForAttack = new CActionApproachForAttack("Approach for attack", context);
+            CActionApproachForBasicMelee approachForAttack = new CActionApproachForBasicMelee("Approach for attack", context);
             BTInverter invertApproachForAttack = new BTInverter("Invert Approach for Attack", approachForAttack);
             CActionAttackMelee attackMelee = new CActionAttackMelee("Melee Attack", context);
             //MeleeApproachSequenceList.Add(checkIfDistanceToTarget);
