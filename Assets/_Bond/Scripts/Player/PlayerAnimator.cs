@@ -16,10 +16,12 @@ public class PlayerAnimator : MonoBehaviour
     *   Constants
     *   Can be read by other scripts
     *   But can only be set in here
+    *   Should be formatted "isX" like a question
     */
     public bool isAttack { get; private set; }
-    public bool isDamaged { get; private set; }
-    public bool isFollowThrough { get; private set; }
+    public bool isHurt { get; private set; }
+    public bool isDash { get; private set; }
+    public bool isAttackFollowThrough { get; private set; }
 
     /*
     *   Animation Events
@@ -29,18 +31,6 @@ public class PlayerAnimator : MonoBehaviour
     public void EventAttackDone()
     {
         isAttack = false;
-    }
-
-    public void EventDamagedDone()
-    {
-        isDamaged = false;
-        animator.ResetTrigger("isHit");
-    }
-
-    public void EventFollowThroughDone()
-    {
-        isAttack = false;
-        isFollowThrough = false;
     }
 
     /*
@@ -54,16 +44,22 @@ public class PlayerAnimator : MonoBehaviour
         //isFollowThrough = false;
     }
 
-    public void SMBDamagedExit()
+    public void SMBHurtExit()
     {
-        isDamaged = false;
+        isHurt = false;
         animator.ResetTrigger("isHit");
+    }
+
+    public void SMBDashExit()
+    {
+        isDash = false;
+        animator.ResetTrigger("Dash");
     }
 
     public void SMBIdleEnter()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
 
     /*
@@ -74,13 +70,13 @@ public class PlayerAnimator : MonoBehaviour
     public void ResetAttackAnim()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
     }
 
     public void ResetAllAttackAnims()
     {
         isAttack = false;
-        isFollowThrough = false;
+        isAttackFollowThrough = false;
 
         animator.ResetTrigger("Attack0");
         animator.ResetTrigger("Attack1");
@@ -92,25 +88,40 @@ public class PlayerAnimator : MonoBehaviour
     public void Attack( int num )
     {
         isAttack = true;
-        isFollowThrough = true;
+        isAttackFollowThrough = true;
 
         animator.SetTrigger("Attack" + num.ToString() );
     }
 
-    public void SetDamaged()
+    public void Hurt()
     {
-        isDamaged = true;
+        isHurt = true;
+        Run( false );
         animator.SetTrigger("isHit");
     }
 
-    public void Dash()
+    public void Dash( float constant )
     {
+        isDash = true;
         animator.SetTrigger("Dash");
+        animator.SetFloat("DashConstant", 1/constant);
 
         this.ResetAllAttackAnims();
     }
 
-    public void SetRun(bool state)
+    public void HeavyCharge(bool state)
+    {
+        if( state )
+        {
+            playerController.heavyChargeVfx.Play();
+        }
+        else
+        {
+            playerController.heavyChargeVfx.Stop();
+        }
+    }
+
+    public void Run(bool state)
     {
         animator.SetBool("Run", state);
     }
@@ -127,7 +138,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void OnIdle()
+    public void Idle()
     {
         this.ResetAllAttackAnims();
 

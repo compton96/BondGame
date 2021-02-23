@@ -26,7 +26,10 @@ namespace PlayerState
         public override void OnStateEnter()
         {
             player.inputs.heavyAttack = false;
+
+            // HERMAN TODO: Put animator code here
             player.heavyHitVfx.Play();
+
             hitbox.SetActive(false);
             hitbox.SetActive(true);
             startTime = Time.time;

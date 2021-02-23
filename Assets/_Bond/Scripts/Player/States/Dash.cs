@@ -10,7 +10,6 @@ namespace PlayerState
     [Serializable]
     public class Dash : State
     {
-        private float startTime = 0;
         private Vector3 startRotation;
         private CharacterController controller;
 
@@ -23,10 +22,9 @@ namespace PlayerState
         public override void OnStateEnter()
         {
             player.inputs.dash = false;
-            animator.Dash();
             player.isDashing = true;
 
-            startTime = Time.time;
+            animator.Dash( stats.getStat(ModiferType.DASH_RANGE) );
             
             startRotation = player.facingDirection;
             player.setRotation(startRotation);
@@ -38,8 +36,7 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            // HERMAN TODO: Decide if end of Dash should be animation or not
-            if(Time.time > startTime + stats.getStat(ModiferType.DASH_RANGE))
+            if( !animator.isDash )
             {
                 SetState(fsm.IdleMove);
                 return;

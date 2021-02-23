@@ -45,9 +45,9 @@ MonoBehaviour:
   - modiferType: 14
     baseValue: 0
   - modiferType: 15
-    baseValue: 6
+    baseValue: 2
   - modiferType: 16
-    baseValue: 0.1
+    baseValue: 0.5
   - modiferType: 17
     baseValue: 1
   - modiferType: 18

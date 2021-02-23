@@ -22,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
             public PlayerState.IdleMove IdleMove;
             public PlayerState.Dash Dash;
 
-    public PlayerState.Damaged Damaged;
+    public PlayerState.Hurt Hurt;
 
     public PlayerState.Standby Standby;
 
@@ -49,7 +49,7 @@ public class PlayerStateMachine : MonoBehaviour
             IdleMove = new PlayerState.IdleMove( this );
             Dash = new PlayerState.Dash( this );
 
-        Damaged = new PlayerState.Damaged( this );
+        Hurt = new PlayerState.Hurt( this );
         Standby = new PlayerState.Standby( this );
 
         SetState(Slash0);//change to default state, idle
