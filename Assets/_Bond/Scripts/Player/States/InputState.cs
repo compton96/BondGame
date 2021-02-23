@@ -29,11 +29,11 @@ namespace PlayerState
                 return;
             }
             
-            if(player.inputs.dash)
+            /*if(player.inputs.dash)
             {
                 SetState( fsm.Dash );
                 return;
-            }
+            }*/
         }
 
         public override void OnStateFixedUpdate()

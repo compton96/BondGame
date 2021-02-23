@@ -30,6 +30,12 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
+            if(player.inputs.dash)
+            {
+                SetState( fsm.Dash );
+                return;
+            }
+            
             if(player.inputs.heavyAttack == false)
             {
                 SetState(fsm.HeavySlash);
