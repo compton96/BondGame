@@ -18,9 +18,13 @@ public class Personality : ScriptableObject
     public ModiferType statModType2; //optional secondary 
     public float statModifierAmount2;
 
+
+    
     public BTSubtree WildNoticed;
     public BTSubtree WildAlone;
+    public BTSubtree EnthusiasmTree;
     public BTSubtree AbilityTree;
+    public BTSubtree InCombatTree;
     public BTSubtree FollowPlayerTree;
 
 

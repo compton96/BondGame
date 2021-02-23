@@ -46,6 +46,12 @@ public class CreatureAI : MonoBehaviour
             }
         #endregion
 
+        #region In Combat
+            BTSequence InCombat = null;
+
+
+        #endregion
+
         #region CREATURE ABILITIES
             BTSequence Ability = null;
             foreach( Personality p in personalities){
@@ -56,6 +62,29 @@ public class CreatureAI : MonoBehaviour
             if(Ability == null){
                 Ability = DefaultPersonality.AbilityTree.BuildSequenceSubtree(context);
             }
+        #endregion
+
+        #region Enthusiasm Managing
+        BTSelector enthusiasmManaging = null;
+        foreach( Personality p in personalities){
+                if(p.AbilityTree != null){
+                    enthusiasmManaging = p.EnthusiasmTree.BuildSelectorSubtree(context);
+                }  
+            }
+            if(enthusiasmManaging == null){
+                enthusiasmManaging = DefaultPersonality.EnthusiasmTree.BuildSelectorSubtree(context);
+            }
+        #endregion
+
+        #region hitsun
+        List<BTNode> hitstunList = new List<BTNode>();
+        CCheckIsHit isHit = new CCheckIsHit("Check if creature hit", context);
+        CActionDoHitAnim doHitAnim = new CActionDoHitAnim("Play Hitstun anim", context);
+        hitstunList.Add(isHit);
+        hitstunList.Add(doHitAnim);
+
+        BTSequence hitstunSequence = new BTSequence("Hitstun Sequence", hitstunList);
+
         #endregion
 
 
@@ -103,17 +132,39 @@ public class CreatureAI : MonoBehaviour
             #endregion
         #endregion
 
-        #region creature isnt wild selector
-            List<BTNode> CreatureIsntWildSelectorList = new List<BTNode>();
-            CreatureIsntWildSelectorList.Add(Ability);
-            CreatureIsntWildSelectorList.Add(FollowPlayer);
+        #region on/off field selector
+            List<BTNode> offFieldSelectorList = new List<BTNode>();
 
-            BTSelector CreatureIsntWildSelector = new BTSelector("Creature isnt Wild Selector", CreatureIsntWildSelectorList);
+            #region Creature Off Field Enthusiasm increase
+                //swapped sequence
+                List<BTNode> offFieldSequenceList = new List<BTNode>();
+                //check if off field
+                CCheckNotActive isNotActive = new CCheckNotActive("Is creature not active?", context);
+                //idle action that increases enthusiasm
+                CActionNotActiveIdle notActiveIdle = new CActionNotActiveIdle("Gain enthusiasm while not active", context);
+
+                offFieldSequenceList.Add(isNotActive);
+                offFieldSequenceList.Add(notActiveIdle);
+
+                BTSequence offFieldSequence = new BTSequence("Creature off field Sequence", offFieldSequenceList);
+            #endregion
+
+            #region creature isnt wild selector
+                List<BTNode> CreatureIsntWildSelectorList = new List<BTNode>();
+                CreatureIsntWildSelectorList.Add(Ability);
+                CreatureIsntWildSelectorList.Add(FollowPlayer);
+
+                BTSelector CreatureIsntWildSelector = new BTSelector("Creature isnt Wild Selector", CreatureIsntWildSelectorList);
+            #endregion
+            offFieldSelectorList.Add(offFieldSequence);
+            offFieldSelectorList.Add(CreatureIsntWildSelector);
+            BTSelector offFieldSelector = new BTSelector("Creature Off Field Selector", offFieldSelectorList);
         #endregion
+        
 
         #region ROOT
             RootList.Add(isCreatureWildSequence);
-            RootList.Add(CreatureIsntWildSelector);
+            RootList.Add(offFieldSelector);
 
             BTSelector _root = new BTSelector("Root", RootList);
         #endregion

@@ -9,9 +9,11 @@ public class EncounterManager : MonoBehaviour
     
     private int currWave = 0;
 
-    private void Awake() 
-    {
-        SpawnEncounter();
+    private void OnTriggerEnter(Collider other) {
+        if(other.transform.tag == "Player")
+        {
+            
+        }
     }
     
     public void SpawnEncounter()
@@ -22,7 +24,7 @@ public class EncounterManager : MonoBehaviour
             currEnemyCount++;
         }
         currWave++;
-        
+
     }
 
     public void enemyKilled()
