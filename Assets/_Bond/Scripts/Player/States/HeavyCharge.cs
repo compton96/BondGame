@@ -23,7 +23,7 @@ namespace PlayerState
         // HERMAN TODO: place VFX code into animator
         public override void OnStateEnter()
         {
-            player.heavyChargeVfx.Play();
+            animator.SetHeavyCharge( true );
         }
 
 
@@ -36,7 +36,7 @@ namespace PlayerState
                 return;
             }
             
-            if(player.inputs.heavyAttack == false)
+            if(!player.inputs.heavyAttack)
             {
                 SetState(fsm.HeavySlash);
                 return;
@@ -55,7 +55,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            player.heavyChargeVfx.Stop();
+            animator.SetHeavyCharge( false );
         }
     }
 }

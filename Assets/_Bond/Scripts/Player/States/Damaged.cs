@@ -20,21 +20,16 @@ namespace PlayerState
         {
             player.isHit = false;
             animator.SetDamaged();
-
-            // TODO:
-            // Does this work?
-            animator.SetRun(false);
-            
         }
 
         public override void OnStateUpdate()
         {
-            // if(player.isHit)
-            // {
-            //     player.isHit = false;
-            //     animator.SetDamaged();
-            //     return;
-            // }
+            if(player.isHit)
+            {
+                player.isHit = false;
+                SetState(fsm.Damaged);
+                return;
+            }
             //wait till end of animation, return to idle
             if( !animator.isDamaged )
             {

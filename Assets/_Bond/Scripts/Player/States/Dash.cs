@@ -36,7 +36,6 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            // HERMAN TODO: Decide if end of Dash should be animation or not
             if( !animator.isDash )
             {
                 SetState(fsm.IdleMove);

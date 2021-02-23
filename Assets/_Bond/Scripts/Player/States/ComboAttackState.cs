@@ -23,6 +23,7 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
+            // TODO:
             if(player.inputs.dash)
             {
                 SetState( fsm.Dash );
@@ -31,7 +32,7 @@ namespace PlayerState
 
             if(!animator.isAttackFollowThrough)
             {
-                SetState(fsm.IdleMove);
+                SetState(fsm.MovementState);
                 return;
             }
         }

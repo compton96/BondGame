@@ -96,6 +96,7 @@ public class PlayerAnimator : MonoBehaviour
     public void SetDamaged()
     {
         isDamaged = true;
+        SetRun( false );
         animator.SetTrigger("isHit");
     }
 
@@ -106,6 +107,18 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("DashConstant", 1/constant);
 
         this.ResetAllAttackAnims();
+    }
+
+    public void SetHeavyCharge(bool state)
+    {
+        if( state )
+        {
+            playerController.heavyChargeVfx.Play();
+        }
+        else
+        {
+            playerController.heavyChargeVfx.Stop();
+        }
     }
 
     public void SetRun(bool state)
