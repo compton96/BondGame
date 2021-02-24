@@ -21,12 +21,20 @@ public class EncounterManager : MonoBehaviour
     
     public void SpawnEncounter()
     {
-        foreach(GameObject spawner in waves[currWave].spawners)
+        if(waves[currWave].spawnWholeWave)
         {
-            spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
-            currEnemyCount++;
+            foreach(GameObject spawner in waves[currWave].spawners)
+            {
+                spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
+                currEnemyCount++;
+            }
+            currWave++;
+        } 
+        else 
+        {
+            spawnNextEnemy();
         }
-        currWave++;
+
 
     }
 

@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour
 
             // Debug.Log("BEFRIENDED");
             wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
-            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
             InCombat(inCombat);
 
         }
