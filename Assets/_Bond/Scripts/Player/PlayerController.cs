@@ -348,7 +348,7 @@ public class PlayerController : MonoBehaviour
                 hasSwapped = false;
             }
             
-            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
         }
         
 

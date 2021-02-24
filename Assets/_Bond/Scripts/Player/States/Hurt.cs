@@ -18,6 +18,7 @@ namespace PlayerState
 
         public override void OnStateEnter()
         {
+            
             player.isHit = false;
             animator.Hurt();
         }
@@ -26,6 +27,7 @@ namespace PlayerState
         {
             if(player.isHit)
             {
+        
                 player.isHit = false;
                 SetState(fsm.Hurt);
                 return;
@@ -36,6 +38,7 @@ namespace PlayerState
                 SetState(fsm.IdleMove);
                 return;
             }
+            Debug.Log(animator.isHurt);
         }
 
         public override void OnStateFixedUpdate()
@@ -45,7 +48,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            
+        
         }
     }
 }
