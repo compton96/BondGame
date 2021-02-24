@@ -25,6 +25,7 @@ public class CreatureAIContext : MonoBehaviour
     public CreatureAnimator animator;
     public Collider interactRadius;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
+    public creatureAttackBase basicCreatureAttack;
     
 
     
@@ -36,6 +37,10 @@ public class CreatureAIContext : MonoBehaviour
     public bool isAbilityTriggered;
     public bool wanderIdling = false;
     public bool cleverIgnoreItems = false;
+    public bool isActive;
+    public bool isHit;
+    public bool inCombat;
+    public bool autoAttack;
 
     [Header("Misc.Numbers")]
     public float playerSpeedToScare;

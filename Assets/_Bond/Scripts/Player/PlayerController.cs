@@ -57,10 +57,11 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
-    public int goldCount;
+    public int goldCount = 0;
     private float crouchModifier = 1;
     public bool nearInteractable = false;
     public bool hasSwapped;
+    public bool inCombat;
     
     public Transform backFollowPoint;
 
@@ -70,6 +71,8 @@ public class PlayerController : MonoBehaviour
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
+
+    public Dictionary<GameObject, InteractableBase> interactableObjects = new Dictionary<GameObject, InteractableBase>();
 
     
     //******Combat Vars**********//
@@ -218,26 +221,62 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-        if(nearInteractable)
+
+        if(interactableObjects.Count > 0)
         {
-            inputs.interact = true;
-            if(interactableObject != null)
+            InteractableBase tempBase = null;
+            GameObject tempObj = null;
+            float closestDist = 20;
+
+            foreach(KeyValuePair<GameObject, InteractableBase> interactable in interactableObjects)
             {
-                if(interactableObject.transform.tag == "Relic")
+                float tempDist = Vector3.Distance(interactable.Key.transform.position, gameObject.transform.position);
+                if(tempDist < closestDist)
                 {
-                    Relics.Add(interactableObject.GetComponent<Relic>().relicStats);
-                    interactableObject.GetComponent<Relic>().applyModifiers(stats);
-                    //update Health ui
+                    closestDist = tempDist;
+                    tempBase = interactable.Value;
+                    tempObj = interactable.Key;
                 }
-                Destroy(interactableObject);
-                nearInteractable = false;
             }
-            else if (wildCreature != null)
+
+            tempBase.DoInteract();
+            if(tempBase.removeOnInteract)
             {
-                befriendCreature();
+                interactableObjects.Remove(tempObj);
+            }
+            if(interactableObjects.Count == 0)
+            {
+                PersistentData.Instance.UI.GetComponent<UIUpdates>().hideIntereactPrompt();
             }
         }
+
+        //shop keeper (or any npc for dialog)
+        //relics
+        //creatures
+        //chests
+        //portal or something
+        //lore items (walk up to thing and it gives you info etc)
+        //fruit?
+
+
                 
+    }
+
+
+    private void OnCreatureAutoAttack()
+    {
+        if(currCreatureContext != null)
+        {
+            if(currCreatureContext.autoAttack)
+            {
+                currCreatureContext.autoAttack = false;
+            } 
+            else 
+            {
+                currCreatureContext.autoAttack = true;
+            }
+            
+        }
     }
 
     private void OnDash()
@@ -257,7 +296,7 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    private void befriendCreature()
+    public void befriendCreature()
     {
         bool requirementMet = true;
         if(requirementMet)
@@ -266,22 +305,21 @@ public class PlayerController : MonoBehaviour
             {
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 swapCreature = wildCreature;
-                swapCreature.SetActive(false);
-                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
-                nearInteractable = false;
+                swapCreature.SetActive(false); //MOVE TO SOMEWHERE OF SCREEN AND 
+                swapCreature.GetComponent<CreatureAIContext>().isActive = false;
             }
             else 
-            {
+            { // first creature;
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 currCreature = wildCreature;
                 currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
-                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
-                nearInteractable = false;
+                currCreatureContext.isActive = true;
             }
 
             // Debug.Log("BEFRIENDED");
             wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
             PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
+            InCombat(inCombat);
 
         }
 
@@ -298,7 +336,9 @@ public class PlayerController : MonoBehaviour
             currCreature = swapCreature;
             currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
             currCreatureContext.isInPlayerRadius = false;
+            currCreatureContext.isActive = true;
             swapCreature = temp;
+            swapCreature.GetComponent<CreatureAIContext>().isActive = false;
             if (hasSwapped == false)
             {
                 hasSwapped = true;
@@ -327,6 +367,22 @@ public class PlayerController : MonoBehaviour
         {
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
             cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+
+        }
+    }
+
+    public void PutBasicOnCD()
+    {
+        if (hasSwapped)
+        {
+            currCreatureContext.basicCreatureAttack.id = 10 + 100;
+            cooldownSystem.PutOnCooldown(currCreatureContext.basicCreatureAttack);
+            return;
+        }
+        else
+        {
+            currCreatureContext.basicCreatureAttack.id = 10;
+            cooldownSystem.PutOnCooldown(currCreatureContext.basicCreatureAttack);
 
         }
     }
@@ -440,9 +496,18 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    public void InCombat(bool _inCombat)
+    {
+        inCombat = _inCombat;
 
-
-
-
+        if(currCreature != null)
+        {
+            currCreatureContext.inCombat = inCombat;
+            if(swapCreature != null)
+            {
+                swapCreature.GetComponent<CreatureAIContext>().inCombat = inCombat;
+            }
+        }
+    }
     
 }

@@ -34,10 +34,12 @@ public class CActionAttackRanged : BTLeaf
         context.isAbilityTriggered = false;
         if(true) 
         { //if animation done, have to add that 
-            OnParentExit();
+            
+            context.lastTriggeredAbility = 10;
             context.player.GetComponent<PlayerController>().PutOnCD();
             // Debug.Log("Ability Id: ");
             // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         

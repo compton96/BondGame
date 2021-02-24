@@ -14,7 +14,7 @@ public class CActionAttackMelee : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
+        attack = (creatureAttackMelee) context.basicCreatureAttack;
         //Play amim
         // Debug.Log("Attacking");
         context.animator.Attack1();
@@ -32,10 +32,12 @@ public class CActionAttackMelee : BTLeaf
         context.isAbilityTriggered = false;
         if(true)
         { //if animation done, have to add that 
-            OnParentExit();
-            context.player.GetComponent<PlayerController>().PutOnCD();
+      
+            context.lastTriggeredAbility = 10;
+            context.player.GetComponent<PlayerController>().PutBasicOnCD();
             // Debug.Log("Ability Id: ");
             // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         

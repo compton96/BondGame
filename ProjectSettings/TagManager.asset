@@ -15,6 +15,7 @@ TagManager:
   - AudioController
   - Relic
   - UI
+  - Interactable
   layers:
   - Default
   - TransparentFX

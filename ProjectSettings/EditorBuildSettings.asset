@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Bond/Scenes/Menu.unity
     guid: 9411c22414f499e4eb67801c25557a31
   - enabled: 1
+    path: Assets/_Bond/Scenes/Gyms/new farm.unity
+    guid: f140d9777f4a1a24781125ca53dc72fa
+  - enabled: 0
     path: Assets/_Bond/Scenes/Farm Hub.unity
     guid: 30279d33390870a4c857b1e1c02e0ed0
   - enabled: 0
