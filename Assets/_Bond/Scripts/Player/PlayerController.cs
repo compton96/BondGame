@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     private float crouchModifier = 1;
     public bool nearInteractable = false;
     public bool hasSwapped;
+    public bool inCombat;
     
     public Transform backFollowPoint;
 
@@ -318,6 +319,7 @@ public class PlayerController : MonoBehaviour
             // Debug.Log("BEFRIENDED");
             wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
             PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+            InCombat(inCombat);
 
         }
 
@@ -494,9 +496,18 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    public void InCombat(bool _inCombat)
+    {
+        inCombat = _inCombat;
 
-
-
-
+        if(currCreature != null)
+        {
+            currCreatureContext.inCombat = inCombat;
+            if(swapCreature != null)
+            {
+                swapCreature.GetComponent<CreatureAIContext>().inCombat = inCombat;
+            }
+        }
+    }
     
 }

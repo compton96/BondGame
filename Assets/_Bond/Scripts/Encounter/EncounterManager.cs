@@ -15,6 +15,7 @@ public class EncounterManager : MonoBehaviour
         {
             SpawnEncounter();
             GetComponent<Collider>().enabled = false;
+            PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(true);
         }
     }
     
@@ -35,6 +36,8 @@ public class EncounterManager : MonoBehaviour
         if(currWave >= waves.Count)
         {
             //clear encounter
+
+            PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
             return;
         }
         if(currEnemyCount <= waves[currWave].waitUntilEnemiesLeft)
@@ -71,7 +74,7 @@ public class EncounterManager : MonoBehaviour
             }
             else 
             {
-                //clear encounter
+                PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
             }
         }
     }
