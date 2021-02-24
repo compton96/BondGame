@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 67438f0a7855ff441ae218371c97ccff,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -960,7 +960,7 @@ PrefabInstance:
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
@@ -2087,7 +2087,7 @@ PrefabInstance:
     - target: {fileID: 2070801528262145278, guid: 14e7ca70b8052cc45a526a880a2a528d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6563991343108169678, guid: 14e7ca70b8052cc45a526a880a2a528d,
         type: 3}
@@ -2437,7 +2437,7 @@ PrefabInstance:
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
@@ -6835,7 +6835,7 @@ PrefabInstance:
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
@@ -7165,7 +7165,7 @@ PrefabInstance:
     - target: {fileID: 2070801528262145278, guid: 14e7ca70b8052cc45a526a880a2a528d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7425832005288529028, guid: 14e7ca70b8052cc45a526a880a2a528d,
         type: 3}
@@ -8876,7 +8876,7 @@ PrefabInstance:
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 197089022932129988, guid: 0e735a3705a370f4995f660063ece974,
         type: 3}
