@@ -26,8 +26,9 @@ public class UIUpdates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        updateCreatureUI();
+        UpdateCreatureUI();
     }
+
 
     
     private void FixedUpdate() 
@@ -38,13 +39,36 @@ public class UIUpdates : MonoBehaviour
         currHealthUI.SetText((Mathf.Round(stats.getStat(ModiferType.CURR_HEALTH))).ToString());
         maxHealthUI.SetText("/ " + stats.getStat(ModiferType.MAX_HEALTH).ToString());
         gold.SetText(player.goldCount.ToString());
+
+        /*
         
-       
+        if a cooldown is active
+        {
+            somewhere on cooldown activation, set fillAmount to 0
+            get active cooldowns (max of 4)
+            CooldownUpdate(image) for each active
+        }
+        */
+
         
     }
 
+   
 
-    public void updateCreatureUI()
+    public void CooldownUpdate()
+    {
+        //called every tick while cooldown is active
+        //get specific creatures cooldown
+
+        //Image.fillAmount += 1.0f / cooldown length * Time.deltaTime;
+
+    }
+	
+
+	
+
+
+    public void UpdateCreatureUI()
     {
          if(player.currCreatureContext != null)
         {
