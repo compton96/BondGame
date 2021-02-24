@@ -12,10 +12,13 @@ public class EnemyWeaponTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player")
         {
-            //other.gameObject.GetComponent<PlayerStats>().TakeDamage(context.damage);
             other.gameObject.GetComponent<StatManager>().TakeDamage(context.statManager.stats[ModiferType.DAMAGE].modifiedValue, ModiferType.MELEE_RESISTANCE);
             other.gameObject.GetComponent<PlayerController>().DeathCheck();
             other.GetComponent<PlayerController>().isHit = true;
+        } else if(other.gameObject.tag == "CaptCreature")
+        {
+            other.gameObject.GetComponent<StatManager>().TakeDamageCreature(context.statManager.stats[ModiferType.DAMAGE].modifiedValue, ModiferType.MELEE_RESISTANCE);
+            other.GetComponent<CreatureAIContext>().isHit = true;
         }
     }
 

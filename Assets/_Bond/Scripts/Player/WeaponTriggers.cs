@@ -33,7 +33,7 @@ public class WeaponTriggers : MonoBehaviour
             // Check which attack state we're in to determine damage
             if(fsm.currentState == fsm.Slash0)
             {
-                enemyAIContext.statManager.TakeDamage( damage * 1.1f, ModiferType.MELEE_RESISTANCE);
+                enemyAIContext.statManager.TakeDamage( damage * 1.2f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
 
                 if (damage != ps.getStat(ModiferType.DAMAGE))
@@ -43,7 +43,7 @@ public class WeaponTriggers : MonoBehaviour
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
-                enemyAIContext.statManager.TakeDamage( damage * 1.2f, ModiferType.MELEE_RESISTANCE);
+                enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
 
                 if (damage != ps.getStat(ModiferType.DAMAGE))
@@ -53,7 +53,27 @@ public class WeaponTriggers : MonoBehaviour
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
-                enemyAIContext.statManager.TakeDamage( damage * 1.25f, ModiferType.MELEE_RESISTANCE);
+                enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
+            } 
+            else if(fsm.currentState == fsm.Slash3)
+            {
+                enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+
+                if (damage != ps.getStat(ModiferType.DAMAGE))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
+                }
+            } 
+            else if(fsm.currentState == fsm.Slash4)
+            {
+                enemyAIContext.statManager.TakeDamage( damage * 1.5f, ModiferType.MELEE_RESISTANCE);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
 
                 if (damage != ps.getStat(ModiferType.DAMAGE))

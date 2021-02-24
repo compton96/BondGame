@@ -25,15 +25,10 @@ namespace PlayerState
             {
                 player.isHit = false;
 
-                SetState( fsm.Damaged );
+                SetState( fsm.Hurt );
                 return;
             }
             
-            if(player.inputs.dash)
-            {
-                SetState( fsm.Dash );
-                return;
-            }
         }
 
         public override void OnStateFixedUpdate()

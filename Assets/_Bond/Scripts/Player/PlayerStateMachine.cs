@@ -13,6 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
             public PlayerState.Slash1 Slash1;
             public PlayerState.Slash2 Slash2;
             public PlayerState.Slash3 Slash3;
+            public PlayerState.Slash4 Slash4;
 
         public PlayerState.HeavyCharge HeavyCharge;
         public PlayerState.HeavySlash HeavySlash;
@@ -21,11 +22,10 @@ public class PlayerStateMachine : MonoBehaviour
             public PlayerState.IdleMove IdleMove;
             public PlayerState.Dash Dash;
 
-    public PlayerState.Damaged Damaged;
+    public PlayerState.Hurt Hurt;
 
     public PlayerState.Standby Standby;
 
-    
     public PlayerState.State currentState { get; private set; }
     public PlayerState.State transitionExitState { get; set; }
     public PlayerState.State previousState { get; set; }
@@ -40,6 +40,7 @@ public class PlayerStateMachine : MonoBehaviour
                 Slash1 = new PlayerState.Slash1( this );
                 Slash2 = new PlayerState.Slash2( this );
                 Slash3 = new PlayerState.Slash3( this );
+                Slash4 = new PlayerState.Slash4( this );
                 
             HeavyCharge = new PlayerState.HeavyCharge( this );
             HeavySlash = new PlayerState.HeavySlash( this );
@@ -48,7 +49,7 @@ public class PlayerStateMachine : MonoBehaviour
             IdleMove = new PlayerState.IdleMove( this );
             Dash = new PlayerState.Dash( this );
 
-        Damaged = new PlayerState.Damaged( this );
+        Hurt = new PlayerState.Hurt( this );
         Standby = new PlayerState.Standby( this );
 
         SetState(Slash0);//change to default state, idle

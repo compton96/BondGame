@@ -9,20 +9,33 @@ public class EncounterManager : MonoBehaviour
     
     private int currWave = 0;
 
-    private void Awake() 
+    private void OnTriggerEnter(Collider other) 
     {
-        SpawnEncounter();
+        if(other.transform.tag == "Player")
+        {
+            SpawnEncounter();
+            GetComponent<Collider>().enabled = false;
+            PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(true);
+        }
     }
     
     public void SpawnEncounter()
     {
-        foreach(GameObject spawner in waves[currWave].spawners)
+        if(waves[currWave].spawnWholeWave)
         {
-            spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
-            currEnemyCount++;
+            foreach(GameObject spawner in waves[currWave].spawners)
+            {
+                spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
+                currEnemyCount++;
+            }
+            currWave++;
+        } 
+        else 
+        {
+            spawnNextEnemy();
         }
-        currWave++;
-        
+
+
     }
 
     public void enemyKilled()
@@ -31,11 +44,24 @@ public class EncounterManager : MonoBehaviour
         if(currWave >= waves.Count)
         {
             //clear encounter
+
+            PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
             return;
         }
         if(currEnemyCount <= waves[currWave].waitUntilEnemiesLeft)
         {
-            spawnNextEnemy();
+            if(waves[currWave].spawnWholeWave)
+            {
+                foreach(GameObject spawner in waves[currWave].spawners)
+                {
+                    spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
+                    currEnemyCount++;
+                }
+                currWave++;
+            } else {
+                spawnNextEnemy();
+            }
+            
         }
     }
 
@@ -56,7 +82,7 @@ public class EncounterManager : MonoBehaviour
             }
             else 
             {
-                //clear encounter
+                PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
             }
         }
     }
@@ -67,6 +93,7 @@ public class EncounterManager : MonoBehaviour
 [System.Serializable]
 public class wave 
 {
+    public bool spawnWholeWave;
     public int waitUntilEnemiesLeft = 0; //if 0 it will wait for last wave to be finished; otherwise it will spawn more enemies as you kill them;
     public int index = 0;
     public List<GameObject> spawners = new List<GameObject>();

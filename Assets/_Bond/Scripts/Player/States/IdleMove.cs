@@ -16,7 +16,8 @@ namespace PlayerState
 
         public override void OnStateEnter()
         {
-            animator.OnIdle();
+            Debug.Log("idle enter");
+            animator.Idle();
         }
 
         public override void OnStateUpdate()

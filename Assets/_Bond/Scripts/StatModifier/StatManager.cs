@@ -103,6 +103,11 @@ public class StatManager : MonoBehaviour
 
     }
 
+    public void TakeDamageCreature(float baseAmount, ModiferType damageType) 
+    {
+        stats[ModiferType.CURR_ENTHUSIASM].modifiedValue -= (baseAmount);
+    }
+
 
     private void Update() {
         ProcessBuffs();
