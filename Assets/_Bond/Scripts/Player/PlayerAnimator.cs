@@ -24,8 +24,22 @@ public class PlayerAnimator : MonoBehaviour
     public bool isAttackFollowThrough { get; private set; }
     public bool isDash { get; private set; }
     public bool isHurt { get; private set; }
+    public bool isRun { get; private set; }
 
     private int attackStatesActive = 0;
+    private float moveMagnitude = 0f;
+
+    private void Update()
+    {
+        if ( isRun && moveMagnitude > 0 )
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+    }
 
     /*
     *   Animation Events
@@ -152,14 +166,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Move(Vector3 movementVector)
     {
-        if (movementVector.magnitude > 0)
-        {
-            animator.SetBool("Run", true);
-        }
-        else
-        {
-            animator.SetBool("Run", false);
-        }
+        moveMagnitude = movementVector.magnitude;
     }
 
     public void Run(bool state)
