@@ -90,11 +90,11 @@ namespace PlayerState
         public override void OnStateFixedUpdate()
         {
             
-            // player.doMovement(speedMod);
-            // if(speedMod >= 0.05f)
-            // {
-            //     speedMod /= 1.4f;
-            // }            
+            player.doMovement(speedMod);
+            if(speedMod >= 0.05f)
+            {
+                speedMod /= 1.4f;
+            }            
         
         }
 
