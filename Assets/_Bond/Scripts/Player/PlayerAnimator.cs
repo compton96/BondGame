@@ -57,22 +57,31 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void SMBHurtExit()
-    {
-        isHurt = false;
-        animator.ResetTrigger("isHit");
-    }
-
     public void SMBDashExit()
     {
         isDash = false;
         animator.ResetTrigger("Dash");
     }
 
+    public void SMBHurtExit()
+    {
+        isHurt = false;
+        animator.ResetTrigger("isHit");
+    }
+
     /*
-    *   Reset Functions
+    *   Actual Functions
     *   Modifies the constants
+    *   Called by the states
     */
+
+    public void Attack( int num )
+    {
+        isAttack = true;
+        isAttackFollowThrough = true;
+
+        animator.SetTrigger("Attack" + num.ToString() );
+    }
 
     public void ResetAttackAnim()
     {
@@ -90,30 +99,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Attack3");
         animator.ResetTrigger("Attack4");
-    }
-
-    public void Attack( int num )
-    {
-        isAttack = true;
-        isAttackFollowThrough = true;
-
-        animator.SetTrigger("Attack" + num.ToString() );
-    }
-
-    public void Hurt()
-    {
-        isHurt = true;
-        Run( false );
-        animator.SetTrigger("isHit");
-    }
-
-    public void Dash( float constant )
-    {
-        isDash = true;
-        animator.SetTrigger("Dash");
-        animator.SetFloat("DashConstant", 1/constant);
-
-        this.ResetAllAttackAnims();
     }
 
     public void HeavyCharge(bool state)
@@ -141,9 +126,27 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void Run(bool state)
+    public void Dash( float constant )
     {
-        animator.SetBool("Run", state);
+        isDash = true;
+        animator.SetTrigger("Dash");
+        animator.SetFloat("DashConstant", 1/constant);
+
+        this.ResetAllAttackAnims();
+    }
+
+    public void Hurt()
+    {
+        isHurt = true;
+        Run( false );
+        animator.SetTrigger("isHit");
+    }
+
+    public void Idle()
+    {
+        this.ResetAllAttackAnims();
+
+        animator.ResetTrigger("Dash");
     }
 
     public void Move(Vector3 movementVector)
@@ -158,11 +161,9 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void Idle()
+    public void Run(bool state)
     {
-        this.ResetAllAttackAnims();
-
-        animator.ResetTrigger("Dash");
+        animator.SetBool("Run", state);
     }
 
     // VISUAL FX
