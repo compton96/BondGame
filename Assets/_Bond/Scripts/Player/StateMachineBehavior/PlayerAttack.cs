@@ -8,6 +8,6 @@ public class PlayerAttack : PlayerSMB
     {
         PlayerAnimator animator = GetPlayerAnimator( unityAnimator );
 
-        animator.SMBAttackDone();
+        animator.SMBAttackExit();
     }
 }
