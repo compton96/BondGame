@@ -29,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour
     private int attackStatesActive = 0;
     private float moveMagnitude = 0f;
 
-    private void Update()
+    void Update()
     {
         if ( isRun && moveMagnitude > 0 )
         {
@@ -156,12 +156,22 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger("isHit");
     }
 
-    public void Idle()
+    public void Idle(bool state)
     {
-        this.ResetAllAttackAnims();
+        if( state )
+        {
+            this.ResetAllAttackAnims();
 
-        animator.ResetTrigger("Dash");
-        animator.ResetTrigger("isHit");
+            animator.ResetTrigger("Dash");
+            animator.ResetTrigger("isHit");
+
+            isRun = true;
+        }
+        else
+        {
+            isRun = false;
+        }
+        
     }
 
     public void Move(Vector3 movementVector)
