@@ -21,9 +21,9 @@ public class PlayerAnimator : MonoBehaviour
     *   
     */
     public bool isAttack { get; private set; }
-    public bool isHurt { get; private set; }
-    public bool isDash { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
+    public bool isDash { get; private set; }
+    public bool isHurt { get; private set; }
 
     private int attackStatesActive = 0;
 
