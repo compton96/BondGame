@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
     public List<GameObject> Enemies = new List<GameObject>();
 
-    public void spawnEnemy(EncounterManager _manager)
+    public void SpawnEnemy(EncounterManager _manager)
     {
         
         int index = Enemies.Count > 1 ? Random.Range(0,Enemies.Count) : 0;
