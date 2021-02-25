@@ -14,14 +14,32 @@ public class PlayerAnimator : MonoBehaviour
 
     /*
     *   Constants
-    *   Can be read by other scripts
-    *   But can only be set in here
     *   Should be formatted "isX" like a question
+    *
+    *   Public constants Can be read by other scripts
+    *   But can only be set in here
+    *   
     */
     public bool isAttack { get; private set; }
-    public bool isHurt { get; private set; }
-    public bool isDash { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
+    public bool isDash { get; private set; }
+    public bool isHurt { get; private set; }
+    public bool isRun { get; private set; }
+
+    private int attackStatesActive = 0;
+    private float moveMagnitude = 0f;
+
+    private void Update()
+    {
+        if ( isRun && moveMagnitude > 0 )
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+    }
 
     /*
     *   Animation Events
@@ -38,16 +56,19 @@ public class PlayerAnimator : MonoBehaviour
     *   Triggered by State Machine Behaviors
     */
 
-    public void SMBAttackDone()
+    public void SMBAttackEnter()
     {
-        //isAttack = false;
-        //isFollowThrough = false;
+        attackStatesActive += 1;
     }
 
-    public void SMBHurtExit()
+    public void SMBAttackExit()
     {
-        isHurt = false;
-        animator.ResetTrigger("isHit");
+        attackStatesActive -= 1;
+        if( attackStatesActive < 1 )
+        {
+            isAttack = false;
+            isAttackFollowThrough = false;
+        }
     }
 
     public void SMBDashExit()
@@ -56,16 +77,25 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Dash");
     }
 
-    public void SMBIdleEnter()
+    public void SMBHurtExit()
     {
-        isAttack = false;
-        isAttackFollowThrough = false;
+        isHurt = false;
+        animator.ResetTrigger("isHit");
     }
 
     /*
-    *   Reset Functions
+    *   Actual Functions
     *   Modifies the constants
+    *   Called by the states
     */
+
+    public void Attack( int num )
+    {
+        isAttack = true;
+        isAttackFollowThrough = true;
+
+        animator.SetTrigger("Attack" + num.ToString() );
+    }
 
     public void ResetAttackAnim()
     {
@@ -85,30 +115,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack4");
     }
 
-    public void Attack( int num )
-    {
-        isAttack = true;
-        isAttackFollowThrough = true;
-
-        animator.SetTrigger("Attack" + num.ToString() );
-    }
-
-    public void Hurt()
-    {
-        isHurt = true;
-        Run( false );
-        animator.SetTrigger("isHit");
-    }
-
-    public void Dash( float constant )
-    {
-        isDash = true;
-        animator.SetTrigger("Dash");
-        animator.SetFloat("DashConstant", 1/constant);
-
-        this.ResetAllAttackAnims();
-    }
-
     public void HeavyCharge(bool state)
     {
         if( state )
@@ -121,21 +127,33 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void Run(bool state)
+    public void Crouch(bool state)
     {
-        animator.SetBool("Run", state);
-    }
-
-    public void Move(Vector3 movementVector)
-    {
-        if (movementVector.magnitude > 0)
+        // Herman TODO: Make this value lerp
+        if( state )
         {
-            animator.SetBool("Run", true);
+            animator.SetFloat("Standing_Crouch_Blend", 1f );
         }
         else
         {
-            animator.SetBool("Run", false);
+            animator.SetFloat("Standing_Crouch_Blend", 0f );
         }
+    }
+
+    public void Dash( float constant )
+    {
+        isDash = true;
+        animator.SetTrigger("Dash");
+        animator.SetFloat("DashConstant", 1/constant);
+
+        this.ResetAllAttackAnims();
+    }
+
+    public void Hurt()
+    {
+        isHurt = true;
+        Run( false );
+        animator.SetTrigger("isHit");
     }
 
     public void Idle()
@@ -143,6 +161,17 @@ public class PlayerAnimator : MonoBehaviour
         this.ResetAllAttackAnims();
 
         animator.ResetTrigger("Dash");
+        animator.ResetTrigger("isHit");
+    }
+
+    public void Move(Vector3 movementVector)
+    {
+        moveMagnitude = movementVector.magnitude;
+    }
+
+    public void Run(bool state)
+    {
+        animator.SetBool("Run", state);
     }
 
     // VISUAL FX

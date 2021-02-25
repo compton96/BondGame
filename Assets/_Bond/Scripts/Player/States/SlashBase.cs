@@ -94,7 +94,7 @@ namespace PlayerState
             if(speedMod >= 0.05f)
             {
                 speedMod /= 1.4f;
-            }            
+            }
         
         }
 

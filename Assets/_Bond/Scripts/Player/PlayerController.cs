@@ -485,13 +485,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCrouch()
     {
+        // If standing, then crouch
         if(crouchModifier == 1f)
         {
             crouchModifier = .5f;
+            animator.Crouch( true );
         }
+        // If crouched, then stand up
         else
         {
             crouchModifier = 1f;
+            animator.Crouch( false );
         }
     }
 
