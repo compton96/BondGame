@@ -38,7 +38,7 @@ public class PlayerAnimator : MonoBehaviour
     *   Triggered by State Machine Behaviors
     */
 
-    public void SMBAttackDone()
+    public void SMBAttackExit()
     {
         //isAttack = false;
         //isFollowThrough = false;
@@ -118,6 +118,19 @@ public class PlayerAnimator : MonoBehaviour
         else
         {
             playerController.heavyChargeVfx.Stop();
+        }
+    }
+
+    public void Crouch(bool state)
+    {
+        // Herman TODO: Make this value lerp
+        if( state )
+        {
+            animator.SetFloat("Standing_Crouch_Blend", 1f );
+        }
+        else
+        {
+            animator.SetFloat("Standing_Crouch_Blend", 0f );
         }
     }
 
