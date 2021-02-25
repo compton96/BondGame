@@ -14,14 +14,18 @@ public class PlayerAnimator : MonoBehaviour
 
     /*
     *   Constants
-    *   Can be read by other scripts
-    *   But can only be set in here
     *   Should be formatted "isX" like a question
+    *
+    *   Public constants Can be read by other scripts
+    *   But can only be set in here
+    *   
     */
     public bool isAttack { get; private set; }
     public bool isHurt { get; private set; }
     public bool isDash { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
+
+    private int attackStatesActive = 0;
 
     /*
     *   Animation Events
@@ -38,10 +42,19 @@ public class PlayerAnimator : MonoBehaviour
     *   Triggered by State Machine Behaviors
     */
 
+    public void SMBAttackEnter()
+    {
+        attackStatesActive += 1;
+    }
+
     public void SMBAttackExit()
     {
-        //isAttack = false;
-        //isFollowThrough = false;
+        attackStatesActive -= 1;
+        if( attackStatesActive < 1 )
+        {
+            isAttack = false;
+            isAttackFollowThrough = false;
+        }
     }
 
     public void SMBHurtExit()
@@ -54,12 +67,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         isDash = false;
         animator.ResetTrigger("Dash");
-    }
-
-    public void SMBIdleEnter()
-    {
-        isAttack = false;
-        isAttackFollowThrough = false;
     }
 
     /*
