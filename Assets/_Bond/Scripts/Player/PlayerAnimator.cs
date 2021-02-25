@@ -147,6 +147,7 @@ public class PlayerAnimator : MonoBehaviour
         this.ResetAllAttackAnims();
 
         animator.ResetTrigger("Dash");
+        animator.ResetTrigger("isHit");
     }
 
     public void Move(Vector3 movementVector)
