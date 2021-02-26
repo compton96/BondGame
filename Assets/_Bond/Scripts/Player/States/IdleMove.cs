@@ -16,8 +16,7 @@ namespace PlayerState
 
         public override void OnStateEnter()
         {
-            Debug.Log("idle enter");
-            animator.Idle();
+            animator.Idle( true );
         }
 
         public override void OnStateUpdate()
@@ -50,7 +49,7 @@ namespace PlayerState
 
         public override void OnStateExit()
         {
-            
+            animator.Idle( false );
         }
     }
 }

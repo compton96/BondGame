@@ -69,19 +69,12 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            
-            if(!animator.isAttack)
+            if( !animator.isAttack &&
+                nextState != null &&
+                player.inputs.basicAttack )
             {
-                if( nextState != null )
-                {
-                    if(player.inputs.basicAttack)
-                    {
-                        SetState( nextState );
-                        return;
-                    }
-                }
-                
-                animator.Run(false);
+                SetState( nextState );
+                return;
             }
         }
 
@@ -90,11 +83,11 @@ namespace PlayerState
         public override void OnStateFixedUpdate()
         {
             
-            // player.doMovement(speedMod);
-            // if(speedMod >= 0.05f)
-            // {
-            //     speedMod /= 1.4f;
-            // }            
+            player.doMovement(speedMod);
+            if(speedMod >= 0.05f)
+            {
+                speedMod /= 1.4f;
+            }
         
         }
 

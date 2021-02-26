@@ -24,7 +24,7 @@ namespace PlayerState
             player.inputs.dash = false;
             player.isDashing = true;
 
-            animator.Dash( stats.getStat(ModiferType.DASH_RANGE) );
+            animator.Dash( stats.getStat(ModiferType.DASH_DURATION) );
             
             startRotation = player.facingDirection;
             player.setRotation(startRotation);

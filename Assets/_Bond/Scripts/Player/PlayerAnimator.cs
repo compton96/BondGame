@@ -14,14 +14,33 @@ public class PlayerAnimator : MonoBehaviour
 
     /*
     *   Constants
-    *   Can be read by other scripts
-    *   But can only be set in here
     *   Should be formatted "isX" like a question
+    *
+    *   Public constants Can be read by other scripts
+    *   But can only be set in here
+    *   
     */
     public bool isAttack { get; private set; }
-    public bool isHurt { get; private set; }
-    public bool isDash { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
+    public bool isDash { get; private set; }
+    public bool isHeavyAttack { get; private set; }
+    public bool isHurt { get; private set; }
+    public bool isRun { get; private set; }
+
+    private int attackStatesActive = 0;
+    private float moveMagnitude = 0f;
+
+    void Update()
+    {
+        if ( isRun && moveMagnitude > 0 )
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+    }
 
     /*
     *   Animation Events
@@ -33,21 +52,29 @@ public class PlayerAnimator : MonoBehaviour
         isAttack = false;
     }
 
+    public void EventHeavyAttackDone()
+    {
+        isHeavyAttack = false;
+    }
+
     /*
     *   State Machine Behavior Triggers
     *   Triggered by State Machine Behaviors
     */
 
-    public void SMBAttackDone()
+    public void SMBAttackEnter()
     {
-        //isAttack = false;
-        //isFollowThrough = false;
+        attackStatesActive += 1;
     }
 
-    public void SMBHurtExit()
+    public void SMBAttackExit()
     {
-        isHurt = false;
-        animator.ResetTrigger("isHit");
+        attackStatesActive -= 1;
+        if( attackStatesActive < 1 )
+        {
+            isAttack = false;
+            isAttackFollowThrough = false;
+        }
     }
 
     public void SMBDashExit()
@@ -56,16 +83,30 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Dash");
     }
 
-    public void SMBIdleEnter()
+    public void SMBHeavyAttackExit()
     {
-        isAttack = false;
-        isAttackFollowThrough = false;
+        isHeavyAttack = false;
+    }
+
+    public void SMBHurtExit()
+    {
+        isHurt = false;
+        animator.ResetTrigger("isHit");
     }
 
     /*
-    *   Reset Functions
+    *   Actual Functions
     *   Modifies the constants
+    *   Called by the states
     */
+
+    public void Attack( int num )
+    {
+        isAttack = true;
+        isAttackFollowThrough = true;
+
+        animator.SetTrigger("Attack" + num.ToString() );
+    }
 
     public void ResetAttackAnim()
     {
@@ -83,21 +124,46 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Attack3");
         animator.ResetTrigger("Attack4");
+
+        animator.ResetTrigger("HeavyAttack");
+        animator.ResetTrigger("HeavyCharge");
     }
 
-    public void Attack( int num )
+    public void HeavyCharge(bool state)
     {
-        isAttack = true;
-        isAttackFollowThrough = true;
+        if( state )
+        {
+            animator.SetTrigger("HeavyCharge");
 
-        animator.SetTrigger("Attack" + num.ToString() );
+            playerController.heavyChargeVfx.Play();
+        }
+        else
+        {
+            playerController.heavyChargeVfx.Stop();
+        }
     }
 
-    public void Hurt()
+    public void HeavyAttack()
     {
-        isHurt = true;
-        Run( false );
-        animator.SetTrigger("isHit");
+        isHeavyAttack = true;
+
+        animator.SetTrigger("HeavyAttack");
+        animator.ResetTrigger("HeavyCharge");
+
+        playerController.heavyHitVfx.Play();
+    }
+
+    public void Crouch(bool state)
+    {
+        // Herman TODO: Make this value lerp
+        if( state )
+        {
+            animator.SetFloat("Standing_Crouch_Blend", 1f );
+        }
+        else
+        {
+            animator.SetFloat("Standing_Crouch_Blend", 0f );
+        }
     }
 
     public void Dash( float constant )
@@ -109,40 +175,36 @@ public class PlayerAnimator : MonoBehaviour
         this.ResetAllAttackAnims();
     }
 
-    public void HeavyCharge(bool state)
+    public void Hurt()
+    {
+        isHurt = true;
+
+        animator.SetTrigger("isHit");
+    }
+
+    public void Idle(bool state)
     {
         if( state )
         {
-            playerController.heavyChargeVfx.Play();
+            this.ResetAllAttackAnims();
+
+            animator.ResetTrigger("Dash");
+            animator.ResetTrigger("isHit");
+
+            isRun = true;
         }
         else
         {
-            playerController.heavyChargeVfx.Stop();
-        }
-    }
+            isRun = false;
 
-    public void Run(bool state)
-    {
-        animator.SetBool("Run", state);
+            animator.SetBool("Run", false);
+        }
+        
     }
 
     public void Move(Vector3 movementVector)
     {
-        if (movementVector.magnitude > 0)
-        {
-            animator.SetBool("Run", true);
-        }
-        else
-        {
-            animator.SetBool("Run", false);
-        }
-    }
-
-    public void Idle()
-    {
-        this.ResetAllAttackAnims();
-
-        animator.ResetTrigger("Dash");
+        moveMagnitude = movementVector.magnitude;
     }
 
     // VISUAL FX

@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem heavyHitVfx;
     public ParticleSystem slashVfx;
     public Vector3 destination;
+    public Vector3 attackMoveVec;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -146,13 +147,18 @@ public class PlayerController : MonoBehaviour
             gravity = Vector3.zero;
         }
 
-        if(isDashing || isAttacking) 
+        if(isDashing) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
                 lastMoveVec = facingDirection;
             }
             movementVector = lastMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
+        }
+        else if(isAttacking) 
+        {   
+            //moves player in direction of click
+            movementVector = attackMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
         }
         else 
         {
@@ -407,6 +413,14 @@ public class PlayerController : MonoBehaviour
                 destination = hit.point;
                 Vector3 direction = hit.point - transform.position;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
+
+
+                //Creates a movement vector for DoMovement to use on attacks. Moves player in direction of click
+                Vector2 tempVec = new Vector2(newDirection.x,newDirection.z);
+                tempVec.Normalize();
+                attackMoveVec = new Vector3(tempVec.x, 0, tempVec.y);
+                
+
                 transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
                 
                 //Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -471,13 +485,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCrouch()
     {
+        // If standing, then crouch
         if(crouchModifier == 1f)
         {
             crouchModifier = .5f;
+            animator.Crouch( true );
         }
+        // If crouched, then stand up
         else
         {
             crouchModifier = 1f;
+            animator.Crouch( false );
         }
     }
 
