@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EncounterManager : MonoBehaviour
 {
+ 
     public List<Wave> waves = new List<Wave>();
     public int currEnemyCount = 0;
     public GameObject barrier;
@@ -27,14 +28,12 @@ public class EncounterManager : MonoBehaviour
         {
             foreach(GameObject spawner in waves[currWave].spawners)
             {
-                spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
-                currEnemyCount++;
+                SpawnNextEnemy();
             }
-            currWave++;
         } 
         else 
         {
-            spawnNextEnemy();
+            SpawnNextEnemy();
         }
 
 
@@ -43,60 +42,58 @@ public class EncounterManager : MonoBehaviour
     public void enemyKilled()
     {
         currEnemyCount--;
-        if(currWave >= waves.Count)
+        if(currWave < waves.Count)
         {
-            //clear encounter
-            if(currEnemyCount < 1)
+            if(waves[currWave].index < waves[currWave].spawners.Count)
             {
-                barrier.SetActive(false);
-                PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
-                return;
-            }
-        }
-        if(currEnemyCount <= waves[currWave].waitUntilEnemiesLeft)
-        {
-            if(waves[currWave].spawnWholeWave)
-            {
-                foreach(GameObject spawner in waves[currWave].spawners)
-                {
-                    spawner.GetComponent<EnemySpawner>().spawnEnemy(this);
-                    currEnemyCount++;
-                }
-                currWave++;
-            } else {
-                spawnNextEnemy();
-            }
-            
-        }
-    }
-
-    public void spawnNextEnemy()
-    {
-
-        if(waves[currWave].index < waves[currWave].spawners.Count)
-        {
-            waves[currWave].spawners[waves[currWave].index].GetComponent<EnemySpawner>().spawnEnemy(this);
-            currEnemyCount++;
-            waves[currWave].index++;
-        } 
-        else
-        {
-            if(currWave < waves.Count)
-            {
-                currWave++;
-                spawnNextEnemy();
-                
-            }
+                SpawnNextEnemy();
+            } 
             else 
             {
-                if(currEnemyCount < 1)
+                currWave++;
+                if(currWave < waves.Count)
                 {
-                    barrier.SetActive(false);
-                    PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
+                    if(waves[currWave].spawnWholeWave)
+                    {
+                        foreach(GameObject spawner in waves[currWave].spawners)
+                        {
+                            SpawnNextEnemy();
+                        }
+                    }
+                    else
+                    {
+                        SpawnNextEnemy();
+                    }
                 }
-                
             }
         }
+        else
+        {
+            if(currEnemyCount < 1)
+            {
+                ClearEncounter();
+            }
+        }
+
+
+
+
+
+       
+    }
+
+    public void SpawnNextEnemy()
+    {
+        waves[currWave].spawners[waves[currWave].index].GetComponent<EnemySpawner>().SpawnEnemy(this);
+        currEnemyCount++;
+        waves[currWave].index++;
+    }
+
+
+    private void ClearEncounter()
+    {
+        barrier.SetActive(false);
+        PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
     }
 }
 
