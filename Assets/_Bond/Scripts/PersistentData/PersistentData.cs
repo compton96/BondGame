@@ -99,8 +99,6 @@ public class PersistentData : MonoBehaviour
                 AudioController = Instantiate(AudioControllerPrefab, Vector3.zero, Quaternion.identity);
             }
         }
-        AudioController.GetComponent<AudioController>().playerTransform = Player.transform;
-        AudioController.GetComponent<AudioController>().enemyDetectRange = 12;
         MakeChild(AudioController);
     }
 

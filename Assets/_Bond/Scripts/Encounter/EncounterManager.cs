@@ -19,6 +19,7 @@ public class EncounterManager : MonoBehaviour
             SpawnEncounter();
             GetComponent<Collider>().enabled = false;
             PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(true);
+            PersistentData.Instance.AudioController.GetComponent<AudioController>().BeginCombatMusic();
         }
     }
     
@@ -94,6 +95,7 @@ public class EncounterManager : MonoBehaviour
     {
         barrier.SetActive(false);
         PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
+        PersistentData.Instance.AudioController.GetComponent<AudioController>().EndCombatMusic();
     }
 }
 
