@@ -69,19 +69,12 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            
-            if(!animator.isAttack)
+            if( !animator.isAttack &&
+                nextState != null &&
+                player.inputs.basicAttack )
             {
-                if( nextState != null )
-                {
-                    if(player.inputs.basicAttack)
-                    {
-                        SetState( nextState );
-                        return;
-                    }
-                }
-                
-                animator.Run(false);
+                SetState( nextState );
+                return;
             }
         }
 

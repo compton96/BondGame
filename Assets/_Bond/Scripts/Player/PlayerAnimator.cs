@@ -23,6 +23,7 @@ public class PlayerAnimator : MonoBehaviour
     public bool isAttack { get; private set; }
     public bool isAttackFollowThrough { get; private set; }
     public bool isDash { get; private set; }
+    public bool isHeavyAttack { get; private set; }
     public bool isHurt { get; private set; }
     public bool isRun { get; private set; }
 
@@ -51,6 +52,11 @@ public class PlayerAnimator : MonoBehaviour
         isAttack = false;
     }
 
+    public void EventHeavyAttackDone()
+    {
+        isHeavyAttack = false;
+    }
+
     /*
     *   State Machine Behavior Triggers
     *   Triggered by State Machine Behaviors
@@ -75,6 +81,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         isDash = false;
         animator.ResetTrigger("Dash");
+    }
+
+    public void SMBHeavyAttackExit()
+    {
+        isHeavyAttack = false;
     }
 
     public void SMBHurtExit()
@@ -113,18 +124,33 @@ public class PlayerAnimator : MonoBehaviour
         animator.ResetTrigger("Attack2");
         animator.ResetTrigger("Attack3");
         animator.ResetTrigger("Attack4");
+
+        animator.ResetTrigger("HeavyAttack");
+        animator.ResetTrigger("HeavyCharge");
     }
 
     public void HeavyCharge(bool state)
     {
         if( state )
         {
+            animator.SetTrigger("HeavyCharge");
+
             playerController.heavyChargeVfx.Play();
         }
         else
         {
             playerController.heavyChargeVfx.Stop();
         }
+    }
+
+    public void HeavyAttack()
+    {
+        isHeavyAttack = true;
+
+        animator.SetTrigger("HeavyAttack");
+        animator.ResetTrigger("HeavyCharge");
+
+        playerController.heavyHitVfx.Play();
     }
 
     public void Crouch(bool state)
@@ -152,7 +178,7 @@ public class PlayerAnimator : MonoBehaviour
     public void Hurt()
     {
         isHurt = true;
-        Run( false );
+
         animator.SetTrigger("isHit");
     }
 
@@ -170,6 +196,8 @@ public class PlayerAnimator : MonoBehaviour
         else
         {
             isRun = false;
+
+            animator.SetBool("Run", false);
         }
         
     }
@@ -177,11 +205,6 @@ public class PlayerAnimator : MonoBehaviour
     public void Move(Vector3 movementVector)
     {
         moveMagnitude = movementVector.magnitude;
-    }
-
-    public void Run(bool state)
-    {
-        animator.SetBool("Run", state);
     }
 
     // VISUAL FX
