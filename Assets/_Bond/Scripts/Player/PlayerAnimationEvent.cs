@@ -19,6 +19,11 @@ public class PlayerAnimationEvent : MonoBehaviour
         playerAnimator.EventAttackDone();
     }
 
+    public void HeavyAttackDone()
+    {
+        playerAnimator.EventHeavyAttackDone();
+    }
+
     // VISUAL FX
 
     public void PlaySlashVFX()
