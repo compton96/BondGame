@@ -29,7 +29,7 @@ public class CreatureInteractable : InteractableBase
         pc.wildCreature = Creature;
         pc.befriendCreature();
         pc.wildCreature = null;
-        showUI = false;
+        //showUI = false;
 
         gameObject.SetActive(false); //THIS IS TEMPORARY
 
@@ -37,6 +37,12 @@ public class CreatureInteractable : InteractableBase
 
     public void DoInteractTamed()
     {
-        //do hug animation
+        var context = Creature.GetComponent<CreatureAIContext>();
+        if(context.creatureStats.statManager.getStat(ModiferType.CURR_ENTHUSIASM) < 5)
+        {
+            context.enthusiasmInteracted = true;
+            gameObject.SetActive(false); //THIS IS TEMPORARY
+        }
+        
     }
 }

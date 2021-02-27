@@ -36,9 +36,9 @@ public class StatManager : MonoBehaviour
         }
     }
 
-    public void AddRelic(RelicStats relicStats)
+    public void AddRelic(List<Modifier> mods)
     {
-        foreach(Modifier mod in relicStats.modifiers) 
+        foreach(Modifier mod in mods) 
         {
             AddModifier(mod);
         }

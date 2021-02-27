@@ -311,8 +311,9 @@ public class PlayerController : MonoBehaviour
             {
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 swapCreature = wildCreature;
-                swapCreature.SetActive(false); //MOVE TO SOMEWHERE OF SCREEN AND 
+                swapCreature.GetComponent<CreatureAIContext>().agent.Warp(Vector3.zero);
                 swapCreature.GetComponent<CreatureAIContext>().isActive = false;
+                ApplyCreatureRelics(swapCreature.GetComponent<CreatureAIContext>().creatureStats.statManager);
             }
             else 
             { // first creature;
@@ -320,6 +321,7 @@ public class PlayerController : MonoBehaviour
                 currCreature = wildCreature;
                 currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
                 currCreatureContext.isActive = true;
+                ApplyCreatureRelics(currCreatureContext.creatureStats.statManager);
             }
 
             // Debug.Log("BEFRIENDED");
@@ -331,13 +333,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void ApplyCreatureRelics(StatManager _statManager)
+    {
+        foreach(RelicStats relic in Relics)
+        {
+            _statManager.AddRelic(relic.creatureModifiers);
+        }
+    }
+
     private void OnSwap()
     {
         if(swapCreature != null)
         {
             var temp = currCreature;
-            currCreature.SetActive(false);
-            swapCreature.SetActive(true);
+            currCreature.GetComponent<CreatureAIContext>().agent.Warp(Vector3.zero);
+            swapCreature.GetComponent<CreatureAIContext>().agent.Warp(backFollowPoint.position);
             swapCreature.transform.position = backFollowPoint.position;
             currCreature = swapCreature;
             currCreatureContext = currCreature.GetComponent<CreatureAIContext>();

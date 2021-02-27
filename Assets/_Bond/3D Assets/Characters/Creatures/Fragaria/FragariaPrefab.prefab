@@ -5439,7 +5439,7 @@ MonoBehaviour:
   followPoint: {fileID: 0}
   abilitySpawner: {fileID: 372912646155600726}
   animator: {fileID: 0}
-  interactRadius: {fileID: 0}
+  interactRadius: {fileID: 7652944173022466313}
   basicCreatureAttack: {fileID: 11400000, guid: 0f792a119603cf6458be42eb9173f011,
     type: 2}
   isWild: 1
@@ -5453,6 +5453,7 @@ MonoBehaviour:
   isHit: 0
   inCombat: 0
   autoAttack: 0
+  enthusiasmInteracted: 0
   playerSpeedToScare: 0.9
   lastTriggeredAbility: 0
   enemyDetectRange: 20

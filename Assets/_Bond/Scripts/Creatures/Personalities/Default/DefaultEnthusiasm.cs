@@ -30,10 +30,11 @@ public class DefaultEnthusiasm : BTSubtree
 
                     #region Player interacted
                         List<BTNode> interactList = new List<BTNode>();
-                        //Check if player HASNT interacted
+                        CCheckEnthusiasmInteracted checkEnthusiasmInteracted = new CCheckEnthusiasmInteracted("check if the player has interacted", context);
+                        CActionSad actionSad = new CActionSad("Fragaria sad", context);
                         //do sad animation - and enable interaction colliders or something
-                        //InteractList.Add(CCheckInteracted);
-                        //InteractList.Add(CActionSad);
+                        interactList.Add(checkEnthusiasmInteracted);
+                        interactList.Add(actionSad);
                         BTSequence interactSequence = new BTSequence("Not Interacted with", interactList);
                     #endregion
 

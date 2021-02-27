@@ -20,23 +20,32 @@ public class CreatureAnimator : MonoBehaviour
             animator.SetBool("Move", false);
         }
     }
+    
     public void Jump() 
     {
         animator.SetTrigger("jump");
     }
+
     public void Attack1()
     {
         animator.SetTrigger("Attack1");
     }
+
     public void LayDown(){
-        animator.SetTrigger("Lay Down")
-        ;
+        animator.SetTrigger("Lay Down");
     }
+
     public void Sit()
     {
         animator.SetTrigger("Sit");
     }
+
     public void Wave()
+    {
+        animator.SetTrigger("Wave");
+    }
+
+    public void Sad()
     {
         animator.SetTrigger("Wave");
     }

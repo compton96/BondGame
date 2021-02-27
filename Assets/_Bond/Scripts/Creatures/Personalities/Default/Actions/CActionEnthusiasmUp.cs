@@ -27,7 +27,7 @@ public class CActionEnthusiasmUp : BTLeaf
         
         if(true) 
         { //if animation done, have to add that 
-            
+            context.enthusiasmInteracted = false;
             context.creatureStats.statManager.setStat(ModiferType.CURR_ENTHUSIASM, context.creatureStats.statManager.getStat(ModiferType.MAX_ENTHUSIASM) * 0.1f);
             OnParentExit();
             return NodeState.SUCCESS;
