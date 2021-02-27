@@ -12,7 +12,9 @@ public class CCheckDefaultAttackOnCD : BTChecker
 
     public override NodeState Evaluate()
     {
-        if(context.player.GetComponent<PlayerController>().cooldownSystem.IsOnCooldown(10))
+        int temp = context.player.GetComponent<PlayerController>().hasSwapped ? 100 : 0;
+       
+        if(context.player.GetComponent<PlayerController>().cooldownSystem.IsOnCooldown(10 + temp))
         {
           
             return NodeState.SUCCESS;

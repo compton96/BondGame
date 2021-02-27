@@ -19,15 +19,29 @@ public class RelicInteractable : InteractableBase
         {
             PersistentData.Instance.Player.GetComponent<PlayerController>().goldCount -= cost;
             removeOnInteract = true;
-            ApplyModifiers(PersistentData.Instance.Player.GetComponent<PlayerController>().stats);
+            ApplyModifiers();
             Destroy(gameObject);
         }
         
     }
 
-    public void ApplyModifiers(StatManager _statManager)
+    public void ApplyModifiers()
     {
+        var pc = PersistentData.Instance.Player.GetComponent<PlayerController>();
         Debug.Log("Applying modifiers");
-        _statManager.AddRelic(relicStats);
+        pc.stats.AddRelic(relicStats.playerModifiers);
+        if(pc.currCreature != null)
+        {
+            pc.currCreatureContext.creatureStats.statManager.AddRelic(relicStats.creatureModifiers);
+        }
+
+        if(pc.swapCreature != null)
+        {
+            pc.swapCreature.GetComponent<CreatureAIContext>().creatureStats.statManager.AddRelic(relicStats.creatureModifiers);
+        }
+
+
+        pc.Relics.Add(relicStats);
+
     }
 }

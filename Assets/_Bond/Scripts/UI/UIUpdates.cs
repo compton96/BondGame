@@ -20,6 +20,7 @@ public class UIUpdates : MonoBehaviour
     public CanvasGroup abilityGroup;
     public Image ability1Icon;
     public Image ability2Icon;
+    public Slider enthusiasmSlider;
 
     private StatManager stats => PersistentData.Instance.Player.GetComponent<StatManager>();
     private PlayerController player => PersistentData.Instance.Player.GetComponent<PlayerController>();
@@ -73,7 +74,8 @@ public class UIUpdates : MonoBehaviour
     {
          if(player.currCreatureContext != null)
         {
-
+            enthusiasmSlider.enabled = true;
+            updateEnthusiasm();
             currCreatureIcon.sprite = player.currCreatureContext.icon;
             abilityGroup.alpha = 1;
             ability1Icon.sprite = player.currCreatureContext.creatureStats.abilities[0].abilityIcon;
@@ -87,11 +89,18 @@ public class UIUpdates : MonoBehaviour
         }
         else
         {
+            enthusiasmSlider.enabled = false;
             currCreatureIcon.sprite = noCreatureIcon;
             swapCreatureIcon.sprite = noCreatureIcon;
             abilityGroup.alpha = 0;
 
         }
+    }
+
+    public void updateEnthusiasm()
+    {
+        var creatureStats = player.currCreatureContext.creatureStats.statManager;
+        enthusiasmSlider.value = ((creatureStats.getStat(ModiferType.CURR_ENTHUSIASM) / creatureStats.getStat(ModiferType.MAX_ENTHUSIASM)) * 100);
     }
 
     public void showInteractPrompt()
