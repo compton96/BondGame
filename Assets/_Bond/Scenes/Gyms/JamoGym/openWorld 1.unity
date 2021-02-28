@@ -1338,6 +1338,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 86f221ed2007bb14e931f4ece15c90c1,
         type: 2}
+    - target: {fileID: 8111253542704904454, guid: 8665e2c2602835f479cc802f8641cf74,
+        type: 3}
+      propertyPath: barkList.Array.data[2]
+      value: Free Stuff!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8665e2c2602835f479cc802f8641cf74, type: 3}
 --- !u!1001 &386956158
@@ -1672,6 +1677,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279640884929269300, guid: ac92d26580688e2468b36dc953f472a1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279640884929269300, guid: ac92d26580688e2468b36dc953f472a1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8580111774580001889, guid: ac92d26580688e2468b36dc953f472a1,
         type: 3}
       propertyPath: m_Name
@@ -4446,7 +4461,7 @@ PrefabInstance:
     - target: {fileID: 2548567714979520405, guid: 0599d5f58ab44b34fa6082c174f21410,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 196.6
+      value: 189.2
       objectReference: {fileID: 0}
     - target: {fileID: 2548567714979520405, guid: 0599d5f58ab44b34fa6082c174f21410,
         type: 3}
@@ -4456,7 +4471,7 @@ PrefabInstance:
     - target: {fileID: 2548567714979520405, guid: 0599d5f58ab44b34fa6082c174f21410,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.678503
+      value: 39.2
       objectReference: {fileID: 0}
     - target: {fileID: 2548567714979520405, guid: 0599d5f58ab44b34fa6082c174f21410,
         type: 3}
