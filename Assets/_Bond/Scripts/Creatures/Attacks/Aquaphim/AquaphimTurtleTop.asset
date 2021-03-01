@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a949ee8558a1bc349a2b6e6c1b3846aa, type: 3}
-  m_Name: AquaphimMelee
+  m_Name: AquaphimTurtleTop
   m_EditorClassIdentifier: 
   id: 0
-  cooldownDuration: 0
+  cooldownDuration: 2
   abilityIcon: {fileID: 21300000, guid: 94dc6172f129b92418a6ea06396572f8, type: 3}
-  abilityBehavior: {fileID: 11400000, guid: 76de43e03771e6e46822ff14abad8193, type: 2}
+  abilityBehavior: {fileID: 11400000, guid: 7d4e57fce031f454d93b414ace516079, type: 2}
   abilityBuff: {fileID: 0}
   maxDistanceToEnemy: 3
   moveSpeed: 0
