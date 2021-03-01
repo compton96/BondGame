@@ -16,6 +16,7 @@ TagManager:
   - Relic
   - UI
   - Interactable
+  - Pause
   layers:
   - Default
   - TransparentFX

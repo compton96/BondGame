@@ -20,6 +20,10 @@ public class PersistentData : MonoBehaviour
     public GameObject UI { get; private set; }
     private GameObject ui;
 
+    public Canvas PauseMenuPrefab;
+    public Canvas PauseMenu { get; private set; }
+    private Canvas pauseMenu;
+
     public GameObject AudioControllerPrefab;
     public GameObject AudioController {get; private set;}
     private GameObject audioController;
@@ -78,6 +82,25 @@ public class PersistentData : MonoBehaviour
             catch
             {
                 UI = Instantiate(UIPrefab, GetSpawnpoint(), Quaternion.identity);
+            }
+            
+        }
+
+
+
+        if(PauseMenu == null)
+        {
+            try
+            {
+                PauseMenu = GameObject.FindGameObjectWithTag("Pause").GetComponent<Canvas>();
+                if(PauseMenu == null)
+                {
+                    PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
+                }
+            }
+            catch
+            {
+                PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
             }
             
         }
