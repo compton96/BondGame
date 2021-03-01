@@ -6,7 +6,8 @@ public class UiFunctions : MonoBehaviour
 {
    public void TransitionScene(int index)
    {
-       SceneManager.LoadScene(index);
+       //SceneManager.LoadScene(index);
+       PersistentData.Instance.LoadScene(index);
    }
 
    public void ExitGame()

@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
     public HitBoxes hitBoxes;
 
-    public GameObject pauseMenu;
+    public Canvas pauseMenu;
     private bool isPaused = false;
 
 
@@ -133,6 +133,8 @@ public class PlayerController : MonoBehaviour
         dashStart = Time.time;
         animator.ResetAllAttackAnims();
         inputs.usingMouse = false;
+
+        //pauseMenu = GameObject.FindGameObjectWithTag("Pause").GetComponent<Canvas>();
     }
 
 
@@ -475,18 +477,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause()
     {
-        // isPaused = !isPaused;
-        // if(isPaused)
-        // {
-        //     pauseMenu.SetActive(true);
-        //     //Time.timeScale = 0f;
-            
+        PersistentData.Instance.PauseMenu.enabled = !PersistentData.Instance.PauseMenu.enabled;
+        // if(PersistentData.Instance.PauseMenu.enabled) //open
+        // {  
+        //     Time.timeScale = 0f;            
         // }
         // else 
         // {
-        //     pauseMenu.SetActive(false);
-        //     //Time.timeScale = 1;
-            
+        //     Time.timeScale = 1f;            
         // }
 
         
