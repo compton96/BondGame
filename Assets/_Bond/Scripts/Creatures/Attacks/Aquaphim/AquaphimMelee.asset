@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   cooldownDuration: 0
+  abilityIcon: {fileID: 21300000, guid: 94dc6172f129b92418a6ea06396572f8, type: 3}
+  abilityBehavior: {fileID: 11400000, guid: 76de43e03771e6e46822ff14abad8193, type: 2}
+  abilityBuff: {fileID: 0}
   maxDistanceToEnemy: 3
   moveSpeed: 0
   anims: {fileID: 0}
