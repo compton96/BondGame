@@ -8,11 +8,11 @@ public class PlayerInteractRadius : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log(other.transform.tag);
+        // Debug.Log(other.transform.tag);
         
         if(other.transform.tag == "Interactable")
         {
-            Debug.Log("near interactable");
+            // Debug.Log("near interactable");
             pc.interactableObjects.Add(other.gameObject, other.gameObject.GetComponent<InteractableBase>());
             if( other.gameObject.GetComponent<InteractableBase>().showUI)
             {

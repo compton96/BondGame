@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cafc23ec76d8be04daa3b6c647dbb442, type: 3}
-  m_Name: FragariaBaseStats 1
+  m_Name: AquaphimBaseStats
   m_EditorClassIdentifier: 
   statName: Aquaphim
   stats:
@@ -32,3 +32,7 @@ MonoBehaviour:
     baseValue: 0
   - modiferType: 13
     baseValue: 0
+  - modiferType: 23
+    baseValue: 100
+  - modiferType: 24
+    baseValue: 100

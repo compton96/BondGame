@@ -381,6 +381,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Debug.Log("New ID: " + currCreatureContext.lastTriggeredAbility);
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
             cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
 
