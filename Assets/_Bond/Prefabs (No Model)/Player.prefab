@@ -10132,7 +10132,7 @@ MonoBehaviour:
     slash3: {fileID: 3008331728240645142}
     slash4: {fileID: 0}
     heavy: {fileID: 6334410306365020563}
-  pauseMenu: {fileID: 7388749792863832309, guid: 24c0e2ff030508646b4c9c368272a756,
+  pauseMenu: {fileID: 7388749792863832312, guid: 24c0e2ff030508646b4c9c368272a756,
     type: 3}
 --- !u!114 &6669998564430628805
 MonoBehaviour:
@@ -10149,6 +10149,8 @@ MonoBehaviour:
   player: {fileID: 0}
   HeavySlash:
     hitbox: {fileID: 0}
+    startTime: 0
+    endLag: 0
 --- !u!114 &3008331729029387138
 MonoBehaviour:
   m_ObjectHideFlags: 0
