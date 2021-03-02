@@ -490,6 +490,19 @@ public class PlayerController : MonoBehaviour
         // }
 
         
+
+        if(PersistentData.Instance.PauseMenu.GetComponent<Canvas>().enabled)
+        {
+            PersistentData.Instance.PauseMenu.GetComponent<Canvas>().enabled = false;
+            Time.timeScale = 1;
+        }
+        else 
+        {   
+            PersistentData.Instance.PauseMenu.GetComponent<Canvas>().enabled = true;
+            Time.timeScale = 0f;
+        }
+
+        
     }
     
     //*********** END INPUT FXNS **************************

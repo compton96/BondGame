@@ -20,6 +20,10 @@ public class PersistentData : MonoBehaviour
     public GameObject UI { get; private set; }
     private GameObject ui;
 
+    public GameObject PauseMenuPrefab;
+    public GameObject PauseMenu { get; private set; }
+    private GameObject pauseMenu;
+
     public GameObject AudioControllerPrefab;
     public GameObject AudioController {get; private set;}
     private GameObject audioController;
@@ -83,6 +87,24 @@ public class PersistentData : MonoBehaviour
         }
 
 
+        if(PauseMenu == null)
+        {
+            try
+            {
+                PauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+                if(PauseMenu == null)
+                {
+                    PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
+                }
+            }
+            catch
+            {
+                PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
+            }
+            
+        }
+
+
 
         if (AudioController == null)
         {
@@ -132,6 +154,7 @@ public class PersistentData : MonoBehaviour
         MakeChild(playerController.currCreature);
         MakeChild(playerController.swapCreature);
         MakeChild(UI);
+        MakeChild(PauseMenu);
         //Loading Scene, can make transition stuff here
          //for example, some screen fading stuff : 
             //transition OUT
@@ -151,6 +174,7 @@ public class PersistentData : MonoBehaviour
         UnmakeChild(playerController.currCreature);
         UnmakeChild(playerController.swapCreature);
         UnmakeChild(UI);
+        MakeChild(PauseMenu);
 
         //set players position in new scene
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
