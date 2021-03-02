@@ -9,6 +9,16 @@ public class UiFunctions : MonoBehaviour
        SceneManager.LoadScene(index);
    }
 
+   public void LoadSceneNoPersist(int index)
+   {
+       SceneManager.LoadScene(index);
+   }
+
+   public void SetTimeScale(int index)
+   {
+       Time.timeScale = index;
+   }
+
    public void ExitGame()
    {
         Application.Quit();
