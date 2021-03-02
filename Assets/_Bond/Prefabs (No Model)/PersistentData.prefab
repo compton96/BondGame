@@ -48,8 +48,6 @@ MonoBehaviour:
     type: 3}
   UIPrefab: {fileID: 8580111774580001889, guid: ac92d26580688e2468b36dc953f472a1,
     type: 3}
-  PauseMenuPrefab: {fileID: 7388749792863832309, guid: 24c0e2ff030508646b4c9c368272a756,
-    type: 3}
   AudioControllerPrefab: {fileID: 8012914224973901697, guid: f1bd54d4de3e98a45b4517738e3c8369,
     type: 3}
   loadScreen: {fileID: 2837024482875620880}

@@ -16,7 +16,6 @@ TagManager:
   - Relic
   - UI
   - Interactable
-  - Pause
   layers:
   - Default
   - TransparentFX
@@ -29,8 +28,8 @@ TagManager:
   - Enemy
   - navIgnore
   - Ground
-  - 
-  - 
+  - MonsterSkin
+  - MonsterGlobe
   - 
   - 
   - 

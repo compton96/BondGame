@@ -108,14 +108,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "inventoryOpen",
-                    "type": "Button",
-                    "id": "8654d470-4f03-4325-9c03-6c4b02fc3fe4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -413,17 +405,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "creatureAutoAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b0586c5f-f9da-4bff-9c53-14a5d886943e",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "inventoryOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
