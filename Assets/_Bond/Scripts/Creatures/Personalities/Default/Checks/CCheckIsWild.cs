@@ -15,11 +15,11 @@ public class CCheckIsWild : BTChecker
     {
         if (context.isWild)
         {
-            context.interactRadius.enabled = true;
+            //context.interactRadius.enabled = true;
             return NodeState.SUCCESS;
         }
             
-        context.interactRadius.enabled = false;
+        //context.interactRadius.enabled = false;
         return NodeState.FAILURE;
     }
 

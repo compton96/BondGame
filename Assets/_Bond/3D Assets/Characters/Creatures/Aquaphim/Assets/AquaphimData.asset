@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a3331ee17959149bb875f18942f0d3, type: 3}
   m_Name: AquaphimData
   m_EditorClassIdentifier: 
-  creaturePrefab: {fileID: 0}
-  maxLife: 50
+  creaturePrefab: {fileID: 8167450192529632886, guid: f4977e2dae61c894abde81a45bab6f31,
+    type: 3}
+  maxLife: 0
   level: 0
   power: 0
   utility: 0
   dexterity: 0
-  moveSpeed: 12
+  moveSpeed: 13
   Id: 0
-  lifeRange: {x: 100, y: 150}
-  powerRange: {x: 5, y: 20}
-  utilityRange: {x: 5, y: 20}
-  dexterityRange: {x: 10, y: 30}
+  creatureIcon: {fileID: 21300000, guid: e447ec0e971627743848d6efef935815, type: 3}
+  lifeRange: {x: 60, y: 75}
+  powerRange: {x: 10, y: 30}
+  utilityRange: {x: 25, y: 50}
+  dexterityRange: {x: 20, y: 40}
   creatureAttacks:
-  - {fileID: 11400000, guid: a4b6648fb2e6008438d861115efd61df, type: 2}
-  - {fileID: 11400000, guid: 7cc00f4684b352a4b86142774b071e92, type: 2}
+  - {fileID: 11400000, guid: 1ff4fb50f8e636f489b4f392601b6c7c, type: 2}
+  - {fileID: 11400000, guid: b8b76c17d2364474ba75349cc49ab8b9, type: 2}

@@ -16,7 +16,7 @@ public class CCheckPlayerTriggeredAbility : BTChecker
     {
         if(context.isAbilityTriggered)
         {
-            Debug.Log("Player Triggered Ability");
+            // Debug.Log("Player Triggered Ability");
             return NodeState.SUCCESS;
         }
         return NodeState.FAILURE;

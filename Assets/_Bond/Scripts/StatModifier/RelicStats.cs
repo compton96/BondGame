@@ -9,5 +9,7 @@ public class RelicStats : ScriptableObject
     public string relicInfo;
     //sprite
     [SerializeField]
-    public List<Modifier> modifiers = new List<Modifier>();
+    public List<Modifier> playerModifiers = new List<Modifier>();
+    public List<Modifier> creatureModifiers = new List<Modifier>();
+
 }

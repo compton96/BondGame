@@ -8,7 +8,7 @@ public class Modifier
     public string modifierIdentifier;
     public ModiferType modiferType;
     public float Additive;
-    public float Multiplicitive;
+    public float Multiplicitive = 1;
 }
 
 public enum ModiferType
@@ -29,11 +29,13 @@ public enum ModiferType
     CRIT_DAMAGE,
     ATTACK_RANGE,
     DASH_SPEED,
-    DASH_RANGE,
+    DASH_DURATION,
     DASH_COOLDOWN,
     DETECTION_RANGE,
     BUFF_EFFECTIVENESS,
     CREATURE_DEXTERITY,
     CREATURE_UTILITY,
-    CREATURE_POWER
+    CREATURE_POWER,
+    CURR_ENTHUSIASM,
+    MAX_ENTHUSIASM
 }

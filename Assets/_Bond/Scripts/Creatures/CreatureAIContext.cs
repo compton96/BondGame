@@ -21,10 +21,11 @@ public class CreatureAIContext : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject backFollowPoint;
     public GameObject followPoint;
-    public GameObject projectileSpawner;
+    public GameObject abilitySpawner;
     public CreatureAnimator animator;
-    public Collider interactRadius;
+    public GameObject interactRadius;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
+    public creatureAttackBase basicCreatureAttack;
     
 
     
@@ -36,6 +37,11 @@ public class CreatureAIContext : MonoBehaviour
     public bool isAbilityTriggered;
     public bool wanderIdling = false;
     public bool cleverIgnoreItems = false;
+    public bool isActive;
+    public bool isHit;
+    public bool inCombat;
+    public bool autoAttack;
+    public bool enthusiasmInteracted;
 
     [Header("Misc.Numbers")]
     public float playerSpeedToScare;

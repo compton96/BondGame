@@ -41,7 +41,9 @@ namespace PlayerState
                 case 1:
                     return fsm.Slash2;
                 case 2:
-                    return null; //fsm.Slash3;
+                    return fsm.Slash3;
+                case 3:
+                    return fsm.Slash4;
                 default:
                     return null;
             }
@@ -59,8 +61,6 @@ namespace PlayerState
             hitBox.SetActive(false);
             hitBox.SetActive(true);
 
-            player.isAttacking = true;
-
             speedMod = 1f;
 
         }
@@ -69,32 +69,12 @@ namespace PlayerState
 
         public override void OnStateUpdate()
         {
-            if(player.inputs.dash)
+            if( !animator.isAttack &&
+                nextState != null &&
+                player.inputs.basicAttack )
             {
-                SetState( fsm.Dash );
+                SetState( nextState );
                 return;
-            }
-            
-            if(!animator.isAttack)
-            {
-                if( nextState != null )
-                {
-                    if(player.inputs.basicAttack)
-                    {
-                        SetState( nextState );
-                        return;
-                    }
-                }
-                
-                animator.SetRun(false);
-               
-                if(!animator.isFollowThrough)
-                {
-                    animator.ResetAllAttackAnims();
-
-                    SetState(fsm.IdleMove);
-                    return;
-                }
             }
         }
 
@@ -107,7 +87,7 @@ namespace PlayerState
             if(speedMod >= 0.05f)
             {
                 speedMod /= 1.4f;
-            }            
+            }
         
         }
 
@@ -116,9 +96,6 @@ namespace PlayerState
         public override void OnStateExit()
         {
             player.inputs.basicAttack = false;
-
-            player.isAttacking = false;
-            
         }
     }
 }

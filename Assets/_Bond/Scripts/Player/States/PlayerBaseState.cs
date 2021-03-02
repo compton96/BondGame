@@ -15,7 +15,7 @@ namespace PlayerState
         
 
 
-        protected string name;
+        public string name { get; protected set; }
         protected State parent;
 
         public State( PlayerStateMachine _fsm )

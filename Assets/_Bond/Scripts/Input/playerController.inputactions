@@ -100,6 +100,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "creatureAutoAttack",
+                    "type": "Button",
+                    "id": "a64a9512-07bd-4628-aed9-d96e803bb9c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -183,7 +191,7 @@
                 {
                     "name": "",
                     "id": "48b2b188-3c21-42a7-a133-3c58d905cf38",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -227,7 +235,7 @@
                 {
                     "name": "",
                     "id": "b4378cad-060b-4db2-addf-73b00f236578",
-                    "path": "<Keyboard>/#(Q)",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -249,7 +257,7 @@
                 {
                     "name": "",
                     "id": "63167295-8c67-47e4-8411-8e10f397dea5",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -271,7 +279,7 @@
                 {
                     "name": "",
                     "id": "d3d9255e-6af9-436c-a839-cb38012b5eb0",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -386,6 +394,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "mousePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "623b3dcc-c57b-45e1-8ee8-b7e7e53c14cc",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "creatureAutoAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

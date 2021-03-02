@@ -27,17 +27,19 @@ public class CActionAttackRanged : BTLeaf
     public override NodeState Evaluate() 
     {
         //Debug.Log("ATTACK RANGED");
-        context.projectileSpawner.GetComponent<ProjectileSpawner>()
+        context.abilitySpawner.GetComponent<AbilitySpawner>()
             .SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
         
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
         if(true) 
         { //if animation done, have to add that 
-            OnParentExit();
+            
+            context.lastTriggeredAbility = 10;
             context.player.GetComponent<PlayerController>().PutOnCD();
             // Debug.Log("Ability Id: ");
             // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         

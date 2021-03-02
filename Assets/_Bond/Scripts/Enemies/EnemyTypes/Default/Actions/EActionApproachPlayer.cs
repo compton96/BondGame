@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class EActionApproachPlayer : BTLeaf
 {
     private NavMeshAgent agent;
-    // private float moveSpeed = 5f;
     private float angularSpeed = 720f; //deg/s
     private float acceleration = 100f; //max accel units/sec^2
 
@@ -48,6 +47,7 @@ public class EActionApproachPlayer : BTLeaf
         {
             // Still trying to get to player
             agent.destination = enemyContext.player.transform.position;
+            agent.speed = enemyContext.statManager.stats[ModiferType.MOVESPEED].modifiedValue;
             return NodeState.RUNNING;
         }
     }

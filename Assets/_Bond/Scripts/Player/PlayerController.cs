@@ -57,10 +57,11 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 gravity;
 
-    public int goldCount;
+    public int goldCount = 0;
     private float crouchModifier = 1;
     public bool nearInteractable = false;
     public bool hasSwapped;
+    public bool inCombat;
     
     public Transform backFollowPoint;
 
@@ -70,6 +71,8 @@ public class PlayerController : MonoBehaviour
     public GameObject interactableObject;
     public CreatureAIContext currCreatureContext;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
+
+    public Dictionary<GameObject, InteractableBase> interactableObjects = new Dictionary<GameObject, InteractableBase>();
 
     
     //******Combat Vars**********//
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem heavyHitVfx;
     public ParticleSystem slashVfx;
     public Vector3 destination;
+    public Vector3 attackMoveVec;
     //****************//
     public float isoSpeedADJ = 0f;
 
@@ -92,6 +96,7 @@ public class PlayerController : MonoBehaviour
         public GameObject slash1;
         public GameObject slash2;
         public GameObject slash3;
+        public GameObject slash4;
         public GameObject heavy;
 
     }
@@ -142,13 +147,18 @@ public class PlayerController : MonoBehaviour
             gravity = Vector3.zero;
         }
 
-        if(isDashing || isAttacking) 
+        if(isDashing) 
         {   
             if(lastMoveVec == Vector3.zero) 
             {
                 lastMoveVec = facingDirection;
             }
             movementVector = lastMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
+        }
+        else if(isAttacking) 
+        {   
+            //moves player in direction of click
+            movementVector = attackMoveVec * stats.getStat(ModiferType.MOVESPEED) * Time.deltaTime * movementModifier * crouchModifier;
         }
         else 
         {
@@ -217,26 +227,62 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-        if(nearInteractable)
+
+        if(interactableObjects.Count > 0)
         {
-            inputs.interact = true;
-            if(interactableObject != null)
+            InteractableBase tempBase = null;
+            GameObject tempObj = null;
+            float closestDist = 20;
+
+            foreach(KeyValuePair<GameObject, InteractableBase> interactable in interactableObjects)
             {
-                if(interactableObject.transform.tag == "Relic")
+                float tempDist = Vector3.Distance(interactable.Key.transform.position, gameObject.transform.position);
+                if(tempDist < closestDist)
                 {
-                    Relics.Add(interactableObject.GetComponent<Relic>().relicStats);
-                    interactableObject.GetComponent<Relic>().applyModifiers(stats);
-                    //update Health ui
+                    closestDist = tempDist;
+                    tempBase = interactable.Value;
+                    tempObj = interactable.Key;
                 }
-                Destroy(interactableObject);
-                nearInteractable = false;
             }
-            else if (wildCreature != null)
+
+            tempBase.DoInteract();
+            if(tempBase.removeOnInteract)
             {
-                befriendCreature();
+                interactableObjects.Remove(tempObj);
+            }
+            if(interactableObjects.Count == 0)
+            {
+                PersistentData.Instance.UI.GetComponent<UIUpdates>().hideIntereactPrompt();
             }
         }
+
+        //shop keeper (or any npc for dialog)
+        //relics
+        //creatures
+        //chests
+        //portal or something
+        //lore items (walk up to thing and it gives you info etc)
+        //fruit?
+
+
                 
+    }
+
+
+    private void OnCreatureAutoAttack()
+    {
+        if(currCreatureContext != null)
+        {
+            if(currCreatureContext.autoAttack)
+            {
+                currCreatureContext.autoAttack = false;
+            } 
+            else 
+            {
+                currCreatureContext.autoAttack = true;
+            }
+            
+        }
     }
 
     private void OnDash()
@@ -256,7 +302,7 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    private void befriendCreature()
+    public void befriendCreature()
     {
         bool requirementMet = true;
         if(requirementMet)
@@ -265,25 +311,34 @@ public class PlayerController : MonoBehaviour
             {
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 swapCreature = wildCreature;
-                swapCreature.SetActive(false);
-                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
-                nearInteractable = false;
+                swapCreature.GetComponent<CreatureAIContext>().agent.Warp(Vector3.zero);
+                swapCreature.GetComponent<CreatureAIContext>().isActive = false;
+                ApplyCreatureRelics(swapCreature.GetComponent<CreatureAIContext>().creatureStats.statManager);
             }
             else 
-            {
+            { // first creature;
                 wildCreature.GetComponent<CreatureAIContext>().isWild = false;
                 currCreature = wildCreature;
                 currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
-                //FIX LATER --- NEED TO DISABLE NOTICE/INTERACT COLLIDERS
-                nearInteractable = false;
+                currCreatureContext.isActive = true;
+                ApplyCreatureRelics(currCreatureContext.creatureStats.statManager);
             }
 
-            Debug.Log("BEFRIENDED");
+            // Debug.Log("BEFRIENDED");
             wildCreature.GetComponentInChildren<ParticleSystem>().Play();//PLAYS HEARTS, NEED TO CHANGE SO IT WORKS WITH MULTIPLE P-SYSTEMS
-            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
+            InCombat(inCombat);
 
         }
 
+    }
+
+    public void ApplyCreatureRelics(StatManager _statManager)
+    {
+        foreach(RelicStats relic in Relics)
+        {
+            _statManager.AddRelic(relic.creatureModifiers);
+        }
     }
 
     private void OnSwap()
@@ -291,13 +346,15 @@ public class PlayerController : MonoBehaviour
         if(swapCreature != null)
         {
             var temp = currCreature;
-            currCreature.SetActive(false);
-            swapCreature.SetActive(true);
+            currCreature.GetComponent<CreatureAIContext>().agent.Warp(Vector3.zero);
+            swapCreature.GetComponent<CreatureAIContext>().agent.Warp(backFollowPoint.position);
             swapCreature.transform.position = backFollowPoint.position;
             currCreature = swapCreature;
             currCreatureContext = currCreature.GetComponent<CreatureAIContext>();
             currCreatureContext.isInPlayerRadius = false;
+            currCreatureContext.isActive = true;
             swapCreature = temp;
+            swapCreature.GetComponent<CreatureAIContext>().isActive = false;
             if (hasSwapped == false)
             {
                 hasSwapped = true;
@@ -307,7 +364,7 @@ public class PlayerController : MonoBehaviour
                 hasSwapped = false;
             }
             
-            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateCreatureUI();
+            PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
         }
         
 
@@ -315,7 +372,7 @@ public class PlayerController : MonoBehaviour
 
     public void PutOnCD()
     {
-        Debug.Log(hasSwapped);
+        // Debug.Log(hasSwapped);
         if (hasSwapped)
         {
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility + 100;
@@ -324,8 +381,26 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Debug.Log("New ID: " + currCreatureContext.lastTriggeredAbility);
             currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility].id = currCreatureContext.lastTriggeredAbility;
             cooldownSystem.PutOnCooldown(currCreatureContext.creatureStats.abilities[currCreatureContext.lastTriggeredAbility]);
+
+        }
+    }
+
+    public void PutBasicOnCD()
+    {
+        if (hasSwapped)
+        {
+            currCreatureContext.basicCreatureAttack.id = 10 + 100;
+            cooldownSystem.PutOnCooldown(currCreatureContext.basicCreatureAttack);
+            return;
+        }
+        else
+        {
+            currCreatureContext.basicCreatureAttack.id = 10;
+            cooldownSystem.PutOnCooldown(currCreatureContext.basicCreatureAttack);
+
         }
     }
 
@@ -333,7 +408,7 @@ public class PlayerController : MonoBehaviour
     //Slash (X)
     private void OnAttack1()
     {
-        Debug.Log("attack");
+        // Debug.Log("attack");
         inputs.basicAttack = true;
         if(inputs.usingMouse)
         {
@@ -343,12 +418,22 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                // Debug.Log("RAYCAST : " + hit.transform.gameObject);
                 //gameObject.transform.LookAt(hit.point);
+
                 destination = hit.point;
                 Vector3 direction = hit.point - transform.position;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
+
+
+                //Creates a movement vector for DoMovement to use on attacks. Moves player in direction of click
+                Vector2 tempVec = new Vector2(newDirection.x,newDirection.z);
+                tempVec.Normalize();
+                attackMoveVec = new Vector3(tempVec.x, 0, tempVec.y);
+                
+
                 transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
+                
                 //Quaternion lookRotation = Quaternion.LookRotation(direction);
                 //transform.forward = new Vector3(lookRotation.x, 0, lookRotation.z);
                 
@@ -411,13 +496,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCrouch()
     {
+        // If standing, then crouch
         if(crouchModifier == 1f)
         {
             crouchModifier = .5f;
+            animator.Crouch( true );
         }
+        // If crouched, then stand up
         else
         {
             crouchModifier = 1f;
+            animator.Crouch( false );
         }
     }
 
@@ -436,9 +525,18 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    public void InCombat(bool _inCombat)
+    {
+        inCombat = _inCombat;
 
-
-
-
+        if(currCreature != null)
+        {
+            currCreatureContext.inCombat = inCombat;
+            if(swapCreature != null)
+            {
+                swapCreature.GetComponent<CreatureAIContext>().inCombat = inCombat;
+            }
+        }
+    }
     
 }

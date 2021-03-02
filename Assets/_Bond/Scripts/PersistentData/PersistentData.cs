@@ -99,8 +99,6 @@ public class PersistentData : MonoBehaviour
                 AudioController = Instantiate(AudioControllerPrefab, Vector3.zero, Quaternion.identity);
             }
         }
-        AudioController.GetComponent<AudioController>().playerTransform = Player.transform;
-        AudioController.GetComponent<AudioController>().enemyDetectRange = 12;
         MakeChild(AudioController);
     }
 
@@ -139,7 +137,7 @@ public class PersistentData : MonoBehaviour
             //transition OUT
         
         yield return StartCoroutine(FadeInScreen(0.5f));
-        Debug.Log("fade in");
+        // Debug.Log("fade in");
         
         while (!loadNewScene.isDone)
         {
@@ -158,7 +156,7 @@ public class PersistentData : MonoBehaviour
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
 
         
-        Debug.Log(GetSpawnpoint());
+        // Debug.Log(GetSpawnpoint());
         Player.transform.position = GetSpawnpoint();
        
 

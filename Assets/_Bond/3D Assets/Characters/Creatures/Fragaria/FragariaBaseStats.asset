@@ -32,3 +32,7 @@ MonoBehaviour:
     baseValue: 0
   - modiferType: 13
     baseValue: 0
+  - modiferType: 23
+    baseValue: 100
+  - modiferType: 24
+    baseValue: 100
