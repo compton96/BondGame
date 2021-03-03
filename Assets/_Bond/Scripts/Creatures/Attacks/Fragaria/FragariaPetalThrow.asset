@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70cfeefe681eb04e8f6b968e4fdc328, type: 3}
-  m_Name: FragariaRanged
+  m_Name: FragariaPetalThrow
   m_EditorClassIdentifier: 
-  id: 1
-  cooldownDuration: 0
+  id: 0
+  cooldownDuration: 2
   abilityIcon: {fileID: 21300000, guid: 0164f815d78332c43ad9e3efe347a563, type: 3}
-  abilityBehavior: {fileID: 11400000, guid: 9168e465b940918468fad296e43f5085, type: 2}
+  abilityBehavior: {fileID: 11400000, guid: 7fd9952e9d9db8044be4184220b1015c, type: 2}
+  abilityBuff: {fileID: 0}
   maxDistanceToEnemy: 10
-  projectileSpeed: 10
-  projectile: {fileID: 573035498810555202, guid: bb83add4b79bde14f9153a00f2c847af,
+  projectileSpeed: 0
+  projectile: {fileID: 2957472583538239812, guid: 379ba2b7aecdea24a9a35110ff3c2372,
     type: 3}
   anims: {fileID: 0}
   baseDmg: 50
   isHoming: 1
-  cooldownDuration: 2
+  speed: 0
+  damage: 0
+  target: {fileID: 0}

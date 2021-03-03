@@ -9,7 +9,10 @@ public class creatureAttackUtility : creatureAttackBase
     public GameObject projectile;
     public Animation anims;
     public float baseDmg;
-    new public float cooldownDuration = 2f;
+    private void Awake() 
+    {
+        cooldownDuration = 2f;
+    }
     
     new public int Id => id;
     
