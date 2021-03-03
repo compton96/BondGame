@@ -39,7 +39,11 @@ public class ProjectileScript : MonoBehaviour
     public void setTarget(GameObject _target, float _speed, float _damage, bool _isHoming)
     {
         target = _target;
-        transform.LookAt(target.transform.position);
+        if(target != null)
+        {
+            transform.LookAt(target.transform.position);
+        }
+        
         speed = _speed;
         damage = _damage;
         isHoming = _isHoming;

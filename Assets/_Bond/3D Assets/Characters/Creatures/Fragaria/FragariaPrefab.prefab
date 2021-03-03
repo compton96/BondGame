@@ -5443,7 +5443,7 @@ MonoBehaviour:
   interactRadius: {fileID: 7652944173022466313}
   basicCreatureAttack: {fileID: 11400000, guid: 0f792a119603cf6458be42eb9173f011,
     type: 2}
-  PetalCone: {fileID: 2957472583538239812, guid: 379ba2b7aecdea24a9a35110ff3c2372,
+  PetalCone: {fileID: 8144200659242719062, guid: 31c4943d3422d804089b1c2262442c17,
     type: 3}
   isWild: 1
   isInPlayerRadius: 0
