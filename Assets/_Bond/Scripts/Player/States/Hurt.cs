@@ -38,7 +38,7 @@ namespace PlayerState
                 SetState(fsm.IdleMove);
                 return;
             }
-            Debug.Log(animator.isHurt);
+            // Debug.Log(animator.isHurt);
         }
 
         public override void OnStateFixedUpdate()

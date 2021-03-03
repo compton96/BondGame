@@ -14,7 +14,6 @@ public class CActionAttackPetalSaw : BTLeaf
 
     protected override void OnEnter()
     {
-        Debug.Log("fuck");
         attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         // Debug.Log("Attacking");

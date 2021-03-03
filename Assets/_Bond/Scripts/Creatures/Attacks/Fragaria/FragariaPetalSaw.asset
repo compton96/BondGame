@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a949ee8558a1bc349a2b6e6c1b3846aa, type: 3}
   m_Name: FragariaPetalSaw
   m_EditorClassIdentifier: 
-  id: 1
-  cooldownDuration: 5
+  id: 0
+  cooldownDuration: 2
   abilityIcon: {fileID: 21300000, guid: 94dc6172f129b92418a6ea06396572f8, type: 3}
   abilityBehavior: {fileID: 11400000, guid: d9df1091cb180ba418f5ab619328eaf7, type: 2}
   abilityBuff: {fileID: 0}
@@ -21,5 +21,5 @@ MonoBehaviour:
   moveSpeed: 250
   anims: {fileID: 0}
   animTrigger: 
-  baseDmg: 450
+  baseDmg: 200
   hitRadius: 50
