@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class AbilitySpawner : MonoBehaviour
 {
-
     public void SpawnProjectile(GameObject projectile, GameObject target, float speed, float damage, bool isHoming) 
     {
         var proj = Instantiate(projectile, transform.position, Quaternion.identity);
         proj.GetComponent<ProjectileScript>().setTarget(target, speed, damage, isHoming);
+    }
+
+    public void SpawnPetals(GameObject projectile) 
+    {
+        var proj = Instantiate(projectile, gameObject.transform.position, projectile.transform.rotation);
+        // proj.GetComponent<PetalThrow>().setTarget(target, speed, damage, isHoming);
     }
 
     public void SpawnSunBeam(GameObject projectile, GameObject target, float damage, Buff debuff)

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CActionAttackRanged : BTLeaf
+public class CActionAttackPetalSaw : BTLeaf
 {
-    creatureAttackRanged attack;
-    public CActionAttackRanged(string _name, CreatureAIContext _context ) : base(_name, _context)
+
+    creatureAttackMelee attack;
+    public CActionAttackPetalSaw(string _name, CreatureAIContext _context ) : base(_name, _context)
     {
         name = _name;
         context = _context;
@@ -13,7 +14,8 @@ public class CActionAttackRanged : BTLeaf
 
     protected override void OnEnter()
     {
-        attack = (creatureAttackRanged) context.creatureStats.abilities[context.lastTriggeredAbility];
+        Debug.Log("fuck");
+        attack = (creatureAttackMelee) context.creatureStats.abilities[context.lastTriggeredAbility];
         //Play amim
         // Debug.Log("Attacking");
         context.animator.Attack1();
@@ -26,21 +28,20 @@ public class CActionAttackRanged : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        //Debug.Log("ATTACK RANGED");
-        context.abilitySpawner.GetComponent<AbilitySpawner>()
-            .SpawnProjectile(attack.projectile, context.targetEnemy, attack.projectileSpeed, attack.baseDmg, attack.isHoming);
-        
+        context.targetEnemy.GetComponent<EnemyAIContext>().statManager.TakeDamage(attack.baseDmg, ModiferType.MELEE_RESISTANCE);
         context.targetEnemy = null;
         context.isAbilityTriggered = false;
-        if(true) 
+        if(true)
         { //if animation done, have to add that 
-            OnParentExit();
+      
             context.player.GetComponent<PlayerController>().PutOnCD();
             // Debug.Log("Ability Id: ");
             // Debug.Log(context.creatureStats.abilities[context.lastTriggeredAbility].id);
+            OnParentExit();
             return NodeState.SUCCESS;
         }
         
 
     }
+
 }

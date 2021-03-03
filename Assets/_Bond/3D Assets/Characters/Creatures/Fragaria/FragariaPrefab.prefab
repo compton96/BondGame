@@ -5428,6 +5428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   targetEnemy: {fileID: 0}
+  enemyList: []
   cleverItem: {fileID: 0}
   foundFood: {fileID: 0}
   creatureTransform: {fileID: 8167450192529632875}
@@ -5442,6 +5443,8 @@ MonoBehaviour:
   interactRadius: {fileID: 7652944173022466313}
   basicCreatureAttack: {fileID: 11400000, guid: 0f792a119603cf6458be42eb9173f011,
     type: 2}
+  PetalCone: {fileID: 2957472583538239812, guid: 379ba2b7aecdea24a9a35110ff3c2372,
+    type: 3}
   isWild: 1
   isInPlayerRadius: 0
   isInPlayerTrail: 0

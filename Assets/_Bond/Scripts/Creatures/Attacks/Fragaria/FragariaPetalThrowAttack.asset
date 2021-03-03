@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf4ceb341638984288fadeecf5bc7e1, type: 3}
-  m_Name: FragariaRangedAttack
+  m_Script: {fileID: 11500000, guid: ed94ff4c83b762b488f1adeaefbc22f2, type: 3}
+  m_Name: FragariaPetalThrowAttack
   m_EditorClassIdentifier: 
