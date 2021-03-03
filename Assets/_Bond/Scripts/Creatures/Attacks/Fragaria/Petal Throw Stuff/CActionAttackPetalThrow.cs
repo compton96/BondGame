@@ -29,7 +29,9 @@ public class CActionAttackPetalThrow : BTLeaf
 
     public override NodeState Evaluate() 
     {
-        context.abilitySpawner.GetComponent<AbilitySpawner>().SpawnPetals(context.PetalCone);
+        context.gameObject.transform.LookAt(context.targetEnemy.transform);
+        context.gameObject.transform.rotation = new Quaternion(0, context.gameObject.transform.rotation.y, 0, context.gameObject.transform.rotation.w);
+        context.abilitySpawner.GetComponent<AbilitySpawner>().SpawnPetals(context.PetalCone, context.creatureTransform);
         if (context.enemyList != null)
         {
             foreach (GameObject enemy in context.enemyList)

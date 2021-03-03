@@ -18,12 +18,12 @@ MonoBehaviour:
   abilityBehavior: {fileID: 11400000, guid: 7fd9952e9d9db8044be4184220b1015c, type: 2}
   abilityBuff: {fileID: 0}
   maxDistanceToEnemy: 10
-  projectileSpeed: 0
-  projectile: {fileID: 2957472583538239812, guid: 379ba2b7aecdea24a9a35110ff3c2372,
+  projectileSpeed: 10
+  projectile: {fileID: 573035498810555202, guid: bb83add4b79bde14f9153a00f2c847af,
     type: 3}
   anims: {fileID: 0}
   baseDmg: 50
   isHoming: 1
-  speed: 0
-  damage: 0
+  speed: 10
+  damage: 100
   target: {fileID: 0}
