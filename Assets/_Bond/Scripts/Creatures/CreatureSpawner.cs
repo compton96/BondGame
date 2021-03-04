@@ -27,7 +27,10 @@ public class CreatureSpawner : MonoBehaviour
         //pick random creature and spawn it in the world.
         int _randomCreatureNumber = Random.Range(0, creatureTypes.Count);
         GameObject Creature = Instantiate(creatureTypes[_randomCreatureNumber].creaturePrefab, spawnPoint.position, Quaternion.identity);
-        
+
+        //randomize color
+        Creature.GetComponent<CreatureMaterialManager>().RandomizeMaterial();
+
         //get access to its active data, and assign its values.
         ActiveCreatureData _ActiveCreatureData =  Creature.GetComponent<ActiveCreatureData>();
         _ActiveCreatureData.Id = Creature.GetInstanceID();
@@ -70,10 +73,6 @@ public class CreatureSpawner : MonoBehaviour
         //build BT
         Creature.GetComponent<CreatureAIContext>().GetActiveCreatureData();
         Creature.GetComponent<CreatureAI>().BuildBT();
-
-
-        
-
     }
 
     List<Personality> choosePersonalities(ActiveCreatureData _ActiveCreatureData, creatureData _CreatureData){

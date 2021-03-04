@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FragariaRangedAttack", menuName = "ScriptableObjects/BTSubtrees/Attacks/Fragaria/Ranged")]
-public class FragariaRangedPlaceholderAttack : BTSubtree
+[CreateAssetMenu(fileName = "FragariaPetalThrowAttack", menuName = "ScriptableObjects/BTSubtrees/Attacks/Fragaria/Petal Throw")]
+public class FragariaPetalThrowAttack : BTSubtree
 {
     public override BTSequence BuildSequenceSubtree(CreatureAIContext context) 
     {
@@ -12,7 +12,7 @@ public class FragariaRangedPlaceholderAttack : BTSubtree
         #region if target already exists selector
             List<BTNode> TargetExistsSelectorList = new List<BTNode>();
             CCheckIfTargetExists checkIfTargetExists = new CCheckIfTargetExists("Check if enemy already targeted", context);
-            CActionFindTargetEnemy findTargetEnemy = new CActionFindTargetEnemy("Find Closest Enemy in Range", context);
+            CActionFindTargetEnemy findTargetEnemy = new CActionFindTargetEnemy("Find Closest Enemies in Range", context);
             TargetExistsSelectorList.Add(checkIfTargetExists);
             TargetExistsSelectorList.Add(findTargetEnemy);
 
@@ -20,15 +20,13 @@ public class FragariaRangedPlaceholderAttack : BTSubtree
         #endregion 
 
 
-        #region Approach and attack sequence
+        #region Approach and attack selector
             List<BTNode> RangedApproachSelectorList = new List<BTNode>();
-            //BTCheckDistanceToTarget checkIfDistanceToTarget = new BTCheckDistanceToTarget("Check if in range for attack", context);
             CActionApproachForAttack approachForAttack = new CActionApproachForAttack("Approach for attack", context);
             BTInverter invertApproachForAttack = new BTInverter("Invert Approach for Attack", approachForAttack);
-            CActionAttackRanged attackRanged = new CActionAttackRanged("Ranged Attack", context);
-            //MeleeApproachSequenceList.Add(checkIfDistanceToTarget);
+            CActionAttackPetalThrow attackPetalThrow = new CActionAttackPetalThrow("Petal Throw Attack", context);
             RangedApproachSelectorList.Add(invertApproachForAttack);
-            RangedApproachSelectorList.Add(attackRanged);
+            RangedApproachSelectorList.Add(attackPetalThrow);
             
             BTSelector RangedApproachAttackSelector = new BTSelector("Melee Approach / Attack Sequence", RangedApproachSelectorList);
         #endregion

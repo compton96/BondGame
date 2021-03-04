@@ -12,6 +12,7 @@ public class CreatureAIContext : MonoBehaviour
     [Header("Objects")]
     public GameObject player;
     public GameObject targetEnemy;
+    public List<GameObject> enemyList;
     public GameObject cleverItem; //interesting items, only for clever creatures
     public GameObject foundFood; //Used in Hearty personality to find food
     public Transform creatureTransform;
@@ -26,6 +27,7 @@ public class CreatureAIContext : MonoBehaviour
     public GameObject interactRadius;
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
     public creatureAttackBase basicCreatureAttack;
+    public GameObject PetalCone;
     
 
     
@@ -74,6 +76,7 @@ public class CreatureAIContext : MonoBehaviour
         animator = GetComponent<CreatureAnimator>();
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        enemyList = new List<GameObject>();
        
         // GameObject temp = GameObject.FindGameObjectWithTag("CreatureDebugText");
         // debugText = temp.GetComponent<CreatureDebugText>();

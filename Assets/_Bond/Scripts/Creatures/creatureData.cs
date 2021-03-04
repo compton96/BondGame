@@ -7,8 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Creature", menuName = "ScriptableObjects/CreatureData", order = 1)]
 public class creatureData : ScriptableObject
 {
-
-
     public GameObject creaturePrefab;
 
     public float maxLife;

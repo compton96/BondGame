@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FragariaCel
+  m_Name: Fragaria_Palette_4
   m_Shader: {fileID: -6465566751694194690, guid: c1cbda290fa11f34692d4f4af8f6fcb7,
     type: 3}
   m_ShaderKeywords: 
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_438C4CAA:
-        m_Texture: {fileID: 2800000, guid: 48a448f674a49db46a35d7c9227cd65a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5ff36c9cfadfca74eb68630aa56efb35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_5E30ED0F:
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_8DCA0337:
-        m_Texture: {fileID: 2800000, guid: dde4234ed578b294aaf4dc77f387bdc1, type: 3}
+        m_Texture: {fileID: 2800000, guid: ae503e23029003740abe82df35bd60a9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
