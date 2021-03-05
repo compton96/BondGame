@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   cooldownDuration: 2
-  abilityIcon: {fileID: 21300000, guid: 0164f815d78332c43ad9e3efe347a563, type: 3}
+  abilityIcon: {fileID: 21300000, guid: 16ae60673231a4a4abbddb5f25874e7f, type: 3}
   abilityBehavior: {fileID: 11400000, guid: 7fd9952e9d9db8044be4184220b1015c, type: 2}
   abilityBuff: {fileID: 0}
+  abilityDescription: Shoots petals at enemies for damage
   maxDistanceToEnemy: 10
   projectileSpeed: 10
   projectile: {fileID: 573035498810555202, guid: bb83add4b79bde14f9153a00f2c847af,
