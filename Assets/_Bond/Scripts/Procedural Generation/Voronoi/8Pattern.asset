@@ -24,10 +24,10 @@ MonoBehaviour:
     biome: 1
   - start: {x: 100, y: 100}
     end: {x: 256, y: 100}
-    biome: 2
+    biome: 3
   - start: {x: 256, y: 100}
     end: {x: 256, y: 400}
-    biome: 2
+    biome: 3
   - start: {x: 256, y: 400}
     end: {x: 400, y: 400}
-    biome: 2
+    biome: 3
