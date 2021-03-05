@@ -29,7 +29,7 @@ public class CreatureSpawner : MonoBehaviour
         GameObject Creature = Instantiate(creatureTypes[_randomCreatureNumber].creaturePrefab, spawnPoint.position, Quaternion.identity);
 
         //randomize color
-        Creature.GetComponent<CreatureMaterialManager>().RandomizeMaterial();
+        Creature.GetComponent<CreatureMaterialManager>().RandomizeMaterial();//This currently only works on fragaria, bricks others
 
         //get access to its active data, and assign its values.
         ActiveCreatureData _ActiveCreatureData =  Creature.GetComponent<ActiveCreatureData>();
@@ -65,7 +65,7 @@ public class CreatureSpawner : MonoBehaviour
             Creature.name = "Default Fragaria";
         }
         
-
+        //sets the creature icons
         Creature.GetComponent<CreatureAIContext>().icon = creatureTypes[_randomCreatureNumber].creatureIcon;
         Creature.GetComponent<CreatureAIContext>().ability1Icon = _ActiveCreatureData.abilities[0].abilityIcon;
         Creature.GetComponent<CreatureAIContext>().ability2Icon =  _ActiveCreatureData.abilities[1].abilityIcon;

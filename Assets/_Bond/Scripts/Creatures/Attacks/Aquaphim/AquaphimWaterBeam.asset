@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   cooldownDuration: 2
-  abilityIcon: {fileID: 21300000, guid: 0164f815d78332c43ad9e3efe347a563, type: 3}
+  abilityIcon: {fileID: 21300000, guid: 8b14d5f277319c9498717c159fd20b03, type: 3}
   abilityBehavior: {fileID: 11400000, guid: b46f6b91fa24dac4ba439dc959a044ba, type: 2}
   abilityBuff: {fileID: 0}
+  abilityDescription: Blasts enemies with a jet of water
   maxDistanceToEnemy: 10
   projectileSpeed: 10
   projectile: {fileID: 1232755435502466787, guid: 3b2671b06fcd2f14f80fad934d0a31e1,
@@ -24,4 +25,6 @@ MonoBehaviour:
   anims: {fileID: 0}
   baseDmg: 50
   isHoming: 1
-  cooldownDuration: 2
+  speed: 0
+  damage: 0
+  target: {fileID: 0}
