@@ -18,7 +18,7 @@ MonoBehaviour:
     biome: 1
   - start: {x: 100, y: 256}
     end: {x: 400, y: 256}
-    biome: 7
+    biome: 1
   - start: {x: 400, y: 256}
     end: {x: 400, y: 400}
     biome: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
     biome: 5
   - start: {x: 256, y: 100}
     end: {x: 256, y: 400}
-    biome: 3
+    biome: 5
   - start: {x: 256, y: 400}
     end: {x: 400, y: 400}
     biome: 5

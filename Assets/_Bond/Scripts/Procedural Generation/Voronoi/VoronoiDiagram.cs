@@ -13,27 +13,44 @@ public class VoronoiDiagram : MonoBehaviour
 	public int increment;
 	public ConnectionPoints connectionPoints;
 
-	List<Cell> visitedCells = new List<Cell>();
+	List<Cell> coarseVisitedCells = new List<Cell>(); 
+	List<Cell> fineVisitedCells = new List<Cell>();
 	List<Cell> borderCells = new List<Cell>();
 
 	public Terrain terrain;
 
+	public Color32 forestColor;
+	public Color32 forestBorderColor;
+	public Color32 marshColor;
+	public Color32 marshBorderColor;
+	public Color32 meadowsColor;
+	public Color32 meadowsBorderColor;
+	public Color32 corruptionColor;
+	public Color32 corruptionBorderColor;
+
+	public GameObject playerSpawnPoint;
+	public GameObject levelExit;
+	
+	public List<GameObject> encounters = new List<GameObject>();
+
 
 	private void Start()
 	{
-		GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
-		visitedCells = new List<Cell>();
-		borderCells = new List<Cell>();
+		// GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
+		// fineVisitedCells = new List<Cell>();
+		// borderCells = new List<Cell>();
 	}
 
 	[ContextMenu("Run Code")]
 	private void Run()
 	{
 		GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
-		visitedCells = new List<Cell>();
+		fineVisitedCells = new List<Cell>();
 		borderCells = new List<Cell>();
+		Debug.Log(meadowsColor);
 	}
 	
+	//Draws between the start and end cell to get next cell on path
 	Cell FindNextCell(Cell[] cells, Cell startingCell, Cell endingCell, int _increment)
 	{
 		Vector2 startPos = startingCell.center;
@@ -48,34 +65,22 @@ public class VoronoiDiagram : MonoBehaviour
 		return newCell;
 	}
 
-	// void PaintLine(Cell[] cells, Cell startingCell, Cell endingCell, int _increment)
-	// {
-	// 	Vector2 startPos = startingCell.center;
-	// 	startPos = Vector2.MoveTowards(startPos, endingCell.center, _increment);
-	// 	Cell newCell = cells[GetClosestCellIndex((int)startPos.x, (int) startPos.y, cells)];
-	// 	while(newCell != endingCell)
-	// 	{
-	// 		startPos = Vector2.MoveTowards(startPos, endingCell.center, _increment);
-	// 		newCell = cells[GetClosestCellIndex((int)startPos.x, (int) startPos.y, cells)];
-	// 		newCell.biome = Biome.CORRUPTION;
-	// 	}
-	// }
-
+	//Gets connection points and uses the FindNextCell function to draw lines between them
 	public void connectCells(Cell[] cells)
 	{
 		foreach(Vector2Pair v in connectionPoints.points)
 		{
 			Cell newCell = cells[GetClosestCellIndex((int) v.start.x, (int)v.start.y, cells)];
 			newCell.biome = v.biome;
-			//visitedCells.Add(newCell);
+			coarseVisitedCells.Add(newCell);
 			Cell endCell = cells[GetClosestCellIndex((int) v.end.x, (int)v.end.y, cells)];
 			endCell.biome = v.biome;
-			//visitedCells.Add(newCell);
+			coarseVisitedCells.Add(newCell);
 			while(newCell != endCell) 
 			{
 				newCell = FindNextCell(cells, newCell, endCell, increment);
 				newCell.biome = v.biome;
-				//visitedCells.Add(newCell);
+				coarseVisitedCells.Add(newCell);
 			}
 		}
 	}
@@ -88,16 +93,24 @@ public class VoronoiDiagram : MonoBehaviour
 		float[,] heights = terrainData.GetHeights(0, 0, 0, 0);
         terrainData.SetHeights(0, 0, heights);
 		terrain.Flush();
-
+		Debug.Log(_texture.GetPixel(100,100));
 		float[, ,] alphaMapData = new float[terrainData.alphamapWidth, terrainData.alphamapHeight, terrainData.alphamapLayers];
 		var detailMapData = terrainData.GetDetailLayer(0, 0, terrainData.detailWidth, terrainData.detailHeight, 0);
+		Color32[] pixels = _texture.GetPixels32();
 		for (int y = 0; y < terrainData.alphamapHeight; y++)
         {
             for (int x = 0; x < terrainData.alphamapWidth; x++)
             {
 				float y_01 = (float)y/(float)terrainData.alphamapHeight;
                 float x_01 = (float)x/(float)terrainData.alphamapWidth;
-				if(_texture.GetPixel(x,y) == Color.black)
+				Color32 pixelColor = pixels[y*512 + x];
+
+				//Place trees on borders of biomes
+				if(pixelColor.Equals(forestBorderColor) ||
+				   pixelColor.Equals(meadowsBorderColor) ||
+				   pixelColor.Equals(marshBorderColor) ||
+				   pixelColor.Equals(corruptionBorderColor)
+				)
 				{
 					alphaMapData[x,y,2] = 1;
 					if(Random.Range(0,5) == 1){
@@ -114,20 +127,45 @@ public class VoronoiDiagram : MonoBehaviour
                         terrain.AddTreeInstance(treeTemp);
                         terrain.Flush();
                     }
-
 				} 
-				else if(_texture.GetPixel(x,y) == Color.green)
+				else if(pixelColor.Equals(forestColor))
 				{
 					alphaMapData[x,y,0] = 1;
-				}
-				else if(_texture.GetPixel(x,y) == Color.blue)
+				} else if(pixelColor.Equals(corruptionColor))
+				{
+					alphaMapData[x,y,4] = 1;
+				} else if(pixelColor.Equals(marshColor))
 				{
 					alphaMapData[x,y,1] = 1;
-				}
+				} 
+				else if(pixelColor.Equals(meadowsColor))
+				{
+					alphaMapData[x,y,3] = 1;
+				} 
 			}
 		}
 		terrainData.SetAlphamaps(0, 0, alphaMapData);
 		terrainData.SetDetailLayer(0, 0, 0, detailMapData);
+
+	}
+
+	//Places spawnPoint, exit, creatures, and enemies
+	void PlaceObjects(int encounterCount)
+	{
+		//place player spawn point and level exit
+		var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(coarseVisitedCells[0].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
+		var exit = Instantiate(levelExit, new Vector3(coarseVisitedCells[coarseVisitedCells.Count-1].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
+		coarseVisitedCells.RemoveAt(0);
+		coarseVisitedCells.RemoveAt(coarseVisitedCells.Count-1);
+
+		//place random encounters on centerpoints of coarse cells
+		for(int i = 0; i < encounterCount; i++)
+		{
+			int cellIndex = Random.Range(0, coarseVisitedCells.Count);
+			int encounterIndex = Random.Range(0, encounters.Count);
+
+			Instantiate(encounters[encounterIndex], new Vector3(coarseVisitedCells[cellIndex].center.x, 0 , coarseVisitedCells[cellIndex].center.y), Quaternion.identity);
+		}
 
 	}
 
@@ -136,13 +174,11 @@ public class VoronoiDiagram : MonoBehaviour
 		Cell[] coarseCells = new Cell[coarseRegionAmount];
 		Cell[] fineCells = new Cell[fineRegionAmount];
 
-
 		for(int i = 0; i < coarseRegionAmount; i++)
 		{
 			coarseCells[i] = new Cell();
 			coarseCells[i].center = new Vector2Int(Random.Range(0, imageDim.x), Random.Range(0, imageDim.y));
 			coarseCells[i].index = i;
-			
 		}
 
 		for(int i = 0; i < fineRegionAmount; i++)
@@ -152,10 +188,8 @@ public class VoronoiDiagram : MonoBehaviour
 			fineCells[i].index = i;
 		}
 		
-		
 		// relax(coarseCells);
 		// relax(fineCells);
-
 	
 		connectCells(coarseCells);
 
@@ -166,11 +200,11 @@ public class VoronoiDiagram : MonoBehaviour
 			fineCells[i].biome = b; 
 			if(b != Biome.EMPTY)
 			{
-				visitedCells.Add(fineCells[i]);
+				fineVisitedCells.Add(fineCells[i]);
 			}
 		}
 
-		foreach(Cell c in visitedCells)
+		foreach(Cell c in fineVisitedCells)
 		{
 			List<Cell> borderCells = GetClosestKCells(c.index, 15, fineCells);
 			//Debug.Log("Border Cells" + borderCells[0]);
@@ -183,11 +217,11 @@ public class VoronoiDiagram : MonoBehaviour
 						case Biome.FOREST:
 							b.biome = Biome.FOREST_BORDER;
 							break;
-						case Biome.WETLANDS:
-							b.biome = Biome.WETLANDS_BORDER;
+						case Biome.MEADOWS:
+							b.biome = Biome.MEADOWS_BORDER;
 							break;
-						case Biome.SWAMP:
-							b.biome = Biome.SWAMP_BORDER;
+						case Biome.MARSH:
+							b.biome = Biome.MARSH_BORDER;
 							break;
 						case Biome.CORRUPTION:
 							b.biome = Biome.CORRUPTION_BORDER;
@@ -195,7 +229,6 @@ public class VoronoiDiagram : MonoBehaviour
 						default:
 							b.biome = Biome.CORRUPTION_BORDER;
 							break;
-							
 					}
 				}
 			}
@@ -214,7 +247,8 @@ public class VoronoiDiagram : MonoBehaviour
 		}
 
 		Texture2D tex = GetImageFromColorArray(pixelColors);
-		//updateTerrain(tex);
+		updateTerrain(tex);
+		PlaceObjects(5);
 		return tex;
 	}
 
@@ -225,31 +259,22 @@ public class VoronoiDiagram : MonoBehaviour
 			case Biome.EMPTY :
 				return Color.black;
 			case Biome.FOREST :
-				return Color.green;
-			case Biome.SWAMP :
-				return Color.gray;
-			case Biome.WETLANDS :
-				return Color.blue;
+				return forestColor;
+			case Biome.MARSH :
+				return marshColor;
+			case Biome.MEADOWS :
+				return meadowsColor;
 			case Biome.CORRUPTION :
-				return Color.magenta;
+				return corruptionColor;
 			case Biome.CORRUPTION_BORDER :
-				return new Color32(54, 11, 64, 255);
-			case Biome.WETLANDS_BORDER :
-				return new Color32(5, 28, 110, 255);
+				return corruptionBorderColor;
+			case Biome.MEADOWS_BORDER :
+				return meadowsBorderColor;
 			case Biome.FOREST_BORDER :
-				return new Color32(1, 46, 0, 255);
-			case Biome.SWAMP_BORDER :
-				return new Color32(51, 51, 51, 255);
-			// case Biome.CORRUPTION_BORDER :
-			// 	return new Color(54, 11, 64);
-			// case Biome.WETLANDS_BORDER :
-			// 	return new Color(5, 28, 110);
-			// case Biome.FOREST_BORDER :
-			// 	return new Color(1, 46, 0);
-			// case Biome.SWAMP_BORDER :
-			// 	return new Color(51, 51, 51);
+				return forestBorderColor;
+			case Biome.MARSH_BORDER :
+				return marshBorderColor;
 		}
-		
 		return Color.black;
 	}
 
@@ -294,7 +319,7 @@ public class VoronoiDiagram : MonoBehaviour
 		int index = 0;
 		Vector2 coords = new Vector2(x, y);
 		for(int i = 0; i < cells.Length; i++)
-		{// Mathf.Sqrt(Mathf.Pow(coords.x - cells[i].center.x,2) + Mathf.Pow(coords.y - cells[i].center.y,2));
+		{
 			if (Vector2.Distance(coords, cells[i].center) < smallestDst)
 			{
 				smallestDst = Vector2.Distance(coords, cells[i].center);
@@ -307,7 +332,7 @@ public class VoronoiDiagram : MonoBehaviour
 	List<Cell> GetClosestKCells(int myIndex, int k, Cell[] cells)
 	{
 		List<Cell> kClosestCells = new List<Cell>(k);
-		kClosestCells.Sort((x,y)=> x.distance.CompareTo(y.distance));
+
 		Vector2 coords = new Vector2(cells[myIndex].center.x, cells[myIndex].center.y);
 		for(int i = 0; i < cells.Length; i++)
 		{
@@ -318,17 +343,16 @@ public class VoronoiDiagram : MonoBehaviour
 				{	
 					kClosestCells.Add(cells[i]);
 					kClosestCells[kClosestCells.Count - 1].distance = iDistance;
+					kClosestCells.Sort((x,y)=> x.distance.CompareTo(y.distance));
 				}
 				else 
 				{
-					kClosestCells.Sort((x,y)=> x.distance.CompareTo(y.distance));
-						
-
 					if (iDistance < Vector2.Distance(coords, kClosestCells[kClosestCells.Count - 1].center))
 					{
 						
 						kClosestCells[kClosestCells.Count - 1] = cells[i];
 						kClosestCells[kClosestCells.Count - 1].distance = iDistance;
+						kClosestCells.Sort((x,y)=> x.distance.CompareTo(y.distance));
 					}
 				}
 			}
@@ -367,7 +391,6 @@ public class VoronoiDiagram : MonoBehaviour
 				int index = GetClosestCellIndex(V2here.x, V2here.y, cells);
 				contributions[index] += V2here;
 				hits[index]++;
-				
 			}
 		}
 
@@ -385,8 +408,6 @@ public class Cell
 	public Vector2 center;
 	public Biome biome = Biome.EMPTY;
 	public float distance;
-
-
 }
 
 public enum Biome 
@@ -394,10 +415,10 @@ public enum Biome
 	EMPTY,
 	FOREST,
 	FOREST_BORDER,
-	SWAMP,
-	SWAMP_BORDER,
-	WETLANDS,
-	WETLANDS_BORDER,
+	MARSH,
+	MARSH_BORDER,
+	MEADOWS,
+	MEADOWS_BORDER,
 	CORRUPTION,
 	CORRUPTION_BORDER,
 }
