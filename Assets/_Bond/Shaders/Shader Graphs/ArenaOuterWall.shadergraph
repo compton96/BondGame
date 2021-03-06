@@ -28,19 +28,19 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"f0cfdb12-83d1-4f50-84bb-603349189873\"\n    },\n    \"m_Name\": \"Background End Color\",\n    \"m_DefaultReferenceName\": \"Color_DC742B31\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.5094339847564697,\n        \"g\": 0.5094339847564697,\n        \"b\": 0.5094339847564697,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"f0cfdb12-83d1-4f50-84bb-603349189873\"\n    },\n    \"m_Name\": \"Background End Color\",\n    \"m_DefaultReferenceName\": \"Color_DC742B31\",\n    \"m_OverrideReferenceName\": \"_BackgroundEndColor\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.5094339847564697,\n        \"g\": 0.5094339847564697,\n        \"b\": 0.5094339847564697,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
         },
         {
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"a183b57e-795e-4495-b5ef-4d404955c0df\"\n    },\n    \"m_Name\": \"Scroll Speed\",\n    \"m_DefaultReferenceName\": \"Vector1_E90F814A\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    }\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"a183b57e-795e-4495-b5ef-4d404955c0df\"\n    },\n    \"m_Name\": \"Scroll Speed\",\n    \"m_DefaultReferenceName\": \"Vector1_E90F814A\",\n    \"m_OverrideReferenceName\": \"_ScrollSpeed\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    }\n}"
         },
         {
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"741b817d-ef79-45ed-b073-ff43d2fd5e52\"\n    },\n    \"m_Name\": \"Transparency Noise Strength\",\n    \"m_DefaultReferenceName\": \"Vector1_C60B69F\",\n    \"m_OverrideReferenceName\": \"\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    }\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"741b817d-ef79-45ed-b073-ff43d2fd5e52\"\n    },\n    \"m_Name\": \"Transparency Noise Strength\",\n    \"m_DefaultReferenceName\": \"Vector1_C60B69F\",\n    \"m_OverrideReferenceName\": \"_TransparencyNoiseStrength\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 1.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    }\n}"
         }
     ],
     "m_SerializedKeywords": [],
