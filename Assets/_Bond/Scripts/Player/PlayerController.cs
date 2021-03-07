@@ -418,7 +418,8 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                // Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                Debug.Log(hit.point);
                 //gameObject.transform.LookAt(hit.point);
 
                 destination = hit.point;
@@ -475,22 +476,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause()
     {
-        // isPaused = !isPaused;
-        // if(isPaused)
-        // {
-        //     pauseMenu.SetActive(true);
-        //     //Time.timeScale = 0f;
-            
-        // }
-        // else 
-        // {
-        //     pauseMenu.SetActive(false);
-        //     //Time.timeScale = 1;
-            
-        // }
-
-        
-
         if(PersistentData.Instance.PauseMenu.GetComponent<Canvas>().enabled)
         {
             PersistentData.Instance.PauseMenu.GetComponent<Canvas>().enabled = false;
