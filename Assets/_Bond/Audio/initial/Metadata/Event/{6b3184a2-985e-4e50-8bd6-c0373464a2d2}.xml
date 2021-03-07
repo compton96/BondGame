@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{6b3184a2-985e-4e50-8bd6-c0373464a2d2}">
 		<property name="name">
-			<value>Song 1</value>
+			<value>Overworld Song 1</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -41,9 +41,6 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{48421485-48d4-4002-b4a3-74d3f5b44c2b}">
-		<property name="uiTrackHeight">
-			<value>28</value>
-		</property>
 		<relationship name="mixerGroup">
 			<destination>{aefde1fc-0d37-49c1-81e8-e2cc9f3a2c01}</destination>
 		</relationship>
@@ -60,15 +57,8 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{98fafd65-8be8-4e62-8bb8-ddca78581209}" />
-	<object class="MarkerTrack" id="{dc26fdc2-afba-4c5f-9b75-ee546c28e2c0}">
-		<property name="uiTrackHeight">
-			<value>100</value>
-		</property>
-	</object>
+	<object class="MarkerTrack" id="{dc26fdc2-afba-4c5f-9b75-ee546c28e2c0}" />
 	<object class="GroupTrack" id="{66f2e888-f172-4ac9-9f54-2495568fcbc1}">
-		<property name="uiTrackHeight">
-			<value>100</value>
-		</property>
 		<relationship name="modules">
 			<destination>{cd844a05-a5ea-4478-9c9b-39a919d3323d}</destination>
 		</relationship>

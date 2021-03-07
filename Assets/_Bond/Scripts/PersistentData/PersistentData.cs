@@ -183,7 +183,21 @@ public class PersistentData : MonoBehaviour
         // Debug.Log(GetSpawnpoint());
         Player.transform.position = GetSpawnpoint();
        
-
+        //update Game State for FMOD if necessary
+        switch(_scene)
+        {
+            case 1:
+                AudioController.GetComponent<AudioController>().BeginFarmMusic();
+                break;
+            case 2:
+                AudioController.GetComponent<AudioController>().BeginOverworldMusic();
+                break;
+            case 3:
+                AudioController.GetComponent<AudioController>().BeginOverworldMusic();
+                break;
+            default:
+                break;
+        }
 
         if( playerController.currCreature != null)
         {

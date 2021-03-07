@@ -95,7 +95,8 @@ public class EncounterManager : MonoBehaviour
     {
         barrier.SetActive(false);
         PersistentData.Instance.Player.GetComponent<PlayerController>().InCombat(false);
-        PersistentData.Instance.AudioController.GetComponent<AudioController>().EndCombatMusic();
+        PersistentData.Instance.AudioController.GetComponent<AudioController>().BeginOverworldMusic();
+        //PersistentData.Instance.AudioController.GetComponent<AudioController>().BeginCombatMusicFanfare();
     }
 }
 
