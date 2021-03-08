@@ -222,7 +222,7 @@ public class PersistentData : MonoBehaviour
     {
         if(_gameObject != null)
         {
-            _gameObject.transform.parent = gameObject.transform;
+            _gameObject.transform.SetParent(gameObject.transform);//changed to set parent instead of .parent
         }
         
     }
@@ -231,7 +231,7 @@ public class PersistentData : MonoBehaviour
     {
         if(_gameObject != null)
         {
-           _gameObject.transform.parent = null;
+           _gameObject.transform.SetParent(null);//changed to set parent instead of .parent
            SceneManager.MoveGameObjectToScene(_gameObject,SceneManager.GetActiveScene());
         }
         
