@@ -1013,6 +1013,7 @@ MonoBehaviour:
     - {fileID: 6563991341980533552}
   currEnemyCount: 0
   barrier: {fileID: 8232414194808037583}
+  blobs: {fileID: 0}
 --- !u!136 &7425832005288529031
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour
     public CooldownSystem cooldownSystem => GetComponent<CooldownSystem>();
 
     public Dictionary<GameObject, InteractableBase> interactableObjects = new Dictionary<GameObject, InteractableBase>();
+    public bool inCharacterDialog;
+    public CharacterDialogManager characterDialogManager;
 
     
     //******Combat Vars**********//
@@ -227,8 +229,15 @@ public class PlayerController : MonoBehaviour
     //by Jamo
     private void OnInteract()
     {     
-
-        if(interactableObjects.Count > 0)
+        if(inCharacterDialog)
+        {
+            if(characterDialogManager != null)
+            {
+                characterDialogManager.ContinueConvo();
+            }
+            
+        }
+        else if(interactableObjects.Count > 0)
         {
             InteractableBase tempBase = null;
             GameObject tempObj = null;
