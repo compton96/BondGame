@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 562d8734cccad2e46a0f40908ee12503, type: 3}
-  m_Name: 10WinsConversation
+  m_Name: PlaceholderShopConvo
   m_EditorClassIdentifier: 
   trigger: 0
   triggerAmount: 0
   dialog: []
+  step: 2
