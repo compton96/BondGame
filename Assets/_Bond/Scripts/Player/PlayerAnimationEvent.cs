@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,5 +36,15 @@ public class PlayerAnimationEvent : MonoBehaviour
     public void PlayWalkSFX()
     {
         playerAnimator.PlayWalkSFX();
+    }
+
+    public void PlayRollInitialSFX()
+    {
+        playerAnimator.PlayRollInitialSFX();
+    }
+
+    public void  PlayRollSecondarySFX()
+    {
+        playerAnimator.PlayRollSecondarySFX();
     }
 }
