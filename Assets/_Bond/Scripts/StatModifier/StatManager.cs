@@ -84,7 +84,7 @@ public class StatManager : MonoBehaviour
         buffs.Add(_buff, _buff.buffDuration);
     }
 
-    private void RemoveBuff(Buff _buff){
+    public void RemoveBuff(Buff _buff){
         
         foreach(Modifier mod in _buff.modifiers)
         {
@@ -93,6 +93,7 @@ public class StatManager : MonoBehaviour
                 stats[mod.modiferType].RemoveModifier(mod);
             }
         }
+        buffs.Remove(_buff);
     }
 
     public void TakeDamage(float baseAmount, ModiferType damageType) 
@@ -122,7 +123,6 @@ public class StatManager : MonoBehaviour
             if(buffs[key] <= 0)
             {
                 RemoveBuff(key);
-                buffs.Remove(key);
             }
         }
     }
