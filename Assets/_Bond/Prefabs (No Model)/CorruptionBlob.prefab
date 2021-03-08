@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4130065069876498196}
   - component: {fileID: 4130065069876498219}
   - component: {fileID: 4130065069876498199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CorruptionBlob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
