@@ -76,12 +76,12 @@ public class PersistentData : MonoBehaviour
                 UI = GameObject.FindGameObjectWithTag("UI");
                 if(UI == null)
                 {
-                    UI = Instantiate(UIPrefab, GetSpawnpoint(), Quaternion.identity);
+                    UI = Instantiate(UIPrefab, Vector3.zero, Quaternion.identity);
                 }
             }
             catch
             {
-                UI = Instantiate(UIPrefab, GetSpawnpoint(), Quaternion.identity);
+                UI = Instantiate(UIPrefab, Vector3.zero, Quaternion.identity);
             }
             
         }
@@ -94,12 +94,12 @@ public class PersistentData : MonoBehaviour
                 PauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
                 if(PauseMenu == null)
                 {
-                    PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
+                    PauseMenu = Instantiate(PauseMenuPrefab, Vector3.zero, Quaternion.identity);
                 }
             }
             catch
             {
-                PauseMenu = Instantiate(PauseMenuPrefab, GetSpawnpoint(), Quaternion.identity);
+                PauseMenu = Instantiate(PauseMenuPrefab, Vector3.zero, Quaternion.identity);
             }
             
         }

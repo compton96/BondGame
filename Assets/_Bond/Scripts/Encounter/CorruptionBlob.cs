@@ -18,4 +18,11 @@ public class CorruptionBlob : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().stats.RemoveBuff(corruptionEffect);
         }
     }
+
+    private void OnTriggerStay(Collider other) {
+        if(other.transform.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerController>().stats.AddBuff(corruptionEffect);
+        }
+    }
 }

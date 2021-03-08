@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CorruptionDebuff
   m_EditorClassIdentifier: 
   buffName: CorruptionDebuff
-  buffDuration: 60
+  buffDuration: 2
   modifiers:
   - modifierIdentifier: corruptionMSdown
     modiferType: 3
