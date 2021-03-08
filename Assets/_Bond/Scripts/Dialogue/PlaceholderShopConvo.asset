@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: 0
   triggerAmount: 0
-  dialog: []
+  dialog:
+  - 'Welcome kid, Im a traveling sales-squirrel. '
+  - Feel free to browse my wares, but dont touch my nuts.
   step: 2

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1327a0309802a23428e02f6549104049, type: 3}
   m_Name: CorruptionDebuff
   m_EditorClassIdentifier: 
-  buffName: 
-  buffDuration: 0
-  modifiers: []
+  buffName: CorruptionDebuff
+  buffDuration: 60
+  modifiers:
+  - modifierIdentifier: corruptionMSdown
+    modiferType: 3
+    Additive: 0
+    Multiplicitive: 0.5
