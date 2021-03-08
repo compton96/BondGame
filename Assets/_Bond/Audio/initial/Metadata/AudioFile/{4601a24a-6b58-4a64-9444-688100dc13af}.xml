@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{4601a24a-6b58-4a64-9444-688100dc13af}">
 		<property name="assetPath">
-			<value>Song 2/SpiccatoMid.wav</value>
+			<value>Music/Combat Music/SpiccatoMid.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

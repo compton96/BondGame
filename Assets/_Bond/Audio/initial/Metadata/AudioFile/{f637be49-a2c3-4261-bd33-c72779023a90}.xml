@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{f637be49-a2c3-4261-bd33-c72779023a90}">
 		<property name="assetPath">
-			<value>Song 2/SpiccatoMain.wav</value>
+			<value>Music/Combat Music/SpiccatoMain.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
