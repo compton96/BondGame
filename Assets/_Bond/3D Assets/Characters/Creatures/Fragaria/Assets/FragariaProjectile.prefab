@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  isHoming: 0
+  isHoming: 1
 --- !u!54 &8812329902625375771
 Rigidbody:
   m_ObjectHideFlags: 0

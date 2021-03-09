@@ -221,4 +221,14 @@ public class PlayerAnimator : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 2D", transform.position);
     }
+
+    public void PlayRollInitialSFX()
+    {
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Roll/Roll Initial Impact", transform.position);
+    }
+
+    public void PlayRollSecondarySFX()
+    {
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Roll/Roll Secondary Impact", transform.position);
+    }
 }

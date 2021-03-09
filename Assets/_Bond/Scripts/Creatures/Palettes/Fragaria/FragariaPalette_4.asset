@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1931a8030e1cc904585bf7b4617a2acd, type: 3}
+  m_Name: FragariaPalette_4
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dccd7601548055c42b937ed63979fa18, type: 2}

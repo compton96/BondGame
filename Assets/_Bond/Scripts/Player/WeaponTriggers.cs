@@ -27,7 +27,7 @@ public class WeaponTriggers : MonoBehaviour
             if(Random.Range(1, range) == 1)
             {
                 damage *= ps.getStat(ModiferType.CRIT_DAMAGE);
-                Debug.Log("crit hit");
+                // Debug.Log("crit hit");
             }
 
             // Check which attack state we're in to determine damage

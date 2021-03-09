@@ -11,9 +11,16 @@ public class creatureAttackRanged : creatureAttackBase, HasCooldown
     public Animation anims;
     public float baseDmg;
     public bool isHoming;
-    new public float cooldownDuration = 2f;
+    public float speed;
+    public float damage;
+    public GameObject target;
+    private void Awake() 
+    {
+        cooldownDuration = 2f;
+    }
     
     new public int Id => id;
     
     new public float CooldownDuration => cooldownDuration;
+    
 }

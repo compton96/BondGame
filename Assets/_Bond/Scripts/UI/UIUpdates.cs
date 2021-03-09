@@ -16,10 +16,21 @@ public class UIUpdates : MonoBehaviour
     public Image currCreatureIcon;
     public Image swapCreatureIcon;   
     public Sprite noCreatureIcon;
+    public TextMeshProUGUI currCreatureName;
+    public TextMeshProUGUI swapCreatureName;
 
     public CanvasGroup abilityGroup;
     public Image ability1Icon;
     public Image ability2Icon;
+    public TextMeshProUGUI ability1Description;
+    public TextMeshProUGUI ability2Description;
+
+    public GameObject CharacterDialogCanvas;
+    public TextMeshProUGUI CharacterDialogText;
+
+    public GameObject EnviornmentDialogCanvas;
+    public TextMeshProUGUI EnviornmentDialogText;
+
     public Slider enthusiasmSlider;
 
     private StatManager stats => PersistentData.Instance.Player.GetComponent<StatManager>();
@@ -41,6 +52,7 @@ public class UIUpdates : MonoBehaviour
         currHealthUI.SetText((Mathf.Round(stats.getStat(ModiferType.CURR_HEALTH))).ToString());
         maxHealthUI.SetText("/ " + stats.getStat(ModiferType.MAX_HEALTH).ToString());
         gold.SetText(player.goldCount.ToString());
+
 
         /*
         
@@ -77,13 +89,19 @@ public class UIUpdates : MonoBehaviour
             enthusiasmSlider.enabled = true;
             updateEnthusiasm();
             currCreatureIcon.sprite = player.currCreatureContext.icon;
-            abilityGroup.alpha = 1;
+            //abilityGroup.alpha = 1;
             ability1Icon.sprite = player.currCreatureContext.creatureStats.abilities[0].abilityIcon;
             ability2Icon.sprite = player.currCreatureContext.creatureStats.abilities[1].abilityIcon;
+
+            ability1Description.SetText(player.currCreatureContext.creatureStats.abilities[0].abilityDescription);
+            ability2Description.SetText(player.currCreatureContext.creatureStats.abilities[1].abilityDescription);
+
+            currCreatureName.SetText(player.currCreatureContext.creatureStats.name);
 
             if(player.swapCreature != null)
             {
                 swapCreatureIcon.sprite = player.swapCreature.GetComponent<CreatureAIContext>().icon;
+                swapCreatureName.SetText(player.currCreatureContext.creatureStats.name);
             }
 
         }
@@ -92,7 +110,13 @@ public class UIUpdates : MonoBehaviour
             enthusiasmSlider.enabled = false;
             currCreatureIcon.sprite = noCreatureIcon;
             swapCreatureIcon.sprite = noCreatureIcon;
-            abilityGroup.alpha = 0;
+
+            ability1Description.SetText("");
+            ability2Description.SetText("");
+
+            currCreatureName.SetText("No creature");
+            swapCreatureName.SetText("No creature");
+            //abilityGroup.alpha = 0;
 
         }
     }
@@ -114,7 +138,15 @@ public class UIUpdates : MonoBehaviour
     }
 
 
+    public void ShowCharacterDialogue()
+    {
+        CharacterDialogCanvas.SetActive(true);
+    }
 
+    public void HideCharacterDialogue()
+    {
+        CharacterDialogCanvas.SetActive(false);
+    }
 
 
 }

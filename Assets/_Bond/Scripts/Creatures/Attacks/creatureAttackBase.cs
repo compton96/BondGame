@@ -16,6 +16,8 @@ public class creatureAttackBase : ScriptableObject, HasCooldown
     public BTSubtree abilityBehavior;
 
     public Buff abilityBuff;
+
+    public string abilityDescription;
     
 }
 

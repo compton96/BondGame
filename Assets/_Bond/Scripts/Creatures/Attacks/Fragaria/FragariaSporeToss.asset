@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   cooldownDuration: 2
-  abilityIcon: {fileID: 21300000, guid: 0164f815d78332c43ad9e3efe347a563, type: 3}
+  abilityIcon: {fileID: 21300000, guid: c3e302d88c0988a4e863c9484824fa15, type: 3}
   abilityBehavior: {fileID: 11400000, guid: 49c166f223d3a5d4d80febbb5f9d620e, type: 2}
   abilityBuff: {fileID: 11400000, guid: 7ccd60e267d7e5d4581e4d3fdd8fb133, type: 2}
+  abilityDescription: A large area of spores that slows enemies
   maxDistanceToEnemy: 0
   projectile: {fileID: 6351474368709352784, guid: 64a59ea16c0926247b825aa54abad7ee,
     type: 3}
   anims: {fileID: 0}
   baseDmg: 0
-  cooldownDuration: 2
