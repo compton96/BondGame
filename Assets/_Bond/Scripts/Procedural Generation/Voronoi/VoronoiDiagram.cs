@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class VoronoiDiagram : MonoBehaviour
 {
+	[Header("Set-up")]
+	public int gameSeed;
 	public Vector2Int imageDim;
 	public int coarseRegionAmount;
 	public int fineRegionAmount;
+	public int adjacencyCount;
 
 	public bool drawByDistance = false;
 
@@ -18,7 +21,7 @@ public class VoronoiDiagram : MonoBehaviour
 	List<Cell> borderCells = new List<Cell>();
 
 	public Terrain terrain;
-
+	[Header("Terrain Debugging Colors")]
 	public Color32 forestColor;
 	public Color32 forestBorderColor;
 	public Color32 marshColor;
@@ -28,10 +31,21 @@ public class VoronoiDiagram : MonoBehaviour
 	public Color32 corruptionColor;
 	public Color32 corruptionBorderColor;
 
+	[Header("Stuff To Spawn")]
 	public GameObject playerSpawnPoint;
 	public GameObject levelExit;
 	
-	public List<GameObject> encounters = new List<GameObject>();
+	public int numberOfCombat;
+	public List<GameObject> combatEncounters = new List<GameObject>();
+	public List<GameObject> combatIndicators = new List<GameObject>();
+	public int numberOfCreature;
+	public GameObject FragariaEncounter;
+	public GameObject AquaphimEncounter;
+	//public GameObject SherifEncounter;
+	//public GameObject PunchySnailEncounter;
+
+	private float timerStart;
+	private float timerEnd;
 
 
 	private void Start()
@@ -47,7 +61,6 @@ public class VoronoiDiagram : MonoBehaviour
 		GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
 		fineVisitedCells = new List<Cell>();
 		borderCells = new List<Cell>();
-		Debug.Log(meadowsColor);
 	}
 	
 	//Draws between the start and end cell to get next cell on path
@@ -93,7 +106,6 @@ public class VoronoiDiagram : MonoBehaviour
 		float[,] heights = terrainData.GetHeights(0, 0, 0, 0);
         terrainData.SetHeights(0, 0, heights);
 		terrain.Flush();
-		Debug.Log(_texture.GetPixel(100,100));
 		float[, ,] alphaMapData = new float[terrainData.alphamapWidth, terrainData.alphamapHeight, terrainData.alphamapLayers];
 		var detailMapData = terrainData.GetDetailLayer(0, 0, terrainData.detailWidth, terrainData.detailHeight, 0);
 		Color32[] pixels = _texture.GetPixels32();
@@ -150,27 +162,29 @@ public class VoronoiDiagram : MonoBehaviour
 	}
 
 	//Places spawnPoint, exit, creatures, and enemies
-	void PlaceObjects(int encounterCount)
+	void PlaceEncouners()
 	{
-		//place player spawn point and level exit
-		var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(coarseVisitedCells[0].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
-		var exit = Instantiate(levelExit, new Vector3(coarseVisitedCells[coarseVisitedCells.Count-1].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
-		coarseVisitedCells.RemoveAt(0);
-		coarseVisitedCells.RemoveAt(coarseVisitedCells.Count-1);
+		// //place player spawn point and level exit
+		// var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(coarseVisitedCells[0].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
+		// var exit = Instantiate(levelExit, new Vector3(coarseVisitedCells[coarseVisitedCells.Count-1].center.x, 0, coarseVisitedCells[0].center.y), Quaternion.identity);
+		// coarseVisitedCells.RemoveAt(0);
+		// coarseVisitedCells.RemoveAt(coarseVisitedCells.Count-1);
 
-		//place random encounters on centerpoints of coarse cells
-		for(int i = 0; i < encounterCount; i++)
-		{
-			int cellIndex = Random.Range(0, coarseVisitedCells.Count);
-			int encounterIndex = Random.Range(0, encounters.Count);
+		// //place random encounters on centerpoints of coarse cells
+		// for(int i = 0; i < encounterCount; i++)
+		// {
+		// 	int cellIndex = Random.Range(0, coarseVisitedCells.Count);
+		// 	int encounterIndex = Random.Range(0, encountersToSpawn.Count);
 
-			Instantiate(encounters[encounterIndex], new Vector3(coarseVisitedCells[cellIndex].center.x, 0 , coarseVisitedCells[cellIndex].center.y), Quaternion.identity);
-		}
+		// 	Instantiate(encountersToSpawn[encounterIndex], new Vector3(coarseVisitedCells[cellIndex].center.x, 0 , coarseVisitedCells[cellIndex].center.y), Quaternion.identity);
+		// }
 
 	}
 
 	Texture2D GetDiagram()
 	{
+		Random.InitState(gameSeed); 
+		timerStart = Time.realtimeSinceStartup;
 		Cell[] coarseCells = new Cell[coarseRegionAmount];
 		Cell[] fineCells = new Cell[fineRegionAmount];
 
@@ -187,7 +201,9 @@ public class VoronoiDiagram : MonoBehaviour
 			fineCells[i].center = new Vector2Int(Random.Range(0, imageDim.x), Random.Range(0, imageDim.y));
 			fineCells[i].index = i;
 		}
-		
+
+		relax(coarseCells);
+		// relax(coarseCells);
 		// relax(coarseCells);
 		// relax(fineCells);
 	
@@ -204,9 +220,12 @@ public class VoronoiDiagram : MonoBehaviour
 			}
 		}
 
+				
+		//relax(coarseCells);
+
 		foreach(Cell c in fineVisitedCells)
 		{
-			List<Cell> borderCells = GetClosestKCells(c.index, 15, fineCells);
+			List<Cell> borderCells = GetClosestKCells(c.index, adjacencyCount, fineCells);
 			//Debug.Log("Border Cells" + borderCells[0]);
 			foreach(Cell b in borderCells)
 			{
@@ -233,6 +252,8 @@ public class VoronoiDiagram : MonoBehaviour
 				}
 			}
 		}
+		
+
 
 		Color[] pixelColors = new Color[imageDim.x * imageDim.y];
 		for(int x = 0; x < imageDim.x; x++)
@@ -240,16 +261,29 @@ public class VoronoiDiagram : MonoBehaviour
 			for(int y = 0; y < imageDim.y; y++)
 			{
 				int index = x * imageDim.x + y;
-				
-				Biome b = fineCells[GetClosestCellIndex(x, y, fineCells)].biome;
+				int fineIndex = GetClosestCellIndex(x, y, fineCells);
+				Biome b = fineCells[fineIndex].biome;
+				fineCells[fineIndex].size++;
+				fineCells[fineIndex].pixels.Add(new Vector2(x,y));
+
+				coarseCells[GetClosestCellIndex(x, y, coarseCells)].size++;
 				pixelColors[index] = GetBiomeColor(b);
 			}
+		}
+		coarseVisitedCells.Sort((x,y)=> x.size.CompareTo(y.size));
+		Debug.Log("Smallest Size : " + coarseVisitedCells[0].size + " Largest size : " + coarseVisitedCells[coarseVisitedCells.Count - 1].size);
+		foreach(Cell c in coarseCells)
+		{
+			int index = (int)c.center.x * imageDim.x + (int)c.center.y;
+			pixelColors[index] = Color.red;
 		}
 
 		Texture2D tex = GetImageFromColorArray(pixelColors);
 		updateTerrain(tex);
-		PlaceObjects(5);
+		//PlaceObjects(5);
+		Debug.Log("Finished : " + (Time.realtimeSinceStartup - timerStart));
 		return tex;
+		
 	}
 
 	Color GetBiomeColor(Biome b) 
@@ -404,10 +438,12 @@ public class VoronoiDiagram : MonoBehaviour
 
 public class Cell 
 {
+	public int size = 0;
 	public int index;
 	public Vector2 center;
 	public Biome biome = Biome.EMPTY;
 	public float distance;
+	public List<Vector2> pixels = new List<Vector2>();
 }
 
 public enum Biome 
