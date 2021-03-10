@@ -16,6 +16,7 @@ TagManager:
   - Relic
   - UI
   - Interactable
+  - Terrain
   layers:
   - Default
   - TransparentFX

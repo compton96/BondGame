@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63dfbb1e1fdd64841be2350c5a869c25, type: 3}
   m_Name: BaseCombatEncounter
   m_EditorClassIdentifier: 
-  encounter: {fileID: 0}
-  indicators: []
+  encounter: {fileID: 1823558736048597768, guid: cd3b94409c7650f4fba8444cb837413b,
+    type: 3}
+  indicators:
+  - {fileID: 919132149155446097, guid: 9efe6213d0075d14e9cad5a8182ab8e5, type: 3}
