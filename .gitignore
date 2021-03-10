@@ -74,11 +74,11 @@ crashlytics-build.properties
 /[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
 
 # Folders in FMOD project file
-/[Aa]ssets/_Bond/Audio/initial/.cache/
-/[Aa]ssets/_Bond/Audio/initial/.user/
-/[Aa]ssets/_Bond/Audio/initial/.unsaved/
-/[Aa]ssets/_Bond/Audio/initial/.restore/
-/[Aa]ssets/_Bond/Audio/initial/Metadata/
+# /[Aa]ssets/_Bond/Audio/initial/.cache/
+# /[Aa]ssets/_Bond/Audio/initial/.user/
+# /[Aa]ssets/_Bond/Audio/initial/.unsaved/
+# /[Aa]ssets/_Bond/Audio/initial/.restore/
+# /[Aa]ssets/_Bond/Audio/initial/Metadata/
 
 
 
