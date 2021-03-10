@@ -391,10 +391,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
+  HasSourceProject: 0
   HasPlatforms: 1
   sourceProjectPath: Assets/_Bond/Audio/initial/initial.fspro
-  sourceBankPath: Assets\_Bond\Audio\initial\Build
+  sourceBankPath: Assets/_Bond/Audio/initial/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0

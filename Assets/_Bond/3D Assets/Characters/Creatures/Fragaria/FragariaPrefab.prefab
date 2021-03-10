@@ -5485,6 +5485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3865513519326407494}
+  WalkSFX: event:/Sound Effects/SFX/Walking Grass 3D
 --- !u!114 &3045770925772636374
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ public class CreatureAnimator : MonoBehaviour
     public GameObject model;
     public Animator animator => model.GetComponent<Animator>();
 
+    [FMODUnity.EventRef]
+    public string WalkSFX;
+
     public void Move(Vector3 moveSpeed) 
     {
         if(moveSpeed.magnitude > 0)
@@ -62,6 +65,6 @@ public class CreatureAnimator : MonoBehaviour
 
     public void PlayWalkSFX()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 3D", transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(WalkSFX, transform.position);
     }
 }

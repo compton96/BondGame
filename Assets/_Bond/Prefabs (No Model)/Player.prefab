@@ -10116,6 +10116,8 @@ MonoBehaviour:
   swapCreature: {fileID: 0}
   interactableObject: {fileID: 0}
   currCreatureContext: {fileID: 0}
+  inCharacterDialog: 0
+  characterDialogManager: {fileID: 0}
   isAttacking: 0
   currSpeed: 0
   isHit: 0
@@ -10149,8 +10151,6 @@ MonoBehaviour:
   player: {fileID: 0}
   HeavySlash:
     hitbox: {fileID: 0}
-    startTime: 0
-    endLag: 0
 --- !u!114 &3008331729029387138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10213,6 +10213,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7109975305556927938}
+  SwordSwingSFX: event:/Sound Effects/SFX/Sword Swing
+  WalkSFX: event:/Sound Effects/SFX/Walking Grass 2D
+  RollInitialSFX: event:/Sound Effects/SFX/Roll/Roll Initial Impact
+  RollSecondarySFX: event:/Sound Effects/SFX/Roll/Roll Secondary Impact
 --- !u!114 &2139760117
 MonoBehaviour:
   m_ObjectHideFlags: 0

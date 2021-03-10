@@ -27,6 +27,15 @@ public class PlayerAnimator : MonoBehaviour
     public bool isHurt { get; private set; }
     public bool isRun { get; private set; }
 
+    [FMODUnity.EventRef]
+    public string SwordSwingSFX;
+    [FMODUnity.EventRef]
+    public string WalkSFX;
+    [FMODUnity.EventRef]
+    public string RollInitialSFX;
+    [FMODUnity.EventRef]
+    public string RollSecondarySFX;
+
     private int attackStatesActive = 0;
     private float moveMagnitude = 0f;
 
@@ -212,23 +221,24 @@ public class PlayerAnimator : MonoBehaviour
     public void PlaySlashVFX()
     {
         playerController.slashVfx.Play();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Swing", transform.position);
+
+        FMODUnity.RuntimeManager.PlayOneShot(SwordSwingSFX, transform.position);
     }
 
     // SOUND FX
 
     public void PlayWalkSFX()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 2D", transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(WalkSFX, transform.position);
     }
 
     public void PlayRollInitialSFX()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Roll/Roll Initial Impact", transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(RollInitialSFX, transform.position);
     }
 
     public void PlayRollSecondarySFX()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Roll/Roll Secondary Impact", transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(RollSecondarySFX, transform.position);
     }
 }

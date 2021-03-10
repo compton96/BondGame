@@ -21,20 +21,6 @@ public class AudioController : MonoBehaviour
        
     }
 
-    /*
-    public void BeginCombatMusic()
-    {
-        masterMusicEvent.SetParameter("Combat State", 1);
-        masterMusicEvent.SetParameter("Song 2 - State", 1);
-    }
-
-    public void EndCombatMusic()
-    {
-        masterMusicEvent.SetParameter("Combat State", 0);
-        masterMusicEvent.SetParameter("Song 2 - State", 2);
-    }
-    */
-
     public void BeginFarmMusic()
     {
         masterMusicEvent.SetParameter("Game State", 0);
