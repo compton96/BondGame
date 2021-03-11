@@ -42,7 +42,6 @@ public class EncounterPositionFinder : MonoBehaviour
                     viablePoints.Add(new Vector2(x,y));
                 } else
                 {
-                    Debug.Log("HIT");
                 }
                 // if(Physics.SphereCast(position, 23, Vector3.zero, out hit, 0.1f, layer))
                 // {

@@ -154,6 +154,8 @@ public class VoronoiDiagram : MonoBehaviour
 				else if(pixelColor.Equals(forestColor))
 				{
 					alphaMapData[x,y,0] = 1;
+					if(Random.Range(0,100) < 50)
+					detailMapData[x,y] = 1;
 
 				} else if(pixelColor.Equals(corruptionColor))
 				{
@@ -197,7 +199,7 @@ public class VoronoiDiagram : MonoBehaviour
 		coarseVisitedCells.RemoveAt(coarseVisitedCells.Count-1);
 
 
-		List<Vector2> possibleEncounterPositions = encounterPositionFinder.GetPoints(new Vector3(25,37.5f,25), 512, 2);
+		List<Vector2> possibleEncounterPositions = encounterPositionFinder.GetPoints(new Vector3(0,37.5f,0), 512, 2);
 		Debug.Log(possibleEncounterPositions.Count);
 		//place random encounters on centerpoints of coarse cells
 		coarseVisitedCells.Sort((x,y)=> x.size.CompareTo(y.size));
@@ -205,48 +207,57 @@ public class VoronoiDiagram : MonoBehaviour
 
 		int numOfEncounterIndicators = 10;
 		List<GameObject> placedCombatEncounters = new List<GameObject>();
-		bool doContinue = false;
 		//Loop to place combat encounters
 		for(int i = 0; i < numberOfCombat; i++)
 		{
-			int encounterPositionsIndex = Random.Range(0, possibleEncounterPositions.Count);
-			Vector2 randomPos = possibleEncounterPositions[encounterPositionsIndex];
+			int encounterPositionsIndex;
+			Vector2 randomPos;
+			bool overlap = true;
+			if(possibleEncounterPositions.Count < 1) break;
 
-			//Randomly choose a combat encounter
-			int encounterIndex = Random.Range(0, combatEncounters.Count);
-			doContinue = false;
-			//Loop through all placed encounters and make sure the new one is minimum distance away from them all
-			foreach(GameObject e in placedCombatEncounters){
-				//If chosen cell is too close to another encounter, remove it from the possible encounter cells
-				if(Vector3.Distance(e.transform.position, new Vector3(randomPos.x, 0, randomPos.y)) < 50)
-				{
-					possibleEncounterPositions.RemoveAt(encounterPositionsIndex);
-					doContinue = true;
-					break;
+			//Continue until we find a place to put encounter
+			while(overlap)
+			{				
+				if(possibleEncounterPositions.Count < 1) break;
+
+				encounterPositionsIndex = Random.Range(0, possibleEncounterPositions.Count);
+				randomPos = possibleEncounterPositions[encounterPositionsIndex];
+				overlap = false;
+				foreach(GameObject e in placedCombatEncounters){
+					//If chosen cell is too close to another encounter, remove it from the possible encounter cells
+					if(Vector3.Distance(e.transform.position, new Vector3(randomPos.x, 0, randomPos.y)) < 70)
+					{
+						possibleEncounterPositions.RemoveAt(encounterPositionsIndex);
+						overlap = true;
+						break;
+					}
 				}
-			}
-			if(doContinue)
-			{
-				continue;
-			}
-			//Cell is good to use, place encounter and add it to the list of encounters
-			GameObject tempEncounter = Instantiate(
-				combatEncounters[encounterIndex].encounter, 
-				new Vector3(randomPos.x, 0, randomPos.y), 
-				Quaternion.identity, Parent.transform
-			);
-			placedCombatEncounters.Add(tempEncounter);
 
-			//Place indicators for the new encounter randomly in a circle
-			for(int j = 0; j < numOfEncounterIndicators; j++)
-			{
-				Vector2 randomUnitCirclePoint = Random.insideUnitCircle;
-				randomUnitCirclePoint *= Random.Range(40,70);
-				Vector3 pos = new Vector3(randomUnitCirclePoint.x + randomPos.x, 0, randomUnitCirclePoint.y + randomPos.y);
-				Instantiate(combatEncounters[encounterIndex].indicators[Random.Range(0,combatEncounters[encounterIndex].indicators.Count)], pos, Quaternion.identity, tempEncounter.transform);
+				if(overlap)
+				{
+					continue;
+				}
+
+				int encounterIndex = Random.Range(0, combatEncounters.Count);
+
+				GameObject tempEncounter = Instantiate(
+					combatEncounters[encounterIndex].encounter, 
+					new Vector3(randomPos.x, 0, randomPos.y), 
+					Quaternion.identity, Parent.transform
+				);
+				placedCombatEncounters.Add(tempEncounter);
+
+				//Place indicators for the new encounter randomly in a circle
+				for(int j = 0; j < numOfEncounterIndicators; j++)
+				{
+					Vector2 randomUnitCirclePoint = Random.insideUnitCircle;
+					randomUnitCirclePoint *= Random.Range(40,70);
+					Vector3 pos = new Vector3(randomUnitCirclePoint.x + randomPos.x, 0, randomUnitCirclePoint.y + randomPos.y);
+					Instantiate(combatEncounters[encounterIndex].indicators[Random.Range(0,combatEncounters[encounterIndex].indicators.Count)], pos, Quaternion.identity, tempEncounter.transform);
+				}
+				//Remove this cell from the list of options to avoid overlap
+				possibleEncounterPositions.RemoveAt(encounterPositionsIndex);
 			}
-			//Remove this cell from the list of options to avoid overlap
-			possibleEncounterPositions.RemoveAt(encounterPositionsIndex);
 		}
 	}
 
@@ -321,6 +332,9 @@ public class VoronoiDiagram : MonoBehaviour
 
 		//Go through the map and set cell biomes, sizes, and pixels
 		Color[] pixelColors = new Color[imageDim.x * imageDim.y];
+	
+
+
 		for(int x = 0; x < imageDim.x; x++)
 		{
 			for(int y = 0; y < imageDim.y; y++)
@@ -348,7 +362,6 @@ public class VoronoiDiagram : MonoBehaviour
 		PlaceEncounters();
 		Debug.Log("Finished : " + (Time.realtimeSinceStartup - timerStart));
 		return tex;
-		
 	}
 
 	Color GetBiomeColor(Biome b) 
