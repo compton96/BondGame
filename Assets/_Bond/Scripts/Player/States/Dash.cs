@@ -23,15 +23,16 @@ namespace PlayerState
         {
             player.inputs.dash = false;
             player.isDashing = true;
-
             animator.Dash( stats.getStat(ModiferType.DASH_DURATION) );
             
             startRotation = player.facingDirection;
             player.setRotation(startRotation);
-
             controller = player.gameObject.GetComponent<CharacterController>();
 
             player.lastMoveVec = player.inputs.moveDirection; 
+
+            //temp fix for hitbox 2 coming on after dash?????????????????
+            
         }
 
         public override void OnStateUpdate()

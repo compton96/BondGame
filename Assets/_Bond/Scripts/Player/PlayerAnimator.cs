@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 /*
 *   Written by Herman
 */
@@ -11,6 +13,8 @@ public class PlayerAnimator : MonoBehaviour
     public GameObject model;
     private Animator animator => model.GetComponent<Animator>();
     private PlayerController playerController => GetComponent<PlayerController>();
+
+    
 
     /*
     *   Constants
@@ -220,5 +224,57 @@ public class PlayerAnimator : MonoBehaviour
     public void PlayWalkSFX()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Walking Grass 2D", transform.position);
+    }
+
+
+
+    public void EnableHitbox()//Jamo making these so we can control how long hitboxes stay out in each attack
+    {
+        if(playerController.fsm.currentState == playerController.fsm.Slash0)
+        {
+            playerController.hitBoxes.slash0.SetActive(true);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash1)
+        {
+            playerController.hitBoxes.slash1.SetActive(true);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash2)
+        {
+            playerController.hitBoxes.slash1.SetActive(true);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash3)
+        {
+            playerController.hitBoxes.slash1.SetActive(true);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash4)
+        {
+            playerController.hitBoxes.slash1.SetActive(true);
+        }
+    
+    }
+
+
+    public void DisableHitbox()//Jamo making these so we can control how long hitboxes stay out in each attack
+    {
+        if(playerController.fsm.currentState == playerController.fsm.Slash0)
+        {
+            playerController.hitBoxes.slash0.SetActive(false);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash1)
+        {
+            playerController.hitBoxes.slash1.SetActive(false);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash2)
+        {
+            playerController.hitBoxes.slash1.SetActive(false);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash3)
+        {
+            playerController.hitBoxes.slash1.SetActive(false);
+        }
+        else if(playerController.fsm.currentState == playerController.fsm.Slash4)
+        {
+            playerController.hitBoxes.slash1.SetActive(false);
+        }
     }
 }

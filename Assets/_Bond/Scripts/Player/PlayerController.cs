@@ -418,10 +418,12 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                Debug.Log("RAYCAST : " + hit.transform.gameObject);
-                Debug.Log(hit.point);
+                // Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                // Debug.Log(hit.point);
                 //gameObject.transform.LookAt(hit.point);
 
+
+                
                 destination = hit.point;
                 Vector3 direction = hit.point - transform.position;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 9999f, 9999f);
@@ -435,12 +437,7 @@ public class PlayerController : MonoBehaviour
 
                 transform.rotation = Quaternion.LookRotation(new Vector3(newDirection.x, 0, newDirection.z));
                 
-                //Quaternion lookRotation = Quaternion.LookRotation(direction);
-                //transform.forward = new Vector3(lookRotation.x, 0, lookRotation.z);
-                
             } 
-            //var dir = inputs.mousePos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
-            //stinky
         }
     }
 

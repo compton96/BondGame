@@ -37,4 +37,14 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         playerAnimator.PlayWalkSFX();
     }
+
+    public void EnableHitbox()//Jamo making these so we can control how long hitboxes stay out in each attack
+    {
+        playerAnimator.EnableHitbox();
+    }
+
+    public void DisableHitbox()//Jamo making these so we can control how long hitboxes stay out in each attack
+    {
+        playerAnimator.DisableHitbox();
+    }
 }
