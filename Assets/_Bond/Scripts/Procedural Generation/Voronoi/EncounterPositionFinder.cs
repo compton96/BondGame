@@ -22,11 +22,14 @@ public class EncounterPositionFinder : MonoBehaviour
         }
     }
 
-    public List<Vector2> GetPoints(Vector3 startPos, int mapSize, int increment)
+    public List<List<Vector2>> GetPoints(Vector3 startPos, int mapSize, int increment)
     {
         Debug.Log("GetPoints Started");
         timerStart = Time.realtimeSinceStartup;
-        List<Vector2> viablePoints = new List<Vector2>(); 
+        List<List<Vector2>> listOfLists = new List<List<Vector2>>();
+        List<Vector2> viableCombatPoints = new List<Vector2>();
+        List<Vector2> viableObjectPoints = new List<Vector2>();
+        
         gameObject.transform.position = startPos;
         Vector3 position = startPos;
         Collider[] hitColliders = new Collider[1];
@@ -39,26 +42,21 @@ public class EncounterPositionFinder : MonoBehaviour
                 int numColliders = Physics.OverlapSphereNonAlloc(position, 23, hitColliders);
                 if(numColliders < 1)
                 {
-                    viablePoints.Add(new Vector2(x,y));
-                } else
+                    viableCombatPoints.Add(new Vector2(x,y));
+                } 
+                
+                position = new Vector3(x,37.5f,y);
+                numColliders = Physics.OverlapSphereNonAlloc(position, 3, hitColliders);
+                if(numColliders < 1)
                 {
-                }
-                // if(Physics.SphereCast(position, 23, Vector3.zero, out hit, 0.1f, layer))
-                // {
-                //     Debug.Log("Did Hit");
-                // } 
-                // else
-                // {
-                //     viablePoints.Add(new Vector2(x,y));
-                // }
-
-                // if(!inTerrain)
-                // {
-                //     viablePoints.Add(new Vector2(x,y));
-                // }
+                    viableObjectPoints.Add(new Vector2(x,y));
+                } 
+                
             }
         }
+        listOfLists.Add(viableCombatPoints);
+        listOfLists.Add(viableObjectPoints);
         Debug.Log("GetPoints Finished : " + (Time.realtimeSinceStartup - timerStart));
-        return viablePoints;
+        return listOfLists;
     }
 }
