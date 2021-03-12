@@ -25,6 +25,8 @@ public class UIUpdates : MonoBehaviour
     public TextMeshProUGUI ability1Description;
     public TextMeshProUGUI ability2Description;
 
+    public CooldownSystem cd;
+
     
     
 
@@ -60,6 +62,7 @@ public class UIUpdates : MonoBehaviour
             CooldownUpdate(image) for each active
         }
         */
+        CooldownUpdate(); 
 
         
     }
@@ -68,6 +71,7 @@ public class UIUpdates : MonoBehaviour
 
     public void CooldownUpdate()
     {
+       
         //called every tick while cooldown is active
         //get specific creatures cooldown
 
@@ -78,7 +82,7 @@ public class UIUpdates : MonoBehaviour
 
 	
 
-
+    //updates both creature icon and the respective ability icons
     public void UpdateCreatureUI()
     {
          if(player.currCreatureContext != null)
@@ -94,6 +98,8 @@ public class UIUpdates : MonoBehaviour
             ability2Description.SetText(player.currCreatureContext.creatureStats.abilities[1].abilityDescription);
 
             currCreatureName.SetText(player.currCreatureContext.creatureStats.name);
+
+            cd = player.currCreatureContext.cooldownSystem;//assign cooldown system
 
             if(player.swapCreature != null)
             {
