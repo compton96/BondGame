@@ -24,7 +24,41 @@ namespace PlayerState
         {
             base.OnStateEnter();
             Debug.Log("slash0 enter");
+            speedMod = 2f;
         }
+
+        public override void OnStateFixedUpdate()
+        {
+            player.doMovement(speedMod);
+            if(speedMod >= 0.05f)
+            {
+                speedMod /= 1.2f;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

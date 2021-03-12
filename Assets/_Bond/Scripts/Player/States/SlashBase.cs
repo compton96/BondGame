@@ -62,7 +62,6 @@ namespace PlayerState
             // hitBox.SetActive(true); //Disable these once hitbox anim events work
 
             speedMod = 1f;
-
         }
 
 
