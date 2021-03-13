@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{668a33a7-d118-41fc-84f8-1799b51d0352}">
-		<property name="assetPath">
-			<value>SFX/Creature SFX/Fragaria/sunbeam.wav</value>
-		</property>
+		<property name="assetPath" />
 		<property name="isStreaming">
 			<value>true</value>
 		</property>

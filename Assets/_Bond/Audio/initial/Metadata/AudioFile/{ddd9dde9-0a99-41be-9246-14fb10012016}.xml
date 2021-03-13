@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{ddd9dde9-0a99-41be-9246-14fb10012016}">
 		<property name="assetPath">
 			<value>SFX/Enemy Slam Ground/slam1.wav</value>

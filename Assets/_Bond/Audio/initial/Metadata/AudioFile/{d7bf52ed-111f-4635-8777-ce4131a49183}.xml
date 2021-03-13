@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{d7bf52ed-111f-4635-8777-ce4131a49183}">
 		<property name="assetPath">
 			<value>SFX/Sword Impact Enemy/sword_impact1.wav</value>

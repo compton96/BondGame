@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{5b749f7a-ef33-4b43-8d1c-8687f58414be}">
 		<property name="assetPath">
 			<value>SFX/Sword Swing/swing1.wav</value>

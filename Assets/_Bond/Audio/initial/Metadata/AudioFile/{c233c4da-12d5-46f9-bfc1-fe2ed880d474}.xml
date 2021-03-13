@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{c233c4da-12d5-46f9-bfc1-fe2ed880d474}">
 		<property name="assetPath">
 			<value>SFX/Grass Walking/grass1.wav</value>

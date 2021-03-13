@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{b9113075-8450-46a4-afc9-f1869d392330}">
 		<property name="assetPath">
 			<value>SFX/Crit/crit.wav</value>
