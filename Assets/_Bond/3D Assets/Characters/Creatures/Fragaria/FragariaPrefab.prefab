@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a3e66874388534f87554303e5354ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FragariaSunbeamSFX: event:/Sound Effects/SFX/Creature SFX/Fragaria/Fragaria Sunbeam
+  FragariaSporeTossSFX: 
 --- !u!1 &2759757170665168599
 GameObject:
   m_ObjectHideFlags: 0

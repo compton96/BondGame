@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AbilitySpawner : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string FragariaSunbeamSFX;
+    [FMODUnity.EventRef]
+    public string FragariaSporeTossSFX;
+
     public void SpawnProjectile(GameObject projectile, GameObject target, float speed, float damage, bool isHoming) 
     {
         var proj = Instantiate(projectile, transform.position, Quaternion.identity);
@@ -22,6 +27,8 @@ public class AbilitySpawner : MonoBehaviour
 
     public void SpawnSunBeam(GameObject projectile, GameObject target, float damage, Buff debuff)
     {
+        FMODUnity.RuntimeManager.PlayOneShot(FragariaSunbeamSFX, transform.position);
+
         var proj = Instantiate(projectile, target.transform.position, Quaternion.identity);
         proj.GetComponent<SunBeam>().setDamage(damage, debuff);
     }
@@ -30,6 +37,8 @@ public class AbilitySpawner : MonoBehaviour
     {
         var proj = Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
         proj.GetComponent<SporeToss>().setDamage(damage, debuff);
+
+        //FMODUnity.RuntimeManager.PlayOneShot(FragariaSporeTossSFX, transform.position);
     }
 
     public void SpawnWaterBeam(GameObject projectile, GameObject target, float speed, float damage, bool isHoming, Buff debuff)
