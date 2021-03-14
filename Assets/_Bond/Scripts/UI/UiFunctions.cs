@@ -4,23 +4,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class UiFunctions : MonoBehaviour
 {
-   public void TransitionScene(int index)
-   {
-       SceneManager.LoadScene(index);
-   }
 
-   public void LoadSceneNoPersist(int index)
-   {
-       SceneManager.LoadScene(index);
-   }
+    [FMODUnity.EventRef]
+    public string buttonClickSFX;
 
-   public void SetTimeScale(int index)
-   {
-       Time.timeScale = index;
-   }
+    public void PlayClickSFX()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(buttonClickSFX, transform.position);
+    }
 
-   public void ExitGame()
-   {
-        Application.Quit();
-   }
+    public void TransitionScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void LoadSceneNoPersist(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void SetTimeScale(int index)
+    {
+        Time.timeScale = index;
+    }
+
+    public void ExitGame()
+    {
+         Application.Quit();
+    }
 }
