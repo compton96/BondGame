@@ -110,6 +110,9 @@ public class PlayerController : MonoBehaviour
     [FMODUnity.EventRef]
     public string menuOpenSFX;
 
+    [FMODUnity.EventRef]
+    public string swapSFX;
+
     private bool isPaused = false;
 
 
@@ -378,6 +381,7 @@ public class PlayerController : MonoBehaviour
             }
             
             PersistentData.Instance.UI.GetComponent<UIUpdates>().UpdateCreatureUI();
+            FMODUnity.RuntimeManager.PlayOneShot(swapSFX, transform.position);
         }
         
 

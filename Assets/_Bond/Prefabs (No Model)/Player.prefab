@@ -10139,6 +10139,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 7388749792863832312, guid: 24c0e2ff030508646b4c9c368272a756,
     type: 3}
   menuOpenSFX: event:/Sound Effects/SFX/UI SFX/Menu Open
+  swapSFX: event:/Sound Effects/SFX/Creature Swap
 --- !u!114 &6669998564430628805
 MonoBehaviour:
   m_ObjectHideFlags: 0
