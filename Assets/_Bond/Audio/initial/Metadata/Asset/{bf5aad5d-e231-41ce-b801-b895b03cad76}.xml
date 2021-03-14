@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{bf5aad5d-e231-41ce-b801-b895b03cad76}">
+		<property name="assetPath">
+			<value>SFX/Enemy SFX/Donut Swing/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{46d66588-5640-4915-9ffe-128a7334e5da}</destination>
+		</relationship>
+	</object>
+</objects>

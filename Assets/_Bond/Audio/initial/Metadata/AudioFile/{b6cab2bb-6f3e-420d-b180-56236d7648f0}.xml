@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{b6cab2bb-6f3e-420d-b180-56236d7648f0}">
+		<property name="assetPath">
+			<value>SFX/New Swap/swap.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.4762358276643992</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{46d66588-5640-4915-9ffe-128a7334e5da}</destination>
+		</relationship>
+	</object>
+</objects>

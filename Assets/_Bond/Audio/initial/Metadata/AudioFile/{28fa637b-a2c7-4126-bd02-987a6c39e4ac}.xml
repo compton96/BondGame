@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{28fa637b-a2c7-4126-bd02-987a6c39e4ac}">
 		<property name="assetPath">
-			<value>SFX/Creature SFX/Fragaria/sunbeam.wav</value>
+			<value>SFX/Creature SFX/Fragaria/Abilities/sunbeam.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

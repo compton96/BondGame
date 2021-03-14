@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{56089bfe-98b3-43e7-bc6a-69d49513f0a9}">
 		<property name="assetPath">
-			<value>SwordWhoosh6.wav</value>
+			<value>SFX/New Sword Swing/SwordWhoosh6.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

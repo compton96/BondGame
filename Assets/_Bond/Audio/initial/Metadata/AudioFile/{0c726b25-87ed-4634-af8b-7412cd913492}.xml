@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{0c726b25-87ed-4634-af8b-7412cd913492}">
 		<property name="assetPath">
-			<value>bird_1.wav</value>
+			<value>Ambient Noise/Bird Chirps/bird_1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

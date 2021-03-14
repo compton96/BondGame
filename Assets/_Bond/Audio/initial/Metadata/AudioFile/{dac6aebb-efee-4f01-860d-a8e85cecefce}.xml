@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{dac6aebb-efee-4f01-860d-a8e85cecefce}">
 		<property name="assetPath">
-			<value>Crit.wav</value>
+			<value>SFX/New Crit/Crit.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

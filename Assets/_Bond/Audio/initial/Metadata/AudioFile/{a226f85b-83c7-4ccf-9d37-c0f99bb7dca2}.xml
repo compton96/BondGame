@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{a226f85b-83c7-4ccf-9d37-c0f99bb7dca2}">
 		<property name="assetPath">
-			<value>DonutWhoosh3.wav</value>
+			<value>SFX/Enemy SFX/Donut Swing/DonutWhoosh3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
