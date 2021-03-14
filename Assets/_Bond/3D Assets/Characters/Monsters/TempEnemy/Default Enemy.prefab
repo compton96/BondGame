@@ -288,6 +288,7 @@ MonoBehaviour:
   model: {fileID: 878230853585311472}
   inAttack: 0
   inHitstun: 0
+  SlashSFX: event:/Sound Effects/SFX/Enemy SFX/Donut Slash
 --- !u!114 &1498083045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +306,7 @@ MonoBehaviour:
   rb: {fileID: 878230852319099021}
   agent: {fileID: 1498083051}
   animator: {fileID: 1498083044}
+  EncounterManager: {fileID: 0}
   enemyUI: {fileID: 878230853263537682}
   healthSlider: {fileID: 878230852251512460}
   hitVFX: {fileID: 1095849670864674090}
@@ -1231,6 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 1498083045}
+  playerHitSlashSFX: event:/Sound Effects/SFX/Player SFX/Player Damaged Slash
 --- !u!1001 &8123820196477482986
 PrefabInstance:
   m_ObjectHideFlags: 0

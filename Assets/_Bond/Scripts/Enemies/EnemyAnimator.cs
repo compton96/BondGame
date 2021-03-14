@@ -12,6 +12,9 @@ public class EnemyAnimator : MonoBehaviour
     public bool inAttack;
     public bool inHitstun;
 
+    [FMODUnity.EventRef]
+    public string SlashSFX;
+
     public void Move(Vector3 moveSpeed) 
     {
         if(moveSpeed.magnitude > 0)
@@ -49,6 +52,6 @@ public class EnemyAnimator : MonoBehaviour
 
     public void PlaySlamSFX()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Enemy Slam Ground", transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(SlashSFX, transform.position);
     }
 }

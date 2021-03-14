@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{124fdee1-11f1-4cf2-a883-731d837f94c7}">
+		<property name="assetPath">
+			<value>DonutWhoosh2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.19106575963718822</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{46d66588-5640-4915-9ffe-128a7334e5da}</destination>
+		</relationship>
+	</object>
+</objects>

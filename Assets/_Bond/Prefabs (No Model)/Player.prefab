@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.35, z: 0.67}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -178.213, y: 89.99999, z: 89.99999}
 --- !u!198 &766551116
 ParticleSystem:
@@ -4842,7 +4842,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2879053346376034959
 ParticleSystem:
@@ -9856,7 +9856,7 @@ Transform:
   m_LocalScale: {x: 4.13, y: 1, z: 2.851633}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3008331728240645146
 MeshFilter:
@@ -9930,6 +9930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0f0ec0a85a858419275ce081266d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlashHitSFX: event:/Sound Effects/SFX/Player SFX/New Sword Impact Enemy
+  CritSFX: event:/Sound Effects/SFX/Player SFX/New Sword Crit
 --- !u!1 &3008331728745216815
 GameObject:
   m_ObjectHideFlags: 0
@@ -10075,12 +10077,12 @@ Transform:
   - {fileID: 7629208211084902264}
   - {fileID: 3008331729270975653}
   - {fileID: 3008331728175113253}
-  - {fileID: 3008331728240645141}
   - {fileID: 3268859984920099909}
   - {fileID: 2879053346376034957}
-  - {fileID: 226208229969507009}
   - {fileID: 766551117}
   - {fileID: 368059099045210936}
+  - {fileID: 3008331728240645141}
+  - {fileID: 226208229969507009}
   - {fileID: 468185896499910684}
   - {fileID: 7654491621752466112}
   m_Father: {fileID: 0}
@@ -10213,8 +10215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7109975305556927938}
-  SwordSwingSFX: event:/Sound Effects/SFX/Sword Swing
-  WalkSFX: event:/Sound Effects/SFX/Walking Grass 2D
+  SwordSwingSFX: event:/Sound Effects/SFX/Player SFX/New Sword Swing
+  WalkSFX: event:/Sound Effects/SFX/New Walking Grass 2D
   RollInitialSFX: event:/Sound Effects/SFX/Roll/Roll Initial Impact
   RollSecondarySFX: event:/Sound Effects/SFX/Roll/Roll Secondary Impact
 --- !u!114 &2139760117
@@ -10365,7 +10367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3268859984920099915
 ParticleSystem:
@@ -15159,7 +15161,6 @@ GameObject:
   - component: {fileID: 226208229969507009}
   - component: {fileID: 4672864729631764098}
   - component: {fileID: 6779507019818856298}
-  - component: {fileID: 4688475429494654674}
   m_Layer: 9
   m_Name: heavy hitbox
   m_TagString: Untagged
@@ -15179,7 +15180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4672864729631764098
 MonoBehaviour:
@@ -15193,6 +15194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0f0ec0a85a858419275ce081266d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlashHitSFX: event:/Sound Effects/SFX/Player SFX/New Sword Impact Enemy
+  CritSFX: event:/Sound Effects/SFX/Player SFX/New Sword Crit
 --- !u!135 &6779507019818856298
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15206,18 +15209,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4688475429494654674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334410306365020563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0f0ec0a85a858419275ce081266d84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6785691582786172203
 GameObject:
   m_ObjectHideFlags: 0
@@ -15248,7 +15239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3008331729029387142}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3884884984860773404
 MonoBehaviour:
@@ -15413,6 +15404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0f0ec0a85a858419275ce081266d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlashHitSFX: event:/Sound Effects/SFX/Player SFX/New Sword Impact Enemy
+  CritSFX: event:/Sound Effects/SFX/Player SFX/New Sword Crit
 --- !u!1001 &7956414748827326611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15547,15 +15540,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 672e981e14064b944923fd0c3a4080a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37f9b579551ee274f884876915a875e8, type: 3}
---- !u!1 &7109975305556927938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 37f9b579551ee274f884876915a875e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7956414748827326611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7629208211084902264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37f9b579551ee274f884876915a875e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7956414748827326611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7109975305556927938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 37f9b579551ee274f884876915a875e8,
     type: 3}
   m_PrefabInstance: {fileID: 7956414748827326611}
   m_PrefabAsset: {fileID: 0}
