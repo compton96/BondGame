@@ -5,7 +5,7 @@
 			<value>Arena Spawn</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{daa92988-55ec-4dda-8f0a-1236ce42f3fa}</destination>
@@ -96,7 +96,7 @@
 			<value>4.6107709750566892</value>
 		</property>
 		<property name="volume">
-			<value>-8</value>
+			<value>-16.5</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{f0cd6694-abde-4c90-ace8-b7ad926bf4a5}</destination>
@@ -139,7 +139,11 @@
 			<destination>{b01c9c15-0518-43ce-97e2-554ca91983f2}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{8a590740-4ded-4388-a96d-7bb219b3e3a3}" />
+	<object class="MixerBusPanner" id="{8a590740-4ded-4388-a96d-7bb219b3e3a3}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{33a38a9b-53aa-48ed-8cde-29529a0c20df}" />
 	<object class="MixerBusFader" id="{b01c9c15-0518-43ce-97e2-554ca91983f2}" />
 </objects>
