@@ -5,7 +5,7 @@
 			<value>New Sword Impact Enemy</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3276842a-79d1-461f-abe1-9f38aaa7c104}</destination>
@@ -145,7 +145,11 @@
 			<destination>{cfa7c570-58f6-4e0d-8d53-7e683a48cb9b}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{6dd212fe-c0a0-449a-8862-964537cb82b9}" />
+	<object class="MixerBusPanner" id="{6dd212fe-c0a0-449a-8862-964537cb82b9}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{b5c07c1c-6f64-436d-a0c5-b477d1777dbc}" />
 	<object class="MixerBusFader" id="{cfa7c570-58f6-4e0d-8d53-7e683a48cb9b}" />
 </objects>

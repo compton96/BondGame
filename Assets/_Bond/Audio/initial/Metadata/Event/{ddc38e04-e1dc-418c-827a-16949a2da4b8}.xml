@@ -5,7 +5,7 @@
 			<value>New Sword Swing</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3276842a-79d1-461f-abe1-9f38aaa7c104}</destination>
@@ -186,7 +186,11 @@
 			<destination>{db4a9592-ef34-4299-b37d-91470b46d338}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{865cd0bf-effc-4145-823b-04e63be4d505}" />
+	<object class="MixerBusPanner" id="{865cd0bf-effc-4145-823b-04e63be4d505}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{fddfe299-25cd-4f27-b025-c395741d234f}" />
 	<object class="MixerBusFader" id="{db4a9592-ef34-4299-b37d-91470b46d338}" />
 </objects>

@@ -5,7 +5,7 @@
 			<value>New Sword Crit</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3276842a-79d1-461f-abe1-9f38aaa7c104}</destination>
@@ -93,7 +93,7 @@
 			<value>2.4399999999999999</value>
 		</property>
 		<property name="volume">
-			<value>-4.5</value>
+			<value>-22.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{dac6aebb-efee-4f01-860d-a8e85cecefce}</destination>
@@ -125,7 +125,11 @@
 			<destination>{c20f1831-7b52-4679-99b7-f42970fb6c9f}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{7f936c93-273d-4602-88ea-48a527d5b168}" />
+	<object class="MixerBusPanner" id="{7f936c93-273d-4602-88ea-48a527d5b168}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{25e5d27c-2a10-4fec-8e81-9c90fa52806b}" />
 	<object class="MixerBusFader" id="{c20f1831-7b52-4679-99b7-f42970fb6c9f}" />
 </objects>

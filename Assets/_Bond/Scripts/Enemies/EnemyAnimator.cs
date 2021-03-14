@@ -15,6 +15,14 @@ public class EnemyAnimator : MonoBehaviour
     [FMODUnity.EventRef]
     public string SlashSFX;
 
+    [FMODUnity.EventRef]
+    public string SpawnSFX;
+
+    private void Awake()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(SpawnSFX, transform.position);
+    }
+
     public void Move(Vector3 moveSpeed) 
     {
         if(moveSpeed.magnitude > 0)

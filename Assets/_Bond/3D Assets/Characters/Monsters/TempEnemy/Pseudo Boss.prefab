@@ -288,6 +288,8 @@ MonoBehaviour:
   model: {fileID: 878230853585311472}
   inAttack: 0
   inHitstun: 0
+  SlashSFX: event:/Sound Effects/SFX/Enemy SFX/Donut Slash
+  SpawnSFX: event:/Sound Effects/SFX/Enemy SFX/Enemy Spawn
 --- !u!114 &1498083045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,6 +1329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 1498083045}
+  playerHitSlashSFX: event:/Sound Effects/SFX/Player SFX/Player Damaged Slash
 --- !u!1 &7512734802401528910
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@
 			<value>Player Damaged Slash</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3276842a-79d1-461f-abe1-9f38aaa7c104}</destination>
@@ -147,7 +147,11 @@
 			<destination>{fd25e8df-56e4-4d76-9757-9d7ab5918321}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{484c6747-14f5-4bf6-ad0f-9e5e566bd54a}" />
+	<object class="MixerBusPanner" id="{484c6747-14f5-4bf6-ad0f-9e5e566bd54a}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{6620c52a-a91f-41b3-9c71-83326f2f58a7}" />
 	<object class="MixerBusFader" id="{fd25e8df-56e4-4d76-9757-9d7ab5918321}" />
 </objects>

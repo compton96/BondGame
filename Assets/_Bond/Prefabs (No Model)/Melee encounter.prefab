@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae5fe3e023031c42b07c6f4fd7977ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arenaSpawnSFX: event:/Sound Effects/SFX/Enemy SFX/Arena Spawn
   waves:
   - spawnWholeWave: 1
     waitUntilEnemiesLeft: 0

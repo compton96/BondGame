@@ -93,7 +93,7 @@
 			<value>0.32500000000000001</value>
 		</property>
 		<property name="volume">
-			<value>-9</value>
+			<value>-20.5</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{1e5ce89e-d3c9-43ca-bd3f-ef89cd62c199}</destination>
@@ -181,7 +181,11 @@
 			<destination>{8ab53e45-0015-46dc-8c1e-85348a311136}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{88d18417-ec9e-475c-b4a9-c83a1db5e499}" />
+	<object class="MixerBusPanner" id="{88d18417-ec9e-475c-b4a9-c83a1db5e499}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{3ddcc6ab-264a-4502-b1a8-01469a2c5d06}" />
 	<object class="SpatialiserEffect" id="{2cf995dc-4072-47a6-a3d3-325c37c970b2}" />
 	<object class="MixerBusFader" id="{8ab53e45-0015-46dc-8c1e-85348a311136}" />

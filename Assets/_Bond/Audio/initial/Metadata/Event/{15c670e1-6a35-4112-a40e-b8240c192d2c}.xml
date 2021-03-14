@@ -5,7 +5,7 @@
 			<value>Walking Grass 2D</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d4c40a69-0ffa-4d74-acd6-aa294d8d02e9}</destination>
@@ -212,7 +212,11 @@
 			<destination>{1dcdc1c6-1eb4-48be-8bef-d200eb76a06d}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{4f85e9c0-797f-4840-975f-8e63ed8cb7c6}" />
+	<object class="MixerBusPanner" id="{4f85e9c0-797f-4840-975f-8e63ed8cb7c6}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{1206b546-77ec-47af-8bd7-da6b9b222f71}" />
 	<object class="MixerBusFader" id="{1dcdc1c6-1eb4-48be-8bef-d200eb76a06d}" />
 </objects>
