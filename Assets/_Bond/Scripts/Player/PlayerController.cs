@@ -106,6 +106,10 @@ public class PlayerController : MonoBehaviour
     public HitBoxes hitBoxes;
 
     public GameObject pauseMenu;
+
+    [FMODUnity.EventRef]
+    public string menuOpenSFX;
+
     private bool isPaused = false;
 
 
@@ -496,7 +500,7 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        
+        FMODUnity.RuntimeManager.PlayOneShot(menuOpenSFX, transform.position);
     }
     
     //*********** END INPUT FXNS **************************
