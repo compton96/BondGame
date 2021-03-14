@@ -90,6 +90,7 @@ public class EnemyAIContext : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        animator.Death();
         Destroy(gameObject);
     }
 

@@ -18,9 +18,17 @@ public class EnemyAnimator : MonoBehaviour
     [FMODUnity.EventRef]
     public string SpawnSFX;
 
+    [FMODUnity.EventRef]
+    public string DeathSFX;
+
     private void Awake()
     {
         FMODUnity.RuntimeManager.PlayOneShot(SpawnSFX, transform.position);
+    }
+
+    public void Death()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DeathSFX, transform.position);
     }
 
     public void Move(Vector3 moveSpeed) 

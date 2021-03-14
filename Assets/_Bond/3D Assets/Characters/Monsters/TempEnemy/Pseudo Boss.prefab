@@ -290,6 +290,7 @@ MonoBehaviour:
   inHitstun: 0
   SlashSFX: event:/Sound Effects/SFX/Enemy SFX/Donut Slash
   SpawnSFX: event:/Sound Effects/SFX/Enemy SFX/Enemy Spawn
+  DeathSFX: event:/Sound Effects/SFX/Enemy SFX/Enemy Death
 --- !u!114 &1498083045
 MonoBehaviour:
   m_ObjectHideFlags: 0
