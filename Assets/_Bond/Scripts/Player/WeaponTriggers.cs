@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class WeaponTriggers : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SlashHitSFX;
+
+    [FMODUnity.EventRef]
+    public string CritSFX;
+
     private StatManager ps;
     private PlayerStateMachine fsm;
     // Start is called before the first frame update
@@ -34,62 +40,44 @@ public class WeaponTriggers : MonoBehaviour
             if(fsm.currentState == fsm.Slash0)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1.2f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             else if(fsm.currentState == fsm.Slash1)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             else if(fsm.currentState == fsm.Slash2)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             else if(fsm.currentState == fsm.Slash3)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             else if(fsm.currentState == fsm.Slash4)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 1.5f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             else if(fsm.currentState == fsm.HeavySlash)
             {
                 enemyAIContext.statManager.TakeDamage( damage * 2f, ModiferType.MELEE_RESISTANCE);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Impact Enemy", transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SlashHitSFX, transform.position);
 
-                if (damage != ps.getStat(ModiferType.DAMAGE))
-                {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Sound Effects/SFX/Sword Crit", transform.position);
-                }
+                checkForCrit(damage);
             } 
             // else
             // {
@@ -102,6 +90,14 @@ public class WeaponTriggers : MonoBehaviour
         {
             print("Hit tree with sword");
             other.gameObject.GetComponent<FruitTree>().dropFruit();
+        }
+    }
+    
+    private void checkForCrit( float damage )
+    {
+        if (damage != ps.getStat(ModiferType.DAMAGE))
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CritSFX, transform.position);
         }
     }
 }

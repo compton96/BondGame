@@ -45,9 +45,9 @@ public class PlayerStateMachine : MonoBehaviour
             HeavyCharge = new PlayerState.HeavyCharge( this );
             HeavySlash = new PlayerState.HeavySlash( this );
 
-        MovementState = new PlayerState.MovementState( this );
-            IdleMove = new PlayerState.IdleMove( this );
-            Dash = new PlayerState.Dash( this );
+            MovementState = new PlayerState.MovementState( this );
+                IdleMove = new PlayerState.IdleMove( this );
+                Dash = new PlayerState.Dash( this );
 
         Hurt = new PlayerState.Hurt( this );
         Standby = new PlayerState.Standby( this );
