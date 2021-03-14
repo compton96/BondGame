@@ -5,20 +5,20 @@ using UnityEngine;
 public class EncounterManager : MonoBehaviour
 {
  
+    [FMODUnity.EventRef]
+    public string arenaSpawnSFX;
     public List<Wave> waves = new List<Wave>();
     public int currEnemyCount = 0;
     public GameObject barrier;
-
     public GameObject blobs;
-
     public Buff corruptionDebuff;
-    
     private int currWave = 0;
 
     private void OnTriggerEnter(Collider other) 
     {
         if(other.transform.tag == "Player")
         {
+            FMODUnity.RuntimeManager.PlayOneShot(arenaSpawnSFX, transform.position);
             blobs.SetActive(true);
             barrier.SetActive(true);
             SpawnEncounter();
