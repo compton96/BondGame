@@ -17,13 +17,60 @@ namespace PlayerState
             name = "Slash0";
             index = 0;
             hitBox = player.hitBoxes.slash0;
+            
         }
 
-        // public override void OnStateFixedUpdate()
-        // {
-        //     player.doMovement(0f);
-        //     player.doRotation(1f);
-        // }
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            Debug.Log("slash0 enter");
+            speedMod = 2f;
+        }
+
+        public override void OnStateFixedUpdate()
+        {
+            player.doMovement(speedMod);
+            if(speedMod >= 0.05f)
+            {
+                speedMod /= 1.2f;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

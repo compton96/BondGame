@@ -47,6 +47,7 @@ namespace PlayerState
             animator.ResetAllAttackAnims();
             
             player.isAttacking = false;
+            
         }
     }
 }

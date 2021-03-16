@@ -52,7 +52,7 @@ public class PlayerStateMachine : MonoBehaviour
         Hurt = new PlayerState.Hurt( this );
         Standby = new PlayerState.Standby( this );
 
-        SetState(Slash0);//change to default state, idle
+        SetState(IdleMove);//change to default state, idle
     }
 
     public void SetState( PlayerState.State state )
