@@ -19,7 +19,7 @@ public class EnemyWeaponTrigger : MonoBehaviour
         {
             other.gameObject.GetComponent<StatManager>().TakeDamageCreature(context.statManager.stats[ModiferType.DAMAGE].modifiedValue, ModiferType.MELEE_RESISTANCE);
             other.GetComponent<CreatureAIContext>().isHit = true;
-            PersistentData.Instance.UI.GetComponent<UIUpdates>().updateEnthusiasm();
+            other.GetComponent<EnthusiasmUI>().UpdateEnthusiasm();
         }
     }
 

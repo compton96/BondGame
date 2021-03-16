@@ -40,6 +40,9 @@ public class UIUpdates : MonoBehaviour
     private StatManager stats => PersistentData.Instance.Player.GetComponent<StatManager>();
     private PlayerController player => PersistentData.Instance.Player.GetComponent<PlayerController>();
 
+//*****************End of variable declarations**********************//
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +60,8 @@ public class UIUpdates : MonoBehaviour
         maxHealthUI.SetText("/ " + stats.getStat(ModiferType.MAX_HEALTH).ToString());
         gold.SetText(player.goldCount.ToString());
 
+        CheckForTarget();
+
 
         /*
         
@@ -72,20 +77,35 @@ public class UIUpdates : MonoBehaviour
         
     }
 
-   
+	
 
-    public void CooldownUpdate()
+	
+    private void CheckForTarget()
     {
-       
-        //called every tick while cooldown is active
-        //get specific creatures cooldown
-
-        //Image.fillAmount += 1.0f / cooldown length * Time.deltaTime;
-
+        try
+        {
+            if(player.currCreatureContext.targetEnemy != null)
+            {
+                //Debug.Log("opaque");
+                ability1Icon.color = new Color (255,255,255,1); //opaque
+                ability2Icon.color = new Color (255,255,255,1);           
+            }
+            // else
+            // {
+                
+            // }
+        }
+        catch
+        {
+            //Debug.Log("transparent");
+            ability1Icon.color = new Color (255,255,255,0.5f); //transparent
+            ability2Icon.color = new Color (255,255,255,0.5f); 
+        }
     }
-	
 
-	
+
+
+
 
     //updates both creature icon and the respective ability icons
     public void UpdateCreatureUI()
@@ -93,7 +113,7 @@ public class UIUpdates : MonoBehaviour
          if(player.currCreatureContext != null)
         {
             enthusiasmSlider.enabled = true;
-            updateEnthusiasm();
+            //updateEnthusiasm();
             currCreatureIcon.sprite = player.currCreatureContext.icon;
             //abilityGroup.alpha = 1;
             ability1Icon.sprite = player.currCreatureContext.creatureStats.abilities[0].abilityIcon;
@@ -106,14 +126,14 @@ public class UIUpdates : MonoBehaviour
 
             cd = player.currCreatureContext.cooldownSystem;//assign cooldown system
 
-            if(player.swapCreature != null)
+            if(player.swapCreature != null) // player has the swap creature
             {
                 swapCreatureIcon.sprite = player.swapCreature.GetComponent<CreatureAIContext>().icon;
                 swapCreatureName.SetText(player.currCreatureContext.creatureStats.name);
             }
 
         }
-        else
+        else //Player has no creatures equipped
         {
             enthusiasmSlider.enabled = false;
             currCreatureIcon.sprite = noCreatureIcon;
@@ -129,11 +149,37 @@ public class UIUpdates : MonoBehaviour
         }
     }
 
-    public void updateEnthusiasm()
+
+
+
+
+    
+    public void CooldownUpdate()
     {
-        var creatureStats = player.currCreatureContext.creatureStats.statManager;
-        enthusiasmSlider.value = ((creatureStats.getStat(ModiferType.CURR_ENTHUSIASM) / creatureStats.getStat(ModiferType.MAX_ENTHUSIASM)) * 100);
+       
+        //called every tick while cooldown is active
+        //get specific creatures cooldown
+
+        //Image.fillAmount += 1.0f / cooldown length * Time.deltaTime;
+
     }
+
+
+
+
+
+
+
+    // public void updateEnthusiasm()
+    // {
+    //     var creatureStats = player.currCreatureContext.creatureStats.statManager;
+    //     enthusiasmSlider.value = ((creatureStats.getStat(ModiferType.CURR_ENTHUSIASM) / creatureStats.getStat(ModiferType.MAX_ENTHUSIASM)) * 100);
+    // }
+
+
+
+
+
 
     public void showInteractPrompt()
     {
@@ -144,6 +190,10 @@ public class UIUpdates : MonoBehaviour
     {
         interactPrompt.enabled = false;
     }
+
+
+
+
 
 
     public void ShowCharacterDialogue()
