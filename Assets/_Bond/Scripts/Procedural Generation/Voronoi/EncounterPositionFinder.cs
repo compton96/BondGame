@@ -4,23 +4,7 @@ using UnityEngine;
 
 public class EncounterPositionFinder : MonoBehaviour
 {
-    bool inTerrain;
     float timerStart;
-
-    private void OnTriggerEnter(Collider other) {
-        if(other.transform.tag == "Terrain")
-        {
-            Debug.Log("IN TERRAIN");
-            inTerrain = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if(other.transform.tag == "Terrain")
-        {
-            inTerrain = false;
-        }
-    }
 
     public List<List<Vector2>> GetPoints(Vector3 startPos, int mapSize, int increment)
     {
