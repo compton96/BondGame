@@ -109,8 +109,6 @@ public class VoronoiDiagram : MonoBehaviour
 		}
 	}
 
-	
-
 	//Places spawnPoint, exit, creatures, and enemies
 	void PlaceEncounters(Cell[] cells)
 	{
@@ -122,9 +120,9 @@ public class VoronoiDiagram : MonoBehaviour
 		Parent = _parent;
 
 		// //place player spawn point and level exit
-		
 		List<List<Vector2>> listOfList = encounterPositionFinder.GetPoints(new Vector3(0,37.5f,0), 512, 2);
 		List<Vector2> possibleEncounterPositions = listOfList[0];
+		List<Vector2> possibleEnviornmentalObjectLocations = listOfList[1];
 
 		var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(possibleEncounterPositions[0].x, 0, possibleEncounterPositions[0].y), Quaternion.identity, Parent.transform);
 		possibleEncounterPositions.RemoveAt(0);
@@ -194,7 +192,6 @@ public class VoronoiDiagram : MonoBehaviour
 			}
 		}
 
-
 		//Loop to place creature encounters
 		for(int i = 0; i < numberOfCreature; i++)
 		{
@@ -238,9 +235,9 @@ public class VoronoiDiagram : MonoBehaviour
 						case Biome.MEADOWS:
 							toPlace = FragariaEncounter;
 							break;
-						case Biome.MARSH:
-							toPlace = AquaphimEncounter;
-							break;
+						// case Biome.MARSH:
+						// 	toPlace = AquaphimEncounter;
+						// 	break;
 						// case Biome.CORRUPTION:
 							
 						// 	break;
@@ -248,7 +245,6 @@ public class VoronoiDiagram : MonoBehaviour
 							toPlace = FragariaEncounter;
 							break;
 					}
-
 				GameObject tempEncounter = Instantiate(
 					toPlace, 
 					new Vector3(randomPos.x, 0, randomPos.y), 
@@ -257,6 +253,63 @@ public class VoronoiDiagram : MonoBehaviour
 				placedEncounters.Add(tempEncounter);
 
 				possibleEncounterPositions.RemoveAt(encounterPositionsIndex);
+			}
+		}
+
+		BiomeObjects currentBiomeObj;
+		Biome currBiome;
+		for(int i = 0; i < possibleEnviornmentalObjectLocations.Count; i++)
+		{
+			bool overlap = false;
+			Vector2 randomPos = possibleEnviornmentalObjectLocations[i];
+			foreach(GameObject e in placedEncounters){
+				//If chosen cell is too close to another encounter, remove it from the possible encounter cells
+				if(Vector3.Distance(e.transform.position, new Vector3(randomPos.x, 0, randomPos.y)) < 5)
+				{
+					possibleEnviornmentalObjectLocations.RemoveAt(i);
+					overlap = true;
+					break;
+				}
+					
+			}
+			if(overlap)
+			{
+				continue;
+			}
+
+			float randomNum = Random.Range(0f,100f);
+			currBiome = cells[GetClosestCellIndex((int)randomPos.x, (int)randomPos.y, cells)].biome; 
+			// Debug.Log("Curr Biome: " + currBiome);
+			switch (currBiome)
+			{
+				case Biome.FOREST:
+					currentBiomeObj = forestObjects;
+					break;
+
+				case Biome.MEADOWS:
+					currentBiomeObj = meadowsObjects;
+					break;
+
+				case Biome.MARSH :
+					currentBiomeObj = marshObjects;
+					break;
+				default:
+					currentBiomeObj = null;
+					break;
+			}
+			if(currentBiomeObj == null)
+			{
+				continue;
+			}
+			foreach(BiomeSpecificAssetList b in currentBiomeObj.Assets)
+			{
+				if(randomNum < b.percentage){
+					Instantiate(b.objects[Random.Range(0, b.objects.Count)],
+						new Vector3(randomPos.x, 0, randomPos.y),
+						new Quaternion(Quaternion.identity.x, Random.Range(0f, 1f), Quaternion.identity.z, Quaternion.identity.w), 
+						Parent.transform);
+					break;
+				}
 			}
 		}
 	}
@@ -299,7 +352,7 @@ public class VoronoiDiagram : MonoBehaviour
 			}
 		}
 
-		//Generate the borders for the fine cells
+		// Generate the borders for the fine cells
 		foreach(Cell c in fineVisitedCells)
 		{
 			List<Cell> borderCells = GetClosestKCells(c.index, adjacencyCount, fineCells);
@@ -344,23 +397,26 @@ public class VoronoiDiagram : MonoBehaviour
 		
 		float tempDistance;
 
-		for(int x = 0; x < imageDim.x; x++)
+		for(int y = 0; y < imageDim.y; y++)
 		{
-			for(int y = 0; y < imageDim.y; y++)
+			for(int x = 0; x < imageDim.x; x++)
 			{
-				int index = x * imageDim.x + y;
+				int xSwap = y;
+				int ySwap = x;
+
+				int index = y * imageDim.y + x;
 				int fineIndex = GetClosestCellIndex(x, y, fineCells);
 				Biome b = fineCells[fineIndex].biome;
 				fineCells[fineIndex].size++;
-				fineCells[fineIndex].pixels.Add(new Vector2(x,y));
+				fineCells[fineIndex].pixels.Add(new Vector2(xSwap,ySwap));
 
 				coarseCells[GetClosestCellIndex(x, y, coarseCells)].size++;
 				pixelColors[index] = GetBiomeColor(b);
 
-				heights[x,y] = 0f;
+				heights[xSwap,ySwap] = 0f;
 
 				Color32 pixelColor = pixelColors[index];
-				detailMapData[x,y] = 0;
+				detailMapData[xSwap,ySwap] = 0;
 				//Place trees on borders of biomes
 				if(pixelColor.Equals(forestBorderColor) ||
 				   pixelColor.Equals(meadowsBorderColor) ||
@@ -368,14 +424,14 @@ public class VoronoiDiagram : MonoBehaviour
 				   pixelColor.Equals(corruptionBorderColor)
 				)
 				{
-					alphaMapData[x,y,2] = 1;
-					heights[x,y] = 0.1f;
+					alphaMapData[xSwap,ySwap,2] = 1;
+					heights[xSwap,ySwap] = 0.1f;
 					if(Random.Range(0,5) == 1){
                          TreeInstance treeTemp = new TreeInstance();
 						 
-                        Vector3 position = new Vector3(x , 0, y);
-                        float newX = linearMap(x, 0, terrainData.detailWidth, 0, 1);
-                        float newY = linearMap(y, 0, terrainData.detailHeight, 0, 1);
+                        Vector3 position = new Vector3(xSwap , 0, ySwap);
+                        float newX = linearMap(xSwap, 0, terrainData.detailWidth, 0, 1);
+                        float newY = linearMap(ySwap, 0, terrainData.detailHeight, 0, 1);
                         treeTemp.position = new Vector3(newY,0,newX);
                         treeTemp.prototypeIndex = 0;
                         treeTemp.widthScale = 1f;
@@ -388,43 +444,43 @@ public class VoronoiDiagram : MonoBehaviour
 				} 
 				else if(pixelColor.Equals(forestColor))
 				{
-					alphaMapData[x,y,0] = 1;
+					alphaMapData[xSwap,ySwap,0] = 1;
 					tempDistance = Vector2.Distance(new Vector2(x,y), fineCells[fineIndex].center);
 					
 					if(Random.Range(0,100) < linearMap(tempDistance, 3, 15, 0, 100))
 					{
-						detailMapData[x,y] = 1;
+						detailMapData[xSwap,ySwap] = 1;
 					}
-
 				} else if(pixelColor.Equals(corruptionColor))
 				{
-					alphaMapData[x,y,4] = 1;
+					alphaMapData[xSwap,ySwap,4] = 1;
 					
 				} else if(pixelColor.Equals(marshColor))
 				{
-					alphaMapData[x,y,1] = 1;
+					alphaMapData[xSwap,ySwap,1] = 1;
 										
 					tempDistance = Vector2.Distance(new Vector2(x,y), fineCells[fineIndex].center);
 					
 					if(Random.Range(0,100) < linearMap(tempDistance, 10, 25, 0, 90))
 					{
-						detailMapData[x,y] = 1;
+						detailMapData[xSwap,ySwap] = 1;
 					}
 				} 
 				else if(pixelColor.Equals(meadowsColor))
 				{
-					alphaMapData[x,y,3] = 1;
+					alphaMapData[xSwap,ySwap,3] = 1;
 
 					tempDistance = Vector2.Distance(new Vector2(x,y), fineCells[fineIndex].center);
 					
 					if(Random.Range(0,100) < linearMap(tempDistance, 2, 10, 0, 100))
 					{
-						detailMapData[x,y] = 1;
+						detailMapData[xSwap,ySwap] = 1;
 					}
 				}
 				else 
 				{
-					heights[x,y] = 0.1f;
+					heights[xSwap,ySwap] = 0.1f;
+					
 				}
 			}
 		}
@@ -432,11 +488,9 @@ public class VoronoiDiagram : MonoBehaviour
 		terrainData.SetHeights(0, 0, heights);
 		terrainData.SetAlphamaps(0, 0, alphaMapData);
 		terrainData.SetDetailLayer(0, 0, 0, detailMapData);
-
 		
 		PlaceEncounters(fineCells);
 		navMesh.BuildNavMesh();
-
 
 		for(int x = 0; x < imageDim.x; x++)
 		{
@@ -457,9 +511,6 @@ public class VoronoiDiagram : MonoBehaviour
 		// 	pixelColors[index] = Color.red;
 		// }
 
-		
-	
-		
 
 		Debug.Log("Finished : " + (Time.realtimeSinceStartup - timerStart));
 		return tex;

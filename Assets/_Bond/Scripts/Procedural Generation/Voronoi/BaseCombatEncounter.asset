@@ -15,4 +15,4 @@ MonoBehaviour:
   encounter: {fileID: 1823558736048597768, guid: cd3b94409c7650f4fba8444cb837413b,
     type: 3}
   indicators:
-  - {fileID: 919132149155446097, guid: 9efe6213d0075d14e9cad5a8182ab8e5, type: 3}
+  - {fileID: 1819625309261729902, guid: b92669759f067ad43aa49666379bca08, type: 3}

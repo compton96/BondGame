@@ -32,22 +32,23 @@ public class EncounterPositionFinder : MonoBehaviour
         
         gameObject.transform.position = startPos;
         Vector3 position = startPos;
-        Collider[] hitColliders = new Collider[1];
+        Collider[] bigHitColliders = new Collider[1];
+        Collider[] smallHitColliders = new Collider[1];
         int layer = 1<<10;
         for(float x = startPos.x; x < mapSize; x += increment)
         {
             for(float y = startPos.y; y < mapSize; y += increment)
             {
                 position = new Vector3(x,37.5f,y);
-                int numColliders = Physics.OverlapSphereNonAlloc(position, 23, hitColliders);
-                if(numColliders < 1)
+                int bigNumColliders = Physics.OverlapSphereNonAlloc(position, 23, bigHitColliders);
+                if(bigNumColliders < 1)
                 {
                     viableCombatPoints.Add(new Vector2(x,y));
                 } 
                 
-                position = new Vector3(x,37.5f,y);
-                numColliders = Physics.OverlapSphereNonAlloc(position, 3, hitColliders);
-                if(numColliders < 1)
+                position = new Vector3(x,60f,y);
+                int smallNumColliders = Physics.OverlapSphereNonAlloc(position, 3, smallHitColliders);
+                if(smallNumColliders < 1)
                 {
                     viableObjectPoints.Add(new Vector2(x,y));
                 } 
