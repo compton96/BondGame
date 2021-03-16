@@ -21,7 +21,7 @@ public class CreatureAI : MonoBehaviour
         context = GetComponent<CreatureAIContext>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if(Evaluate){
             behaviorTree.OnParentEvaluate();
             context.animator.Move(context.agent.velocity);

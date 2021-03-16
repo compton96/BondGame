@@ -47,8 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterMusicEvent: {fileID: 8012914225686865728}
   ambientNoiseEvent: {fileID: 8012914226551170707}
-  playerTransform: {fileID: 0}
-  enemyDetectRange: 12
 --- !u!1 &8012914225686865731
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,13 +91,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Music/In-game Music Event
+  Event: event:/Music/Master Music Event
   PlayEvent: 1
   StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
-  Params: []
+  Params:
+  - Name: Game State
+    Value: 0
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0

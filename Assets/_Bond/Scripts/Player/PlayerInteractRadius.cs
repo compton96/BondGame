@@ -12,7 +12,6 @@ public class PlayerInteractRadius : MonoBehaviour
         
         if(other.transform.tag == "Interactable")
         {
-            // Debug.Log("near interactable");
             pc.interactableObjects.Add(other.gameObject, other.gameObject.GetComponent<InteractableBase>());
             if( other.gameObject.GetComponent<InteractableBase>().showUI)
             {
@@ -32,6 +31,12 @@ public class PlayerInteractRadius : MonoBehaviour
                 PersistentData.Instance.UI.GetComponent<UIUpdates>().hideIntereactPrompt();
             }
             
+            if(other.gameObject.layer == 13)
+            {
+                PersistentData.Instance.UI.GetComponent<UIUpdates>().HideCharacterDialogue();
+                pc.characterDialogManager = null;
+                pc.inCharacterDialog = false;
+            }
         }
     }
 }

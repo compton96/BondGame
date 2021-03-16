@@ -25,10 +25,15 @@ public class UIUpdates : MonoBehaviour
     public TextMeshProUGUI ability1Description;
     public TextMeshProUGUI ability2Description;
 
+    public GameObject CharacterDialogCanvas;
+    public TextMeshProUGUI CharacterDialogText;
     public CooldownSystem cd;
 
     
     
+
+    public GameObject EnviornmentDialogCanvas;
+    public TextMeshProUGUI EnviornmentDialogText;
 
     public Slider enthusiasmSlider;
 
@@ -141,7 +146,15 @@ public class UIUpdates : MonoBehaviour
     }
 
 
+    public void ShowCharacterDialogue()
+    {
+        CharacterDialogCanvas.SetActive(true);
+    }
 
+    public void HideCharacterDialogue()
+    {
+        CharacterDialogCanvas.SetActive(false);
+    }
 
 
 }
