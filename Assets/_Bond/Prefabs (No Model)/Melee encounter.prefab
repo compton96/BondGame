@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8411986069340582150}
   - component: {fileID: 6716721830743228316}
   - component: {fileID: 1288276926098526357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArenaWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6101974208064194901}
   - component: {fileID: 6711789647843123388}
   - component: {fileID: 7409123363235285599}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 1823558736048597769}
   - component: {fileID: 1823558736048597770}
   - component: {fileID: 1823558736048597771}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Melee encounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 1823558736329723825}
   - component: {fileID: 1823558736329723824}
   - component: {fileID: 1823558736329723831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1823558736675524416}
   - component: {fileID: 1823558736675524423}
   - component: {fileID: 1823558736675524422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1823558736714116910}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wave 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 2689973366931324279}
   - component: {fileID: 2689973366931324276}
   - component: {fileID: 2689973366931324277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 2689973366936057920}
   - component: {fileID: 2689973366936057921}
   - component: {fileID: 2689973366936057926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 7654666973335949817}
   - component: {fileID: 3082034129577102675}
   - component: {fileID: 1958199526170211293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 67593767772054602}
   - component: {fileID: 2816108100426502272}
   - component: {fileID: 2689973365371291114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rock1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 6742562504104758924}
   - component: {fileID: 5837216697129183705}
   - component: {fileID: 8333654035251616487}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 3172151548308405137}
   - component: {fileID: 7780699530804605848}
   - component: {fileID: 6076582557496839820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9195812709513283182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blobs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,7 +1213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2216529720129247586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wave 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

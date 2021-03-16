@@ -30,6 +30,7 @@ public class PersistentData : MonoBehaviour
 
     public CanvasGroup loadScreen;
 
+    public bool isGeneratorDone;
 
 
     private void Awake() 
@@ -178,11 +179,21 @@ public class PersistentData : MonoBehaviour
 
         //set players position in new scene
         //CALL BUILD LEVEL, WHICH SHOULD GENERATE EVERYTHING, INCLUDING A SPAWNPOINT;
+        if(SceneManager.GetActiveScene().name == "VoronoiPCG")
+        {
+            isGeneratorDone = false;
+            loadScreen.alpha = 0;
+            GameObject levelGen = GameObject.FindGameObjectWithTag("LevelGenerator");
+            levelGen.GetComponent<VoronoiDiagram>().Run();
+        }
 
-        
         // Debug.Log(GetSpawnpoint());
+        while(!isGeneratorDone)
+        {
+            yield return null;
+        }
+        
         Player.transform.position = GetSpawnpoint();
-       
         //update Game State for FMOD if necessary
         switch(_scene)
         {

@@ -427,8 +427,8 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                Debug.Log("RAYCAST : " + hit.transform.gameObject);
-                Debug.Log(hit.point);
+                // Debug.Log("RAYCAST : " + hit.transform.gameObject);
+                // Debug.Log(hit.point);
                 //gameObject.transform.LookAt(hit.point);
 
                 destination = hit.point;

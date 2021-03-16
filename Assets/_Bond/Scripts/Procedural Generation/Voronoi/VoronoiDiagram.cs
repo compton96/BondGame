@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class VoronoiDiagram : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class VoronoiDiagram : MonoBehaviour
 	public Terrain terrain;
 	public GameObject EncounterPosFinderObj;
 	public NavMeshSurface navMesh;
+	public GameObject LoadingUI;
+	public Slider progressBar;
 	
 	private EncounterPositionFinder encounterPositionFinder;
 
@@ -65,13 +68,17 @@ public class VoronoiDiagram : MonoBehaviour
 	}
 
 	[ContextMenu("Run Code")]
-	private void Run()
+	public bool Run()
 	{
+		LoadingUI.SetActive(true);
 		fineVisitedCells = new List<Cell>();
 		borderCells = new List<Cell>();
 		encounterPositionFinder = EncounterPosFinderObj.GetComponent<EncounterPositionFinder>();
-		GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
+		// GetComponent<SpriteRenderer>().sprite = Sprite.Create((drawByDistance ? GetDiagramByDistance() : GetDiagram()), new Rect(0, 0, imageDim.x, imageDim.y), Vector2.one * 0.5f);
+		StartCoroutine(GetDiagram());
+
 		
+		return true;
 	}
 	
 	//Draws between the start and end cell to get next cell on path
@@ -124,8 +131,8 @@ public class VoronoiDiagram : MonoBehaviour
 		List<Vector2> possibleEncounterPositions = listOfList[0];
 		List<Vector2> possibleEnviornmentalObjectLocations = listOfList[1];
 
-		var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(possibleEncounterPositions[0].x, 0, possibleEncounterPositions[0].y), Quaternion.identity, Parent.transform);
-		possibleEncounterPositions.RemoveAt(0);
+		var spawnPoint = Instantiate(playerSpawnPoint, new Vector3(possibleEnviornmentalObjectLocations[0].x, 0, possibleEnviornmentalObjectLocations[0].y), Quaternion.identity, Parent.transform);
+		possibleEnviornmentalObjectLocations.RemoveAt(0);
 		var exit = Instantiate(levelExit, new Vector3(possibleEncounterPositions[possibleEncounterPositions.Count-1].x, 0, possibleEncounterPositions[possibleEncounterPositions.Count-1].y), Quaternion.identity, Parent.transform);
 		possibleEncounterPositions.RemoveAt(possibleEncounterPositions.Count-1);
 
@@ -315,9 +322,18 @@ public class VoronoiDiagram : MonoBehaviour
 	}
 
 	//Generate the Voronoi Diagram, then the map based on it
-	Texture2D GetDiagram()
+	IEnumerator GetDiagram()
 	{
+
+		progressBar.value = 0;
+		yield return null;
+		
+		//Get random seed and set it
+		gameSeed = Random.Range(0,999999);
+		
 		Random.InitState(gameSeed); 
+
+
 		timerStart = Time.realtimeSinceStartup;
 		Cell[] coarseCells = new Cell[coarseRegionAmount];
 		Cell[] fineCells = new Cell[fineRegionAmount];
@@ -335,12 +351,14 @@ public class VoronoiDiagram : MonoBehaviour
 			fineCells[i].center = new Vector2Int(Random.Range(0, imageDim.x), Random.Range(0, imageDim.y));
 			fineCells[i].index = i;
 		}
-
+		progressBar.value = 5;
+		yield return null;
 		relax(coarseCells);
 		// relax(fineCells);
-	
-		connectCells(coarseCells);
 
+		connectCells(coarseCells);
+		progressBar.value = 15;
+		yield return null;
 		for(int i = 0; i < fineCells.Length; i++)
 		{
 			//every fine cell gets the biome of its closest coarse cell
@@ -351,7 +369,8 @@ public class VoronoiDiagram : MonoBehaviour
 				fineVisitedCells.Add(fineCells[i]);
 			}
 		}
-
+		progressBar.value = 40;
+		yield return null;
 		// Generate the borders for the fine cells
 		foreach(Cell c in fineVisitedCells)
 		{
@@ -382,8 +401,10 @@ public class VoronoiDiagram : MonoBehaviour
 				}
 			}
 		}
-
+		progressBar.value = 50;
 		//Go through the map and set cell biomes, sizes, and pixels
+		yield return null;
+
 		Color[] pixelColors = new Color[imageDim.x * imageDim.y];
 		
 		TerrainData terrainData = terrain.terrainData;
@@ -485,6 +506,9 @@ public class VoronoiDiagram : MonoBehaviour
 			}
 		}
 		
+		progressBar.value = 80;
+		yield return null;
+
 		terrainData.SetHeights(0, 0, heights);
 		terrainData.SetAlphamaps(0, 0, alphaMapData);
 		terrainData.SetDetailLayer(0, 0, 0, detailMapData);
@@ -500,7 +524,7 @@ public class VoronoiDiagram : MonoBehaviour
 
 			}
 		}
-		
+		progressBar.value = 90;
 		terrainData.SetHeights(0, 0, heights);
 
 		Texture2D tex = GetImageFromColorArray(pixelColors);
@@ -511,9 +535,12 @@ public class VoronoiDiagram : MonoBehaviour
 		// 	pixelColors[index] = Color.red;
 		// }
 
-
+		progressBar.value = 100;
 		Debug.Log("Finished : " + (Time.realtimeSinceStartup - timerStart));
-		return tex;
+		LoadingUI.SetActive(false);
+		
+		PersistentData.Instance.isGeneratorDone = true;
+		yield return null;
 	}
 
 	Color GetBiomeColor(Biome b) 
@@ -540,41 +567,6 @@ public class VoronoiDiagram : MonoBehaviour
 				return marshBorderColor;
 		}
 		return Color.black;
-	}
-
-	Texture2D GetDiagramByDistance()
-	{
-		Cell[] cells = new Cell[coarseRegionAmount];
-		
-		for (int i = 0; i < coarseRegionAmount; i++)
-		{
-			cells[i] = new Cell();
-			cells[i].center = new Vector2Int(Random.Range(0, imageDim.x), Random.Range(0, imageDim.y));
-		}
-		Color[] pixelColors = new Color[imageDim.x * imageDim.y];
-		float[] distances = new float[imageDim.x * imageDim.y];
-
-
-		float maxDst = float.MinValue;
-		for (int x = 0; x < imageDim.x; x++)
-		{
-			for (int y = 0; y < imageDim.y; y++)
-			{
-				int index = x * imageDim.x + y;
-				distances[index] = Vector2.Distance(new Vector2Int(x,y), cells[GetClosestCellIndex(x, y, cells)].center);
-				if(distances[index] > maxDst)
-				{
-					maxDst = distances[index];
-				}
-			}	
-		}
-
-		for(int i = 0; i < distances.Length; i++)
-		{
-			float colorValue = distances[i] / maxDst;
-			pixelColors[i] = new Color(colorValue, colorValue, colorValue, 1f);
-		}
-		return GetImageFromColorArray(pixelColors);
 	}
 
 	int GetClosestCellIndex(int x, int y, Cell[] cells)
